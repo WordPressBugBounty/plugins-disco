@@ -1,0 +1,791 @@
+# Copyright (C) 2024 disco
+# This file is distributed under the GPLv3 or later license.
+msgid ""
+msgstr ""
+"Project-Id-Version: disco 1.1.2\n"
+"Report-Msgid-Bugs-To: WebAppick <EMAIL>\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"POT-Creation-Date: 2024-09-17T10:21:16.730Z\n"
+"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"Last-Translator: WebAppick <EMAIL>\n"
+"Language-Team: WebAppick <EMAIL>\n"
+"X-Generator: @wp-blocks/make-pot 1.4.0\n"
+"Language: en\n"
+"domain: X-Domain: disco\n"
+
+#: disco.php
+#. Name of the plugin
+msgid "Disco"
+msgstr ""
+
+#: disco.php
+#. Author URI of the plugin
+msgid "https://webappick.com/"
+msgstr ""
+
+#: disco.php
+#. Description of the plugin
+msgid ""
+"Create logical, dynamic and automated discounts for your WooCommerce Store "
+"based on product, cart, and cart item information."
+msgstr ""
+
+#: disco.php
+#. Author of the plugin
+msgid "WebAppick"
+msgstr ""
+
+#: disco.php:80
+msgid "Disco requires PHP 5.6 or newer."
+msgstr ""
+
+#: rest/SettingsApi.php:127
+msgid "Sorry, settings could not be updated."
+msgstr ""
+
+#: rest/SettingsApi.php:190
+msgid "Product Price Type."
+msgstr ""
+
+#: rest/SettingsApi.php:198
+msgid "Minimum, Maximum or Average Discount Amount."
+msgstr ""
+
+#: rest/SettingsApi.php:238
+msgid "Invalid Setting Key."
+msgstr ""
+
+#: rest/SearchApi.php:82
+msgid "Sorry, No items found with the search term."
+msgstr ""
+
+#: rest/SearchApi.php:226
+#: rest/CampaignApi.php:74
+msgid "Unique identifier for the object."
+msgstr ""
+
+#: rest/SearchApi.php:232
+msgid "Name of the object."
+msgstr ""
+
+#: rest/SearchApi.php:241
+msgid "SKU of the object."
+msgstr ""
+
+#: rest/SearchApi.php:250
+msgid "Image url of the object."
+msgstr ""
+
+#: rest/DropDownApi.php:99
+msgid ""
+"Sorry, Invalid dropdown list. Search term should be any one of these values "
+"[ %s ]."
+msgstr ""
+
+#: rest/DropDownApi.php:161
+msgid "Name for the object."
+msgstr ""
+
+#: rest/DropDownApi.php:167
+msgid "Values of the object."
+msgstr ""
+
+#: rest/CampaignApi.php:115
+msgid "Sorry, Permission Denied."
+msgstr ""
+
+#: rest/CampaignApi.php:151
+msgid "No campaign available. Create a campaign first"
+msgstr ""
+
+#: rest/CampaignApi.php:201
+msgid "Sorry, the campaign could not be created with empty value."
+msgstr ""
+
+#: rest/CampaignApi.php:254
+#: app/Campaign.php:223
+msgid "Sorry, the campaign could not be updated."
+msgstr ""
+
+#: rest/CampaignApi.php:287
+msgid "Sorry, the campaign could not be deleted."
+msgstr ""
+
+#: rest/CampaignApi.php:468
+msgid "Unique identifier for the campaign."
+msgstr ""
+
+#: rest/CampaignApi.php:474
+msgid "Name of the campaign."
+msgstr ""
+
+#: rest/CampaignApi.php:483
+msgid "Campaign Priority."
+msgstr ""
+
+#: rest/CampaignApi.php:492
+msgid "Campaign Status."
+msgstr ""
+
+#: rest/CampaignApi.php:501
+msgid "Discount applicable products."
+msgstr ""
+
+#: rest/CampaignApi.php:510
+msgid "Conditions to match before get the discount."
+msgstr ""
+
+#: rest/CampaignApi.php:518
+msgid "Discount Intention."
+msgstr ""
+
+#: rest/CampaignApi.php:527
+msgid "Discount Rules."
+msgstr ""
+
+#: rest/CampaignApi.php:535
+msgid "Discount based on"
+msgstr ""
+
+#: rest/CampaignApi.php:543
+msgid "Maximum Discount Users"
+msgstr ""
+
+#: rest/CampaignApi.php:551
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGOSetup.jsx:44
+msgid "BOGO Type"
+msgstr ""
+
+#: rest/CampaignApi.php:559
+msgid "Discount Start Date."
+msgstr ""
+
+#: rest/CampaignApi.php:567
+msgid "Discount End Date."
+msgstr ""
+
+#: rest/CampaignApi.php:575
+msgid "Discount Method: automated or coupon."
+msgstr ""
+
+#: rest/CampaignApi.php:584
+msgid "Discount coupon code."
+msgstr ""
+
+#: rest/CampaignApi.php:592
+msgid "Created by User ID"
+msgstr ""
+
+#: rest/CampaignApi.php:601
+msgid "Modified by User ID."
+msgstr ""
+
+#: rest/CampaignApi.php:609
+#: rest/CampaignApi.php:616
+msgid "The date the object was published, in the site's timezone."
+msgstr ""
+
+#: rest/CampaignApi.php:623
+msgid "Interface Settings."
+msgstr ""
+
+#: functions/shipping.php:28
+#: app/DropDown/DiscountDropDown.php:31
+msgid "Free Shipping"
+msgstr ""
+
+#: backend/Settings_Page.php:75
+#: backend/Settings_Page.php:76
+#: backend/views/components/Main/pages/Campaigns/components/Header.jsx:112
+msgid "Create a Discount"
+msgstr ""
+
+#: app/Disco.php:160
+#: app/Disco.php:234
+#: app/Utility/Config.php:257
+msgid "Discount"
+msgstr ""
+
+#: app/Campaign.php:118
+#: app/Campaign.php:204
+msgid "Sorry, Invalid campaign id."
+msgstr ""
+
+#: app/Campaign.php:133
+msgid "Sorry, Invalid campaign data."
+msgstr ""
+
+#: app/Campaign.php:166
+msgid "Sorry, Failed to Save Campaign."
+msgstr ""
+
+#: app/Utility/Settings.php:93
+#: app/Utility/Settings.php:122
+msgid "Sorry, Invalid Settings Key."
+msgstr ""
+
+#: app/DropDown/DropDown.php:217
+msgid "Product/Cart Item"
+msgstr ""
+
+#: app/DropDown/DropDown.php:276
+msgid "kg"
+msgstr ""
+
+#: app/DropDown/DropDown.php:277
+msgid "g"
+msgstr ""
+
+#: app/DropDown/DropDown.php:278
+msgid "lb"
+msgstr ""
+
+#: app/DropDown/DropDown.php:279
+msgid "oz"
+msgstr ""
+
+#: app/DropDown/DropDown.php:339
+msgid "Publish"
+msgstr ""
+
+#: app/DropDown/DropDown.php:340
+msgid "Draft"
+msgstr ""
+
+#: app/DropDown/DropDown.php:341
+msgid "Pending"
+msgstr ""
+
+#: app/DropDown/DropDown.php:342
+msgid "Private"
+msgstr ""
+
+#: app/DropDown/DropDown.php:354
+#: app/DropDown/DropDown.php:541
+#: app/DropDown/DropDown.php:593
+msgid "Yes"
+msgstr ""
+
+#: app/DropDown/DropDown.php:355
+#: app/DropDown/DropDown.php:542
+#: app/DropDown/DropDown.php:594
+msgid "No"
+msgstr ""
+
+#: app/DropDown/DropDown.php:364
+msgid "Price"
+msgstr ""
+
+#: app/DropDown/DropDown.php:386
+msgid "Tax and Shipping"
+msgstr ""
+
+#: app/DropDown/DropDown.php:403
+msgid "Subscription & Installment"
+msgstr ""
+
+#: app/DropDown/DropDown.php:424
+msgid "Unit Price (WooCommerce Germanized)"
+msgstr ""
+
+#: app/DropDown/DropDown.php:439
+#: app/DropDown/DiscountDropDown.php:30
+msgid "Cart"
+msgstr ""
+
+#: app/DropDown/DropDown.php:471
+msgid "Product Purchase History"
+msgstr ""
+
+#: app/DropDown/DropDown.php:511
+msgid "Customer"
+msgstr ""
+
+#: app/DropDown/DropDown.php:583
+msgid "Customer Purchase History"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:29
+msgid "Product"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:32
+msgid "Bulk Discount"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:33
+msgid "Bundle Discount"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:34
+msgid "BOGO"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:46
+msgid "% - Percentage"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:47
+msgid "$ - Fixed"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:48
+msgid "$ - Fixed Per Cart Item"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:49
+msgid "Free"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:61
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:77
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:87
+msgid "Item Quantity"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:62
+msgid "Item Price"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:63
+msgid "Cart Quantity"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:64
+msgid "Cart Subtotal"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:76
+msgid "All"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:77
+msgid "Products"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:78
+msgid "Categories"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:90
+msgid "Automated Discount"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:103
+msgid "All Products"
+msgstr ""
+
+#: app/DropDown/DiscountDropDown.php:104
+msgid "Few Products"
+msgstr ""
+
+#: app/DropDown/AttributeDropDown.php:48
+msgid "Product Attributes"
+msgstr ""
+
+#: backend/views/components/Main/components/SingleSelect.jsx:8
+#: backend/views/components/Main/components/MultiSelect.jsx:7
+msgid "Select"
+msgstr ""
+
+#: backend/views/components/Main/components/SaveAndUpdateButton.jsx:22
+#: backend/views/components/Main/components/SaveAndUpdateButton.jsx:79
+msgid "Please Select Some Product"
+msgstr ""
+
+#: backend/views/components/Main/components/SaveAndUpdateButton.jsx:27
+#: backend/views/components/Main/components/SaveAndUpdateButton.jsx:84
+msgid "Campaign Name is Required"
+msgstr ""
+
+#: backend/views/components/Main/components/SaveAndUpdateButton.jsx:43
+msgid "New Campaign Added."
+msgstr ""
+
+#: backend/views/components/Main/components/SaveAndUpdateButton.jsx:49
+#: backend/views/components/Main/components/SaveAndUpdateButton.jsx:111
+msgid "Something Went Wrong."
+msgstr ""
+
+#: backend/views/components/Main/components/SaveAndUpdateButton.jsx:61
+#: backend/views/components/Main/components/SaveAndExitButton.jsx:121
+msgid "Saving"
+msgstr ""
+
+#: backend/views/components/Main/components/SaveAndUpdateButton.jsx:65
+msgid "Save"
+msgstr ""
+
+#: backend/views/components/Main/components/SaveAndUpdateButton.jsx:108
+msgid "Campaign Updated."
+msgstr ""
+
+#: backend/views/components/Main/components/SaveAndUpdateButton.jsx:123
+#: backend/views/components/Main/components/SaveAndExitButton.jsx:103
+msgid "Updating"
+msgstr ""
+
+#: backend/views/components/Main/components/SaveAndUpdateButton.jsx:127
+msgid "Update"
+msgstr ""
+
+#: backend/views/components/Main/components/SaveAndExitButton.jsx:107
+msgid "Update & Exit"
+msgstr ""
+
+#: backend/views/components/Main/components/SaveAndExitButton.jsx:125
+msgid "Save & Exit"
+msgstr ""
+
+#: backend/views/components/Main/components/FooterButtons.jsx:20
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/components/DeleteConfirmation.jsx:94
+msgid "Cancel"
+msgstr ""
+
+#: backend/views/components/Main/components/FooterButtons.jsx:29
+msgid "Back"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/MainTabs.jsx:53
+msgid "Coming soon"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/Header.jsx:32
+msgid "Please Select Valid File"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/Header.jsx:49
+msgid "Please Try Again with Valid File"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/Header.jsx:69
+msgid "Disco File Is Not Valid"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/Header.jsx:75
+msgid "Discount Successfully Imported"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/Header.jsx:83
+msgid "Discount Campaigns"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/Header.jsx:100
+msgid "Importing"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/Header.jsx:101
+msgid "Import"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/Header.jsx:121
+msgid "Settings"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignsList.jsx:95
+msgid "Name"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignsList.jsx:101
+msgid "Intent"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignsList.jsx:107
+msgid "Method"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignsList.jsx:113
+msgid "Type"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignsList.jsx:119
+msgid "Date"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignsList.jsx:126
+msgid "Status"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignsList.jsx:132
+msgid "Action"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignsList.jsx:152
+msgid "Sorry, No Campaign Found!"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/ActionsBar.jsx:21
+msgid "Enable"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/ActionsBar.jsx:22
+msgid "Disable"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/ActionsBar.jsx:23
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/components/DeleteConfirmation.jsx:87
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/components/ActionMenu.jsx:170
+msgid "Delete"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/ActionsBar.jsx:69
+msgid "Campaigns Deleted"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/ActionsBar.jsx:74
+msgid "Campaigns Enabled"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/ActionsBar.jsx:78
+msgid "Campaigns Disabled"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/ActionsBar.jsx:109
+msgid "Bulk Actions"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/ActionsBar.jsx:117
+msgid "Apply"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/ActionsBar.jsx:127
+msgid "Search Campaign"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/ActionsBar.jsx:134
+msgid "Search"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/CampaignRow.jsx:73
+msgid "Created By:"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/CampaignRow.jsx:77
+msgid "Modified By:"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/CampaignRow.jsx:129
+msgid "Start On:"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/CampaignRow.jsx:135
+msgid "Expired On:"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/components/StatusToggler.jsx:19
+msgid "Campaign Enabled."
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/components/StatusToggler.jsx:22
+msgid "Campaign Disabled."
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/components/DeleteConfirmation.jsx:22
+msgid "Campaign Deleted."
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/components/DeleteConfirmation.jsx:66
+msgid "Delete Campaign"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/components/DeleteConfirmation.jsx:73
+msgid "Are you sure you want to delete the campaign? This action cannot be undone."
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/components/ActionMenu.jsx:61
+msgid "Campaign Successfully Duplicated."
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/components/ActionMenu.jsx:73
+msgid "Actions"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/components/ActionMenu.jsx:107
+msgid "Edit"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/components/ActionMenu.jsx:128
+msgid "Duplicate"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/components/ActionMenu.jsx:149
+msgid "Export"
+msgstr ""
+
+#: backend/views/components/Main/pages/Campaigns/components/CampaignRow/components/ActionMenu.jsx:185
+msgid "Download"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/ConditionsCard/ConditionsCard.jsx:29
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/ConditionsCard/components/Conditions.jsx:189
+msgid "Add Condition"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountIntention/DiscountIntention.jsx:10
+msgid "Discount Intention"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/CampaignNameSummary/CampaignNameSummary.jsx:16
+msgid "Campaign Name"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/DiscountType.jsx:68
+msgid "Discount Type:"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/DiscountType.jsx:77
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BulkAndBundle/BulkOrBundleItem.jsx:110
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:185
+msgid "Select Discount Type"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/DiscountType.jsx:88
+msgid "Discount Value:"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/DiscountType.jsx:94
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/ConditionsCard/components/Condition.jsx:188
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BulkAndBundle/BulkOrBundleItem.jsx:126
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:205
+msgid "Value"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/DiscountType.jsx:102
+msgid "Discount Label:"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/DiscountType.jsx:108
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BulkAndBundle/BulkOrBundleItem.jsx:136
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BulkAndBundle/BulkOrBundleItem.jsx:144
+msgid "Discount Label"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountCard/components/UserLimit.jsx:23
+msgid "Unlimited"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountCard/components/SearchProduct.jsx:150
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:125
+msgid "Search Product"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountCard/components/DiscountMethod.jsx:110
+msgid "Auto Generate"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountCard/components/ChoseProducts.jsx:39
+msgid "Selected Product Will Appear Here."
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/ConditionsCard/components/OperatorRadio.jsx:19
+msgid "AND"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/ConditionsCard/components/OperatorRadio.jsx:32
+msgid "OR"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/ConditionsCard/components/FilterDropdown.jsx:54
+msgid "Select Filter"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/ConditionsCard/components/Conditions.jsx:177
+msgid "Add Another Condition"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/ConditionsCard/components/Condition.jsx:87
+msgid "Select Condition"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/ConditionsCard/components/Condition.jsx:106
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/ConditionsCard/components/Condition.jsx:121
+msgid "Select Value"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/ConditionsCard/components/Condition.jsx:137
+msgid "disco"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/ConditionsCard/components/Condition.jsx:166
+msgid "From"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/ConditionsCard/components/Condition.jsx:180
+msgid "To"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BulkAndBundle/SetBulkOrBundle.jsx:78
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORules.jsx:43
+msgid "Add More"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BulkAndBundle/BulkOrBundleItem.jsx:63
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:78
+msgid "Minimum Quantity"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BulkAndBundle/BulkOrBundleItem.jsx:73
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:88
+msgid "Minimum"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BulkAndBundle/BulkOrBundleItem.jsx:85
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:100
+msgid "Maximum Quantity"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BulkAndBundle/BulkOrBundleItem.jsx:92
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:107
+msgid "Maximum"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BulkAndBundle/BulkOrBundleItem.jsx:102
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:177
+msgid "Discount Type"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BulkAndBundle/BulkOrBundleItem.jsx:119
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:198
+msgid "Discount Value"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BulkAndBundle/BulkOrBundleItem.jsx:162
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:233
+msgid "Recursive"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGOSetup.jsx:50
+msgid "Select BOGO Type"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORules.jsx:21
+msgid "Customer Buy"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORules.jsx:24
+msgid "Customer Get"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:121
+msgid "Select Products"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:140
+msgid "Select Categories"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:144
+msgid "Search Category"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:161
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:168
+msgid "Get Quantity"
+msgstr ""
+
+#: backend/views/components/Main/pages/Rules/Tabs/CampaignSetup/components/DiscountRules/components/BOGO/components/BOGORuleItem.jsx:215
+msgid "Placeholder"
+msgstr ""

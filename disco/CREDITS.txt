@@ -1,0 +1,148 @@
+CREDITS
+=======
+
+Disco – Discount Rules for WooCommerce
+Copyright (C) 2024-2026 WebAppick
+
+This plugin is licensed under the GNU General Public License v2.0 or later.
+
+This plugin includes the following third-party libraries, each under their 
+respective open-source licenses:
+
+================================================================================
+PHP LIBRARIES
+================================================================================
+
+1. Inpsyde Assets
+   Description: Manages and integrates assets in WordPress. Provides a 
+                convenient way to register and enqueue scripts and styles.
+   License:     MIT License
+   Source:      https://github.com/inpsyde/assets
+
+2. Inpsyde WP Context
+   Description: Provides a set of classes to help determine the current 
+                WordPress context.
+   License:     MIT License
+   Source:      https://github.com/inpsyde/wp-context
+
+3. Micropackage Requirements
+   Description: Checks server requirements for plugins or themes.
+   License:     GPL-3.0-or-later
+   Source:      https://github.com/micropackage/requirements
+
+4. Seravo WP Custom Bulk Actions
+   Description: Allows you to create custom bulk actions in WordPress easily.
+   License:     GPL-3.0
+   Source:      https://github.com/Seravo/wp-custom-bulk-actions
+
+================================================================================
+JAVASCRIPT LIBRARIES
+================================================================================
+
+1. uuid
+   Description: For the creation of RFC4122 UUIDs.
+   License:     MIT License
+   Source:      https://www.npmjs.com/package/uuid
+
+2. @headlessui/react
+   Description: A completely unstyled, fully accessible UI component library, 
+                designed to integrate beautifully with Tailwind CSS.
+   License:     MIT License
+   Source:      https://www.npmjs.com/package/@headlessui/react
+
+3. @heroicons/react
+   Description: A set of free high-quality SVG icons for UI development.
+   License:     MIT License
+   Source:      https://www.npmjs.com/package/@heroicons/react
+
+4. @reduxjs/toolkit
+   Description: The official, opinionated, batteries-included toolset for 
+                efficient Redux development.
+   License:     MIT License
+   Source:      https://www.npmjs.com/package/@reduxjs/toolkit
+
+5. @wordpress/i18n
+   Description: Internationalization utilities for client-side localization.
+   License:     GPL-2.0-or-later
+   Source:      https://www.npmjs.com/package/@wordpress/i18n
+
+6. classnames
+   Description: A simple JavaScript utility for conditionally joining 
+                classNames together.
+   License:     MIT License
+   Source:      https://www.npmjs.com/package/classnames
+
+7. moment
+   Description: A JavaScript date library for parsing, validating, 
+                manipulating, and formatting dates.
+   License:     MIT License
+   Source:      https://www.npmjs.com/package/moment
+
+8. react
+   Description: A JavaScript library for building user interfaces.
+   License:     MIT License
+   Source:      https://www.npmjs.com/package/react
+
+9. react-beautiful-dnd
+   Description: Beautiful and accessible drag and drop for lists with React.
+   License:     Apache-2.0
+   Source:      https://www.npmjs.com/package/react-beautiful-dnd
+
+10. react-color
+    Description: A collection of color pickers from Sketch, Photoshop, Chrome, 
+                 GitHub, Twitter, Material Design and more.
+    License:     MIT License
+    Source:      https://www.npmjs.com/package/react-color
+
+11. react-dom
+    Description: Serves as the entry point to the DOM and server renderers 
+                 for React.
+    License:     MIT License
+    Source:      https://www.npmjs.com/package/react-dom
+
+12. react-redux
+    Description: Official React bindings for Redux.
+    License:     MIT License
+    Source:      https://www.npmjs.com/package/react-redux
+
+13. react-router-dom
+    Description: DOM bindings for React Router.
+    License:     MIT License
+    Source:      https://www.npmjs.com/package/react-router-dom
+
+14. react-select
+    Description: A flexible and customizable Select Input control for ReactJS 
+                 with multiselect, autocomplete and ajax support.
+    License:     MIT License
+    Source:      https://www.npmjs.com/package/react-select
+
+15. react-toastify
+    Description: Allows you to add notifications to your app with ease.
+    License:     MIT License
+    Source:      https://www.npmjs.com/package/react-toastify
+
+16. tinycolor2
+    Description: A tiny color manipulation library for JavaScript.
+    License:     MIT License
+    Source:      https://www.npmjs.com/package/tinycolor2
+
+================================================================================
+THIRD-PARTY SERVICES
+================================================================================
+
+== Third-party services ==
+
+This plugin optionally integrates LiveChat (livechat.com) as a support widget.
+It is disabled by default and only loads after explicit admin opt-in.
+It only appears on this plugin's own admin pages.
+
+- Service:        https://www.livechat.com/
+- Terms of Use:   https://www.livechat.com/legal/terms-of-use/
+- Privacy Policy: https://www.livechat.com/legal/privacy-policy/
+
+================================================================================
+
+All libraries listed above are compatible with the GNU General Public License
+v2.0 or later. See individual library repositories for full license text.
+
+For questions about licensing, contact: support@webappick.com

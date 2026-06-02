@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: woocommerce discount, discount rules, dynamic pricing, bulk discount, bogo
 Requires at least: 4.4
 Tested up to: 7.0
-Stable tag: 1.3.44
+Stable tag: 1.3.45
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 5.6
@@ -19,7 +19,7 @@ WooCommerce discount rules plugin to create automatic product and cart discounts
 
 **[Upgrade to Pro](https://discoplugin.com/pricing/?utm_source=org-to-pro&utm_medium=org-to-pro&utm_campaign=org-to-pro&utm_id=1) | [Complete Documentation](https://discoplugin.com/docs/) | [Video Tutorials](https://www.youtube.com/@WebAppick) | [Get Support](https://discoplugin.com/support/)**
 
-Fully updated for 2026 with the latest **WooCommerce 9.x** and **WordPress 7.x** compatibility.
+Fully updated for 2026 with the latest **WooCommerce 10.x** and **WordPress 7.x** compatibility.
 
 
 
@@ -462,6 +462,9 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.3.45(Jun 02, 2026) =
+* Tweak: Compatibility checked with WooCommerce 10.8.1, no issue found.
+
 = 1.3.44(May 23, 2026) =
 * Fix: Auto save not working on campaign display page issue.
 

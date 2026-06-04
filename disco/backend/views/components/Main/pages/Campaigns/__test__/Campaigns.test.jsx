@@ -54,6 +54,7 @@ jest.mock('../../../utilities/utilities', () => ({
 	dateTimeFormatter: jest.fn(),
 	getSelectedFilterData: jest.fn(),
 	dateStringToTimestamp: jest.fn(),
+	truncate: jest.fn((str) => str),
 }));
 
 // Mock react-router
@@ -142,19 +143,6 @@ describe('Discount Campaigns Page', () => {
 		error: null,
 	});
 
-	// useGetDiscountMethodsQuery.mockReturnValue({
-	// 	data: {
-	// 		name: 'discount_methods',
-	// 		values: {
-	// 			automated: 'Automated Discount',
-	// 			coupon: 'Coupon Discount',
-	// 		},
-	// 	},
-	// 	isLoading: false,
-	// 	isSuccess: true,
-	// 	isError: false,
-	// 	error: null,
-	// });
 	useGetDiscountTypesQuery.mockReturnValue({
 		data: {
 			name: 'discount_types',

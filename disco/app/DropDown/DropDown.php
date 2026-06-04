@@ -675,7 +675,9 @@ class DropDown { // phpcs:ignore
 		// TODO: Move to premium version
 		$filter_attributes[] = $customer_order_history_attributes;
 
-		return apply_filters( 'disco_filter_drop_down', $filter_attributes );
+		// return apply_filters( 'disco_filter_drop_down', $filter_attributes );
+
+		return $filter_attributes;
 	}
 
 }

@@ -9,6 +9,7 @@ import cn from '../../../../utilities/cn';
 import {
 	dateStringToTimestamp,
 	dateTimeFormatter,
+	truncate,
 } from '../../../../utilities/utilities';
 import ActionMenu from './components/ActionMenu';
 import DeleteConfirmation from './components/DeleteConfirmation';
@@ -78,8 +79,8 @@ const CampaignRow = ({ discountIntents, campaign, last }) => {
 			</TableCell>
 			<TableCell className=" disco-border-b disco-border-gray-100 disco-whitespace-nowrap disco-py-2 disco-pr-4 disco-text-sm ">
 				<div role="button" onClick={handleNavigateToEdit}>
-					<span className="disco-block disco-text-base disco-transition-colors hover:disco-text-blue-500 hover:disco-font-semibold">
-						{campaign.name}
+					<span className="disco-block disco-text-base disco-transition-colors hover:disco-text-primary">
+						{truncate(campaign.name, 30)}
 					</span>
 				</div>
 			</TableCell>

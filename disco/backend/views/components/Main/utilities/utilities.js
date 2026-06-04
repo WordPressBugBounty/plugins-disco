@@ -319,3 +319,16 @@ export function discountRulesToTableData(discount_rules) {
 	});
 	return data;
 }
+
+/**
+ * To truncate text and add an ellipsis
+ * @param {string} str
+ * @param {number} maxLength
+ * @returns {string}
+ */
+export function truncate(str, maxLength = 30) {
+	if (str.length > maxLength) {
+		return str.slice(0, maxLength) + '...';
+	}
+	return str;
+}

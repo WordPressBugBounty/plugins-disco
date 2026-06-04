@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: woocommerce discount, discount rules, dynamic pricing, bulk discount, bogo
 Requires at least: 4.4
 Tested up to: 7.0
-Stable tag: 1.3.45
+Stable tag: 1.3.46
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 5.6
@@ -462,6 +462,10 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.3.46(Jun 04, 2026) =
+* Fix: Campaign name overflow issue when campaign name is larger issue.
+* Fix: Product taxonomies duplicate issue when pro is active.
+
 = 1.3.45(Jun 02, 2026) =
 * Tweak: Compatibility checked with WooCommerce 10.8.1, no issue found.
 

@@ -2404,19 +2404,9 @@ video {
   padding-right: 1rem !important;
 }
 
-.\!disco-px-6 {
-  padding-left: 1.5rem !important;
-  padding-right: 1.5rem !important;
-}
-
 .\!disco-py-0 {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
-}
-
-.\!disco-py-0\.5 {
-  padding-top: 0.125rem !important;
-  padding-bottom: 0.125rem !important;
 }
 
 .\!disco-py-1 {
@@ -4276,11 +4266,6 @@ a:visited {
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
 
-.hover\:disco-text-blue-500:hover {
-  --tw-text-opacity: 1;
-  color: rgb(59 130 246 / var(--tw-text-opacity, 1));
-}
-
 .hover\:disco-text-gray-700:hover {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity, 1));
@@ -4299,6 +4284,11 @@ a:visited {
 .hover\:disco-text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.hover\:disco-text-blue-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity, 1));
 }
 
 .hover\:disco-opacity-90:hover {

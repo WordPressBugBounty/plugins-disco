@@ -28,7 +28,7 @@ const Input = ({
 			<input
 				autoComplete="off"
 				className={cn(
-					`!disco-rounded-md !disco-bg-white !disco-ps-3 leading-[2] !disco-py-1 !disco-border-[0.5px] !disco-border-primary focus:!disco-border-primary disco-text-base !disco-leading-loose !disco-min-h-[30px] disco-outline-none disabled:disco-cursor-not-allowed`,
+					`!disco-rounded-md !disco-bg-white !disco-ps-3 leading-[2] !disco-py-1 !disco-border-[0.5px] !disco-border-primary focus:!disco-border-primary focus:!disco-shadow-none disco-text-base !disco-leading-loose !disco-min-h-[30px] disco-outline-none disabled:disco-cursor-not-allowed`,
 					className
 				)}
 				type={type}

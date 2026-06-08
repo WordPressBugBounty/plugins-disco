@@ -4252,10 +4252,6 @@ a:visited {
   background-color: rgb(220 38 38 / var(--tw-bg-opacity, 1));
 }
 
-.hover\:disco-font-semibold:hover {
-  font-weight: 600;
-}
-
 .hover\:\!disco-text-white:hover {
   --tw-text-opacity: 1 !important;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1)) !important;
@@ -4284,11 +4280,6 @@ a:visited {
 .hover\:disco-text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-.hover\:disco-text-blue-500:hover {
-  --tw-text-opacity: 1;
-  color: rgb(59 130 246 / var(--tw-text-opacity, 1));
 }
 
 .hover\:disco-opacity-90:hover {
@@ -4328,6 +4319,11 @@ a:visited {
 .focus\:disco-border-primary:focus {
   --tw-border-opacity: 1;
   border-color: rgb(71 205 137 / var(--tw-border-opacity, 1));
+}
+
+.focus\:\!disco-border-red-500:focus {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity, 1)) !important;
 }
 
 .focus\:disco-text-white:focus {

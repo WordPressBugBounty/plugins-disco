@@ -2,6 +2,7 @@ import { TrashIcon } from '@heroicons/react/24/outline';
 import { __ } from '@wordpress/i18n';
 import { useDispatch, useSelector } from 'react-redux';
 import AsyncMultiSelect from '../../../../../../../../../components/AsyncMultiSelect';
+import CheckBox from '../../../../../../../../../components/CheckBox';
 import Input from '../../../../../../../../../components/Input';
 import LoadingSpinner from '../../../../../../../../../components/LoadingSpinner';
 import SingleSelect from '../../../../../../../../../components/SingleSelect';
@@ -35,11 +36,11 @@ const BOGORuleItem = ({ rule, index }) => {
 		);
 	};
 
-	const handleRecursiveChange = (e) => {
+	const handleRecursiveChange = () => {
 		dispatch(
 			updateDiscountRule({
 				...rule,
-				[e.target.name]: rule.recursive === 'yes' ? 'no' : 'yes',
+				['recursive']: rule.recursive === 'yes' ? 'no' : 'yes',
 			})
 		);
 	};
@@ -122,7 +123,7 @@ const BOGORuleItem = ({ rule, index }) => {
 						</label>
 						<AsyncMultiSelect
 							widthClass="disco-w-48 disco-bg-white disco-rounded-lg"
-							placeHolder={__('Search Product','disco')}
+							placeHolder={__('Search Product', 'disco')}
 							endpoint="/search/product/?search="
 							selected={rule.get_ids}
 							queryHook={useGetSearchItemQuery}
@@ -141,10 +142,7 @@ const BOGORuleItem = ({ rule, index }) => {
 						</label>
 						<AsyncMultiSelect
 							widthClass="disco-w-48 disco-bg-white disco-rounded-lg"
-							placeHolder={__(
-								'Search Category',
-								'disco'
-							)}
+							placeHolder={__('Search Category', 'disco')}
 							endpoint="/search/category/?search="
 							selected={rule.get_ids}
 							queryHook={useGetSearchItemQuery}
@@ -185,10 +183,7 @@ const BOGORuleItem = ({ rule, index }) => {
 						// )}
 						selected={rule.discount_type}
 						onchange={handleTypeChange}
-						placeholder={__(
-							'Select Discount Type',
-							'disco'
-						)}
+						placeholder={__('Select Discount Type', 'disco')}
 					/>
 				</div>
 
@@ -218,24 +213,12 @@ const BOGORuleItem = ({ rule, index }) => {
 						{__('Placeholder', 'disco')}
 					</label>
 					<div className="disco-flex disco-items-center disco-mt-4 disco-gap-4">
-						<div className="disco-flex disco-items-center disco-mt-1.5 disco-gap-1">
-							<input
-								className="disco-border !disco-border-primary disco-rounded-md disco-w-4 disco-h-4 disco-transition-colors"
-								checked={
-									rule.recursive === 'yes' ? true : false
-								}
-								name="recursive"
-								onChange={handleRecursiveChange}
-								id={rule.id}
-								type="checkbox"
-							/>
-							<label
-								className="disco-text-sm disco-select-none disco-block disco-text-gray-500 disco-mb-1"
-								htmlFor={rule.id}
-							>
-								{__('Recursive', 'disco')}
-							</label>
-						</div>
+						<CheckBox
+							checked={rule.recursive === 'yes' ? true : false}
+							onChange={handleRecursiveChange}
+							label={__('Recursive', 'disco')}
+							testid={`recursive-checkbox-${index}`}
+						/>
 						{index !== 0 ? (
 							<button
 								onClick={() => handleRuleDelete(rule.id)}

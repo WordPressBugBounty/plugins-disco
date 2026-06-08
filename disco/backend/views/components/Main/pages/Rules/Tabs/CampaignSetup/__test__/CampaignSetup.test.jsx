@@ -365,19 +365,6 @@ describe('Create Discount Tab', () => {
 				const rulesCard = screen.getByText('Bundle Rules');
 				expect(rulesCard).toBeInTheDocument();
 			});
-
-			// test('BOGO Intent Button', async () => {
-			// 	const { store } = renderWithProviders(<CampaignSetup />);
-			// 	const intent = screen.getByText('BOGO');
-			// 	await userEvent.click(intent);
-			// 	const { discount } = store.getState();
-			// 	expect(discount.discount_intent).toBe('BOGO');
-			//
-			// 	const BOGOCard = screen.getAllByText('BOGO')[1];
-			// 	expect(BOGOCard).toBeInTheDocument();
-			// 	const rulesCard = screen.getByText('BOGO Rules');
-			// 	expect(rulesCard).toBeInTheDocument();
-			// });
 		});
 	});
 	describe('Discount Card', () => {
@@ -405,32 +392,6 @@ describe('Create Discount Tab', () => {
 		});
 
 		describe('Interact Correctly', () => {
-			// test('Discount Method', async () => {
-			// 	const { store } = renderWithProviders(<CampaignSetup />);
-			// 	const automated = screen.getByText('Automated Discount');
-			// 	const coupon = screen.getByText('Coupon Discount');
-			//
-			// 	expect(automated).toBeInTheDocument();
-			// 	expect(coupon).toBeInTheDocument();
-			//
-			// 	await userEvent.click(coupon);
-			// 	const couponInput = screen.getByPlaceholderText('COUPON25');
-			// 	expect(couponInput).toBeInTheDocument();
-			//
-			// 	await userEvent.type(couponInput, 'MYCOUPON');
-			// 	expect(couponInput).toHaveValue('MYCOUPON');
-			//
-			// 	const { discount: couponDiscount } = store.getState();
-			// 	expect(couponDiscount.discount_method).toBe('coupon');
-			// 	expect(couponDiscount.discount_coupon).toBe('MYCOUPON');
-			//
-			// 	await userEvent.click(automated);
-			// 	const { discount: automatedDiscount } = store.getState();
-			// 	expect(couponInput).not.toBeInTheDocument();
-			// 	expect(automatedDiscount.discount_method).toBe('automated');
-			// 	expect(automatedDiscount.discount_coupon).toBe('');
-			// });
-
 			test('Filter Products', async () => {
 				const { store } = renderWithProviders(<CampaignSetup />);
 				const intent = screen.getByText('Product');
@@ -725,19 +686,7 @@ describe('Create Discount Tab', () => {
 				const { discount } = store.getState();
 				expect(discount.discount_rules[0].discount_value).toBe('50');
 			});
-			// test('Discount Label', async () => {
-			// 	const { store } = renderWithProviders(<CampaignSetup />);
-			// 	const bundle = screen.getByText('Bundle');
-			// 	await userEvent.click(bundle);
-			//
-			// 	const label = screen.getByPlaceholderText('Discount Label');
-			// 	await userEvent.type(label, '50 Taka Off');
-			// 	expect(label).toHaveValue('50 Taka Off');
-			// 	const { discount } = store.getState();
-			// 	expect(discount.discount_rules[0].discount_label).toBe(
-			// 		'50 Taka Off'
-			// 	);
-			// });
+
 			test('Recursive Check', async () => {
 				const { store } = renderWithProviders(<CampaignSetup />);
 				const bundle = screen.getByText('Bundle');
@@ -918,7 +867,7 @@ describe('Create Discount Tab', () => {
 				const bogo = screen.getByText('BOGO');
 				await userEvent.click(bogo);
 
-				const recursive = screen.getByText('Recursive');
+				const recursive = screen.getByTestId('recursive-checkbox-0');
 				await userEvent.click(recursive);
 
 				const { discount } = store.getState();

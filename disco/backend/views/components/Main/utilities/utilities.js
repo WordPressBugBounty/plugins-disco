@@ -129,6 +129,11 @@ export function validateRule(rule, prevRule = {}, index = 0) {
 	const prevMin = Number(prevRule.min);
 	const prevMax = prevRule.max !== '' ? Number(prevRule.max) : null;
 
+	// Min must be greater than 0
+	if (!rule.min || min <= 0) {
+		errors.min = 'Minimum must be greater than 0';
+	}
+
 	if (rule.recursive === 'no' && max !== null && min > max) {
 		errors.max = 'Maximum must be greater than Minimum';
 	}

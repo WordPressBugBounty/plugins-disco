@@ -26,9 +26,14 @@ function ComparisonSection() {
 								<span className="disco-text-black disco-mr-1">
 									{'🔒 Pro'}
 								</span>
-								<span className="disco-font-medium disco-text-white disco-bg-primary disco-rounded-full disco-px-2 disco-py-1">
+								<a
+									href="https://discoplugin.com/?utm_source=pro_plan&utm_medium=text_button&utm_campaign=free-pro&utm_id=1#pricing"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="disco-font-medium disco-text-white disco-bg-primary disco-rounded-full disco-px-2 disco-py-1 hover:disco-text-white focus:disco-rounded-full"
+								>
 									Unlock All
-								</span>
+								</a>
 							</th>
 						</tr>
 					</thead>

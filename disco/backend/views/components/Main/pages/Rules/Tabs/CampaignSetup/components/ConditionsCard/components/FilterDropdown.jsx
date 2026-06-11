@@ -98,6 +98,9 @@ const SelectFilterDropdown = ({ allFilters, condition, conditionGroup }) => {
 														href="https://discoplugin.com/pricing/?utm_source=pro-text&utm_medium=free-to-pro&utm_campaign=free-to-pro&utm_id=1"
 														target="_blank"
 														rel="noreferrer"
+														onClick={(e) =>
+															e.stopPropagation()
+														}
 														className="disco-text-xs disco-font-semibold disco-text-white hover:!disco-text-white focus:!disco-outline-none visited:disco-text-white focus:!disco-ring-0"
 													>
 														{__('Pro', 'disco')}
@@ -144,10 +147,11 @@ const SelectFilterDropdown = ({ allFilters, condition, conditionGroup }) => {
 															.disable && (
 															<span className="disco-bg-red-500 disco-px-1.5 disco-py-1 disco-text-xs disco-text-white disco-rounded-md ">
 																<a
-																	href="https://discoplugin.com/pricing/?utm_source=pro-text&utm_medium=free-to-pro&utm_campaign=free-to-pro&utm_id=1"
+																	href="https://discoplugin.com/?utm_source=conditions&utm_medium=text_button&utm_campaign=free-pro&utm_id=1"
 																	target="_blank"
 																	rel="noreferrer"
-																	className="disco-text-xs disco-text-white hover:!disco-text-white focus:!disco-outline-none visited:disco-text-white focus:!disco-ring-0"
+																	onClick={(e) => e.stopPropagation()}
+																		className="disco-text-xs disco-text-white hover:!disco-text-white focus:!disco-outline-none visited:disco-text-white focus:!disco-ring-0"
 																>
 																	{__(
 																		'Pro',

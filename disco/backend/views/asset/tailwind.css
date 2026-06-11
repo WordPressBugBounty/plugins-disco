@@ -4095,8 +4095,6 @@ a:visited {
   }
 }
 
-/*# sourceMappingURL=ReactToastify.css.map */
-
 /* Hide scrollbar */
 
 .disco-no-scrollbar {
@@ -4319,11 +4317,6 @@ a:visited {
 .focus\:disco-border-primary:focus {
   --tw-border-opacity: 1;
   border-color: rgb(71 205 137 / var(--tw-border-opacity, 1));
-}
-
-.focus\:\!disco-border-red-500:focus {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(239 68 68 / var(--tw-border-opacity, 1)) !important;
 }
 
 .focus\:disco-text-white:focus {

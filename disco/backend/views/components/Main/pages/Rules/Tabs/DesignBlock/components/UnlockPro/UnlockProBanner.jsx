@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import useIsPro from '../../../../../../hooks/useIsPro';
 
 const PRICING_URL =
-	'https://discoplugin.com/?utm_source=campaign_display&utm_medium=free-pro&utm_campaign=campaign_display&utm_id=1#pricing';
+	'https://discoplugin.com/?utm_source=display_banner&utm_medium=button&utm_campaign=free-pro&utm_id=1';
 
 const UnlockProBanner = () => {
 	const isPro = useIsPro();

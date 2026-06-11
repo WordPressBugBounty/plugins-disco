@@ -24,7 +24,7 @@ export default function BottomCTA() {
 				</p>
 			</div>
 			<a
-				href="https://discoplugin.com/?utm_source=org-doc&utm_medium=doc-to-pro&utm_campaign=org-to-pro&utm_id=1#pricing"
+				href="https://discoplugin.com/?utm_source=Compatible_page&utm_medium=banner&utm_campaign=free-pro&utm_id=1#pricing"
 				target="_blank"
 				rel="noopener noreferrer"
 				className="disco-no-underline focus:disco-text-white focus:disco-rounded-xl disco-flex disco-items-center disco-justify-center disco-h-10 disco-px-5 disco-rounded-[14px] disco-text-white disco-text-[13px] disco-font-extrabold disco-shadow-[0px_8px_24px_0px_rgba(22,163,74,0.18)] disco-whitespace-nowrap disco-shrink-0 hover:disco-text-white hover:disco-scale-105 disco-transition-all disco-duration-300"

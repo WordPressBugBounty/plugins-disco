@@ -8,7 +8,7 @@ import TextHighlightCard from '../../TextHighlight/components/TextHighlightCard'
 const ProBadge = () => {
 	const handleOnClick = () => {
 		window.open(
-			'https://discoplugin.com/?utm_source=campaign_display&utm_medium=free-pro&utm_campaign=campaign_display&utm_id=1#pricing',
+			'https://discoplugin.com/?utm_source=display_cart&utm_medium=text_button&utm_campaign=free-pro&utm_id=1#pricing',
 			'_blank',
 			'noopener,noreferrer'
 		);

@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 
 const PRICING_URL =
-	'https://discoplugin.com/?utm_source=org-doc&utm_medium=doc-to-pro&utm_campaign=org-to-pro&utm_id=1#pricing';
+	'https://discoplugin.com/?utm_source=campaign_page&utm_medium=banner&utm_campaign=free-pro&utm_id=1#pricing';
 
 export default function DiscoProCard() {
 	const proFeatures = [

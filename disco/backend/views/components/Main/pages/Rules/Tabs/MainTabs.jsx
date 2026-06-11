@@ -1,4 +1,5 @@
 import { Tab } from '@headlessui/react';
+import { __ } from '@wordpress/i18n';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
@@ -13,7 +14,6 @@ import CampaignSetup from './CampaignSetup/CampaignSetup';
 import DesignBlock from './DesignBlock/DesignBlock';
 import Summary from './Summary/Summary';
 import TabButton from './TabButton';
-import { __ } from '@wordpress/i18n';
 
 const MainTabs = () => {
 	const isPro = useIsPro();
@@ -46,6 +46,11 @@ const MainTabs = () => {
 	}, [ui[0], dispatch]);
 
 	const handleTabChange = (index) => {
+		// Tab disabled when creating a new campaign (no edit param) for index > 0.
+		// Block the switch but keep the button enabled so ProIcon link stays clickable.
+		if (!edit && index > 0) {
+			return;
+		}
 		dispatch(setTab(index));
 	};
 

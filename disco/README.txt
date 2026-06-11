@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: woocommerce discount, discount rules, dynamic pricing, bulk discount, bogo
 Requires at least: 4.4
 Tested up to: 7.0
-Stable tag: 1.3.47
+Stable tag: 1.3.48
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 5.6
@@ -462,6 +462,9 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.3.48(Jun 08, 2026) =
+* Fix: Coupon sarch result not working issue in conditions issue.
+
 = 1.3.47(Jun 08, 2026) =
 * Fix: Minimum quantity number input value saving with empty value issue fix.
 * Fix: Fetal issue on cart page when min value in empty.
@@ -1051,4 +1054,3 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 
 = 1.0.0 (2024-05-27) =
 * Initial Release.
-

@@ -8,7 +8,7 @@ function PluginCard({ plugin }) {
 
 	const handleClick = () => {
 		window.open(
-			'https://discoplugin.com/?utm_source=org-doc&utm_medium=doc-to-pro&utm_campaign=org-to-pro&utm_id=1#pricing',
+			'https://discoplugin.com/?utm_source=Compatible_page&utm_medium=button&utm_campaign=free-pro&utm_id=1#pricing',
 			'_blank',
 			'noopener,noreferrer'
 		);

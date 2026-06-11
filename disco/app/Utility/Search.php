@@ -220,10 +220,6 @@ class Search { //phpcs:ignore
 
 				$coupon = new WC_Coupon( $coupon->post_title );
 
-				if ( ! $coupon->is_valid_for_cart() ) {
-					continue;
-				}
-
 				$coupons[] = array(
 					'id'   => $coupon->get_id(),
 					'name' => $coupon->get_code(),

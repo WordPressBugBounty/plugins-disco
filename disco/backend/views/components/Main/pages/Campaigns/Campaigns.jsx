@@ -14,6 +14,7 @@ import { useGetSettingsQuery } from '../../features/settings/settingsApi';
 import useIsPro from '../../hooks/useIsPro';
 import ActionsBar from './components/ActionsBar';
 import CampaignsList from './components/CampaignsList';
+import EmptyCampaigns from './components/EmptyCampaigns';
 import Header from './components/Header';
 
 const Campaigns = () => {
@@ -55,17 +56,28 @@ const Campaigns = () => {
 		}
 	}, [allCampaigns]);
 
+	const hasNoCampaigns =
+		!isLoading &&
+		!isError &&
+		(allCampaigns === undefined || allCampaigns.length === 0);
+
 	return (
 		<div className="disco-flex disco-mt-2.5 disco-w-full">
 			<div className="disco-bg-gray-50 disco-flex-grow disco-rounded-lg disco-mr-4 disco-ml-0.5">
 				<div className="disco-p-5">
 					<Header />
-					<ActionsBar allCampaigns={allCampaigns} />
-					<CampaignsList
-						isLoading={isLoading}
-						isError={isError}
-						error={error}
-					/>
+					{hasNoCampaigns ? (
+						<EmptyCampaigns />
+					) : (
+						<>
+							<ActionsBar allCampaigns={allCampaigns} />
+							<CampaignsList
+								isLoading={isLoading}
+								isError={isError}
+								error={error}
+							/>
+						</>
+					)}
 				</div>
 			</div>
 			{!isPro && (

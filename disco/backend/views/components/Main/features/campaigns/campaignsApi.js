@@ -3,9 +3,29 @@ import { apiSlice } from './../api/apiSlice';
 export const campaignsApi = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getCampaigns: builder.query({
-			query: () => `campaigns`,
-			transformResponse: (res) =>
-				res.sort((a, b) => Number(b.priority) - Number(a.priority)),
+			queryFn: async (arg, api, extraOptions, fetchWithBQ) => {
+				const result = await fetchWithBQ('campaigns');
+
+				// the REST API responds 404 when no campaign exists yet
+				if (
+					result.error?.data?.code === 'rest_campaign_not_available'
+				) {
+					return { data: [] };
+				}
+
+				if (result.error) {
+					return { error: result.error };
+				}
+
+				return {
+					data: Array.isArray(result.data)
+						? result.data.sort(
+								(a, b) =>
+									Number(b.priority) - Number(a.priority)
+						  )
+						: [],
+				};
+			},
 			providesTags: ['Campaigns'],
 		}),
 		getCampaign: builder.query({

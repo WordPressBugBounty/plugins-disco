@@ -10,6 +10,11 @@ const BOGORules = () => {
 	const { discount_rules } = useSelector((state) => state.discount);
 	const dispatch = useDispatch();
 
+	// A recursive rule is a single repeating tier, so no extra rules are allowed.
+	const hasRecursiveRule = discount_rules.some(
+		(rule) => rule.recursive === 'yes'
+	);
+
 	const handleAddBOGORule = () => {
 		dispatch(addNewDiscountRule());
 	};
@@ -33,20 +38,22 @@ const BOGORules = () => {
 				</div>
 			</div>
 
-			<div className="disco-flex disco-justify-between disco-items-center">
-				<div className="disco-px-4 disco-py-2">
-					<Button
-						onClick={handleAddBOGORule}
-						type="transparent"
-						className="!disco-px-3 !disco-py-2 !disco-text-sm !disco-font-normal"
-						icon={
-							<PlusCircleIcon className="disco-h-5 disco-w-5 !disco-text-primary" />
-						}
-					>
-						{__('Add More', 'disco')}
-					</Button>
+			{!hasRecursiveRule && (
+				<div className="disco-flex disco-justify-between disco-items-center">
+					<div className="disco-px-4 disco-py-2">
+						<Button
+							onClick={handleAddBOGORule}
+							type="transparent"
+							className="!disco-px-3 !disco-py-2 !disco-text-sm !disco-font-normal"
+							icon={
+								<PlusCircleIcon className="disco-h-5 disco-w-5 !disco-text-primary" />
+							}
+						>
+							{__('Add More', 'disco')}
+						</Button>
+					</div>
 				</div>
-			</div>
+			)}
 		</ComponentBox>
 	);
 };

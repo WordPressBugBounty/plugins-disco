@@ -1,7 +1,9 @@
 import { TrashIcon } from '@heroicons/react/24/outline';
 import { __ } from '@wordpress/i18n';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AsyncMultiSelect from '../../../../../../../../../components/AsyncMultiSelect';
+import AlertPopup from '../../../../../../../../../components/AlertPopup';
 import CheckBox from '../../../../../../../../../components/CheckBox';
 import Input from '../../../../../../../../../components/Input';
 import LoadingSpinner from '../../../../../../../../../components/LoadingSpinner';
@@ -9,14 +11,18 @@ import SingleSelect from '../../../../../../../../../components/SingleSelect';
 import { useGetDiscountTypesQuery } from '../../../../../../../../../features/discount/discountApi';
 import {
 	deleteDiscountRule,
+	keepOnlyRecursiveRule,
 	updateDiscountRule,
 } from '../../../../../../../../../features/discount/discountSlice';
 import { useGetSearchItemQuery } from '../../../../../../../../../features/search/searchApi';
 
 const BOGORuleItem = ({ rule, index }) => {
 	const { data: types, isLoading } = useGetDiscountTypesQuery();
-	const { bogo_type } = useSelector((state) => state.discount);
+	const { bogo_type, discount_rules } = useSelector(
+		(state) => state.discount
+	);
 	const dispatch = useDispatch();
+	const [showRecursiveModal, setShowRecursiveModal] = useState(false);
 
 	const handleChange = (e) => {
 		dispatch(
@@ -37,12 +43,24 @@ const BOGORuleItem = ({ rule, index }) => {
 	};
 
 	const handleRecursiveChange = () => {
-		dispatch(
-			updateDiscountRule({
-				...rule,
-				['recursive']: rule.recursive === 'yes' ? 'no' : 'yes',
-			})
-		);
+		// Disabling recursive: just toggle off.
+		if (rule.recursive === 'yes') {
+			dispatch(updateDiscountRule({ ...rule, recursive: 'no' }));
+			return;
+		}
+
+		// Enabling recursive while other rules exist: confirm before dropping them.
+		if (discount_rules.length > 1) {
+			setShowRecursiveModal(true);
+			return;
+		}
+
+		// Single rule: enable recursive directly.
+		dispatch(updateDiscountRule({ ...rule, recursive: 'yes' }));
+	};
+
+	const handleRecursiveConfirm = () => {
+		dispatch(keepOnlyRecursiveRule(rule.id));
 	};
 
 	const handleTypeChange = (active) => {
@@ -218,6 +236,18 @@ const BOGORuleItem = ({ rule, index }) => {
 							onChange={handleRecursiveChange}
 							label={__('Recursive', 'disco')}
 							testid={`recursive-checkbox-${index}`}
+						/>
+						<AlertPopup
+							open={showRecursiveModal}
+							setOpen={setShowRecursiveModal}
+							onRemove={handleRecursiveConfirm}
+							removeBtnTestId={`recursive-confirm-${index}`}
+							title={__('Switch to Recursive', 'disco')}
+							description={__(
+								'Recursive applies a single repeating rule based on the combined quantity. All other rules will be removed. Do you want to continue?',
+								'disco'
+							)}
+							confirmLabel={__('Continue', 'disco')}
 						/>
 						{index !== 0 ? (
 							<button

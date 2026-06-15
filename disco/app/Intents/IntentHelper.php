@@ -150,7 +150,7 @@ trait IntentHelper {//phpcs:ignore
 	 * @param \Disco\App\Utility\Config $campaign Campaign Config.
 	 * @param array                     $item     Cart Item.
 	 * @param array                     $rule     Cart Item.
-     * @return bool
+	 * @return bool
 	 */
 	public function verify_rules( $campaign, $item, $rule ) {
 		if ( is_object( $rule ) ) {
@@ -189,7 +189,7 @@ trait IntentHelper {//phpcs:ignore
 	 * Get cart item id.
 	 *
 	 * @param array $item Cart Item.
-     * @return int
+	 * @return int
 	 */
 	public function get_cart_item_id( $item ) {
 		$id = $item['product_id'];
@@ -208,7 +208,7 @@ trait IntentHelper {//phpcs:ignore
 	 *
 	 * @param \Disco\App\Utility\Config $campaign Discount Rules.
 	 * @param \WC_Cart                  $cart     Cart .
-     * @return float|int
+	 * @return float|int
 	 */
 	public function get_basis_for_cart( $campaign, $cart ) {
 		if ( ! $cart instanceof \WC_Cart || $cart->is_empty() ) {
@@ -228,7 +228,7 @@ trait IntentHelper {//phpcs:ignore
 	 * If the item is not valid, then return 0.
 	 *
 	 * @param array $item Cart Item.
-     * @return int
+	 * @return int
 	 */
 	public function get_basis_for_item( $item ) {
 		if ( empty( $item['quantity'] ) ) {
@@ -245,7 +245,7 @@ trait IntentHelper {//phpcs:ignore
 	 * @param float  $cost           Item Price or Cart Subtotal.
 	 * @param string $discount_type  Discount Type.
 	 * @param float  $discount_value Discount Value.
-     * @return float
+	 * @return float
 	 */
 	public function calculate_discount( $cost, $discount_type, $discount_value ) {
 		$cost           = (float) $cost;
@@ -284,7 +284,7 @@ trait IntentHelper {//phpcs:ignore
 	 *
 	 * @param float $cost              Item Price or Cart Subtotal.
 	 * @param float $discounted_amount Discounted Amount.
-     */
+	 */
 	public function get_amount_after_discount( float $cost, float $discounted_amount ): float {
 		$discounted_amount = $cost - $discounted_amount;
 
@@ -300,7 +300,7 @@ trait IntentHelper {//phpcs:ignore
 	 *
 	 * @param float|int $number Number to check.
 	 * @param float|int $of     Number to check against.
-     * @return bool Returns true if the number is a multiple of the given number, false otherwise.
+	 * @return bool Returns true if the number is a multiple of the given number, false otherwise.
 	 */
 	public function is_multiple( $number, $of ) {
 		if ( $of >= $number ) {
@@ -315,7 +315,7 @@ trait IntentHelper {//phpcs:ignore
 	 *
 	 * @param int   $product_id Product ID.
 	 * @param array $categories Categories.
-     * @return bool
+	 * @return bool
 	 */
 	public function is_in_category( $product_id, $categories ) {
 		// Ensure $categories is an array
@@ -348,10 +348,10 @@ trait IntentHelper {//phpcs:ignore
 			$parent_ids = get_ancestors( $term->term_id, 'product_cat' );
 
 			if ( empty( $parent_ids ) ) {
-                continue;
-            }
+				continue;
+			}
 
-            $term_ids = array_merge( $term_ids, $parent_ids );
+			$term_ids = array_merge( $term_ids, $parent_ids );
 		}
 
 		// Remove duplicates just in case
@@ -379,6 +379,12 @@ trait IntentHelper {//phpcs:ignore
 		if ( empty( $items ) ) {
 			return $discounts;
 		}
+
+		/**
+		 * Combined qualifying quantity for recursive BOGO, filtered by the
+		 * conditions and few-products filters and excluding Disco free items.
+		 */
+		$total_applicable_qty = $this->get_total_applicable_quantity( $cart, $campaign );
 
 		// Loop through the cart items.
 		foreach ( $items as $item ) {
@@ -422,6 +428,15 @@ trait IntentHelper {//phpcs:ignore
 					$discounts[ $id ]['free']    = true;
 					$discounts[ $id ]['get_ids'] = $rule['get_ids'];
 					$discounts[ $id ]['get_qty'] = CalcFactory::get_free_quantity( $rule, $item );
+
+					/**
+					 * Recursive BOGO (any bogo type): base the free quantity on the
+					 * combined qualifying quantity instead of this single line, so a
+					 * cart whose qualifying quantity totals 4 grants 4 free items.
+					 */
+					if ( 'yes' === $rule['recursive'] && (int) $rule['min'] > 0 ) {
+						$discounts[ $id ]['get_qty'] = (int) floor( $total_applicable_qty / (int) $rule['min'] ) * (int) $rule['get_quantity'];
+					}
 				} else {
 					$discounted_amount           = CalcFactory::get_discount( $rule, $item, $cart, $campaign );
 					$discounts[ $id ]['free']    = false;
@@ -452,7 +467,7 @@ trait IntentHelper {//phpcs:ignore
 	 *
 	 * @param array    $intents Intents.
 	 * @param \WC_Cart $cart    Cart.
-     * @return array|false
+	 * @return array|false
 	 */
 	public function prepare_item_discounts( array $intents, \WC_Cart $cart ) { //phpcs:ignore
 		if ( empty( $intents ) ) {
@@ -516,19 +531,19 @@ trait IntentHelper {//phpcs:ignore
 	public function get_valid_bogo_category_item_id( array $intents, \WC_Cart $cart, array $discounts ) {
 		foreach ( $intents as $intent ) {
 			if (
-                $intent->campaign->get_discount_intent() !== 'BuyXGetY' ||
-                $intent->campaign->get_bogo_type() !== 'categories'
-            ) {
-                continue;
-            }
+				$intent->campaign->get_discount_intent() !== 'BuyXGetY' ||
+				$intent->campaign->get_bogo_type() !== 'categories'
+			) {
+				continue;
+			}
 
-            foreach ( $cart->get_cart() as $item ) {
-                $item_id = $this->get_cart_item_id( $item );
+			foreach ( $cart->get_cart() as $item ) {
+				$item_id = $this->get_cart_item_id( $item );
 
-                if ( isset( $discounts[ $item_id ] ) && $discounts[ $item_id ] > 0 ) {
-                    return $item_id;
-                }
-            }
+				if ( isset( $discounts[ $item_id ] ) && $discounts[ $item_id ] > 0 ) {
+					return $item_id;
+				}
+			}
 		}
 
 		return null;
@@ -605,7 +620,7 @@ trait IntentHelper {//phpcs:ignore
 	 * Is it a bogo campaign?
 	 *
 	 * @param \Disco\App\Utility\Config $campaign Campaign Config.
-     */
+	 */
 	public function is_bogo( Config $campaign ): bool {
 		return in_array( $campaign->get_discount_intent(), array( 'BuyXGetX', 'BuyXGetY' ), true );
 	}
@@ -621,7 +636,7 @@ trait IntentHelper {//phpcs:ignore
 	 * Get min or max price from an array discounted prices according to plugin settings.
 	 *
 	 * @param array $discounts Discounted Amounts.
-     */
+	 */
 	public function min_max_average( array $discounts ): float {
 		$calculation_type = Settings::get( 'min_max_discount_amount' );
 
@@ -634,6 +649,54 @@ trait IntentHelper {//phpcs:ignore
 		}
 
 		return min( $discounts );
+	}
+
+	/**
+	 * Total qualifying quantity for recursive BOGO.
+	 *
+	 * Sums the quantity of every cart item that passes the campaign's
+	 * few-products / "all" filter (product_is_applicable) and its conditions
+	 * filter (is_filter_passed), excluding products Disco added as free. This is
+	 * the combined "buy" quantity a recursive rule scales the free / discount
+	 * quantity against, so products excluded by either filter are not counted.
+	 *
+	 * @param \WC_Cart                  $cart     Cart object.
+	 * @param \Disco\App\Utility\Config $campaign Campaign config.
+	 */
+	private function get_total_applicable_quantity( $cart, $campaign ): int {
+		$total = 0;
+
+		$cart_items = $cart->get_cart();
+
+		if ( ! is_array( $cart_items ) ) {
+			return $total;
+		}
+
+		foreach ( $cart_items as $item ) {
+			if ( ! empty( $item['is_free_product'] ) ) {
+				continue;
+			}
+
+			$id = $item['product_id'];
+
+			if ( ! empty( $item['variation_id'] ) ) {
+				$id = $item['variation_id'];
+			}
+
+			if ( ! $campaign->product_is_applicable( $id ) ) {
+				continue;
+			}
+
+			$product = wc_get_product( $id );
+
+			if ( ! Helper::is_filter_passed( $campaign, array( 'product' => $product ) ) ) {
+				continue;
+			}
+
+			$total += (int) $item['quantity'];
+		}
+
+		return $total;
 	}
 
 	/**
@@ -788,10 +851,16 @@ trait IntentHelper {//phpcs:ignore
 	 * @param \Disco\App\Utility\Config $campaign Campaign Config.
 	 * @param array                     $rule Discount Rules.
 	 */
-	private function verify_xproduct_cart_rule( Config $campaign, array $rule ): bool {
+	private function verify_xproduct_cart_rule( Config $campaign, array $rule ): bool { //phpcs:ignore
 		$cart = WC()->cart->get_cart();
 
 		foreach ( $cart as $item ) {
+			// Skip free products - they must not count towards the BOGO buy quantity,
+			// otherwise granted free items re-qualify as buy-X and escalate the tier.
+			if ( ! empty( $item['is_free_product'] ) ) {
+				continue;
+			}
+
 			$quantity = $item['quantity'];
 			$id       = $item['product_id'];
 

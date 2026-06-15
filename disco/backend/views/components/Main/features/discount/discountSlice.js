@@ -537,6 +537,17 @@ export const discountSlice = createSlice({
 			);
 		},
 
+		// Enable recursive on a single rule and drop every other rule. Recursive
+		// applies one repeating tier, so multiple tiers no longer make sense.
+		keepOnlyRecursiveRule: (state, action) => {
+			const rule = state.discount_rules.find(
+				(item) => item.id === action.payload
+			);
+			if (rule) {
+				state.discount_rules = [{ ...rule, recursive: 'yes' }];
+			}
+		},
+
 		// *! Design Block Reducers
 
 		updateBadge: (state, action) => {
@@ -610,6 +621,7 @@ export const {
 	addNewDiscountRule,
 	updateDiscountRule,
 	deleteDiscountRule,
+	keepOnlyRecursiveRule,
 
 	updateBadge,
 	updateTextHighlight,

@@ -140,6 +140,18 @@ It only appears on this plugin's own admin pages.
 - Terms of Use:   https://www.livechat.com/legal/terms-of-use/
 - Privacy Policy: https://www.livechat.com/legal/privacy-policy/
 
+This plugin optionally integrates ActiveCampaign (activecampaign.com) for
+email newsletter subscription. No data is sent automatically — only when an
+admin voluntarily submits their email address through the opt-in form on the
+plugin's own admin pages. The submitted email address (and optional name) is
+sent to ActiveCampaign to subscribe the user to the WebAppick newsletter.
+The email address is not stored locally — only a flag in the options table
+recording that the opt-in form was completed.
+
+- Service:        https://www.activecampaign.com/
+- Terms of Use:   https://www.activecampaign.com/legal/terms-of-service
+- Privacy Policy: https://www.activecampaign.com/legal/privacy-policy
+
 ================================================================================
 
 All libraries listed above are compatible with the GNU General Public License

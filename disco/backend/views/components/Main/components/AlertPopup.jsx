@@ -3,7 +3,18 @@ import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from 'react';
 
-const AlertPopup = ({ open, setOpen, onRemove, removeBtnTestId = '' }) => (
+const AlertPopup = ({
+	open,
+	setOpen,
+	onRemove,
+	removeBtnTestId = '',
+	title = __('Remove Conditions', 'disco'),
+	description = __(
+		'This action will remove the conditions from the campaign. Are you sure you want to proceed?',
+		'disco'
+	),
+	confirmLabel = __('Remove', 'disco'),
+}) => (
 	<Transition.Root show={open} as={Fragment}>
 		<Dialog
 			as="div"
@@ -45,14 +56,11 @@ const AlertPopup = ({ open, setOpen, onRemove, removeBtnTestId = '' }) => (
 										as="h3"
 										className="disco-text-base disco-font-semibold disco-leading-6 disco-text-gray-900"
 									>
-										{__('Remove Conditions', 'disco')}
+										{title}
 									</Dialog.Title>
 									<div className="disco-mt-2">
 										<p className="disco-text-sm disco-text-gray-500">
-											{__(
-												'This action will remove the conditions from the campaign. Are you sure you want to proceed?',
-												'disco'
-											)}
+											{description}
 										</p>
 									</div>
 								</div>
@@ -67,7 +75,7 @@ const AlertPopup = ({ open, setOpen, onRemove, removeBtnTestId = '' }) => (
 										setOpen(false);
 									}}
 								>
-									{__('Remove', 'disco')}
+									{confirmLabel}
 								</button>
 								<button
 									type="button"

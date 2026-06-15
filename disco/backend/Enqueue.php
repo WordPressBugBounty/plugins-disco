@@ -119,6 +119,7 @@ class Enqueue extends Base {
 					'is_pro_active' 	       => Disco::is_pro(),
 					'disco_free_version'     => DISCO_VERSION,
 					'DISCO_BADGE_IMAGES_DIR' => DISCO_BADGE_IMAGES_DIR,
+					'active_campaign'        => disco_activecampaign_get_localize_data(),
 				)
 			);
 		}

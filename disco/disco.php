@@ -9,7 +9,7 @@
  * Plugin Name:       Disco
  * Plugin URI:        https://webappick.com/
  * Description:       Create logical, dynamic and automated discounts for your WooCommerce Store based on product, cart, and cart item information.
- * Version:           1.3.49
+ * Version:           1.3.50
  * Author:            WebAppick
  * Author URI:        https://webappick.com/
  * License:           GPLv3 or later
@@ -18,7 +18,7 @@
  * Domain Path:       /languages
  *
  * WP Requirement & Test
- * Requires at least: 4.4
+ * Requires at least: 5.9
  * Tested up to: 7.0
  * Requires PHP: 7.4
  * Requires Plugins: woocommerce
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'We\'re sorry, but you can not directly access this file.' );
 }
 
-const DISCO_VERSION    = '1.3.49';
+const DISCO_VERSION    = '1.3.50';
 const DISCO_TEXTDOMAIN = 'disco';
 const DISCO_NAME       = 'Disco';
 
@@ -48,7 +48,7 @@ define( 'DISCO_LIBS_PATH', DISCO_PLUGIN_ROOT . 'libs/' );
 
 const DISCO_PLUGIN_ABSOLUTE = __FILE__;
 const DISCO_MIN_PHP_VERSION = '7.4';
-const DISCO_WP_VERSION      = '4.4';
+const DISCO_WP_VERSION      = '5.9';
 const DISCO_DB_VERSION      = '1.0.0';
 
 // WooCommerce has detected that some of your active plugins are incompatible with currently enabled WooCommerce features. Please review the details.
@@ -83,7 +83,7 @@ if ( version_compare( PHP_VERSION, DISCO_MIN_PHP_VERSION, '<=' ) ) {
 			echo wp_kses_post(
 				sprintf(
 					'<div class="notice notice-error"><p>%s</p></div>',
-					__( 'Disco requires PHP 5.6 or newer.', 'disco' )// @phpstan-ignore-line
+					__( 'Disco requires PHP 7.4 or newer.', 'disco' )// @phpstan-ignore-line
 				)
 			);
 		}

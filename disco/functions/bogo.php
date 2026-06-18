@@ -17,7 +17,6 @@ if (!defined('ABSPATH')) {
 
 use Disco\App\Disco;
 use Disco\App\Utility\Helper;
-use Disco\App\Utility\Settings;
 
 if ( ! function_exists( 'disco_cart_apply_free_items' ) ) {
 	/**
@@ -27,10 +26,6 @@ if ( ! function_exists( 'disco_cart_apply_free_items' ) ) {
 	 */
 	function disco_cart_apply_free_items( $cart ) {
 		if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
-			return;
-		}
-
-		if ( Settings::get( 'discount_priority_type' ) === 'woocommerce_coupon' ) {
 			return;
 		}
 

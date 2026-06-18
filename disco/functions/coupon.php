@@ -26,10 +26,7 @@ if( ! function_exists( 'disco_get_coupon_discount' ) ) {
 	 * @return float
 	 */
 	function disco_disable_coupon_application( $valid, $coupon, $discount ) {
-		if(
-			Settings::get( 'discount_priority_type' ) === 'woocommerce_coupon' ||
-			Settings::get( 'discount_priority_type' ) === 'both'
-		) {
+		if ( Settings::get( 'discount_priority_type' ) === 'both' ) {
 			return $valid; // Allow coupon validation if the setting is enabled.
 		}
 		return false; // This will prevent all coupons from being valid

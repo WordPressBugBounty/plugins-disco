@@ -93,7 +93,7 @@ class Settings {
 		$default = array(
 			'product_price_type'      => 'price', // price, regular_price, sale_price.
 			'min_max_discount_amount' => 'min', // min, max.
-			'discount_priority_type'  => 'both', // both, woocommerce_coupon, disco_campaign
+			'discount_priority_type'  => 'both', // both, disco_campaign
 			'on_sale_badge'           => 'show_all', // show_all, show_sale.
 			'show_strike_through'     => array(
 				'shop_page'     => true,

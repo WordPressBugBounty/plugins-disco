@@ -221,7 +221,7 @@ class SettingsApi extends WP_REST_Controller {
 				'discount_priority_type'  => array(
 					'description' => __( 'Discount Priority Type.', 'disco' ),
 					'type'        => 'string',
-					'enum'        => array( 'both', 'woocommerce_coupon', 'disco_campaign' ),
+					'enum'        => array( 'both', 'disco_campaign' ),
 					'default'     => 'both',
 					'context'     => array(
 						'view',

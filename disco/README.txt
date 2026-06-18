@@ -2,12 +2,12 @@
 Contributors: webappick,wahid0003
 Donate link: https://webappick.com/
 Tags: woocommerce discount, discount rules, dynamic pricing, bulk discount, bogo
-Requires at least: 4.4
+Requires at least: 5.9
 Tested up to: 7.0
-Stable tag: 1.3.49
+Stable tag: 1.3.50
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Requires PHP: 5.6
+Requires PHP: 7.4
 
 WooCommerce discount rules plugin to create automatic product and cart discounts, bulk pricing, BOGO deals, and dynamic pricing without coupon codes.
 
@@ -482,12 +482,17 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.3.50(Jun 18, 2026) =
+* Fix: Free shipping order meta not updating issue.
+* Fix: WordPress and PHP version compare issue.
+* Refactor: Slow loading code refactored.
+
 = 1.3.49(Jun 15, 2026) =
 * Added: Newsletter subscription email option added in empty campaign page.
 * Fix: Cart calculation issue, when select BOGO free item.
 
 = 1.3.48(Jun 11, 2026) =
-* Fix: Coupon sarch result not working issue in conditions issue.
+* Fix: Coupon search result not working issue in conditions issue.
 
 = 1.3.47(Jun 08, 2026) =
 * Fix: Minimum quantity number input value saving with empty value issue fix.

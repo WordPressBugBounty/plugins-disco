@@ -55,7 +55,6 @@ const Settings = () => {
 		},
 		discount_priority_type: {
 			both: 'Both coupons and campaigns',
-			// woocommerce_coupon: 'Only WooCommerce coupons',
 			disco_campaign: 'Only Disco campaigns',
 		},
 		on_sale_badge: {

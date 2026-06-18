@@ -47,10 +47,6 @@ class Disco {
 	 * @throws \Exception If setting is not found.
 	 */
 	public function get_product_discounted_price( $price, $product ) {//phpcs:ignore
-		if ( Settings::get( 'discount_priority_type' ) === 'woocommerce_coupon' ) {
-			return $price; // Return original price if WooCommerce coupon is used.
-		}
-
 		if ( $product instanceof \WC_Product ) {
 			// Init product base intents and exclude cart-based intents.
 			$this->intents = $this->prepare_intents( array( 'Product' ) );
@@ -144,10 +140,6 @@ class Disco {
 			return $cart;
 		}
 
-		if ( Settings::get( 'discount_priority_type' ) === 'woocommerce_coupon' ) {
-			return $cart;
-		}
-
 		// Init Cart - Based Intents except Product & Shipping Intent.
 		$this->intents = $this->prepare_intents( array( 'Cart' ) );
 
@@ -236,10 +228,6 @@ class Disco {
 			return $cart;
 		}
 
-		if ( Settings::get( 'discount_priority_type' ) === 'woocommerce_coupon' ) {
-			return $cart;
-		}
-
 		// Init Cart - Based Intents except Product & Shipping Intent.
 		$this->intents = $this->prepare_intents( array( 'Bulk', 'Bundle', 'BOGO' ) );
 
@@ -295,10 +283,6 @@ class Disco {
             return $cart;
         }
 
-		if ( Settings::get( 'discount_priority_type' ) === 'woocommerce_coupon' ) {
-			return $cart;
-		}
-
         // Init Cart - Based Intents except Product & Shipping Intent.
         $this->intents = $this->prepare_intents( array( 'BOGO' ) );
 
@@ -311,53 +295,60 @@ class Disco {
 	 * @return bool
 	 */
 	public function apply_free_shipping() { //phpcs:ignore
+		return ! empty( $this->get_applied_free_shipping_campaign_ids() );
+	}
+
+	/**
+	 * Evaluate the Shipping intents and return the IDs of every campaign that
+	 * currently grants free shipping (respecting per-user usage limits).
+	 *
+	 * This is the single source of truth for "which free-shipping campaigns
+	 * apply right now". It is used both to decide whether to add a free shipping
+	 * rate and to persist the campaign IDs to the order meta at checkout. It does
+	 * NOT rely on the WC session or cached shipping rates, so it is safe to call
+	 * during order creation.
+	 *
+	 * @return array<int> Applied free-shipping campaign IDs.
+	 */
+	public function get_applied_free_shipping_campaign_ids() {
 		if ( ! $this->cart_is_valid() ) {
-			return false;
+			return array();
 		}
 
-		$cart = WC()->cart;
-
-		if ( Settings::get( 'discount_priority_type' ) === 'woocommerce_coupon' ) {
-			return false; // Return false if WooCommerce coupon is used.
-		}
-
+		$cart          = WC()->cart;
 		$this->intents = $this->prepare_intents( array( 'Shipping' ) );
-		$shippings     = array();
+		$campaign_ids  = array();
 
-		if ( ! empty( $this->intents ) ) {
-			foreach ( $this->intents as $intent ) {
-				/**
-				 * Get a discount limit form campaign.
-				 *
-				 * Compare with total product meta and apply discount
-				 */
-				$discount_limit         = $intent->campaign->discount_max_user;
-				$applied_campaign_id    = $intent->campaign->id;
+		if ( empty( $this->intents ) ) {
+			return $campaign_ids;
+		}
+
+		foreach ( $this->intents as $intent ) {
+			/**
+			 * Get a discount limit from campaign.
+			 *
+			 * Compare with total applied count and skip if the user limit is hit.
+			 */
+			$discount_limit = $intent->campaign->discount_max_user;
+
+			if ( ! empty( $discount_limit ) ) {
 				$total_applied_campaign = ( new UserLimit )->disco_get_total_applied_campaign( $intent->campaign->id );
 
-				if (
-					! empty( $discount_limit )
-					&& (
-						$discount_limit >= 0
-						&& $total_applied_campaign >= $discount_limit
-					)
-				) {
+				if ( $total_applied_campaign >= $discount_limit ) {
 					continue;
 				}
-
-				$items       = $this->get_items_for_discount( $cart, $intent->campaign );
-				$shippings[] = $intent->get_discounts( $items, $cart );
-
-				if ( !in_array( 'free_shipping', $shippings, true ) ) {
-                    continue;
-                }
-
-                // Get an applied campaign from DiscountLimit class.
-                ( new UserLimit )->disco_start_session_on_checkout( $applied_campaign_id );
 			}
+
+			$items = $this->get_items_for_discount( $cart, $intent->campaign );
+
+			if ( 'free_shipping' !== $intent->get_discounts( $items, $cart ) ) {
+				continue;
+			}
+
+			$campaign_ids[] = (int) $intent->campaign->id;
 		}
 
-		return in_array( 'free_shipping', $shippings, true );
+		return $campaign_ids;
 	}
 
 	/**

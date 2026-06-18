@@ -46,6 +46,22 @@ if ( ! function_exists( 'disco_add_order_meta' ) ) {
 		 * Add each campaign ID as separate meta entry.
 		 * Using unique=false allows multiple campaign IDs per order.
 		 */
+		/**
+		 * Guard against double execution.
+		 *
+		 * This callback fires on both woocommerce_thankyou and
+		 * woocommerce_payment_complete. Depending on the gateway and page
+		 * reloads either can run first, so skip if campaign meta is already
+		 * stored to avoid duplicate disco_campaign entries.
+		 */
+		$existing = $order->get_meta( 'disco_campaign', false );
+
+		if ( ! empty( $existing ) ) {
+			WC()->session->__unset( 'disco_campaign' );
+
+			return;
+		}
+
 		foreach ( $campaigns as $campaign_id ) {
 			$order->add_meta_data( 'disco_campaign', (int) $campaign_id, false );
 		}
@@ -91,4 +107,52 @@ if ( ! function_exists( 'disco_reset_campaign_session' ) ) {
 	}
 
 	add_action( 'woocommerce_before_calculate_totals', 'disco_reset_campaign_session', 0 );
+}
+
+if ( ! function_exists( 'disco_add_free_shipping_order_meta' ) ) {
+
+	/**
+	 * Persist free-shipping campaign IDs to the order meta during checkout.
+	 *
+	 * Free shipping is applied through the woocommerce_package_rates filter,
+	 * whose results WooCommerce caches per package. Because of that cache, the
+	 * filter is not guaranteed to run on the final order-placement recalculation,
+	 * so the campaign ID cannot be reliably staged in the WC session like the
+	 * product and cart intents are. Instead we evaluate the Shipping intents
+	 * fresh here, where the order object and cart are both available, and write
+	 * the campaign IDs straight to the order.
+	 *
+	 * @param \WC_Order $order The order being created.
+	 * @return void
+	 */
+	function disco_add_free_shipping_order_meta( $order ) {
+		if ( ! $order instanceof WC_Order ) {
+			return;
+		}
+
+		$campaign_ids = ( new \Disco\App\Disco )->get_applied_free_shipping_campaign_ids();
+
+		if ( empty( $campaign_ids ) ) {
+			return;
+		}
+
+		// Avoid duplicating IDs already staged from product/cart intents.
+		$existing = array_map( 'intval', $order->get_meta( 'disco_campaign', false ) ? wp_list_pluck( $order->get_meta( 'disco_campaign', false ), 'value' ) : array() );
+
+		foreach ( $campaign_ids as $campaign_id ) {
+			if ( in_array( (int) $campaign_id, $existing, true ) ) {
+				continue;
+			}
+
+			$order->add_meta_data( 'disco_campaign', (int) $campaign_id, false );
+		}
+	}
+
+	// Classic (shortcode) checkout: order is saved by WC after this action.
+	add_action( 'woocommerce_checkout_create_order', 'disco_add_free_shipping_order_meta', 20 );
+
+	// Block / Store API checkout: WC_Checkout::create_order() does not run, so
+	// the action above never fires. This Store API hook also passes the WC_Order
+	// (as its first arg) before the order is persisted.
+	add_action( 'woocommerce_store_api_checkout_update_order_meta', 'disco_add_free_shipping_order_meta', 20 );
 }

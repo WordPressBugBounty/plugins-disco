@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <div id="disco-pro-plan">Pro Plan</div>
 <?php
 /**

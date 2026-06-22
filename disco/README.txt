@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: woocommerce discount, discount rules, dynamic pricing, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.0
-Stable tag: 1.3.50
+Stable tag: 1.3.51
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -482,6 +482,9 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.3.51(Jun 22, 2026) =
+* Refactor: Campaign display UI code refactored.
+
 = 1.3.50(Jun 18, 2026) =
 * Fix: Free shipping order meta not updating issue.
 * Fix: WordPress and PHP version compare issue.

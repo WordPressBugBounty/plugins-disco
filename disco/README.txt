@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: woocommerce discount, discount rules, dynamic pricing, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.0
-Stable tag: 1.3.51
+Stable tag: 1.3.52
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -17,7 +17,7 @@ WooCommerce discount rules plugin to create automatic product and cart discounts
 
 **Create product discounts, cart discounts, bulk discounts, bundle discounts, BOGO deals, and free shipping** offers using an intuitive visual interface – all without writing code or managing coupon codes.
 
-**[Upgrade to Pro](https://discoplugin.com/pricing/?utm_source=org-to-pro&utm_medium=org-to-pro&utm_campaign=org-to-pro&utm_id=1) | [Complete Documentation](https://discoplugin.com/docs/) | [Video Tutorials](https://www.youtube.com/@WebAppick) | [Get Support](https://discoplugin.com/support/)**
+**[Upgrade to Pro](https://discoplugin.com/pricing/?utm_source=org-to-pro&utm_medium=org-to-pro&utm_campaign=org-to-pro&utm_id=1) | [View Demo](https://app.instawp.io/launch?s=discopro&d=v2) | [Complete Documentation](https://discoplugin.com/docs/) | [Video Tutorials](https://www.youtube.com/@WebAppick) | [Get Support](https://discoplugin.com/support/)**
 
 Fully updated for 2026 with the latest **WooCommerce 10.x** and **WordPress 7.x** compatibility.
 
@@ -482,6 +482,9 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.3.52(Jun 24, 2026) =
+* Added: Demo site added in readme file.
+
 = 1.3.51(Jun 22, 2026) =
 * Refactor: Campaign display UI code refactored.
 

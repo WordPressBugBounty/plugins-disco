@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: woocommerce discount, discount rules, dynamic pricing, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.0
-Stable tag: 1.3.52
+Stable tag: 1.3.53
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -482,6 +482,9 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.3.53(Jun 29, 2026) =
+* Fix: Cart based discount campaign id saving issue in order meta issue.
+
 = 1.3.52(Jun 24, 2026) =
 * Added: Demo site added in readme file.
 

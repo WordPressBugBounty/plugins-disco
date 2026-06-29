@@ -474,8 +474,7 @@ trait IntentHelper {//phpcs:ignore
 			return false;
 		}
 
-		$discounts           = array();
-		$applied_campaign_id = 0;
+		$discounts = array();
 
 		// Loop through the intents.
 		foreach ( $intents as $intent ) {
@@ -485,7 +484,6 @@ trait IntentHelper {//phpcs:ignore
 			 * Compare with total product meta and apply discount
 			 */
 			$discount_limit         = $intent->campaign->discount_max_user;
-			$applied_campaign_id    = $intent->campaign->id;
 			$total_applied_campaign = ( new UserLimit )->disco_get_total_applied_campaign( $intent->campaign->id );
 
 			if ( ! empty( $discount_limit ) && ( $discount_limit >= 0 && $total_applied_campaign >= $discount_limit ) ) {
@@ -498,6 +496,9 @@ trait IntentHelper {//phpcs:ignore
 			if ( empty( $get_discounts ) ) {
 				continue;
 			}
+
+			// Only stage campaigns whose discount actually applied to the cart.
+			( new UserLimit )->disco_start_session_on_checkout( $intent->campaign->id );
 
 			foreach ( $get_discounts as $item_id => $discount ) {
 				$discounts[ $item_id ]['discounts'][] = max( $discount['discounts'] );
@@ -513,9 +514,6 @@ trait IntentHelper {//phpcs:ignore
 		foreach ( $discounts as $item_id => $discount ) {
 			$discounts[ $item_id ] = $this->min_max_average( $discount['discounts'] );
 		}
-
-		// Set applied campaign on DiscountLimit class.
-		( new UserLimit )->disco_start_session_on_checkout( $applied_campaign_id );
 
 		return $discounts;
 	}
@@ -563,8 +561,6 @@ trait IntentHelper {//phpcs:ignore
 
 		$discounts = array();
 
-		$applied_campaign_id = 0;
-
 		// Loop through the intents.
 		foreach ( $intents as $intent ) {
 			/**
@@ -573,7 +569,6 @@ trait IntentHelper {//phpcs:ignore
 			 * Compare with total product meta and apply discount
 			 */
 			$discount_limit         = $intent->campaign->discount_max_user;
-			$applied_campaign_id    = $intent->campaign->id;
 			$total_applied_campaign = ( new UserLimit )->disco_get_total_applied_campaign( $intent->campaign->id );
 
 			if ( ! empty( $discount_limit ) && ( $discount_limit >= 0 && $total_applied_campaign >= $discount_limit ) ) {
@@ -586,6 +581,9 @@ trait IntentHelper {//phpcs:ignore
 			if ( empty( $get_discounts ) ) {
 				continue;
 			}
+
+			// Only stage campaigns whose discount actually applied to the cart.
+			( new UserLimit )->disco_start_session_on_checkout( $intent->campaign->id );
 
 			foreach ( $get_discounts as $item_id => $discount ) {
 				$discounts[ $item_id ]['discounts'][] = max( $discount['discounts'] );
@@ -609,9 +607,6 @@ trait IntentHelper {//phpcs:ignore
 			$discounts['get_qty']   = $discount['get_qty'];
 			$discounts['bogo_type'] = $discount['bogo_type'] ?? 'products';
 		}
-
-		// Set applied campaign on DiscountLimit class.
-		( new UserLimit )->disco_start_session_on_checkout( $applied_campaign_id );
 
 		return $discounts;
 	}

@@ -65,8 +65,6 @@ class Disco {
 
 			$discounts = array();
 
-			$prev_discount = PHP_INT_MAX;
-
 			// Foreach intent, apply the discount.
 			foreach ( $this->intents as $intent ) {
 				/**
@@ -93,13 +91,8 @@ class Disco {
 					continue;
 				}
 
-				// Get applied discount campaign.
-				if ( $discount > 0 && $prev_discount > $discount ) {
-					$this->applied_campaign_id = $intent->campaign->id;
-					$prev_discount             = $discount;
-				}
-
-				$discounts[] = $discount;
+				// Store discount keyed by campaign id so the winning amount maps back to the right campaign.
+				$discounts[ $intent->campaign->id ] = $discount;
 			}
 
 			// If no discount is applied, return the original price.
@@ -109,11 +102,15 @@ class Disco {
 
 			$discount_type = $intent->campaign->discount_rules[0]['discount_type'];
 
+			// Pick the winning discount amount, then map it back to the campaign that produced it.
+			$base_discount             = $this->min_max_average( array_values( $discounts ) );
+			$this->applied_campaign_id = (int) array_search( $base_discount, $discounts, true );
+
 			/**
 			 * Get the min or max discount amount according to plugin settings.
 			 * Apply the filter to modify final discounted amount based on discount types.
 			 */
-			$discounted_amount = apply_filters( 'disco_final_discounted_amount', $this->min_max_average( $discounts ), $discount_type );
+			$discounted_amount = apply_filters( 'disco_final_discounted_amount', $base_discount, $discount_type );
 
 			if ( $discounted_amount <= $price ) {
 				// Get an applied campaign from DiscountLimit class.

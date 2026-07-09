@@ -101,7 +101,11 @@ class CalcFactory {
      * @return float Cart Subtotal.
      */
 	public static function get_cart_subtotal( WC_Cart $cart ): float {
-		// Get cart subtotal from cart if disco pro is active.
+		/**
+		 * Get cart subtotal from cart if disco pro is active,
+		 * if disco pro is not active, get cart subtotal from meta.
+		 * It's for support Multi-currency plugin in disco pro.
+		 */
 		if ( Disco::is_pro() ) {
 			return $cart->get_subtotal();
 		}

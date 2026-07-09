@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import moment from 'moment';
+import { format } from 'date-fns';
 import { toast } from 'react-toastify';
 
 export const getSelectedFilterData = (items, current) => {
@@ -14,11 +14,11 @@ export const getSelectedFilterData = (items, current) => {
 };
 
 export const dateTimeFormatter = (datetime) => {
-	if (datetime) {
-		return moment(datetime).format('Do MMM, YYYY h:mm A');
-	} else {
+	if (!datetime) {
 		return '-';
 	}
+
+	return format(new Date(datetime), 'do MMM, yyyy h:mm a');
 };
 
 export const dateStringToTimestamp = (dateString) => {

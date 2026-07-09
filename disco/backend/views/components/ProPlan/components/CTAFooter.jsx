@@ -62,7 +62,7 @@ const CtaSection = () => {
 					</a>
 
 					<p className="disco-text-sm disco-text-white/35">
-						14-days money-back · No contracts
+						14-day money-back · No contracts
 					</p>
 				</div>
 			</div>

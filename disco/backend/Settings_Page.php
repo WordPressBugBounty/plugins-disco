@@ -154,6 +154,19 @@ class Settings_Page extends Base {
 				'disco_display_plugin_admin_page_create_campaign',
 			)
 		);
+
+		add_submenu_page(
+			'disco-create-discount',
+			__( 'Analytics', 'disco' ),
+			__( 'Analytics', 'disco' ) . ' <span class="disco-beta-badge">' . __( 'Beta', 'disco' ) . '</span>',
+			'manage_woocommerce',
+			'disco-analytics',
+			array(
+				$this,
+				'disco_display_plugin_admin_page_analytics',
+			)
+		);
+
 		add_submenu_page(
 			'disco-create-discount',
 			__( 'Settings', 'disco' ),
@@ -187,6 +200,7 @@ class Settings_Page extends Base {
 				'disco_display_plugin_admin_page_help_and_docs',
 			)
 		);
+
 		if ( ! Disco::is_pro() ) {
 			add_submenu_page(
 				'disco-create-discount',
@@ -279,6 +293,16 @@ class Settings_Page extends Base {
 	 */
 	public function disco_display_plugin_admin_page_compatible_plugin_list() {
 		include_once DISCO_PLUGIN_ROOT . 'backend/views/compatible_plugin_list.php';
+	}
+
+	/**
+	 * Render the Analytics page for this plugin.
+	 *
+	 * @return void
+	 * @since 1.0.0
+	 */
+	public function disco_display_plugin_admin_page_analytics() {
+		include_once DISCO_PLUGIN_ROOT . 'backend/views/analytics.php';
 	}
 
 }

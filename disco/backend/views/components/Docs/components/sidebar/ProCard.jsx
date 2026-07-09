@@ -61,7 +61,7 @@ export default function DiscoProCard() {
 				</a>
 
 				<p className="disco-text-center disco-text-xs disco-text-gray-400 disco-mt-3 disco-mb-0">
-					🛡️ 14-days money-back guarantee
+					🛡️ 14-day money-back guarantee
 				</p>
 			</div>
 		</div>

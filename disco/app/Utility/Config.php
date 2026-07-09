@@ -18,6 +18,8 @@ namespace Disco\App\Utility;
  * @author     Ohidul Islam <wahid0003@gmail.com>
  * @link       https://webappick.com
  * @property   false|mixed|string $filter
+ * @property   string $discount_valid_from
+ * @property   string $discount_valid_to
  * @license    https://opensource.org/licenses/gpl-license.php GNU Public License
  * @category   Utility
  */

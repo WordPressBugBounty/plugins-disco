@@ -201,6 +201,8 @@ class Disco {
 					$label = $discount_label;
 				}
 
+				$cart_fee = $this->get_discount_exclude_tax( $cart_fee, $cart );
+
 				$cart->add_fee( $label, -$cart_fee );
 				$cart->set_session();
 			}
@@ -255,6 +257,8 @@ class Disco {
 		}
 
 		if ( $total_discount > 0 ) {
+			$total_discount = $this->get_discount_exclude_tax( $total_discount, $cart );
+
 			$cart->add_fee( __( 'Discount', 'disco' ), -$total_discount );
 		}
 

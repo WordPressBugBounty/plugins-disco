@@ -70,7 +70,7 @@ function PricingSection() {
 				</span>
 				<span>
 					<span className="disco-font-bold disco-text-lg disco-text-primary">
-						14-days
+						14-day
 					</span>{' '}
 					Money-back guarantee
 				</span>

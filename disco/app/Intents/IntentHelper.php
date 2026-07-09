@@ -647,6 +647,109 @@ trait IntentHelper {//phpcs:ignore
 	}
 
 	/**
+	 * Strip the embedded tax portion from a discount amount.
+	 *
+	 * When WooCommerce is set to enter prices inclusive of tax, the discount
+	 * amount computed by the intents also carries that tax (e.g. a 50 discount
+	 * becomes 55 at 10% tax). The cart fee is added as non-taxable, so the tax
+	 * must be removed here to keep the net discount correct.
+	 *
+	 * When a cart is supplied, the embedded-tax portion is derived from the
+	 * cart's own subtotal and subtotal tax rather than assuming the whole
+	 * amount carries the standard rate. This keeps mixed carts correct where
+	 * some products are taxable and others are not (or use different tax
+	 * classes): non-taxable products add to the subtotal but contribute zero
+	 * tax, so the effective inclusive-tax ratio drops accordingly.
+	 *
+	 * @since 1.3.54
+	 * @param float         $amount Tax-inclusive discount amount.
+	 * @param \WC_Cart|null $cart   Optional cart used to derive the effective tax ratio.
+	 * @return float Tax-exclusive discount amount.
+	 */
+	public function get_discount_exclude_tax( float $amount, $cart = null ): float {
+		if ( ! function_exists( 'wc_prices_include_tax' ) || ! wc_prices_include_tax() ) {
+			return $amount;
+		}
+
+		if ( ! class_exists( 'WC_Tax' ) ) {
+			return $amount;
+		}
+
+		// Prefer a product-derived inclusive-tax ratio so mixed carts strip
+		// only the tax actually embedded. The discount base is built from each
+		// product's tax-inclusive price (see CalcFactory::get_price), so we
+		// rebuild the same base excluding tax per product. wc_get_price_excluding_tax
+		// respects each product's own tax status and class: a non-taxable
+		// product returns its price unchanged and contributes zero embedded tax.
+		if ( $cart instanceof \WC_Cart && function_exists( 'wc_get_price_excluding_tax' ) ) {
+			return $this->strip_tax_using_cart_ratio( $amount, $cart );
+		}
+
+		// Fallback: rates for the standard tax class at the customer location.
+		$rates = \WC_Tax::get_rates( '' );
+
+		if ( empty( $rates ) ) {
+			return $amount;
+		}
+
+		// Tax embedded inside the inclusive amount, then remove it.
+		$tax_total = array_sum( \WC_Tax::calc_inclusive_tax( $amount, $rates ) );
+
+		return $amount - $tax_total;
+	}
+
+	/**
+	 * Strip embedded tax from a discount using the cart's own inclusive-tax ratio.
+	 *
+	 * Rebuilds the discount base (sum of tax-inclusive prices) and its
+	 * tax-exclusive counterpart per product, then scales the discount by the
+	 * excl/incl ratio. Non-taxable products contribute equally to both sums,
+	 * so their share keeps no tax stripped.
+	 *
+	 * @param float    $amount Tax-inclusive discount amount.
+	 * @param \WC_Cart $cart   Cart used to derive the ratio.
+	 * @return float Tax-exclusive discount amount.
+	 */
+	private function strip_tax_using_cart_ratio( float $amount, \WC_Cart $cart ): float {
+		$incl_sum   = 0.0;
+		$excl_sum   = 0.0;
+		$cart_items = $cart->get_cart();
+
+		if ( ! is_array( $cart_items ) ) {
+			$cart_items = array();
+		}
+
+		foreach ( $cart_items as $cart_item ) {
+			if ( empty( $cart_item['data'] ) || ! $cart_item['data'] instanceof \WC_Product ) {
+				continue;
+			}
+
+			$product    = $cart_item['data'];
+			$qty        = (float) ( $cart_item['quantity'] ?? 1 );
+			$price_incl = (float) $product->get_price();
+			$price_excl = (float) wc_get_price_excluding_tax( $product, array( 'price' => $price_incl ) );
+
+			$incl_sum += $price_incl * $qty;
+			$excl_sum += $price_excl * $qty;
+		}
+
+		// No priced items in the cart -> nothing to strip.
+		if ( $incl_sum <= 0 ) {
+			return $amount;
+		}
+
+		$net = $amount * $excl_sum / $incl_sum;
+
+		$decimals = 2;
+
+		if ( function_exists( 'wc_get_price_decimals' ) ) {
+			$decimals = wc_get_price_decimals();
+		}
+
+		return round( $net, $decimals );
+	}
+
+	/**
 	 * Total qualifying quantity for recursive BOGO.
 	 *
 	 * Sums the quantity of every cart item that passes the campaign's

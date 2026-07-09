@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<div id="disco-pro-plan">Pro Plan</div>
+<div id="disco-pro-plan">Pro Plan Loading...</div>
 <?php
 /**
  * Base page for the plugin.

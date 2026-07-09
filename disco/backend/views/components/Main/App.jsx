@@ -2,10 +2,12 @@ import { Provider } from 'react-redux';
 import { HashRouter, Route, Routes } from 'react-router';
 import { ToastContainer } from 'react-toastify';
 import { store } from './app/store';
+import NotFound from './components/NotFound';
 import ScrollToTop from './components/ScrollTop';
 import Campaigns from './pages/Campaigns/Campaigns';
 import Rules from './pages/Rules/Rules';
 import Settings from './pages/Settings/Settings';
+
 export default function CreateDiscount() {
 	return (
 		<>
@@ -16,6 +18,7 @@ export default function CreateDiscount() {
 						<Route path="/" element={<Campaigns />} />
 						<Route path="/settings" element={<Settings />} />
 						<Route path="/disco" element={<Rules />} />
+						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</HashRouter>
 				<ToastContainer style={{ zIndex: 99999 }} autoClose={1500} />

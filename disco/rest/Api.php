@@ -78,6 +78,9 @@ class Api {
 
 		$image_upload = new ImageUploadApi;
 		$image_upload->register_routes();
+
+		$analytics = new AnalyticsApi;
+		$analytics->register_routes();
 	}
 
 }

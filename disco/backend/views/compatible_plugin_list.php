@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<div id="disco-compatible-plugin-list"></div>
+<div id="disco-compatible-plugin-list">Loading...</div>
 <?php
 /**
  * Base page for the plugin.

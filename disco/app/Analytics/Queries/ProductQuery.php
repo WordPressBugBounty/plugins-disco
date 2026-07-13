@@ -136,7 +136,7 @@ class ProductQuery extends BaseQuery {
 		$rows_sql = "SELECT
 				COALESCE(NULLIF(product_lookup.variation_id, 0), product_lookup.product_id)  AS product_id,
 				product_lookup.product_id                                                     AS parent_product_id,
-				ANY_VALUE(product.post_title)                                                 AS parent_title,
+				MAX(product.post_title)                                                       AS parent_title,
 				COUNT(DISTINCT order_meta.{$order_id_column})                                 AS orders_count,
 				COUNT(DISTINCT
 					CASE WHEN o.billing_email != ''

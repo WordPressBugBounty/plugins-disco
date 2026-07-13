@@ -116,9 +116,10 @@ class Enqueue extends Base {
                     'admin_url'              => admin_url( 'admin.php' ),
                     'site_url'               => site_url(),
                     'TEXTDOMAIN'             => DISCO_TEXTDOMAIN,
-                    'is_pro_active'            => Disco::is_pro(),
+                    'is_pro_active'          => Disco::is_pro(),
                     'disco_free_version'     => DISCO_VERSION,
                     'DISCO_BADGE_IMAGES_DIR' => DISCO_BADGE_IMAGES_DIR,
+                    'active_campaign'        => disco_activecampaign_get_localize_data(),
                 )
             );
         }

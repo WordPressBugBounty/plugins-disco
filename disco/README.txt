@@ -3,8 +3,8 @@ Contributors: webappick,wahid0003
 Donate link: https://webappick.com/
 Tags: woocommerce discount, discount rules, dynamic pricing, bulk discount, bogo
 Requires at least: 5.9
-Tested up to: 7.0
-Stable tag: 1.4.0
+Tested up to: 7.0.1
+Stable tag: 1.4.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -482,6 +482,10 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.4.1(July 13, 2026) =
+* Fix: Top products in analytics not showing issue for DB version issue.
+* Fix: Newsletter subscription email not showing issue when no campaigns active.
+
 = 1.4.0(July 09, 2026) =
 * New: Added a powerful Analytics Dashboard to track discount performance.
 * New: Added overview reports for revenue, orders, customers, and discount revenue.

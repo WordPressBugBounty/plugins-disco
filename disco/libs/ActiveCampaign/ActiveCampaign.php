@@ -19,9 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Option flag set once the user has submitted their email.
- * Works like a notice-dismiss flag: only '1' is stored, never the email.
+ * Works like a notice-dismiss flag: only `true` is stored, never the email.
  */
-define( 'DISCO_AC_OPTION_KEY', 'disco_activecampaign_email_collected' );
+define( 'DISCO_AC_OPTION_KEY', 'disco_active_campaign_subscribe' );
 
 /**
  * AJAX action name.
@@ -39,7 +39,7 @@ define( 'DISCO_AC_NONCE_ACTION', 'disco_activecampaign_nonce' );
  * @return bool
  */
 function disco_activecampaign_has_subscriber() {
-	return '1' === get_option( DISCO_AC_OPTION_KEY );
+	return (bool) get_option( DISCO_AC_OPTION_KEY, false );
 }
 
 /**
@@ -74,7 +74,7 @@ function disco_activecampaign_handle_subscribed() {
 		wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'disco' ) ), 403 );
 	}
 
-	update_option( DISCO_AC_OPTION_KEY, '1', false );
+	update_option( DISCO_AC_OPTION_KEY, true, false );
 
 	wp_send_json_success(
 		array(

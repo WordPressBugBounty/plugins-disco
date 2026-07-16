@@ -21,7 +21,7 @@ if ( ! function_exists( 'disco_set_cart_item_price_test' ) ) {
 		return ( new Disco )->get_cart_items_discount( $cart );
 	}
 
-	add_action( 'woocommerce_before_calculate_totals', 'disco_set_cart_item_price_test', 1, 1 );
+	add_action( 'woocommerce_cart_calculate_fees', 'disco_set_cart_item_price_test', 1, 1 );
 }
 
 if ( ! function_exists( 'disco_cart_item_price_html' ) ) {

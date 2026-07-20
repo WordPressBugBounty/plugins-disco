@@ -283,7 +283,7 @@ abstract class Base extends WP_REST_Controller { //phpcs:ignore
 				'sort_by'     => array(
 					'description'       => __( 'Sort field.', 'disco' ),
 					'type'              => 'string',
-					'enum'              => array( 'revenue', 'date' ),
+					'enum'              => array( 'revenue', 'date', 'quantity' ),
 					'default'           => 'revenue',
 					'sanitize_callback' => 'sanitize_text_field',
 				),
@@ -300,7 +300,7 @@ abstract class Base extends WP_REST_Controller { //phpcs:ignore
 				'orderby'     => array(
 					'description'       => __( 'Sort field.', 'disco' ),
 					'type'              => 'string',
-					'enum'              => array( 'revenue', 'date' ),
+					'enum'              => array( 'revenue', 'date', 'quantity' ),
 					'default'           => 'revenue',
 					'sanitize_callback' => 'sanitize_text_field',
 				),

@@ -101,8 +101,9 @@ class OrderService extends BaseService {
 	 */
 	private static function build_table_query_args( array $args, int $limit, int $page ): array {
 		$orderby_map = array(
-			'revenue' => 'order_total',
-			'date'    => 'order_date',
+			'revenue'  => 'order_total',
+			'date'     => 'order_date',
+			'quantity' => 'quantity',
 		);
 		$orderby     = $orderby_map[ $args['orderby'] ?? 'revenue' ] ?? 'order_total';
 		$order       = 'desc';

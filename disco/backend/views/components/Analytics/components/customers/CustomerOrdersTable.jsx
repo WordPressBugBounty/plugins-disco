@@ -18,7 +18,7 @@ const COLUMNS = [
 	{ key: 'date', label: 'Date', sortable: true },
 ];
 
-const SORT_MAP = { revenue: 'revenue', date: 'date' };
+const SORT_MAP = { total_spent: 'revenue', quantity: 'quantity', date: 'date' };
 
 const renderRow = (order) => (
 	<tr

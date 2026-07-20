@@ -3,8 +3,8 @@ Contributors: webappick,wahid0003
 Donate link: https://webappick.com/
 Tags: woocommerce discount, discount rules, dynamic pricing, bulk discount, bogo
 Requires at least: 5.9
-Tested up to: 7.0.1
-Stable tag: 1.4.2
+Tested up to: 7.0.2
+Stable tag: 1.4.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4

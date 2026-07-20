@@ -85,8 +85,8 @@ class OrdersApi extends Base {
 	 *   date_from   (string Y-m-d) Range start. Default: 28 days ago.
 	 *   date_to     (string Y-m-d) Range end.   Default: today.
 	 *   search      (string)       Numeric = exact order ID; text = customer name/email LIKE search.
-	 *   sort_by     (string)       Alias for orderby. One of: revenue (default), date.
-	 *   orderby     (string)       Sort field. One of: revenue (default), date.
+	 *   sort_by     (string)       Alias for orderby. One of: revenue (default), date, quantity.
+	 *   orderby     (string)       Sort field. One of: revenue (default), date, quantity.
 	 *   order       (string)       Sort direction: asc | desc (default).
 	 *   campaign_id (int)          Filter to orders that used this campaign.
 	 *   customer_id (int)          Filter to orders by this WP user.
@@ -116,8 +116,9 @@ class OrdersApi extends Base {
 		}
 
 		$sort_by_map     = array(
-			'revenue' => 'revenue',
-			'date'    => 'date',
+			'revenue'  => 'revenue',
+			'date'     => 'date',
+			'quantity' => 'quantity',
 		);
 		$sort_by         = '';
 		$default_orderby = 'revenue';

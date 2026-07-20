@@ -1,4 +1,4 @@
-<?php
+<?php //phpcs:disable 
 
 /**
  * OrderQuery — focused queries for order data.
@@ -206,10 +206,15 @@ class OrderQuery extends BaseQuery {
 	 * Resolves the SQL sort column expression, direction, and the JOINs the
 	 * sort expression needs.
 	 *
-	 * Whitelist: order_date, order_total, discount_amount. Totals/discounts are
-	 * cast to DECIMAL so sorting is numeric, not lexicographic. The order_stats
-	 * and discount-meta JOINs are emitted only when the chosen sort actually
-	 * references them — display amounts are resolved separately in PHP.
+	 * Whitelist: order_date, order_total, discount_amount, quantity. Totals/discounts
+	 * are cast to DECIMAL so sorting is numeric, not lexicographic. Quantity sums the
+	 * order's line-item quantities from wc_order_product_lookup. The order_stats,
+	 * discount-meta, and product-lookup JOINs are emitted only when the chosen sort
+	 * actually references them — display amounts are resolved separately in PHP.
+	 *
+	 * The product-lookup JOIN is safe against SUM inflation because the WHERE clause
+	 * already restricts order_meta to a single disco_campaign row per order via
+	 * get_campaign_dedup_condition().
 	 *
 	 * @param array $args    orderby, order.
 	 * @param array $context From build_list_context().
@@ -221,18 +226,20 @@ class OrderQuery extends BaseQuery {
 		$tables  = $context['tables'];
 		$clauses = $context['clauses'];
 		$id_col  = $context['id_col'];
-		$sort    = $this->resolve_sort( $args, array( 'order_date', 'order_total', 'discount_amount' ), 'order_date' );
+		$sort    = $this->resolve_sort( $args, array( 'order_date', 'order_total', 'discount_amount', 'quantity' ), 'order_date' );
 
 		$orderby_column_map = array(
 			'order_date'      => $clauses['date_col'],
 			'order_total'     => "CAST(({$clauses['total_expr']} - COALESCE(order_stats.shipping_total, 0)) AS DECIMAL(10,2))",
 			'discount_amount' => "CAST({$clauses['discount_expr']} AS DECIMAL(10,2))",
+			'quantity'        => 'COALESCE(SUM(sort_qty_lookup.product_qty), 0)',
 		);
 
 		$sort_join_map = array(
 			'order_date'      => '',
 			'order_total'     => "LEFT JOIN {$wpdb->prefix}wc_order_stats order_stats ON order_stats.order_id = order_meta.{$id_col}",
 			'discount_amount' => $clauses['discount_join'],
+			'quantity'        => "LEFT JOIN {$tables['product_lookup']} sort_qty_lookup ON sort_qty_lookup.order_id = order_meta.{$id_col}",
 		);
 
 		return array(

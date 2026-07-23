@@ -4,23 +4,6 @@
  * Structure: container, title, subtitle, box_container, box, number, label, separator
  */
 
-import badge1 from '../../../asset/img/badge-images/badge/product-badge/editable/badge1.svg';
-import badge11 from '../../../asset/img/badge-images/badge/product-badge/editable/badge11.svg';
-import badge12 from '../../../asset/img/badge-images/badge/product-badge/editable/badge12.svg';
-import badge13 from '../../../asset/img/badge-images/badge/product-badge/editable/badge13.svg';
-import badge14 from '../../../asset/img/badge-images/badge/product-badge/editable/badge14.svg';
-import badge15 from '../../../asset/img/badge-images/badge/product-badge/editable/badge15.svg';
-import badge16 from '../../../asset/img/badge-images/badge/product-badge/editable/badge16.svg';
-import badge19 from '../../../asset/img/badge-images/badge/product-badge/editable/badge19.svg';
-import badge2 from '../../../asset/img/badge-images/badge/product-badge/editable/badge2.svg';
-import badge20 from '../../../asset/img/badge-images/badge/product-badge/editable/badge20.svg';
-import badge3 from '../../../asset/img/badge-images/badge/product-badge/editable/badge3.svg';
-import badge4 from '../../../asset/img/badge-images/badge/product-badge/editable/badge4.svg';
-import badge5 from '../../../asset/img/badge-images/badge/product-badge/editable/badge5.svg';
-import badge6 from '../../../asset/img/badge-images/badge/product-badge/editable/badge6.svg';
-import badge8 from '../../../asset/img/badge-images/badge/product-badge/editable/badge8.svg';
-import badge9 from '../../../asset/img/badge-images/badge/product-badge/editable/badge9.svg';
-
 import valueEditable1 from '../../../asset/img/badge-images/badge/product-badge/value-editable/valueEditable1.svg';
 import valueEditable10 from '../../../asset/img/badge-images/badge/product-badge/value-editable/valueEditable10.svg';
 import valueEditable11 from '../../../asset/img/badge-images/badge/product-badge/value-editable/valueEditable11.svg';
@@ -33,7 +16,6 @@ import valueEditable6 from '../../../asset/img/badge-images/badge/product-badge/
 import valueEditable7 from '../../../asset/img/badge-images/badge/product-badge/value-editable/valueEditable7.svg';
 import valueEditable8 from '../../../asset/img/badge-images/badge/product-badge/value-editable/valueEditable8.svg';
 import valueEditable9 from '../../../asset/img/badge-images/badge/product-badge/value-editable/valueEditable9.svg';
-
 
 // Default selected design ID
 export const DEFAULT_PRODUCT_BADGE_DESIGN = 'editable_design1';
@@ -51,9 +33,6 @@ export const productBadgeDesign = {
 			hasSeparator: false,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge1,
-			},
 			container: {
 				position: 'absolute',
 				left: '0px',
@@ -82,9 +61,6 @@ export const productBadgeDesign = {
 			isDefault: false,
 			hasSeparator: false,
 			singleContainer: true,
-			image: {
-				url: badge2,
-			},
 			// Main container styles
 			container: {
 				position: 'absolute',
@@ -116,9 +92,6 @@ export const productBadgeDesign = {
 			hasSeparator: false,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge3,
-			},
 
 			container: {
 				position: 'absolute',
@@ -155,9 +128,6 @@ export const productBadgeDesign = {
 			hasSeparator: true,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge4,
-			},
 			container: {
 				position: 'absolute',
 				left: '0px',
@@ -191,9 +161,6 @@ export const productBadgeDesign = {
 			hasSeparator: true,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge5,
-			},
 
 			container: {
 				position: 'absolute',
@@ -234,9 +201,6 @@ export const productBadgeDesign = {
 			hasSeparator: true,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge6,
-			},
 
 			container: {
 				position: 'absolute',
@@ -277,9 +241,6 @@ export const productBadgeDesign = {
 			hasSeparator: true,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge8,
-			},
 
 			container: {
 				position: 'absolute',
@@ -326,9 +287,6 @@ export const productBadgeDesign = {
 			hasSeparator: true,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge9,
-			},
 
 			container: {
 				position: 'absolute',
@@ -374,9 +332,6 @@ export const productBadgeDesign = {
 			hasSeparator: true,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge11,
-			},
 
 			container: {
 				position: 'absolute',
@@ -420,9 +375,6 @@ export const productBadgeDesign = {
 			hasSeparator: true,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge12,
-			},
 
 			container: {
 				position: 'absolute',
@@ -465,9 +417,6 @@ export const productBadgeDesign = {
 			hasSeparator: true,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge13,
-			},
 
 			container: {
 				position: 'absolute',
@@ -510,9 +459,6 @@ export const productBadgeDesign = {
 			hasSeparator: true,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge14,
-			},
 
 			container: {
 				position: 'absolute',
@@ -554,9 +500,6 @@ export const productBadgeDesign = {
 			hasSeparator: true,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge15,
-			},
 
 			container: {
 				position: 'absolute',
@@ -599,9 +542,6 @@ export const productBadgeDesign = {
 			hasSeparator: true,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge16,
-			},
 
 			container: {
 				position: 'absolute',
@@ -645,9 +585,6 @@ export const productBadgeDesign = {
 			hasSeparator: true,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge19,
-			},
 
 			container: {
 				position: 'absolute',
@@ -689,9 +626,6 @@ export const productBadgeDesign = {
 			hasSeparator: true,
 			singleContainer: false,
 			// Main container styles
-			image: {
-				url: badge20,
-			},
 
 			container: {
 				position: 'absolute',
@@ -720,6 +654,793 @@ export const productBadgeDesign = {
 				'font-size': '14px',
 				'line-height': '14px',
 				'font-weight': '800',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 21
+		{
+			id: 'editable_design21',
+			name: '25% OFF',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '60px',
+				height: '60px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '5px',
+				background: 'linear-gradient(120deg, #34CEFF 0%, #25ACFF 100%)',
+				'clip-path':
+					'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+			},
+			// Title styles
+			title: {
+				text: '[discounted_percentage] OFF',
+				color: '#FFFFFF',
+				'font-family': 'Georgia, serif',
+				'font-size': '14px',
+				'line-height': '15px',
+				'font-weight': '700',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 22
+		{
+			id: 'editable_design22',
+			name: '25% OFF',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: 'auto',
+				height: 'auto',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '7px 10px',
+				radius: {
+					'top-left': '8px',
+					'top-right': '8px',
+					'bottom-right': '0px',
+					'bottom-left': '0px',
+				},
+				background: '#3BE081',
+			},
+			// Title styles
+			title: {
+				text: '[discounted_percentage] OFF',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '14px',
+				'line-height': '14px',
+				'font-weight': '600',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 23
+		{
+			id: 'editable_design23',
+			name: '$10 OFF',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '70px',
+				height: '70px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '5px',
+				background: '#FF4026',
+				'clip-path':
+					'polygon(50% 0%, 68.2% 28.9%, 100% 38.2%, 79.5% 65.4%, 80.9% 100%, 50% 87.9%, 19.1% 100%, 20.5% 65.4%, 0% 38.2%, 31.8% 28.9%)',
+			},
+			// Title styles
+			title: {
+				text: '[discounted_amount] OFF',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '12px',
+				'line-height': '13px',
+				'font-weight': '800',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 24
+		{
+			id: 'editable_design24',
+			name: '15% OFF',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '55px',
+				height: '55px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '5px',
+				radius: {
+					'top-left': '100%',
+					'top-right': '100%',
+					'bottom-right': '100%',
+					'bottom-left': '100%',
+				},
+				background: 'linear-gradient(135deg, #E81CFF 0%, #40C9FF 100%)',
+			},
+			// Title styles
+			title: {
+				text: '[discounted_percentage] OFF',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '13px',
+				'line-height': '14px',
+				'font-weight': '700',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 25
+		{
+			id: 'editable_design25',
+			name: 'Sale Flag',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '70px',
+				height: '28px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '5px 5px 5px 15px',
+				background: '#1287A0',
+				'clip-path':
+					'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 21% 50%)',
+			},
+			// Title styles
+			title: {
+				text: 'SALE',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '14px',
+				'line-height': '14px',
+				'font-weight': '700',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 26
+		{
+			id: 'editable_design26',
+			name: 'Sale Diamond',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '48px',
+				height: '48px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '5px',
+				margin: '10px',
+				radius: {
+					'top-left': '12px',
+					'top-right': '12px',
+					'bottom-right': '12px',
+					'bottom-left': '12px',
+				},
+				background: '#00CCFF',
+				transform: 'rotate(45deg)',
+			},
+			// Title styles
+			title: {
+				text: 'SALE',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '13px',
+				'line-height': '14px',
+				'font-weight': '700',
+				'text-align': 'center',
+				transform: 'rotate(-45deg)',
+			},
+		},
+
+		// Design 27
+		{
+			id: 'editable_design27',
+			name: '28% Discount',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '80px',
+				height: '30px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '5px',
+				radius: {
+					'top-left': '50%',
+					'top-right': '50%',
+					'bottom-right': '50%',
+					'bottom-left': '50%',
+				},
+				background: 'linear-gradient(100deg, #2AF598 0%, #009EFD 100%)',
+			},
+			// Title styles
+			title: {
+				text: '[discounted_percentage] DISCOUNT',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '9px',
+				'line-height': '10px',
+				'font-weight': '600',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 28
+		{
+			id: 'editable_design28',
+			name: 'Latest',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '78px',
+				height: '33px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'flex-start',
+				padding: '4px 5px 0px 5px',
+				background: '#7C00FE',
+				'clip-path':
+					'polygon(7.7% 0%, 100% 0%, 92.3% 70%, 82% 70%, 66% 100%, 59.6% 70%, 0% 70%)',
+			},
+			// Title styles
+			title: {
+				text: 'LATEST',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '14px',
+				'line-height': '16px',
+				'font-weight': '700',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 29
+		{
+			id: 'editable_design29',
+			name: 'Save 15%',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '70px',
+				height: '64px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '5px',
+				radius: {
+					'top-left': '50%',
+					'top-right': '0px',
+					'bottom-right': '50%',
+					'bottom-left': '50%',
+				},
+				background: 'linear-gradient(225deg, #FFD900 0%, #FF5C02 100%)',
+			},
+			// Title styles
+			title: {
+				text: 'SAVE [discounted_percentage]',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '16px',
+				'line-height': '17px',
+				'font-weight': '800',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 30
+		{
+			id: 'editable_design30',
+			name: 'Sale Blob',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '76px',
+				height: '48px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '5px',
+				margin: '5px',
+				radius: {
+					'top-left': '16px',
+					'top-right': '4px',
+					'bottom-right': '16px',
+					'bottom-left': '16px',
+				},
+				background: '#70E000',
+				transform: 'rotate(-4deg)',
+			},
+			// Title styles
+			title: {
+				text: 'SALE',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '18px',
+				'line-height': '19px',
+				'font-weight': '800',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 31
+		{
+			id: 'editable_design31',
+			name: 'Recommended',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: 'auto',
+				height: 'auto',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '3px 8px',
+				radius: {
+					'top-left': '2px',
+					'top-right': '2px',
+					'bottom-right': '2px',
+					'bottom-left': '2px',
+				},
+				background: '#FF2E39',
+			},
+			// Title styles
+			title: {
+				text: '♥ RECOMMENDED',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '10px',
+				'line-height': '12px',
+				'font-weight': '700',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 32
+		{
+			id: 'editable_design32',
+			name: 'Satisfaction Guaranteed',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: 'auto',
+				height: 'auto',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '5px 8px',
+				radius: {
+					'top-left': '4px',
+					'top-right': '4px',
+					'bottom-right': '4px',
+					'bottom-left': '4px',
+				},
+				background: '#00CC83',
+			},
+			// Title styles
+			title: {
+				text: '✔ SATISFACTION GUARANTEED',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '9px',
+				'line-height': '11px',
+				'font-weight': '700',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 33
+		{
+			id: 'editable_design33',
+			name: 'On Sale',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: 'auto',
+				height: 'auto',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '10px 12px',
+				background: '#FFFFFF',
+				'border-color': '#41B06E',
+				'border-width': '2px',
+				'border-style': 'solid',
+			},
+			// Title styles
+			title: {
+				text: 'ON SALE',
+				color: '#41B06E',
+				'font-family': '',
+				'font-size': '12px',
+				'line-height': '13px',
+				'font-weight': '700',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 34
+		{
+			id: 'editable_design34',
+			name: 'Best Seller Ribbon',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '80px',
+				height: '20px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '2px 4px 2px 14px',
+				background: '#FFBA08',
+				'clip-path': 'polygon(0% 0%, 100% 0%, 100% 100%, 16.3% 100%)',
+			},
+			// Title styles
+			title: {
+				text: 'Best Seller',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '11px',
+				'line-height': '12px',
+				'font-weight': '700',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 35
+		{
+			id: 'editable_design35',
+			name: 'Best Seller',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '56px',
+				height: '56px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '5px',
+				radius: {
+					'top-left': '100%',
+					'top-right': '100%',
+					'bottom-right': '100%',
+					'bottom-left': '100%',
+				},
+				background: '#179BAE',
+			},
+			// Title styles
+			title: {
+				text: 'Best Seller',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '13px',
+				'line-height': '14px',
+				'font-weight': '700',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 36
+		{
+			id: 'editable_design36',
+			name: '18% OFF',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '90px',
+				height: '28px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '5px 8px',
+				background: '#FF0096',
+				'clip-path':
+					'polygon(0% 0%, 100% 0%, 89.5% 12.5%, 100% 25%, 89.5% 37.5%, 100% 50%, 89.5% 62.5%, 100% 75%, 89.5% 87.5%, 100% 100%, 0% 100%, 10.5% 87.5%, 0% 75%, 10.5% 62.5%, 0% 50%, 10.5% 37.5%, 0% 25%, 10.5% 12.5%)',
+			},
+			// Title styles
+			title: {
+				text: '[discounted_percentage] OFF',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '13px',
+				'line-height': '14px',
+				'font-weight': '700',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 37
+		{
+			id: 'editable_design37',
+			name: 'On Sale Pill',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: 'auto',
+				height: 'auto',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '10px 12px',
+				radius: {
+					'top-left': '100px',
+					'top-right': '100px',
+					'bottom-right': '100px',
+					'bottom-left': '100px',
+				},
+				background: 'linear-gradient(90deg, #00A9FF 0%, #14F3FF 100%)',
+			},
+			// Title styles
+			title: {
+				text: 'ON SALE',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '12px',
+				'line-height': '13px',
+				'font-weight': '700',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 38
+		{
+			id: 'editable_design38',
+			name: '18% OFF',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '64px',
+				height: '58px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'flex-start',
+				padding: '10px 5px',
+				background: '#0F2C59',
+				'clip-path': 'polygon(0% 0%, 100% 0%, 50% 100%)',
+			},
+			// Title styles
+			title: {
+				text: '[discounted_percentage] OFF',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '13px',
+				'line-height': '14px',
+				'font-weight': '700',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 39
+		{
+			id: 'editable_design39',
+			name: 'COD Available',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '80px',
+				height: '80px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '5px 10px',
+				background: '#C70039',
+				'clip-path':
+					'polygon(0% 25%, 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%)',
+			},
+			// Title styles
+			title: {
+				text: 'COD Available',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '15px',
+				'line-height': '16px',
+				'font-weight': '700',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 40
+		{
+			id: 'editable_design40',
+			name: 'Save 25%',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '58px',
+				height: '58px',
+				display: 'flex',
+				'justify-content': 'flex-start',
+				'align-items': 'flex-start',
+				padding: '8px',
+				radius: {
+					'top-left': '0px',
+					'top-right': '0px',
+					'bottom-right': '100%',
+					'bottom-left': '0px',
+				},
+				background: '#219EBC',
+			},
+			// Title styles
+			title: {
+				text: 'SAVE [discounted_percentage]',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '13px',
+				'line-height': '14px',
+				'font-weight': '700',
+				'text-align': 'center',
+			},
+		},
+
+		// Design 41
+		{
+			id: 'editable_design41',
+			name: 'Free',
+			isDefault: false,
+			hasSeparator: false,
+			singleContainer: false,
+			// Main container styles
+
+			container: {
+				position: 'absolute',
+				left: '0px',
+				top: '0px',
+				width: '76px',
+				height: '31px',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				padding: '5px',
+				radius: {
+					'top-left': '20px',
+					'top-right': '0px',
+					'bottom-right': '20px',
+					'bottom-left': '0px',
+				},
+				background: '#32BE6C',
+			},
+			// Title styles
+			title: {
+				text: 'FREE',
+				color: '#FFFFFF',
+				'font-family': '',
+				'font-size': '15px',
+				'line-height': '16px',
+				'font-weight': '600',
 				'text-align': 'center',
 			},
 		},

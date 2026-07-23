@@ -337,3 +337,28 @@ export function truncate(str, maxLength = 30) {
 	}
 	return str;
 }
+
+/**
+ *
+ * @param {String} rawText
+ * @returns {String}
+ */
+export const renderBadgeText = (rawText) => {
+	const text = typeof rawText === 'string' ? rawText : '';
+	return text
+		.replace(/\[discounted_percentage\]/g, '20%')
+		.replace(/\[discounted_amount\]/g, '$10')
+		.replace(/\[remaining_quantity\]/g, '5')
+		.replace(/\[remaining_amount\]/g, '$50')
+		.replace(/\[remaining_cart_items\]/g, '2');
+};
+
+/**
+ *
+ * @param {Object} radius
+ * @returns {String}
+ */
+export const getBorderRadius = (radius) => {
+	if (!radius) return undefined;
+	return `${radius['top-left'] || '0px'} ${radius['top-right'] || '0px'} ${radius['bottom-right'] || '0px'} ${radius['bottom-left'] || '0px'}`;
+};

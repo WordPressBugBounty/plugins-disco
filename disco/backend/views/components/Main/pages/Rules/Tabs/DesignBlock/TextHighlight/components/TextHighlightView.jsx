@@ -6,6 +6,10 @@ import { updateTextHighlight } from '../../../../../../features/discount/discoun
 import textHighlightDesign, {
 	DEFAULT_TEXT_HIGHLIGHT_DESIGN,
 } from '../../../../../../utilities/text-highlight-design';
+import {
+	getBorderRadius,
+	renderBadgeText,
+} from '../../../../../../utilities/utilities';
 import BadgeCardContainer from '../../components/BadgeCardContainer';
 import Rating from '../../components/Rating';
 
@@ -15,12 +19,6 @@ const TextHighlightView = ({ setSelectedBadge }) => {
 		(state) => state.discount.design_blocks
 	);
 
-	// Get border radius with fallbacks
-	const getBorderRadius = (radius) => {
-		if (!radius) return '0px';
-		return `${radius['top-left'] || '0px'} ${radius['top-right'] || '0px'} ${radius['bottom-right'] || '0px'} ${radius['bottom-left'] || '0px'}`;
-	};
-
 	// Get background style (handles both solid colors and gradients)
 	const getBackgroundStyle = (bgColor) => {
 		if (!bgColor) return {};
@@ -29,20 +27,6 @@ const TextHighlightView = ({ setSelectedBadge }) => {
 			return { background: bgColor };
 		}
 		return { backgroundColor: bgColor };
-	};
-
-	const renderBannerText = () => {
-		const rawText = text_highlight?.title?.text;
-		const text =
-			typeof rawText === 'string'
-				? rawText
-				: '[discounted_percentage] OFF - Limited Time!';
-		return text
-			.replace(/\[discounted_percentage\]/g, '20%')
-			.replace(/\[discounted_amount\]/g, '$10')
-			.replace(/\[remaining_quantity\]/g, '5')
-			.replace(/\[remaining_amount\]/g, '$50')
-			.replace(/\[remaining_cart_items\]/g, '2');
 	};
 
 	const handleResetBanner = () => {
@@ -143,7 +127,9 @@ const TextHighlightView = ({ setSelectedBadge }) => {
 												'normal',
 										}}
 									>
-										{renderBannerText()}
+										{renderBadgeText(
+											text_highlight?.title?.text
+										)}
 									</p>
 								</div>
 							</>

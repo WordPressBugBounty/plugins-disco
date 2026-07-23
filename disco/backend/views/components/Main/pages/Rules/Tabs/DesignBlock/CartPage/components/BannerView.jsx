@@ -1,16 +1,11 @@
 import { __ } from '@wordpress/i18n';
 import { useSelector } from 'react-redux';
+import { getBorderRadius } from '../../../../../../utilities/utilities';
 
 const BannerView = () => {
 	const { cart } = useSelector((state) => state.discount.design_blocks);
 	const banner = cart?.banner || {};
 	const button = banner?.button || {};
-
-	// Get border radius with fallbacks
-	const getBorderRadius = (radius) => {
-		if (!radius) return '8px';
-		return `${radius['top-left'] || '8px'} ${radius['top-right'] || '8px'} ${radius['bottom-right'] || '8px'} ${radius['bottom-left'] || '8px'}`;
-	};
 
 	// Container style (no font-style or text-decoration to prevent inheritance)
 	const bannerContainerStyle = {

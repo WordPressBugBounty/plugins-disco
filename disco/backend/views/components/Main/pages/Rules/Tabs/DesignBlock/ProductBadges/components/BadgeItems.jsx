@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateBadge } from '../../../../../../features/discount/discountSlice';
 import productBadgeDesign from '../../../../../../utilities/product-badge-design';
+import BadgeDesignPreview from './BadgeItemPreview';
 
 const BadgeItems = ({ selectedBadge, className }) => {
 	const dispatch = useDispatch();
@@ -54,19 +55,29 @@ const BadgeItems = ({ selectedBadge, className }) => {
 				<div className="disco-grid disco-grid-cols-4 disco-gap-4 ">
 					{productBadgeDesign?.[selectedBadge] ? (
 						Object.values(productBadgeDesign[selectedBadge]).map(
-							(badge, index) => (
+							(badgeDesign, index) => (
 								<div
 									key={index}
 									onClick={() =>
-										handleDesignSelect(badge?.id)
+										handleDesignSelect(badgeDesign?.id)
 									}
-									className={`disco-flex disco-flex-col disco-border disco-rounded-md disco-p-3 disco-items-center disco-justify-center ${badge.id === isSelectedDesign && 'disco-border-primary'}`}
+									className={`disco-flex disco-flex-col disco-border disco-rounded-md disco-p-3 disco-items-center disco-justify-center ${badgeDesign.id === isSelectedDesign && 'disco-border-primary'}`}
+									style={{
+										minHeight: '96px',
+										overflow: 'hidden',
+									}}
 								>
-									<img
-										src={badge?.image?.url}
-										alt={`Badge ${index + 1}`}
-										className="disco-object-contain"
-									/>
+									{badgeDesign?.image?.url ? (
+										<img
+											src={badgeDesign.image.url}
+											alt={`Badge ${index + 1}`}
+											className="disco-object-contain"
+										/>
+									) : (
+										<BadgeDesignPreview
+											design={badgeDesign}
+										/>
+									)}
 								</div>
 							)
 						)

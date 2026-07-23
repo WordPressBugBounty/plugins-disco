@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: woocommerce discount, discount rules, dynamic pricing, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.0.2
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -482,6 +482,12 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.4.4(July 23, 2026) =
+* Added: 20+ new product badge added.
+
+= 1.4.3(July 20, 2026) =
+* Fix: Slow loading issue in single customer page issue.
+
 = 1.4.2(July 16, 2026) =
 * Fix: Cart subtotal conditions not working on Bulk and Bundle issue.
 

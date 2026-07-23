@@ -1,27 +1,11 @@
 import { useSelector } from 'react-redux';
+import {
+	getBorderRadius,
+	renderBadgeText,
+} from '../../../../../../utilities/utilities';
 
 const ProductBadgePreview = ({ size }) => {
 	const { badge } = useSelector((state) => state.discount.design_blocks);
-
-	const renderBannerText = () => {
-		const rawText = badge?.title?.text;
-		const text =
-			typeof rawText === 'string'
-				? rawText
-				: '[discounted_percentage] OFF - Limited Time!';
-		return text
-			.replace(/\[discounted_percentage\]/g, '20%')
-			.replace(/\[discounted_amount\]/g, '$10')
-			.replace(/\[remaining_quantity\]/g, '5')
-			.replace(/\[remaining_amount\]/g, '$50')
-			.replace(/\[remaining_cart_items\]/g, '2');
-	};
-
-	// Get border radius with fallbacks
-	const getBorderRadius = (radius) => {
-		if (!radius) return '0px';
-		return `${radius['top-left'] || '0px'} ${radius['top-right'] || '0px'} ${radius['bottom-right'] || '0px'} ${radius['bottom-left'] || '0px'}`;
-	};
 
 	// If badge type is upload and design has a url, show the image
 	if (badge?.badge_type === 'upload' && badge?.image?.url) {
@@ -89,7 +73,7 @@ const ProductBadgePreview = ({ size }) => {
 							'font-weight': `${badge.title?.['font-weight'] || '400'}`,
 						}}
 					>
-						{renderBannerText()}
+						{renderBadgeText(badge?.title?.text)}
 					</p>
 				</div>
 			) : (
@@ -107,7 +91,7 @@ const ProductBadgePreview = ({ size }) => {
 								: badge?.title?.['line-height'],
 					}}
 				>
-					{renderBannerText()}
+					{renderBadgeText(badge?.title?.text)}
 				</p>
 			)}
 		</div>

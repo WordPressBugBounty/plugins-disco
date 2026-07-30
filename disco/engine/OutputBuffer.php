@@ -8,15 +8,30 @@
 namespace Disco\Engine;
 
 /**
- * Prevents PHP debug notices/warnings from corrupting REST and AJAX JSON responses.
+ * Prevents stray output from corrupting REST and AJAX JSON responses.
  *
- * When WP_DEBUG and WP_DEBUG_DISPLAY are both true, notices from plugins (e.g.
- * early textdomain loading) are printed before the JSON body, breaking JSON
- * parsing in the browser.  We start an output buffer before plugins_loaded fires
- * so all stray output is captured, then discard it cleanly before the response
- * is sent.  AJAX handlers call clean() manually before wp_send_json_*.
+ * Other plugins frequently emit output during an API request: PHP notices
+ * (e.g. "Function _load_textdomain_just_in_time was called incorrectly"),
+ * deprecation warnings, or plain `echo` calls inside `shutdown`/`rest_post_dispatch`.
+ * Anything printed before the JSON body, and anything printed after it, makes the
+ * response unparseable in the browser.
+ *
+ * Strategy:
+ *  1. Open an output buffer before `plugins_loaded` so nothing reaches the client early.
+ *  2. For our own REST routes, render and send the JSON body ourselves, discarding
+ *     everything buffered up to that point.
+ *  3. Immediately after the body is flushed, open a buffer that discards everything,
+ *     so late output (shutdown hooks, destructors, deprecations) is never appended.
+ *
+ * AJAX handlers call clean() before wp_send_json_* for step 2, and the
+ * `wp_die_ajax_handler` filter performs step 3.
  */
 class OutputBuffer {
+
+	/**
+	 * REST route prefix owned by this plugin.
+	 */
+	private const ROUTE_PREFIX = '/disco/';
 
 	/**
 	 * Start output buffering for REST/AJAX requests.
@@ -38,50 +53,95 @@ class OutputBuffer {
 		if ( self::is_rest_request() ) {
 			add_filter( 'rest_pre_serve_request', array( __CLASS__, 'handle_rest' ), 1, 4 );
 		}
+
+		if ( self::is_ajax_request() ) {
+			// Runs after wp_send_json_* has echoed its body, before the script dies.
+			add_filter( 'wp_die_ajax_handler', array( __CLASS__, 'handle_ajax_die' ), PHP_INT_MAX );
+		}
 	}
 
 	/**
 	 * Hooked on rest_pre_serve_request at priority 1.
 	 *
-	 * Strategy:
-	 *   Level N   = whatever PHP had before disco.php loaded (DISCO_OB_LEVEL)
-	 *   Level N+1 = our buffer, containing stray debug notices
-	 *   Level N+2 = WordPress's dispatch buffer (if WP uses ob_start in serve_request)
+	 * For Disco routes we take over serving: discard whatever stray output was
+	 * buffered, echo the JSON body, flush it, and then swallow any later output.
+	 * For third-party routes we only drop the stray output we captured and let
+	 * WordPress serve the response as usual.
 	 *
-	 * We pop WP's dispatch buffer, discard our stray-output buffer, open a fresh
-	 * buffer, and return false so WP echoes the JSON body into the clean buffer.
-	 * WP's ob_get_clean() then collects only the actual JSON response.
-	 *
-	 * @param  bool             $served  Whether the request has already been served.
-	 * @param  \WP_REST_Response $result  The response object.
+	 * @param  bool              $served  Whether the request has already been served.
+	 * @param  \WP_HTTP_Response $result  The response object.
 	 * @param  \WP_REST_Request  $request The current REST request.
 	 * @param  \WP_REST_Server   $server  The REST server instance.
 	 * @return bool
 	 */
 	public static function handle_rest( $served, $result, $request, $server ): bool {
 		if ( $served ) {
-			return $served;
+			return true;
 		}
 
-		$initial_level = DISCO_OB_LEVEL;
+		// Drop everything buffered so far (notices printed while WP booted/dispatched).
+		self::clean();
 
-		// Pop WP's dispatch buffer (level N+2) if it exists, preserving its content.
-		$wp_dispatch = ob_get_level() > ( $initial_level + 1 ) ? (string) ob_get_clean() : '';
-
-		// Discard our stray-notices buffer (level N+1).
-		if ( ob_get_level() > $initial_level ) {
-			ob_end_clean();
+		if ( ! $result instanceof \WP_HTTP_Response
+			|| ! $request instanceof \WP_REST_Request
+			|| ! $server instanceof \WP_REST_Server
+			|| ! self::is_disco_route( $request )
+			|| null !== $request->get_param( '_jsonp' ) ) {
+			return false; // Let WordPress echo the body itself.
 		}
 
-		// Open a fresh, clean buffer at the level WP expects for its ob_get_clean().
-		ob_start();
+		if ( 'HEAD' === $request->get_method() ) {
+			self::seal();
 
-		// Restore any output WP produced during dispatch (almost always empty).
-		if ( '' !== $wp_dispatch ) {
-			echo $wp_dispatch; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			return true;
 		}
 
-		return false; // Let WP echo the JSON body and collect it via ob_get_clean().
+		$embed = isset( $_GET['_embed'] ) ? rest_parse_embed_param( wp_unslash( $_GET['_embed'] ) ) : false; // phpcs:ignore WordPress.Security
+		$data  = $server->response_to_data( $result, $embed );
+
+		/** This filter is documented in wp-includes/rest-api/class-wp-rest-server.php */
+		$data = apply_filters( 'rest_pre_echo_response', $data, $server, $request );
+
+		// Filters above may have printed something; drop it before we emit the body.
+		self::clean();
+
+		if ( null === $data || 204 === $result->get_status() ) {
+			self::seal();
+
+			return true;
+		}
+
+		$options = ( defined( 'WP_DEBUG' ) && WP_DEBUG && $request->has_param( '_pretty' ) ) ? JSON_PRETTY_PRINT : 0;
+		$json    = wp_json_encode( $data, $options );
+
+		if ( false === $json ) {
+			$json = (string) wp_json_encode(
+				array(
+					'code'    => 'rest_encode_error',
+					'message' => json_last_error_msg(),
+					'data'    => array( 'status' => 500 ),
+				)
+			);
+		}
+
+		echo $json; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+		self::seal();
+
+		return true;
+	}
+
+	/**
+	 * Hooked on wp_die_ajax_handler, which fires after wp_send_json_* echoed its body.
+	 * Seals the output so late plugin output cannot be appended to the JSON.
+	 *
+	 * @param  callable $handler The wp_die handler.
+	 * @return callable
+	 */
+	public static function handle_ajax_die( $handler ) {
+		self::seal();
+
+		return $handler;
 	}
 
 	/**
@@ -95,6 +155,29 @@ class OutputBuffer {
 		while ( ob_get_level() > DISCO_OB_LEVEL ) {
 			ob_end_clean();
 		}
+	}
+
+	/**
+	 * Push the response we already echoed to the client, then open a buffer that
+	 * throws away everything written afterwards (shutdown hooks, deprecations,
+	 * destructors), so nothing can be appended to the JSON body.
+	 */
+	private static function seal(): void {
+		while ( defined( 'DISCO_OB_LEVEL' ) && ob_get_level() > DISCO_OB_LEVEL ) {
+			ob_end_flush();
+		}
+
+		flush();
+
+		ob_start(
+			static function () {
+				return '';
+			}
+		);
+	}
+
+	private static function is_disco_route( \WP_REST_Request $request ): bool {
+		return 0 === strpos( (string) $request->get_route(), self::ROUTE_PREFIX );
 	}
 
 	private static function is_api_request(): bool {

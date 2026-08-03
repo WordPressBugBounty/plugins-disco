@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: woocommerce discount, discount rules, dynamic pricing, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.0.2
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -482,6 +482,10 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.4.6(Aug 03, 2026) =
+* New: Mix product option added for Bulk, Bundle and BOGO discount.
+* New: New dropdown added for select mix products.
+
 = 1.4.5(July 30, 2026) =
 * Fix: Intent page not loading issue cause of valid json response.
 * Fix: API issue, when other plugin have warning.

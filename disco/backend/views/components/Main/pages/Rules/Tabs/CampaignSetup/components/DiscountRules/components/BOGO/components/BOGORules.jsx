@@ -2,12 +2,16 @@ import { PlusCircleIcon } from '@heroicons/react/24/solid';
 import { __ } from '@wordpress/i18n';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../../../../../../../../components/Button';
-import { addNewDiscountRule } from '../../../../../../../../../features/discount/discountSlice';
-import BOGORuleItem from './BOGORuleItem';
-import ComponentBox from '../../../../../../../../../components/ComponentBox';
 import CommonHeadingBox from '../../../../../../../../../components/CommonHeadingBox';
+import ComponentBox from '../../../../../../../../../components/ComponentBox';
+import { addNewDiscountRule } from '../../../../../../../../../features/discount/discountSlice';
+import CountQuantityAs from '../../CountQuantityAs';
+import BOGORuleItem from './BOGORuleItem';
+
 const BOGORules = () => {
-	const { discount_rules } = useSelector((state) => state.discount);
+	const { discount_rules, bogo_type } = useSelector(
+		(state) => state.discount
+	);
 	const dispatch = useDispatch();
 
 	// A recursive rule is a single repeating tier, so no extra rules are allowed.
@@ -23,6 +27,8 @@ const BOGORules = () => {
 		<ComponentBox className="disco-mt-5">
 			<CommonHeadingBox title={__('BOGO Rules', 'disco')} url="" />
 			<div className="disco-p-4">
+				{bogo_type !== 'all' && <CountQuantityAs />}
+
 				<div className="disco-grid disco-grid-cols-12 disco-gap-4">
 					<h4 className="disco-col-span-3 disco-font-medium disco-text-lg  disco-bg-gray-100 disco-p-2 disco-border disco-border-white disco-border-solid disco-rounded-t-lg">
 						{__('Customer Buy', 'disco')}

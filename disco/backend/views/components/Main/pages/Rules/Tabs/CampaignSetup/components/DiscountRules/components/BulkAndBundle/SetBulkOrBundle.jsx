@@ -3,13 +3,14 @@ import { __ } from '@wordpress/i18n';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../../../../../../../components/Button';
 import Card from '../../../../../../../../components/Card';
-import LoadingSpinner from '../../../../../../../../components/LoadingSpinner';
-import { useGetDiscountBasedOnQuery } from '../../../../../../../../features/discount/discountApi';
-import { addNewDiscountRule } from '../../../../../../../../features/discount/discountSlice';
-import BulkOrBundleItem from './BulkOrBundleItem';
 import CommonHeadingBox from '../../../../../../../../components/CommonHeadingBox';
 import ComponentBox from '../../../../../../../../components/ComponentBox';
+import LoadingSpinner from '../../../../../../../../components/LoadingSpinner';
 import { docUrls } from '../../../../../../../../data/docUrls';
+import { useGetDiscountBasedOnQuery } from '../../../../../../../../features/discount/discountApi';
+import { addNewDiscountRule } from '../../../../../../../../features/discount/discountSlice';
+import CountQuantityAs from '../CountQuantityAs';
+import BulkOrBundleItem from './BulkOrBundleItem';
 
 const SetBulkOrBundle = () => {
 	const { discount_rules, discount_intent, discount_based_on } = useSelector(
@@ -40,6 +41,8 @@ const SetBulkOrBundle = () => {
 			/>
 
 			<div className="disco-space-y-6 disco-p-4">
+				<CountQuantityAs />
+
 				{discount_rules.map((rule, index) => (
 					<BulkOrBundleItem
 						discountBased={

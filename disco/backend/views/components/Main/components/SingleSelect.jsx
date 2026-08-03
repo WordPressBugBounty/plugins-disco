@@ -12,6 +12,11 @@ const SingleSelect = ({
 	disabled = false,
 	className = '',
 	buttonClass = '',
+	// Keys of pro-only options: rendered greyed out with a "Pro" badge and not
+	// selectable. Matches the option styling used by the Conditions filter
+	// dropdown.
+	proItems = [],
+	proUrl = 'https://discoplugin.com/pricing/?utm_source=pro-text&utm_medium=free-to-pro&utm_campaign=free-to-pro&utm_id=1',
 }) => {
 	return (
 		<Listbox
@@ -45,11 +50,16 @@ const SingleSelect = ({
 							Object.keys(items).map((item) => (
 								<Listbox.Option
 									key={item}
+									disabled={proItems.includes(item)}
 									className={({ active }) =>
-										`disco-relative disco-py-1 disco-pl-4 disco-mb-0 hover:disco-bg-[#dfffefe6] ${
-											active && !menu
-												? 'disco-bg-primary-light'
-												: 'disco-text-gray-900'
+										`disco-relative disco-py-1 disco-pl-4 disco-mb-0 ${
+											proItems.includes(item)
+												? '!disco-text-gray-400 !disco-cursor-not-allowed'
+												: `hover:disco-bg-[#dfffefe6] ${
+														active && !menu
+															? 'disco-bg-primary-light'
+															: 'disco-text-gray-900'
+													}`
 										}`
 									}
 									value={item}
@@ -63,7 +73,22 @@ const SingleSelect = ({
 														: 'disco-font-normal'
 												}`}
 											>
-												{items[item]}
+												{items[item]}{' '}
+												{proItems.includes(item) && (
+													<span className="disco-bg-red-500 disco-px-1.5 disco-py-1 disco-text-xs disco-text-white disco-rounded-md">
+														<a
+															href={proUrl}
+															target="_blank"
+															rel="noreferrer"
+															onClick={(e) =>
+																e.stopPropagation()
+															}
+															className="disco-text-xs disco-text-white hover:!disco-text-white focus:!disco-outline-none visited:disco-text-white focus:!disco-ring-0"
+														>
+															{__('Pro', 'disco')}
+														</a>
+													</span>
+												)}
 											</span>
 										</>
 									)}

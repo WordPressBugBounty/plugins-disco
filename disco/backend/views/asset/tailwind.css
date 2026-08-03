@@ -819,6 +819,10 @@ video {
   margin-bottom: 0.25rem;
 }
 
+.disco-mb-1\.5 {
+  margin-bottom: 0.375rem;
+}
+
 .disco-mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -833,6 +837,10 @@ video {
 
 .disco-mb-5 {
   margin-bottom: 1.25rem;
+}
+
+.disco-mb-6 {
+  margin-bottom: 1.5rem;
 }
 
 .disco-ml-0\.5 {
@@ -1394,6 +1402,10 @@ video {
   min-width: 15rem;
 }
 
+.disco-min-w-80 {
+  min-width: 20rem;
+}
+
 .disco-min-w-\[130px\] {
   min-width: 130px;
 }
@@ -1470,8 +1482,20 @@ video {
   max-width: 100%;
 }
 
+.disco-max-w-max {
+  max-width: max-content;
+}
+
 .disco-max-w-md {
   max-width: 28rem;
+}
+
+.disco-max-w-xl {
+  max-width: 36rem;
+}
+
+.disco-max-w-xs {
+  max-width: 20rem;
 }
 
 .disco-flex-1 {
@@ -2554,6 +2578,11 @@ video {
   padding-right: 0.75rem;
 }
 
+.disco-px-3\.5 {
+  padding-left: 0.875rem;
+  padding-right: 0.875rem;
+}
+
 .disco-px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -2850,6 +2879,10 @@ video {
   font-size: 12px;
 }
 
+.disco-text-\[13px\] {
+  font-size: 13px;
+}
+
 .disco-text-\[14px\] {
   font-size: 14px;
 }
@@ -2997,6 +3030,14 @@ video {
 
 .disco-leading-\[25px\] {
   line-height: 25px;
+}
+
+.disco-leading-normal {
+  line-height: 1.5;
+}
+
+.disco-leading-relaxed {
+  line-height: 1.625;
 }
 
 .disco-leading-snug {
@@ -4280,8 +4321,6 @@ a:visited {
     transform: rotate(360deg);
   }
 }
-
-/*# sourceMappingURL=ReactToastify.css.map */
 
 /* Hide scrollbar */
 

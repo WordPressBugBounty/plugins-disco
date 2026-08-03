@@ -86,6 +86,14 @@ class CalcFixedPerProduct extends CalcAbstract {
 		$discount_amount   = 0;
 		$fixed_per_product = $this->rule['discount_value'];
 		$quantity          = (int) $this->item['quantity'];
+
+		// "Count Quantity As" combined / variations: discount only the eligible units.
+		if ( isset( $this->item['disco_forced_qty'] ) ) {
+			$forced                      = max( 0, (int) $this->item['disco_forced_qty'] );
+			$this->discounted_quantities = $forced;
+
+			return apply_filters( 'disco_final_discounted_amount', $forced * $fixed_per_product, 'fixed_per_product' );
+		}
 		$min               = $this->rule['min'] ? (int) $this->rule['min'] : 0; //phpcs:ignore
 		$max               = ! empty( $this->rule['max'] ) ? (int) $this->rule['max'] : ( $this->discount_intent === 'Bulk' ? PHP_INT_MAX : 0 ); // phpcs:ignore
 		$recursive         = ! empty( $this->rule['recursive'] ) && $this->rule['recursive'] === 'yes'; // phpcs:ignore
@@ -96,13 +104,18 @@ class CalcFixedPerProduct extends CalcAbstract {
 		// Default discount for quantities.
 		$discount_for_quantities = $min;
 
-		// Apply for the Bulk Discount when max is set.
-		if ( $max && $quantity >= $max ) {
+		/**
+		 * Bulk / range capping — only when NOT recursive. Recursive rules ignore
+		 * max: the bundle size is always min, so the qualifying quantity must not
+		 * be capped to max here, otherwise floor( qty / base ) would divide by
+		 * max instead of min and undercount the bundles.
+		 */
+		if ( ! $recursive && $max && $quantity >= $max ) {
 			$discount_for_quantities = $max;
 		}
 
 		// If quantity between min and max then apply discount.
-		if ( $quantity >= $min && $quantity <= $max ) {
+		if ( ! $recursive && $quantity >= $min && $quantity <= $max ) {
 			$discount_for_quantities = $quantity;
 		}
 
@@ -125,11 +138,15 @@ class CalcFixedPerProduct extends CalcAbstract {
 		// Apply for the Bundle & BOGO Discount when recursive is set.
 		$multiplier = 1;
 
-		if ( $recursive ) {
-			if ( $quantity % $min === 0 || $quantity > $discount_for_quantities ) {
-				$multiplier               = floor( $quantity / $discount_for_quantities );
-				$discount_for_quantities *= $multiplier;
-			}
+		if ( $recursive && $min > 0 && $quantity >= $min ) {
+			/**
+			 * Recursive: the number of bundles is floor( qty / min ). Divide by
+			 * min, never by $discount_for_quantities — for BuyXGetY the latter
+			 * holds the reward quantity (get_quantity) and would inflate the
+			 * multiplier (e.g. buy 2 get 1 with 2 in cart → 1 bundle, not 2).
+			 */
+			$multiplier               = (int) floor( $quantity / $min );
+			$discount_for_quantities *= $multiplier;
 		}
 
 		// Limit discount to Min or Max quantity.

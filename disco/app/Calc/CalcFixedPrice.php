@@ -72,6 +72,14 @@ class CalcFixedPrice extends CalcAbstract {
 		$fixed_discount  = $this->rule['discount_value'];
 		$price           = $this->item['data']->get_price(); // phpcs:ignore
 		$quantity        = (int) $this->item['quantity']; // phpcs:ignore
+
+		// "Count Quantity As" combined / variations: eligibility gates the flat price discount.
+		if ( isset( $this->item['disco_forced_qty'] ) ) {
+			$forced                      = max( 0, (int) $this->item['disco_forced_qty'] );
+			$this->discounted_quantities = $forced;
+
+			return $forced > 0 ? (float) $fixed_discount : 0;
+		}
 		$min             = $this->rule['min'] ? (int) $this->rule['min'] : 0; // phpcs:ignore
 		$max             = $this->rule['max'] ? (int) $this->rule['max'] : 0; // phpcs:ignore
 		$recursive       = isset( $this->rule['recursive'] ) && 'yes' === $this->rule['recursive']; // phpcs:ignore

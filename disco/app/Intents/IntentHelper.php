@@ -15,6 +15,7 @@ use Disco\App\Campaign;
 use Disco\App\Features\UserLimit;
 use Disco\App\Utility\Config;
 use Disco\App\Utility\Helper;
+use Disco\App\Utility\QuantityCounter;
 use Disco\App\Utility\Settings;
 
 /**
@@ -380,22 +381,56 @@ trait IntentHelper {//phpcs:ignore
 			return $discounts;
 		}
 
+		if ( ! is_array( $rules ) || empty( $rules ) ) {
+			return $discounts;
+		}
+
+		/**
+		 * BuyXGetY tiers are mutually exclusive: only one rule applies per
+		 * campaign, selected by the buy quantity. Without this, tiers rewarding
+		 * different get-products (e.g. rule 1 → product A, rule 2 → product B)
+		 * would all fire and stack. Every other intent already collapses
+		 * overlapping rules per product via min_max_average.
+		 *
+		 * Exception: a free products BOGO in `separate` mode is evaluated
+		 * per-product (each cart product uses the tier(s) its own quantity
+		 * matches), so all rules are kept and the reward is summed downstream.
+		 */
+		if ( 'BuyXGetY' === $campaign->get_discount_intent() && ! $this->is_per_product_free_bogo( $campaign, $rules ) ) {
+			$rules = $this->select_bogo_tier_rule( $campaign, $rules );
+
+			if ( empty( $rules ) ) {
+				return $discounts;
+			}
+		}
+
 		/**
 		 * Combined qualifying quantity for recursive BOGO, filtered by the
 		 * conditions and few-products filters and excluding Disco free items.
 		 */
 		$total_applicable_qty = $this->get_total_applicable_quantity( $cart, $campaign );
 
+		/**
+		 * "Count Quantity As" combined / variations modes pool quantities across
+		 * cart line items before deciding eligibility, so they take a dedicated
+		 * path. The default `separate` mode keeps the original per-line behaviour.
+		 *
+		 * BOGO is excluded — count modes only apply to Bundle / Bulk:
+		 *  - BuyXGetX matches purely on each line's own quantity, so it always
+		 *    behaves as `separate` regardless of the count mode.
+		 *  - BuyXGetY rewards the Y (get) product, not the counted X products, so
+		 *    it stays on the per-item path and only its buy-X gate is pooled
+		 *    (see {@see self::verify_xproduct_cart_rule()}).
+		 */
+		if (
+			! in_array( $campaign->get_discount_intent(), array( 'BuyXGetX', 'BuyXGetY' ), true )
+			&& in_array( $campaign->get_count_quantity_as(), array( 'combined', 'variations' ), true )
+		) {
+			return $this->get_grouped_item_discounts( $campaign, $cart, $rules, $total_applicable_qty );
+		}
+
 		// Loop through the cart items.
 		foreach ( $items as $item ) {
-			// Get the item object.
-			$item_objet = $item['data'];
-
-			// Check if the campaign has rules.
-			if ( ! is_array( $rules ) || empty( $rules ) ) {
-				continue;
-			}
-
 			// Loop through the discount rules.
 			foreach ( $rules as $rule ) {
 				if ( is_object( $rule ) ) {
@@ -407,59 +442,194 @@ trait IntentHelper {//phpcs:ignore
 					continue;
 				}
 
-				$r  = md5( microtime() . wp_rand() );
-				$id = $this->get_cart_item_id( $item );
-
-				// Set the discount array.
-				$discounts[ $id ]['original_price'] = $item_objet->get_price();
-				$discounts[ $id ]['cart_item_key']  = $item['key'];
-
-				// Set discount applies to
-				$discounts[ $id ]['discount_applies_to'][ $r ] = CalcFactory::discount_applies_to( $rule, $campaign );
-
-				// Set Discounts.
-				if ( $rule['discount_type'] === 'free' ) {
-					$discounted_amount           = array(
-						'price'                 => $item_objet->get_price(),
-						'discount'              => 0,
-						'line_subtotal'         => $item_objet->get_price() * $item['quantity'],
-						'discounted_quantities' => 0,
-					);
-					$discounts[ $id ]['free']    = true;
-					$discounts[ $id ]['get_ids'] = $rule['get_ids'];
-					$discounts[ $id ]['get_qty'] = CalcFactory::get_free_quantity( $rule, $item );
-
-					/**
-					 * Recursive BOGO (any bogo type): base the free quantity on the
-					 * combined qualifying quantity instead of this single line, so a
-					 * cart whose qualifying quantity totals 4 grants 4 free items.
-					 */
-					if ( 'yes' === $rule['recursive'] && (int) $rule['min'] > 0 ) {
-						$discounts[ $id ]['get_qty'] = (int) floor( $total_applicable_qty / (int) $rule['min'] ) * (int) $rule['get_quantity'];
-					}
-				} else {
-					$discounted_amount           = CalcFactory::get_discount( $rule, $item, $cart, $campaign );
-					$discounts[ $id ]['free']    = false;
-					$discounts[ $id ]['get_ids'] = array();
-					$discounts[ $id ]['get_qty'] = 0;
-				}
-
-				// $discounts[ $id ]['get_ids']              = array_values( $rule['get_ids'] );
-
-				$discounts[ $id ]['discount_types'][ $r ]        = $rule['discount_type'];
-				$discounts[ $id ]['intent'][ $r ]                = $campaign->get_discount_intent();
-				$discounts[ $id ]['prices'][ $r ]                = $discounted_amount['price'];
-				$discounts[ $id ]['discounts'][ $r ]             = $discounted_amount['discount'];
-				$discounts[ $id ]['subtotals'][ $r ]             = $discounted_amount['line_subtotal'];
-				$discounts[ $id ]['discounted_quantities'][ $r ] = $discounted_amount['discounted_quantities'];
-				$discounts[ $id ]['quantities'][ $r ]            = $item['quantity'];
-				$offers = $this->get_item_offers( $rule );
-
-				$discounts[ $id ]['offers'][ $r ] = $offers;
+				$this->apply_rule_to_discount( $discounts, $campaign, $rule, $item, $cart, $total_applicable_qty );
 			}//end foreach
 		}//end foreach
 
 		return $discounts;
+	}
+
+	/**
+	 * Prepare discounts for the `combined` / `variations` counting modes.
+	 *
+	 * Eligibility is resolved by {@see QuantityCounter}: quantities are pooled
+	 * per group (all applicable lines for `combined`, per parent product for
+	 * `variations`), range-capped, and threaded into the Calc layer through the
+	 * `disco_forced_qty` item key.
+	 *
+	 * How many units are actually discounted depends on the rule:
+	 *  - Bundle / Bulk (no `get_quantity`) → every qualifying unit is discounted.
+	 *  - BOGO (`get_quantity` set)          → only the reward units are discounted,
+	 *    i.e. `get_quantity × bundles`, where `bundles = floor(pool / min)`
+	 *    (1 for a non-recursive rule). Otherwise a "buy 2 get 1" in combined mode
+	 *    would wrongly discount the 2 bought units instead of the 1 reward unit.
+	 * Reward units are handed out across the eligible lines in cart order.
+	 *
+	 * @param \Disco\App\Utility\Config $campaign             Campaign Config.
+	 * @param \WC_Cart                  $cart                 Cart Object.
+	 * @param array                     $rules                Discount rules.
+	 * @param int                       $total_applicable_qty Combined qualifying quantity.
+	 */
+	private function get_grouped_item_discounts( Config $campaign, \WC_Cart $cart, array $rules, int $total_applicable_qty ): array {//phpcs:ignore
+		$discounts        = array();
+		$quantity_counter = new QuantityCounter;
+
+		foreach ( $rules as $rule ) {
+			if ( is_object( $rule ) ) {
+				$rule = (array) $rule;
+			}
+
+			$eligible_lines = $quantity_counter->get_eligible_units( $cart, $campaign, $rule );
+
+			if ( empty( $eligible_lines ) ) {
+				continue;
+			}
+
+			// Total qualifying units across the pooled lines.
+			$total_qualifying_units = 0;
+
+			foreach ( $eligible_lines as $eligible_line ) {
+				$total_qualifying_units += $eligible_line['eligible_qty'];
+			}
+
+			$discountable_units = $this->grouped_discount_budget( $rule, $total_qualifying_units );
+
+			// Hand out the discountable units across the eligible lines in cart order.
+			foreach ( $eligible_lines as $eligible_line ) {
+				if ( $discountable_units <= 0 ) {
+					break;
+				}
+
+				$line_units = (int) min( $eligible_line['eligible_qty'], $discountable_units );
+
+				if ( $line_units <= 0 ) {
+					continue;
+				}
+
+				$discountable_units -= $line_units;
+
+				$item                     = $eligible_line['item'];
+				$item['disco_forced_qty'] = $line_units;
+
+				$this->apply_rule_to_discount( $discounts, $campaign, $rule, $item, $cart, $total_applicable_qty );
+			}
+		}
+
+		return $discounts;
+	}
+
+	/**
+	 * Number of units a pooled rule should actually discount.
+	 *
+	 * BOGO rules (with `get_quantity`) reward `get_quantity × bundles`; every
+	 * other rule discounts the whole qualifying pool.
+	 *
+	 * @param array $rule             Discount rule.
+	 * @param int   $total_qualifying Pooled qualifying quantity.
+	 */
+	private function grouped_discount_budget( array $rule, int $total_qualifying ): int {
+		$reward_quantity = ! empty( $rule['get_quantity'] ) ? (int) $rule['get_quantity'] : 0; // phpcs:ignore
+
+		if ( $reward_quantity <= 0 ) {
+			// Bundle / Bulk: discount every qualifying unit.
+			return $total_qualifying;
+		}
+
+		$minimum_quantity     = isset( $rule['min'] ) ? absint( $rule['min'] ) : 0; // phpcs:ignore
+		$bundle_count = $minimum_quantity > 0 ? (int) floor( $total_qualifying / $minimum_quantity ) : 1; // phpcs:ignore
+
+		if ( $bundle_count < 1 ) {
+			$bundle_count = 1;
+		}
+
+		// BOGO reward: get_quantity per qualifying bundle, never more than the pool.
+		return (int) min( $reward_quantity * $bundle_count, $total_qualifying );
+	}
+
+	/**
+	 * Populate the discount array for a single cart line + rule pair.
+	 *
+	 * Shared by both the per-line (`separate`) path and the grouped
+	 * (`combined` / `variations`) path so the emitted discount structure is
+	 * identical regardless of counting mode.
+	 *
+	 * @param array                     $discounts            Discount array, by reference.
+	 * @param \Disco\App\Utility\Config $campaign             Campaign Config.
+	 * @param array                     $rule                 Single discount rule.
+	 * @param array                     $item                 Cart item (may carry `disco_forced_qty`).
+	 * @param \WC_Cart                  $cart                 Cart Object.
+	 * @param int                       $total_applicable_qty Combined qualifying quantity.
+	 */
+	private function apply_rule_to_discount( array &$discounts, Config $campaign, array $rule, array $item, \WC_Cart $cart, int $total_applicable_qty ): void {//phpcs:ignore
+		$product              = $item['data'];
+		$rule_key             = md5( microtime() . wp_rand() );
+		$effective_product_id = $this->get_cart_item_id( $item );
+
+		// Set the discount array.
+		$discounts[ $effective_product_id ]['original_price'] = $product->get_price();
+		$discounts[ $effective_product_id ]['cart_item_key']  = $item['key'];
+
+		// Set discount applies to
+		$discounts[ $effective_product_id ]['discount_applies_to'][ $rule_key ] = CalcFactory::discount_applies_to( $rule, $campaign );
+
+		// Set Discounts.
+		if ( $rule['discount_type'] === 'free' ) {
+			$discounted_amount                             = array(
+				'price'                 => $product->get_price(),
+				'discount'              => 0,
+				'line_subtotal'         => $product->get_price() * $item['quantity'],
+				'discounted_quantities' => 0,
+			);
+			$discounts[ $effective_product_id ]['free']    = true;
+			$discounts[ $effective_product_id ]['get_ids'] = $rule['get_ids'];
+
+			if ( 'products' === $campaign->get_bogo_type() ) {
+				if ( in_array( $campaign->get_count_quantity_as(), array( 'combined', 'variations' ), true ) ) {
+					/**
+					 * Combined / variations: the buy-X quantity is pooled across
+					 * the cart, so the reward is one bundle (non-recursive) or one
+					 * per bundle (recursive) of the pooled total — not per line.
+					 */
+					$minimum_quantity = isset( $rule['min'] ) ? absint( $rule['min'] ) : 0; // phpcs:ignore
+					$reward_quantity  = ! empty( $rule['get_quantity'] ) ? (int) $rule['get_quantity'] : 0; // phpcs:ignore
+
+					if ( 'yes' === $rule['recursive'] && $minimum_quantity > 0 ) {
+						$discounts[ $effective_product_id ]['get_qty'] = (int) floor( $total_applicable_qty / $minimum_quantity ) * $reward_quantity;
+					} else {
+						$discounts[ $effective_product_id ]['get_qty'] = $reward_quantity;
+					}
+				} else {
+					/**
+					 * Separate: X = all products. Every cart product grants the
+					 * reward of each tier its own quantity matches (summed), so
+					 * two products matching different tiers each contribute.
+					 */
+					$discounts[ $effective_product_id ]['get_qty'] = $this->get_products_bogo_free_quantity( $campaign, $cart );
+				}
+			} else {
+				/**
+				 * BuyXGetX ('all'): per line, recursive → floor( line qty / min ) ×
+				 * get_quantity. Category BOGO never reaches this — its free items are
+				 * owned by {@see \Disco\App\Intents\CategoryBogo\CategoryBogo}.
+				 */
+				$discounts[ $effective_product_id ]['get_qty'] = CalcFactory::get_free_quantity( $rule, $item );
+			}
+		} else {
+			$discounted_amount                             = CalcFactory::get_discount( $rule, $item, $cart, $campaign );
+			$discounts[ $effective_product_id ]['free']    = false;
+			$discounts[ $effective_product_id ]['get_ids'] = array();
+			$discounts[ $effective_product_id ]['get_qty'] = 0;
+		}
+
+		$discounts[ $effective_product_id ]['discount_types'][ $rule_key ]        = $rule['discount_type'];
+		$discounts[ $effective_product_id ]['intent'][ $rule_key ]                = $campaign->get_discount_intent();
+		$discounts[ $effective_product_id ]['prices'][ $rule_key ]                = $discounted_amount['price'];
+		$discounts[ $effective_product_id ]['discounts'][ $rule_key ]             = $discounted_amount['discount'];
+		$discounts[ $effective_product_id ]['subtotals'][ $rule_key ]             = $discounted_amount['line_subtotal'];
+		$discounts[ $effective_product_id ]['discounted_quantities'][ $rule_key ] = $discounted_amount['discounted_quantities'];
+		$discounts[ $effective_product_id ]['quantities'][ $rule_key ]            = $item['quantity'];
+
+		$discounts[ $effective_product_id ]['offers'][ $rule_key ] = $this->get_item_offers( $rule );
 	}
 
 	/**
@@ -483,11 +653,15 @@ trait IntentHelper {//phpcs:ignore
 			 *
 			 * Compare with total product meta and apply discount
 			 */
-			$discount_limit         = $intent->campaign->discount_max_user;
-			$total_applied_campaign = ( new UserLimit )->disco_get_total_applied_campaign( $intent->campaign->id );
+			$discount_limit = $intent->campaign->discount_max_user;
 
-			if ( ! empty( $discount_limit ) && ( $discount_limit >= 0 && $total_applied_campaign >= $discount_limit ) ) {
-				continue;
+			// Only count applied orders when a limit is actually configured.
+			if ( ! empty( $discount_limit ) && $discount_limit >= 0 ) {
+				$total_applied_campaign = ( new UserLimit )->disco_get_total_applied_campaign( $intent->campaign->id );
+
+				if ( $total_applied_campaign >= $discount_limit ) {
+					continue;
+				}
 			}
 
 			$items         = $this->get_items_for_discount( $cart, $intent->campaign );
@@ -524,9 +698,9 @@ trait IntentHelper {//phpcs:ignore
 	 * @param array    $intents Intents.
 	 * @param \WC_Cart $cart Cart.
 	 * @param array    $discounts Discounts.
-	 * @return int|null
+	 * @return int|string|null
 	 */
-	public function get_valid_bogo_category_item_id( array $intents, \WC_Cart $cart, array $discounts ) {
+	public function get_valid_bogo_category_item_id( array $intents, \WC_Cart $cart, array $discounts ) {//phpcs:ignore
 		foreach ( $intents as $intent ) {
 			if (
 				$intent->campaign->get_discount_intent() !== 'BuyXGetY' ||
@@ -535,16 +709,52 @@ trait IntentHelper {//phpcs:ignore
 				continue;
 			}
 
-			foreach ( $cart->get_cart() as $item ) {
-				$item_id = $this->get_cart_item_id( $item );
+			// Collect every eligible category item (in cart order) with its price,
+			// then pick the reward item per the campaign's selection strategy.
+			$candidates = array();
 
-				if ( isset( $discounts[ $item_id ] ) && $discounts[ $item_id ] > 0 ) {
-					return $item_id;
+			foreach ( $cart->get_cart() as $item ) {
+				$cart_item_id = $this->get_cart_item_id( $item );
+
+				if ( isset( $discounts[ $cart_item_id ] ) && $discounts[ $cart_item_id ] > 0 ) { // phpcs:ignore
+					$candidates[ $cart_item_id ] = CalcFactory::get_price( $item );
 				}
 			}
+
+			if ( empty( $candidates ) ) {
+				continue;
+			}
+
+			return $this->pick_reward_item( $candidates, $intent->campaign->get_free_item_selection() );
 		}
 
 		return null;
+	}
+
+	/**
+	 * Pick the reward cart-item id from eligible candidates.
+	 *
+	 * Honours the "Free Item Selection" strategy when more than one product
+	 * from the reward category is in the cart:
+	 *  - `cart_order` (default) → the first eligible item in cart order.
+	 *  - `lowest`               → the lowest-priced eligible item.
+	 *  - `highest`              → the highest-priced eligible item.
+	 * Ties keep cart order (first match wins).
+	 *
+	 * @param array<int|string, float> $candidates Map of item id => price, in cart order.
+	 * @param string                   $selection  Selection strategy.
+	 * @return int|string|null
+	 */
+	private function pick_reward_item( array $candidates, string $selection ) {
+		if ( 'lowest' === $selection ) {
+			return array_keys( $candidates, min( $candidates ), true )[0];
+		}
+
+		if ( 'highest' === $selection ) {
+			return array_keys( $candidates, max( $candidates ), true )[0];
+		}
+
+		return array_key_first( $candidates );
 	}
 
 	/**
@@ -568,11 +778,15 @@ trait IntentHelper {//phpcs:ignore
 			 *
 			 * Compare with total product meta and apply discount
 			 */
-			$discount_limit         = $intent->campaign->discount_max_user;
-			$total_applied_campaign = ( new UserLimit )->disco_get_total_applied_campaign( $intent->campaign->id );
+			$discount_limit = $intent->campaign->discount_max_user;
 
-			if ( ! empty( $discount_limit ) && ( $discount_limit >= 0 && $total_applied_campaign >= $discount_limit ) ) {
-				continue;
+			// Only count applied orders when a limit is actually configured.
+			if ( ! empty( $discount_limit ) && $discount_limit >= 0 ) {
+				$total_applied_campaign = ( new UserLimit )->disco_get_total_applied_campaign( $intent->campaign->id );
+
+				if ( $total_applied_campaign >= $discount_limit ) {
+					continue;
+				}
 			}
 
 			$items         = $this->get_items_for_discount( $cart, $intent->campaign );
@@ -586,11 +800,12 @@ trait IntentHelper {//phpcs:ignore
 			( new UserLimit )->disco_start_session_on_checkout( $intent->campaign->id );
 
 			foreach ( $get_discounts as $item_id => $discount ) {
-				$discounts[ $item_id ]['discounts'][] = max( $discount['discounts'] );
-				$discounts[ $item_id ]['free']        = $discount['free'];
-				$discounts[ $item_id ]['get_ids']     = $discount['get_ids'];
-				$discounts[ $item_id ]['get_qty']     = $discount['get_qty'];
-				$discounts[ $item_id ]['bogo_type']   = $intent->campaign->get_bogo_type();
+				$discounts[ $item_id ]['discounts'][]           = max( $discount['discounts'] ); // phpcs:ignore
+				$discounts[ $item_id ]['free']                  = $discount['free']; // phpcs:ignore
+				$discounts[ $item_id ]['get_ids']               = $discount['get_ids']; // phpcs:ignore
+				$discounts[ $item_id ]['get_qty']               = $discount['get_qty']; // phpcs:ignore
+				$discounts[ $item_id ]['bogo_type']             = $intent->campaign->get_bogo_type(); // phpcs:ignore
+				$discounts[ $item_id ]['free_item_selection']   = $intent->campaign->get_free_item_selection(); // phpcs:ignore
 			}
 		}
 
@@ -599,16 +814,283 @@ trait IntentHelper {//phpcs:ignore
 			return false;
 		}
 
-		// Get the min or max discount amount for each item.
+		/**
+		 * Aggregate the per-item free rewards into the flat shape the cart hook
+		 * consumes. Union every qualifying reward id (previously this overwrote
+		 * on each pass, so only the last cart item was ever granted its free
+		 * product) and keep a per-id quantity map for products whose free counts
+		 * differ (e.g. recursive BuyXGetX).
+		 */
+		$reward_product_ids  = array();
+		$reward_quantity_map = array();
+		$has_free_items      = false;
+		$bogo_type           = 'products';
+		$free_item_selection = 'cart_order';
+
 		foreach ( $discounts as $item_id => $discount ) {
-			$discounts['discount']  = $this->min_max_average( $discount['discounts'] );
-			$discounts['free']      = $discount['free'];
-			$discounts['get_ids']   = $discount['get_ids'] ? array_column( $discount['get_ids'], 'id' ) : array( $item_id ); //@phpcs:ignore
-			$discounts['get_qty']   = $discount['get_qty'];
-			$discounts['bogo_type'] = $discount['bogo_type'] ?? 'products';
+			$has_free_items      = $discount['free'];
+			$bogo_type           = $discount['bogo_type'] ?? 'products';
+			$free_item_selection = $discount['free_item_selection'] ?? 'cart_order';
+
+			$rule_reward_ids = ! empty( $discount['get_ids'] ) ? array_column( $discount['get_ids'], 'id' ) : array( $item_id ); // phpcs:ignore
+
+			foreach ( $rule_reward_ids as $reward_product_id ) {
+				$reward_product_id                = (int) $reward_product_id; // phpcs:ignore
+				$reward_product_ids[]          = $reward_product_id; // phpcs:ignore
+				$reward_quantity_map[ $reward_product_id ]    = (int) $discount['get_qty']; // phpcs:ignore
+			}
+		}
+
+		$reward_product_ids = array_values( array_unique( $reward_product_ids ) );
+
+		$discounts['discount']            = 0.0;
+		$discounts['free']                = $has_free_items;
+		$discounts['get_ids']             = $reward_product_ids;
+		$discounts['get_qty']             = empty( $reward_quantity_map ) ? 0 : max( $reward_quantity_map ); // phpcs:ignore
+		$discounts['get_qty_map']         = $reward_quantity_map;
+		$discounts['bogo_type']           = $bogo_type;
+		$discounts['free_item_selection'] = $free_item_selection;
+
+		/**
+		 * BuyXGetY (products): replace the flat aggregation with an authoritative
+		 * reward map keyed by the tier's own get product, so each cart product
+		 * that qualifies grants its tier's reward.
+		 *
+		 * Category BOGO is not handled here — {@see \Disco\App\Intents\CategoryBogo\CategoryBogo}
+		 * owns its reward selection, buy reservation and cart reconciliation.
+		 */
+		foreach ( $intents as $intent ) {
+			$bogo_type = $intent->campaign->get_bogo_type();
+
+			if ( 'BuyXGetY' !== $intent->campaign->get_discount_intent() || 'products' !== $bogo_type ) {
+				continue;
+			}
+
+			// Only free-type rules grant free items; a percent/fixed BOGO must not
+			// fabricate free products here.
+			$rules      = $intent->campaign->get_discount_rules();
+			$first_rule = ( is_array( $rules ) && isset( $rules[0] ) ) ? ( is_object( $rules[0] ) ? (array) $rules[0] : $rules[0] ) : array(); // phpcs:ignore
+
+			if ( ! isset( $first_rule['discount_type'] ) || 'free' !== $first_rule['discount_type'] ) {
+				continue;
+			}
+
+			$reward_map = $this->compute_bogo_products_free_map( $intent->campaign, $cart );
+
+			// Always authoritative: an empty map means no qualifying (non-reward)
+			// purchase, so no free items — do not fall back to the flat count.
+			$discounts['get_ids']             = array_keys( $reward_map ); // phpcs:ignore
+			$discounts['get_qty_map']         = $reward_map; // phpcs:ignore
+			// Each get-product is freed its own quantity.
+			$discounts['get_qty']             = empty( $reward_map ) ? 0 : max( $reward_map ); // phpcs:ignore
+			$discounts['free']                = ! empty( $reward_map ); // phpcs:ignore
+			$discounts['bogo_type']           = $bogo_type;
+			$discounts['free_item_selection'] = $intent->campaign->get_free_item_selection();
 		}
 
 		return $discounts;
+	}
+
+	/**
+	 * Authoritative free Y map for a BuyXGetY (products) campaign.
+	 *
+	 * Returns get-product id => free quantity, attributing each tier's reward to
+	 * that tier's own get-products:
+	 *  - `separate`             → each cart line credits every tier whose range
+	 *                             its own quantity matches ([min,max]); rewards
+	 *                             sum, and each tier credits its own get-products.
+	 *  - `combined`            → one pool over every applicable line; the highest
+	 *                             tier it reaches credits its get-products once.
+	 *  - `variations`          → one pool per parent product (all variations of
+	 *                             the same variable count together, and a simple
+	 *                             product is its own pool); every pool that
+	 *                             reaches a tier credits that tier's get-products,
+	 *                             so two qualifying parents grant two rewards.
+	 * Recursive tiers multiply by floor(qty/min) (line qty for separate, pool qty
+	 * for combined / variations).
+	 *
+	 * @param \Disco\App\Utility\Config $campaign Campaign Config.
+	 * @param \WC_Cart                  $cart     Cart Object.
+	 * @return array<int, int>
+	 */
+	private function compute_bogo_products_free_map( Config $campaign, \WC_Cart $cart ): array {//phpcs:ignore
+		$rules = $campaign->get_discount_rules();
+
+		if ( ! is_array( $rules ) || empty( $rules ) ) {
+			return array();
+		}
+
+		$reward_map = array();
+
+		if ( in_array( $campaign->get_count_quantity_as(), array( 'combined', 'variations' ), true ) ) {
+			foreach ( $this->get_bogo_buy_pool_quantities( $cart, $campaign ) as $pool_quantity ) {
+				$this->credit_bogo_pool_reward( $reward_map, $rules, $pool_quantity );
+			}
+
+			return $reward_map;
+		}
+
+		/**
+		 * Separate: build the buy quantity per product, then each product earns
+		 * the highest tier its quantity qualifies for (min <= qty). The upper
+		 * `max` marks where the next tier begins, not a cut-off, so a quantity
+		 * above the top tier still earns it and a gap earns the tier below.
+		 * Free lines never count.
+		 */
+		$buy_quantity_per_product = array();
+
+		foreach ( $cart->get_cart() as $item ) {
+			if ( ! empty( $item['is_free_product'] ) ) {
+				continue;
+			}
+
+			$effective_product_id = $item['product_id'];
+
+			if ( ! empty( $item['variation_id'] ) ) {
+				$effective_product_id = $item['variation_id'];
+			}
+
+			if ( ! $campaign->product_is_applicable( $effective_product_id ) ) {
+				continue;
+			}
+
+			$product = wc_get_product( $effective_product_id );
+
+			if ( ! Helper::is_filter_passed( $campaign, array( 'product' => $product ) ) ) {
+				continue;
+			}
+
+			$buy_quantity_per_product[ (int) $effective_product_id ] = ( $buy_quantity_per_product[ (int) $effective_product_id ] ?? 0 ) + (int) $item['quantity'];
+		}
+
+		foreach ( $buy_quantity_per_product as $quantity ) {
+			$qualifying_rule    = null;
+			$qualifying_minimum = -1;
+
+			foreach ( $rules as $rule ) {
+				$rule = is_object( $rule ) ? (array) $rule : $rule; // phpcs:ignore
+				$minimum_quantity  = isset( $rule['min'] ) ? absint( $rule['min'] ) : 0; // phpcs:ignore
+				$reward_quantity   = ! empty( $rule['get_quantity'] ) ? (int) $rule['get_quantity'] : 0; // phpcs:ignore
+
+				if ( $minimum_quantity <= 0 || $reward_quantity <= 0 || empty( $rule['get_ids'] ) ) {
+					continue;
+				}
+
+				if ( $quantity >= $minimum_quantity && $minimum_quantity > $qualifying_minimum ) { // phpcs:ignore
+					$qualifying_rule    = $rule;
+					$qualifying_minimum = $minimum_quantity;
+				}
+			}
+
+			if ( null === $qualifying_rule ) {
+				continue;
+			}
+
+			$minimum_quantity = absint( $qualifying_rule['min'] );
+			$reward_quantity  = (int) $qualifying_rule['get_quantity'];
+			$is_recursive    = ! empty( $qualifying_rule['recursive'] ) && 'yes' === $qualifying_rule['recursive']; // phpcs:ignore
+			$reward_total = ( $is_recursive && $minimum_quantity > 0 ) ? ( (int) floor( $quantity / $minimum_quantity ) * $reward_quantity ) : $reward_quantity; // phpcs:ignore
+
+			if ( $reward_total > 0 ) { // phpcs:ignore
+				foreach ( array_column( $qualifying_rule['get_ids'], 'id' ) as $reward_product_id ) {
+					$reward_map[ (int) $reward_product_id ] = ( $reward_map[ (int) $reward_product_id ] ?? 0 ) + $reward_total;
+				}
+			}
+		}
+
+		return $reward_map;
+	}
+
+	/**
+	 * Pooled buy quantities for combined / variations, excluding free lines.
+	 *
+	 * `combined` returns a single pool over every applicable line. `variations`
+	 * returns one pool per parent product, so variations of the same variable
+	 * product count together while different parents stay apart — the same
+	 * grouping {@see QuantityCounter} applies to the buy-X gate.
+	 *
+	 * @param \WC_Cart                  $cart     Cart Object.
+	 * @param \Disco\App\Utility\Config $campaign Campaign Config.
+	 * @return array<string, int> Pool key => pooled quantity.
+	 */
+	private function get_bogo_buy_pool_quantities( \WC_Cart $cart, Config $campaign ): array {//phpcs:ignore
+		$pool_quantities = array();
+		$pool_per_parent = 'variations' === $campaign->get_count_quantity_as();
+		$cart_items      = $cart->get_cart();
+
+		if ( ! is_array( $cart_items ) ) {
+			return $pool_quantities;
+		}
+
+		foreach ( $cart_items as $item ) {
+			if ( ! empty( $item['is_free_product'] ) ) {
+				continue;
+			}
+
+			$effective_product_id = $item['product_id'];
+
+			if ( ! empty( $item['variation_id'] ) ) {
+				$effective_product_id = $item['variation_id'];
+			}
+
+			if ( ! $campaign->product_is_applicable( $effective_product_id ) ) {
+				continue;
+			}
+
+			$product = wc_get_product( $effective_product_id );
+
+			if ( ! Helper::is_filter_passed( $campaign, array( 'product' => $product ) ) ) {
+				continue;
+			}
+
+			$pool_key = $pool_per_parent ? 'parent_' . (int) $item['product_id'] : 'all'; // phpcs:ignore
+
+			$pool_quantities[ $pool_key ] = ( $pool_quantities[ $pool_key ] ?? 0 ) + (int) $item['quantity'];
+		}
+
+		return $pool_quantities;
+	}
+
+	/**
+	 * Credit one pool's reward to the get-products of the tier it qualifies for.
+	 *
+	 * The winning tier is the one with the highest `min` the pool reaches; a
+	 * recursive tier multiplies its reward by the number of complete sets.
+	 *
+	 * @param array $reward_map    Reward map (get-product id => quantity), by reference.
+	 * @param array $rules         Discount rules.
+	 * @param int   $pool_quantity Pooled buy quantity.
+	 */
+	private function credit_bogo_pool_reward( array &$reward_map, array $rules, int $pool_quantity ): void {//phpcs:ignore
+		$qualifying_rule    = null;
+		$qualifying_minimum = -1;
+
+		foreach ( $rules as $rule ) {
+			$rule = is_object( $rule ) ? (array) $rule : $rule; // phpcs:ignore
+			$minimum_quantity  = isset( $rule['min'] ) ? absint( $rule['min'] ) : 0; // phpcs:ignore
+
+			if ( $minimum_quantity > 0 && $pool_quantity >= $minimum_quantity && $minimum_quantity > $qualifying_minimum ) { // phpcs:ignore
+				$qualifying_rule    = $rule;
+				$qualifying_minimum = $minimum_quantity;
+			}
+		}
+
+		if ( null === $qualifying_rule || empty( $qualifying_rule['get_ids'] ) ) {
+			return;
+		}
+
+		$minimum_quantity = absint( $qualifying_rule['min'] );
+		$reward_quantity  = ! empty( $qualifying_rule['get_quantity'] ) ? (int) $qualifying_rule['get_quantity'] : 0; // phpcs:ignore
+		$is_recursive = ! empty( $qualifying_rule['recursive'] ) && 'yes' === $qualifying_rule['recursive']; // phpcs:ignore
+		$quantity = ( $is_recursive && $minimum_quantity > 0 ) ? (int) floor( $pool_quantity / $minimum_quantity ) * $reward_quantity : $reward_quantity; // phpcs:ignore
+
+		if ( $quantity <= 0 ) {
+			return;
+		}
+
+		foreach ( array_column( $qualifying_rule['get_ids'], 'id' ) as $reward_product_id ) {
+			$reward_map[ (int) $reward_product_id ] = ( $reward_map[ (int) $reward_product_id ] ?? 0 ) + $quantity;
+		}
 	}
 
 	/**
@@ -616,7 +1098,7 @@ trait IntentHelper {//phpcs:ignore
 	 *
 	 * @param \Disco\App\Utility\Config $campaign Campaign Config.
 	 */
-	public function is_bogo( Config $campaign ): bool {
+	public function is_bogo( Config $campaign ): bool { // phpcs:ignore
 		return in_array( $campaign->get_discount_intent(), array( 'BuyXGetX', 'BuyXGetY' ), true );
 	}
 
@@ -798,6 +1280,95 @@ trait IntentHelper {//phpcs:ignore
 	}
 
 	/**
+	 * Whether a campaign is a free products BOGO evaluated per product.
+	 *
+	 * @param \Disco\App\Utility\Config $campaign Campaign Config.
+	 * @param array                     $rules    Discount rules.
+	 */
+	private function is_per_product_free_bogo( Config $campaign, array $rules ): bool {
+		if ( 'products' !== $campaign->get_bogo_type() ) {
+			return false;
+		}
+
+		if ( in_array( $campaign->get_count_quantity_as(), array( 'combined', 'variations' ), true ) ) {
+			return false;
+		}
+
+		$first_rule = isset( $rules[0] ) ? ( is_object( $rules[0] ) ? (array) $rules[0] : $rules[0] ) : array(); // phpcs:ignore
+
+		return isset( $first_rule['discount_type'] ) && 'free' === $first_rule['discount_type'];
+	}
+
+	/**
+	 * Total free Y quantity for a products BuyXGetY campaign in `separate` mode.
+	 *
+	 * X is every applicable product. Each cart line grants the reward of every
+	 * rule (tier) whose range its own quantity falls in — `qty` within
+	 * `[min, max]` (no max = min-only) — summed across matching tiers, and ×
+	 * floor(qty/min) when the tier is recursive. The Y product counts as an X
+	 * line too. Summing across all qualifying lines gives the free Y count, so
+	 * two products each matching a different tier grant each tier's reward.
+	 *
+	 * @param \Disco\App\Utility\Config $campaign Campaign Config.
+	 * @param \WC_Cart                  $cart     Cart Object.
+	 */
+	private function get_products_bogo_free_quantity( Config $campaign, \WC_Cart $cart ): int {//phpcs:ignore
+		$rules      = $campaign->get_discount_rules();
+		$cart_items = $cart->get_cart();
+
+		if ( ! is_array( $rules ) || ! is_array( $cart_items ) ) {
+			return 0;
+		}
+
+		$free_quantity_total = 0;
+
+		foreach ( $cart_items as $item ) {
+			if ( ! empty( $item['is_free_product'] ) ) {
+				continue;
+			}
+
+			$effective_product_id = $item['product_id'];
+
+			if ( ! empty( $item['variation_id'] ) ) {
+				$effective_product_id = $item['variation_id'];
+			}
+
+			if ( ! $campaign->product_is_applicable( $effective_product_id ) ) {
+				continue;
+			}
+
+			$product = wc_get_product( $effective_product_id );
+
+			if ( ! Helper::is_filter_passed( $campaign, array( 'product' => $product ) ) ) {
+				continue;
+			}
+
+			$line_quantity = (int) $item['quantity'];
+
+			foreach ( $rules as $rule ) {
+				$rule         = is_object( $rule ) ? (array) $rule : $rule; // phpcs:ignore
+				$minimum_quantity          = isset( $rule['min'] ) ? absint( $rule['min'] ) : 0; // phpcs:ignore
+				$maximum_quantity          = ! empty( $rule['max'] ) ? absint( $rule['max'] ) : 0; // phpcs:ignore
+				$get_quantity = ! empty( $rule['get_quantity'] ) ? (int) $rule['get_quantity'] : 0; // phpcs:ignore
+				$recursive    = ! empty( $rule['recursive'] ) && 'yes' === $rule['recursive']; // phpcs:ignore
+
+				if ( $minimum_quantity <= 0 || $get_quantity <= 0 || $line_quantity < $minimum_quantity ) {
+					continue;
+				}
+
+				// Respect the tier's upper bound so each product matches its tier.
+				if ( $maximum_quantity > 0 && $line_quantity > $maximum_quantity && 'yes' !== $rule['recursive'] ) {
+					continue;
+				}
+
+				$free_quantity_total += $recursive ? ( (int) floor( $line_quantity / $minimum_quantity ) * $get_quantity ) : $get_quantity; // phpcs:ignore
+			}
+		}
+
+		return $free_quantity_total;
+	}
+
+	/**
 	 * Get Offer Label.
 	 *
 	 * @param array $rule Discount Rule.
@@ -949,7 +1520,54 @@ trait IntentHelper {//phpcs:ignore
 	 * @param \Disco\App\Utility\Config $campaign Campaign Config.
 	 * @param array                     $rule Discount Rules.
 	 */
+	/**
+	 * Pick the single BuyXGetY tier that applies for the current cart.
+	 *
+	 * Tiers are ranked by `min`: the winner is the qualifying rule with the
+	 * highest `min` that the buy quantity still meets (the broken upper `max` is
+	 * ignored — a rule qualifies on `qty >= min`, mirroring the gate). On a tie,
+	 * the later rule wins. Returns a list with 0 or 1 rule.
+	 *
+	 * @param \Disco\App\Utility\Config $campaign Campaign Config.
+	 * @param array                     $rules    All discount rules.
+	 */
+	private function select_bogo_tier_rule( Config $campaign, array $rules ): array {
+		$qualifying_rule    = null;
+		$qualifying_minimum = -1;
+
+		foreach ( $rules as $rule ) {
+			$rule_array = is_object( $rule ) ? (array) $rule : $rule; // phpcs:ignore
+
+			// Rule only counts if the cart meets its buy-X threshold.
+			if ( ! $this->verify_xproduct_cart_rule( $campaign, $rule_array ) ) {
+				continue;
+			}
+
+			$minimum_quantity = isset( $rule_array['min'] ) ? absint( $rule_array['min'] ) : 0; // phpcs:ignore
+
+			if ( $minimum_quantity >= $qualifying_minimum ) { // phpcs:ignore
+				$qualifying_minimum = $minimum_quantity;
+				$qualifying_rule    = $rule;
+			}
+		}
+
+		return null === $qualifying_rule ? array() : array( $qualifying_rule ); // phpcs:ignore
+	}
+
 	private function verify_xproduct_cart_rule( Config $campaign, array $rule ): bool { //phpcs:ignore
+		/**
+		 * "Count Quantity As" combined / variations: pool the buy-X quantity
+		 * across cart lines instead of requiring a single line to reach `min`,
+		 * so a mixed cart (e.g. 1 + 1 of different products) can satisfy a
+		 * "buy 2" threshold. QuantityCounter honours the same min / max /
+		 * recursive semantics used elsewhere.
+		 */
+		if ( in_array( $campaign->get_count_quantity_as(), array( 'combined', 'variations' ), true ) ) { // phpcs:ignore
+			$quantity_counter = new QuantityCounter;
+
+			return ! empty( $quantity_counter->get_eligible_units( WC()->cart, $campaign, $rule ) );
+		}
+
 		$cart = WC()->cart->get_cart();
 
 		foreach ( $cart as $item ) {

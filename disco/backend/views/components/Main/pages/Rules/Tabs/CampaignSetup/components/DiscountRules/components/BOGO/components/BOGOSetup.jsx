@@ -9,10 +9,12 @@ import {
 	useGetDiscountBasedOnQuery,
 } from '../../../../../../../../../features/discount/discountApi';
 import { changeBOGOType } from '../../../../../../../../../features/discount/discountSlice';
+import FreeItemSelection from './FreeItemSelection';
 
 const BOGOSetup = () => {
 	const dispatch = useDispatch();
 	const { bogo_type } = useSelector((state) => state.discount);
+	const showFreeItemSelection = bogo_type === 'categories' ? true : false;
 
 	const { isLoading } = useGetDiscountBasedOnQuery();
 	const { data: bogoTypes, isLoading: bogoTypesLoading } =
@@ -37,7 +39,7 @@ const BOGOSetup = () => {
 		<ComponentBox className="disco-mt-5 disco-rounded-xl">
 			<CommonHeadingBox title={__('BOGO', 'disco')} url="" />
 			<div className="disco-p-4">
-				<div className="disco-grid disco-grid-cols-12 disco-items-center">
+				<div className="disco-grid disco-grid-cols-12 disco-items-center disco-mb-2">
 					<div className="disco-col-span-2">
 						<p className="disco-text-base disco-font-medium disco-text-black">
 							{__('BOGO Type', 'disco')}
@@ -52,6 +54,8 @@ const BOGOSetup = () => {
 						/>
 					</div>
 				</div>
+
+				{showFreeItemSelection && <FreeItemSelection />}
 			</div>
 		</ComponentBox>
 	);

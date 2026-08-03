@@ -18,6 +18,8 @@ const initialState = {
 
 	bogo_type: 'all',
 	discount_based_on: 'item_quantity',
+	count_quantity_as: 'separate',
+	free_item_selection: 'cart_order',
 
 	discount_rules: [
 		{

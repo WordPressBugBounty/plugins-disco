@@ -436,6 +436,18 @@ class CampaignApi extends WP_REST_Controller {//phpcs:ignore
 			$data['bogo_type'] = $item->bogo_type;
 		}
 
+		$data['count_quantity_as'] = 'separate';
+
+		if ( in_array( 'count_quantity_as', $fields, true ) && $item instanceof \Disco\App\Utility\Config ) {
+			$data['count_quantity_as'] = $item->get_count_quantity_as();
+		}
+
+		$data['free_item_selection'] = 'cart_order';
+
+		if ( in_array( 'free_item_selection', $fields, true ) && $item instanceof \Disco\App\Utility\Config ) {
+			$data['free_item_selection'] = $item->get_free_item_selection();
+		}
+
 		$data['ui'] = array();
 
 		if ( ! empty( $item->ui ) && in_array( 'ui', $fields, true ) ) {
@@ -555,6 +567,22 @@ class CampaignApi extends WP_REST_Controller {//phpcs:ignore
 				),
 				'bogo_type'           => array(
 					'description' => __( 'BOGO Type', 'disco' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+					'arg_options' => array(
+						'sanitize_callback' => 'sanitize_text_field',
+					),
+				),
+				'count_quantity_as'   => array(
+					'description' => __( 'How item quantities aggregate toward the tier: separate, variations, filters.', 'disco' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+					'arg_options' => array(
+						'sanitize_callback' => 'sanitize_text_field',
+					),
+				),
+				'free_item_selection' => array(
+					'description' => __( 'BOGO free item selection: cart_order, lowest, highest.', 'disco' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 					'arg_options' => array(
@@ -730,6 +758,8 @@ class CampaignApi extends WP_REST_Controller {//phpcs:ignore
 			'discount_max_user',
 			'discount_based_on',
 			'bogo_type',
+			'count_quantity_as',
+			'free_item_selection',
 			'discount_valid_to',
 			'discount_method',
 			'discount_coupon',

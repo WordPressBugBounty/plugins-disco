@@ -106,6 +106,8 @@ class Config {
             'discount_label'       => '',
             'discount_max_user'    => '',
             'bogo_type'            => '',
+            'count_quantity_as'    => 'separate',
+            'free_item_selection'  => 'cart_order',
             'discount_valid_from'  => '',
             'discount_valid_to'    => '',
             'discount_method'      => 'automated',
@@ -175,6 +177,34 @@ class Config {
      */
     public function get_bogo_type() {
         return $this->config['bogo_type'];
+    }
+
+    /**
+     * Get Count Quantity As.
+     * How item quantities aggregate toward the tier min/max.
+     *
+     * @return string One of: separate, variations, filters.
+     */
+    public function get_count_quantity_as(): string {
+        if ( empty( $this->config['count_quantity_as'] ) ) {
+            return 'separate';
+        }
+
+        return $this->config['count_quantity_as'];
+    }
+
+    /**
+     * Get Free Item Selection (BOGO).
+     * Which qualifying item receives the free / discounted reward.
+     *
+     * @return string One of: cart_order, lowest, highest.
+     */
+    public function get_free_item_selection(): string {
+        if ( empty( $this->config['free_item_selection'] ) ) {
+            return 'cart_order';
+        }
+
+        return $this->config['free_item_selection'];
     }
 
     /**

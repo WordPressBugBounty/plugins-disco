@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import product3 from '../../../../../../../../asset/img/badge-images/product-placeholder/product3.svg';
 import Button from '../../../../../../components/Button';
@@ -13,6 +14,7 @@ import BannerView from './BannerView';
 const CartPageView = () => {
 	const dispatch = useDispatch();
 	const { discount_intent } = useSelector((state) => state.discount);
+	const [showSuccess, setShowSuccess] = useState(false);
 
 	const handleResetBanner = () => {
 		// Reset to first banner design (banner1)
@@ -38,7 +40,7 @@ const CartPageView = () => {
 
 					{/* Dynamic Banner with Shop Now button */}
 					<div className="disco-mt-3">
-						<BannerView />
+						<BannerView showSuccess={showSuccess} />
 					</div>
 
 					{/* Product Item 1 */}
@@ -103,6 +105,14 @@ const CartPageView = () => {
 					</div>
 				</div>
 				<div className="disco-flex disco-justify-center disco-gap-4 disco-py-4">
+					<Button
+						type="transparent"
+						onClick={() => setShowSuccess(!showSuccess)}
+					>
+						{showSuccess
+							? __('Preview Offer', 'disco')
+							: __('Preview Claimed', 'disco')}
+					</Button>
 					<Button
 						type="transparent"
 						className="disco-border-red-500"

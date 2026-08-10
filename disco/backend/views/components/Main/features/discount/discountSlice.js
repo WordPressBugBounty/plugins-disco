@@ -230,6 +230,17 @@ const initialState = {
 					'bottom-right': '8px',
 					'bottom-left': '8px',
 				},
+				// Success Message (shown once the customer has claimed the discount)
+				success: {
+					enable: true,
+					text: 'Congratulations! You claimed [discounted_percentage] discount',
+					'font-family': '',
+					'font-size': '14px',
+					'font-weight': 600,
+					'font-style': 'normal',
+					'text-decoration': 'none',
+				},
+
 				// Banner Button (Shop Now inside banner)
 				button: {
 					enable: true,

@@ -10,6 +10,7 @@ import ButtonSection from './components/ButtonSection';
 import CartBadgeItems from './components/CartBadgeItems';
 import CartPageView from './components/CartPageView';
 import NoticeArea from './components/NoticeArea';
+import SuccessMessageSection from './components/SuccessMessageSection';
 import { __ } from '@wordpress/i18n';
 
 const CartPageEdit = () => {
@@ -73,6 +74,7 @@ const CartPageEdit = () => {
 							onChange={handleBannerTextChange}
 							value={banner?.text || ''}
 						/>
+						<SuccessMessageSection />
 						<ButtonSection />
 						{/*<CheckoutSection />*/}
 						<TabComponent

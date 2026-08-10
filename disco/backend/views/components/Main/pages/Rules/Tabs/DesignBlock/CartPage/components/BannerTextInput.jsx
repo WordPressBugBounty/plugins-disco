@@ -4,7 +4,8 @@ import { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getDynamicVariables } from '../../../../../../utilities/cart-banner-design';
 
-const BannerTextInput = forwardRef(({ value, onChange }, ref) => {
+const BannerTextInput = forwardRef((props, ref) => {
+	const { value, onChange, onlyDiscountVariables = false } = props;
 	const [showPicker, setShowPicker] = useState(false);
 	const emojiPickerRef = useRef(null);
 	const { discount_intent, discount_rules, conditions } = useSelector(
@@ -52,10 +53,23 @@ const BannerTextInput = forwardRef(({ value, onChange }, ref) => {
 		};
 	}, []);
 
-	const dynamicVariables = useMemo(
-		() => getDynamicVariables(discount_intent, discount_rules, conditions),
-		[discount_rules, conditions]
-	);
+	const dynamicVariables = useMemo(() => {
+		const variables = getDynamicVariables(
+			discount_intent,
+			discount_rules,
+			conditions
+		);
+
+		// The success message runs after the discount is claimed, so the
+		// "remaining ..." variables are not relevant there.
+		if (onlyDiscountVariables) {
+			return variables.filter(
+				(item) => !item.label.startsWith('remaining_')
+			);
+		}
+
+		return variables;
+	}, [discount_intent, discount_rules, conditions, onlyDiscountVariables]);
 
 	return (
 		<div className="disco-rounded-lg disco-mt-2 disco-relative">

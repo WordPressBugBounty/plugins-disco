@@ -79,7 +79,7 @@ export const getDynamicVariables = (
 	return variables;
 };
 
-export const cartBannerDesign = {
+const baseCartBannerDesign = {
 	// ------------------- BANNER 1 - Gradient Rainbow (notice1.svg) -------------------
 	banner1: {
 		text: 'Add More [remaining_quantity] Item to SAVE [discounted_percentage] OFF',
@@ -497,11 +497,60 @@ export const cartBannerDesign = {
 	},
 };
 
+// Default success message, shown once the customer has actually claimed the discount.
+export const defaultSuccessText =
+	'Congratulations! You claimed [discounted_percentage] discount';
+
+// Success message shown once the discount is claimed, per design.
+const successTexts = {
+	banner1: '🎉 Congratulations! You claimed [discounted_percentage] OFF',
+	banner2: 'Nice! You just saved [discounted_amount] on this order',
+	banner3: '🎉 Discount applied! You got [discounted_percentage] OFF',
+	banner4: 'Congratulations! [discounted_percentage] discount is applied',
+	banner5: '🎉 You claimed [discounted_amount] off your order!',
+	banner6: 'Congratulations! Your [discounted_percentage] member discount is applied',
+	banner7: '🎉 Claimed! [discounted_percentage] OFF is in your cart',
+	banner8: 'Congratulations! You saved [discounted_percentage] on this order',
+	banner9: 'You saved [discounted_amount] on this order 🎉',
+};
+
+// Shipping success message, per design.
+const shippingSuccessText =
+	'🎉 Congratulations! You unlocked FREE SHIPPING on this order';
+
+/**
+ * Attach a success message block to every design, inheriting its typography.
+ */
+const withSuccess = (designs, texts) =>
+	Object.fromEntries(
+		Object.entries(designs).map(([key, design]) => [
+			key,
+			{
+				...design,
+				success: {
+					enable: true,
+					text: texts?.[key] || defaultSuccessText,
+					'font-family': design['font-family'],
+					'font-size': design['font-size'],
+					'font-weight': design['font-weight'],
+					'font-style': design['font-style'],
+					'text-decoration': design['text-decoration'],
+				},
+			},
+		])
+	);
+
+export const cartBannerDesign = withSuccess(baseCartBannerDesign, successTexts);
+
 // Shipping-specific banner designs with free shipping text
 export const shippingBannerDesign = {
 	// ------------------- BANNER 1 - Gradient Rainbow -------------------
 	banner1: {
 		...cartBannerDesign.banner1,
+		success: {
+			...cartBannerDesign.banner1.success,
+			text: shippingSuccessText,
+		},
 		text: "You're almost there! Add [remaining_amount] more to unlock FREE SHIPPING",
 		button: {
 			...cartBannerDesign.banner1.button,
@@ -513,6 +562,10 @@ export const shippingBannerDesign = {
 	// ------------------- BANNER 2 - Blue Arrow -------------------
 	banner2: {
 		...cartBannerDesign.banner2,
+		success: {
+			...cartBannerDesign.banner2.success,
+			text: shippingSuccessText,
+		},
 		text: "You're almost there! Spend [remaining_amount] more for FREE SHIPPING.",
 		button: {
 			...cartBannerDesign.banner2.button,
@@ -536,6 +589,10 @@ export const shippingBannerDesign = {
 	// ------------------- BANNER 5 - Orange Border -------------------
 	banner5: {
 		...cartBannerDesign.banner5,
+		success: {
+			...cartBannerDesign.banner5.success,
+			text: shippingSuccessText,
+		},
 		text: '🛒 Fill your cart a little more!  Add $60 more — FREE SHIPPING awaits!',
 		button: {
 			...cartBannerDesign.banner5.button,
@@ -547,6 +604,10 @@ export const shippingBannerDesign = {
 	// ------------------- BANNER 6 - Teal Premium -------------------
 	banner6: {
 		...cartBannerDesign.banner6,
+		success: {
+			...cartBannerDesign.banner6.success,
+			text: shippingSuccessText,
+		},
 		text: 'Almost there! Add [remaining_quantity] more items for FREE SHIPPING!',
 		button: {
 			...cartBannerDesign.banner6.button,
@@ -570,6 +631,10 @@ export const shippingBannerDesign = {
 	// ------------------- BANNER 9 - Minimal Light -------------------
 	banner9: {
 		...cartBannerDesign.banner9,
+		success: {
+			...cartBannerDesign.banner9.success,
+			text: shippingSuccessText,
+		},
 		text: '🚀 Free shipping is within reach! Spend [remaining_amount] more for FREE SHIPPING!',
 		button: {
 			...cartBannerDesign.banner9.button,

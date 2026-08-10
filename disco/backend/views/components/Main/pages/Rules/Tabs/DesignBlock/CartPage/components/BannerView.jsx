@@ -2,10 +2,16 @@ import { __ } from '@wordpress/i18n';
 import { useSelector } from 'react-redux';
 import { getBorderRadius } from '../../../../../../utilities/utilities';
 
-const BannerView = () => {
+const BannerView = ({ showSuccess = false }) => {
 	const { cart } = useSelector((state) => state.discount.design_blocks);
 	const banner = cart?.banner || {};
 	const button = banner?.button || {};
+	const success = banner?.success || {};
+
+	// Preview the success message only when it is enabled and has text.
+	const hasSuccess = success?.enable !== false && !!success?.text;
+	const isSuccessView = showSuccess && hasSuccess;
+	const textConfig = isSuccessView ? success : banner;
 
 	// Container style (no font-style or text-decoration to prevent inheritance)
 	const bannerContainerStyle = {
@@ -26,11 +32,11 @@ const BannerView = () => {
 
 	// Banner text style (includes font-style and text-decoration)
 	const bannerTextStyle = {
-		fontFamily: banner['font-family'] || 'inherit',
-		fontSize: banner['font-size'] || '14px',
-		fontWeight: banner['font-weight'] || 600,
-		fontStyle: banner['font-style'] || 'normal',
-		textDecoration: banner['text-decoration'] || 'none',
+		fontFamily: textConfig['font-family'] || 'inherit',
+		fontSize: textConfig['font-size'] || '14px',
+		fontWeight: textConfig['font-weight'] || 600,
+		fontStyle: textConfig['font-style'] || 'normal',
+		textDecoration: textConfig['text-decoration'] || 'none',
 		textAlign: 'center',
 	};
 
@@ -61,8 +67,9 @@ const BannerView = () => {
 	};
 
 	const renderBannerText = () => {
-		const text =
-			banner?.text || '[discounted_percentage] OFF - Limited Time!';
+		const text = isSuccessView
+			? success.text
+			: banner?.text || '[discounted_percentage] OFF - Limited Time!';
 		return text
 			.replace(/\[discounted_percentage\]/g, '20%')
 			.replace(/\[discounted_amount\]/g, '$10')
@@ -71,10 +78,19 @@ const BannerView = () => {
 			.replace(/\[remaining_cart_items\]/g, '2');
 	};
 
+	// With the success message off, the banner disappears once the discount is claimed.
+	if (showSuccess && !isSuccessView) {
+		return (
+			<div className="disco-border disco-border-dashed disco-border-gray-300 disco-rounded disco-py-3 disco-text-center disco-text-xs disco-text-gray-500">
+				{__('Banner is hidden after the discount is applied', 'disco')}
+			</div>
+		);
+	}
+
 	return (
 		<div style={bannerContainerStyle}>
 			<span style={bannerTextStyle}>{renderBannerText()}</span>
-			{button?.enable !== false && (
+			{!isSuccessView && button?.enable !== false && (
 				<button style={buttonStyle}>
 					{button?.text || __('Shop Now', 'disco')}
 				</button>

@@ -13,17 +13,22 @@ const BannerFontProperties = ({
 	label = '',
 	className = '',
 	textareaRef = null,
+	// Nested key inside banner to edit (e.g. 'success'). Empty = banner itself.
+	field = '',
 }) => {
 	const dispatch = useDispatch();
 	const { cart } = useSelector((state) => state.discount.design_blocks);
 	const { discount_intent } = useSelector((state) => state.discount);
-	const banner = cart?.banner || {};
+	const bannerRoot = cart?.banner || {};
+	const banner = field ? bannerRoot[field] || {} : bannerRoot;
 
 	const handleBannerChange = (key, value) => {
 		dispatch(
 			updateCartPage({
 				name: 'banner',
-				value: { ...banner, [key]: value },
+				value: field
+					? { ...bannerRoot, [field]: { ...banner, [key]: value } }
+					: { ...bannerRoot, [key]: value },
 			})
 		);
 	};
@@ -95,14 +100,22 @@ const BannerFontProperties = ({
 	const isItalic = banner['font-style'] === 'italic';
 	const isUnderline = banner['text-decoration'] === 'underline';
 
-	const customOptions = {
-		'': 'Variable',
-		discounted_percentage: 'Discount Percentage',
-		discounted_amount: 'Discount Amount',
-		remaining_quantity: 'Remaining Quantity',
-		remaining_amount: 'Remaining Amount',
-		remaining_cart_items: 'Remaining Cart Items',
-	};
+	// The success message is shown after the discount is claimed, so the
+	// "remaining ..." variables no longer make sense there.
+	const customOptions = field
+		? {
+				'': 'Variable',
+				discounted_percentage: 'Discount Percentage',
+				discounted_amount: 'Discount Amount',
+			}
+		: {
+				'': 'Variable',
+				discounted_percentage: 'Discount Percentage',
+				discounted_amount: 'Discount Amount',
+				remaining_quantity: 'Remaining Quantity',
+				remaining_amount: 'Remaining Amount',
+				remaining_cart_items: 'Remaining Cart Items',
+			};
 
 	if (discount_intent === 'Shipping') {
 		delete customOptions.discounted_percentage;

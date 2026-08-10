@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: woocommerce discount, discount rules, dynamic pricing, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.0.2
-Stable tag: 1.4.6
+Stable tag: 1.4.7
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -19,7 +19,7 @@ WooCommerce discount rules plugin to create automatic product and cart discounts
 
 **[Upgrade to Pro](https://discoplugin.com/pricing/?utm_source=org-to-pro&utm_medium=org-to-pro&utm_campaign=org-to-pro&utm_id=1) | [View Demo](https://app.instawp.io/launch?s=discopro&d=v2) | [Complete Documentation](https://discoplugin.com/docs/) | [Video Tutorials](https://www.youtube.com/@WebAppick) | [Get Support](https://discoplugin.com/support/)**
 
-Fully updated for 2026 with the latest **WooCommerce 10.x** and **WordPress 7.x** compatibility.
+Fully updated for 2026 with the latest **WooCommerce 11.x** and **WordPress 7.x** compatibility.
 
 
 
@@ -482,6 +482,12 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.4.7(Aug 10, 2026) =
+* New: Cart notice success message when customer claimed a discount.
+* Tweak: WordPress compatibility checked with version 7.0.3, no issue found.
+* Tweak: WooCommerce compatibility checked with version 11.0.0, no issue found.
+* Tweak: Node version 20.x.x and 24.x.x compatibility added.
+
 = 1.4.6(Aug 03, 2026) =
 * New: Mix product option added for Bulk, Bundle and BOGO discount.
 * New: New dropdown added for select mix products.

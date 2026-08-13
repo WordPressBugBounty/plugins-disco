@@ -1,7 +1,7 @@
 import { selectDateRangeParams } from '@/features/dateRange/dateRangeSlice';
 import { useGetOrdersQuery } from '@/features/orders/ordersApi';
 import useIsPro from '@/lib/useIsPro';
-import { fmt, fmtDate, truncate } from '@/lib/utils';
+import { fmt, formatDate, truncate } from '@/lib/utils';
 import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -47,7 +47,7 @@ const renderRow = (order) => (
 			{order.quantity}
 		</td>
 		<td className="disco-px-4 disco-py-3 disco-text-[#9ca3af] disco-whitespace-nowrap">
-			{fmtDate(order.date)}
+			{formatDate(order.date)}
 		</td>
 	</tr>
 );

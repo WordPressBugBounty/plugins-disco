@@ -72,16 +72,7 @@ class Disco {
 				 *
 				 * Compare with total product meta and apply discount
 				 */
-				$discount_limit         = $intent->campaign->discount_max_user;
-				$total_applied_campaign = ( new UserLimit )->disco_get_total_applied_campaign( $intent->campaign->id );
-
-				if (
-					! empty( $discount_limit )
-					&& (
-						$discount_limit >= 0
-						&& $total_applied_campaign >= $discount_limit
-					)
-				) {
+				if ( ( new UserLimit )->disco_is_limit_reached( $intent->campaign ) ) {
 					continue;
 				}
 
@@ -150,16 +141,7 @@ class Disco {
 				 *
 				 * Compare with total product meta and apply discount
 				 */
-				$discount_limit         = $intent->campaign->discount_max_user;
-				$total_applied_campaign = ( new UserLimit )->disco_get_total_applied_campaign( $intent->campaign->id );
-
-				if (
-					! empty( $discount_limit )
-					&& (
-						$discount_limit >= 0
-						&& $total_applied_campaign >= $discount_limit
-					)
-				) {
+				if ( ( new UserLimit )->disco_is_limit_reached( $intent->campaign ) ) {
 					continue;
 				}
 
@@ -330,14 +312,8 @@ class Disco {
 			 *
 			 * Compare with total applied count and skip if the user limit is hit.
 			 */
-			$discount_limit = $intent->campaign->discount_max_user;
-
-			if ( ! empty( $discount_limit ) ) {
-				$total_applied_campaign = ( new UserLimit )->disco_get_total_applied_campaign( $intent->campaign->id );
-
-				if ( $total_applied_campaign >= $discount_limit ) {
-					continue;
-				}
+			if ( ( new UserLimit )->disco_is_limit_reached( $intent->campaign ) ) {
+				continue;
 			}
 
 			$items = $this->get_items_for_discount( $cart, $intent->campaign );

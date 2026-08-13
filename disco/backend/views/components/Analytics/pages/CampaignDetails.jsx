@@ -5,7 +5,7 @@ import CampaignNotFound from '@/components/campaigns/CampaignNotFound';
 import CampaignProductsTable from '@/components/campaigns/CampaignProductsTable';
 import { useGetCampaignQuery } from '@/features/campaigns/campaignsApi';
 import { selectDateRangeParams } from '@/features/dateRange/dateRangeSlice';
-import { cn, fmt, fmtDate } from '@/lib/utils';
+import { cn, fmt, formatDate } from '@/lib/utils';
 import { __ } from '@wordpress/i18n';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -37,7 +37,7 @@ const CampaignDetails = () => {
 					CAMPAIGN_COLORS[data.campaign_id % CAMPAIGN_COLORS.length],
 				name: data.campaign_name,
 				intent: data.intent,
-				dateRange: `${fmtDate(data.valid_date?.from)} - ${fmtDate(data.valid_date?.to)}`,
+				dateRange: `${formatDate(data.valid_date?.from)} - ${formatDate(data.valid_date?.to)}`,
 				status: data.status,
 				totalOrders: data.total_orders,
 				customers: data.total_customers,

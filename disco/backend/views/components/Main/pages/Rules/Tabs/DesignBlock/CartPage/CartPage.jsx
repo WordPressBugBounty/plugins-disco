@@ -1,5 +1,5 @@
+import { __ } from '@wordpress/i18n';
 import { useDispatch, useSelector } from 'react-redux';
-import ComingSoon from '../../../../../components/ComingSoon';
 import { updateCartPage } from '../../../../../features/discount/discountSlice';
 import useIsPro from '../../../../../hooks/useIsPro';
 import BadgeActions from '../components/BadgeActions';
@@ -8,9 +8,8 @@ import BadgeTitle from '../components/BadgeTitle';
 import ProFeatureButton from '../components/ProFeatureButton';
 import Status from '../components/Status';
 import CartCard from './components/CartCard';
-import { __ } from '@wordpress/i18n';
 
-const CartPage = ({ comingSoon = false }) => {
+const CartPage = () => {
 	const { cart } = useSelector((state) => state.discount.design_blocks);
 	const dispatch = useDispatch();
 	const isPro = useIsPro();
@@ -24,7 +23,6 @@ const CartPage = ({ comingSoon = false }) => {
 
 	return (
 		<BadgeComponentContainer>
-			<div className="disco-relative">{comingSoon && <ComingSoon />}</div>
 			<CartCard />
 			<BadgeTitle
 				title={__('Cart Notice', 'disco')}

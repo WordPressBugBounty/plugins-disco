@@ -1,6 +1,7 @@
 import { Dialog } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { __ } from '@wordpress/i18n';
+
 const Popup = ({
 	title = 'Products Added',
 	data = [],

@@ -1,7 +1,7 @@
 import {
 	cn,
 	fmt,
-	fmtDate,
+	formatDate,
 	formatTooltipDate,
 	formatXAxisDate,
 } from '../../lib/utils';
@@ -53,16 +53,16 @@ describe('Utility functions', () => {
 		});
 	});
 
-	describe('fmtDate', () => {
+	describe('formatDate', () => {
 		it('formats a date string to locale format', () => {
-			const result = fmtDate('2025-05-15');
+			const result = formatDate('2025-05-15');
 			expect(result).toMatch(/May\s+15,\s+2025/);
 		});
 
 		it('returns dash for null/undefined', () => {
-			expect(fmtDate(null)).toBe('—');
-			expect(fmtDate(undefined)).toBe('—');
-			expect(fmtDate('')).toBe('—');
+			expect(formatDate(null)).toBe('—');
+			expect(formatDate(undefined)).toBe('—');
+			expect(formatDate('')).toBe('—');
 		});
 	});
 

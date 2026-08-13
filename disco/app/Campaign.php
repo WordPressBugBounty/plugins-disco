@@ -23,6 +23,16 @@ use Disco\App\Utility\Config;
 class Campaign {
 
     /**
+     * Object cache group for campaign rows.
+     */
+    public const CACHE_GROUP = 'disco_campaigns';
+
+    /**
+     * Object cache key holding every campaign row.
+     */
+    public const ROWS_CACHE_KEY = 'disco_campaign_rows';
+
+    /**
      * Get campaigns from database.
      *
 	 * @param string $status Campaign status.
@@ -271,6 +281,8 @@ class Campaign {
         );
 
         if ( $insert ) {
+            self::flush_rows_cache();
+
             return $wpdb->insert_id;
         }
 
@@ -290,7 +302,7 @@ class Campaign {
 
         $table_name = $wpdb->prefix . 'disco_campaigns';
 
-		return $wpdb->update(  //phpcs:ignore
+		$updated = $wpdb->update(  //phpcs:ignore
             $table_name,
             array(
                 'intent'   => $config['discount_intent'],
@@ -307,6 +319,10 @@ class Campaign {
             ),
             array( '%d' )
         );
+
+        self::flush_rows_cache();
+
+        return $updated;
     }
 
     /**
@@ -321,7 +337,12 @@ class Campaign {
 
         $table_name = $wpdb->prefix . 'disco_campaigns';
 
-		return $wpdb->delete( $table_name, array( 'id' => $id ), array( '%d' ) );//phpcs:ignore
+		$deleted = $wpdb->delete( $table_name, array( 'id' => $id ), array( '%d' ) );//phpcs:ignore
+
+        self::flush_rows_cache();
+        \Disco\App\Features\UserLimit::flush_cache( $id );
+
+        return $deleted;
     }
 
     /**
@@ -333,6 +354,13 @@ class Campaign {
      */
     public function get_rows() {
         global $wpdb;
+
+        $cached = wp_cache_get( self::ROWS_CACHE_KEY, self::CACHE_GROUP );
+
+        if ( is_array( $cached ) ) {
+            return $cached;
+        }
+
         // Get all rows
 		$get_campaigns = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}disco_campaigns", OBJECT ); //phpcs:ignore
         $campaigns     = array();
@@ -341,24 +369,38 @@ class Campaign {
             $campaigns[ $result->id ] = $result;
         }
 
+        wp_cache_set( self::ROWS_CACHE_KEY, $campaigns, self::CACHE_GROUP, MINUTE_IN_SECONDS * 5 );
+
         return $campaigns;
     }
 
-    /**
-     * Single Row Query by id.
-     * First check if the row is available in cache.
-     * If not, then fetch from the database.
-     *
-     * @noinspection SqlResolve
-     * @param int $id Campaign id.
-     * @return object|null
-     * @since        1.0.0
-     */
-    public function get_row( $id ) {
-        global $wpdb;
+	/**
+	 * Single Row Query by id.
+	 * First check if the row is available in cache.
+	 * If not, then fetch from the database.
+	 *
+	 * @noinspection SqlResolve
+	 * @param int $id Campaign id.
+	 * @return object|null
+	 * @since        1.0.0
+	 */
+	public function get_row( $id ) {
+		global $wpdb;
 		$query = $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}disco_campaigns WHERE id = %d", $id ); //phpcs:ignore
 
 		return $wpdb->get_row( $query, OBJECT );//phpcs:ignore
+	}
+
+    /**
+     * Invalidate the cached campaign rows.
+     *
+     * Called from every write path so the cache can never serve stale campaigns.
+     *
+     * @return void
+     * @since 1.4.5
+     */
+    public static function flush_rows_cache() {
+        wp_cache_delete( self::ROWS_CACHE_KEY, self::CACHE_GROUP );
     }
 
 }

@@ -4,7 +4,7 @@ import { ChevronDown } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { cn } from '@/lib/utils';
+import { cn, formatDate } from '@/lib/utils';
 import {
 	selectDateRange,
 	setDateRange,
@@ -19,14 +19,6 @@ const DATE_RANGE_OPTIONS = [
 	{ label: 'Last 28 days', days: 28 },
 	{ label: 'Last 90 days', days: 90 },
 ];
-
-function formatDate(date) {
-	return new Intl.DateTimeFormat('en-US', {
-		month: 'short',
-		day: '2-digit',
-		year: 'numeric',
-	}).format(date);
-}
 
 function getDateRange(days) {
 	const today = new Date();
@@ -72,15 +64,17 @@ const DateRangeFilter = () => {
 	const dateRangeText = isCustom
 		? `${format(new Date(startDate), 'MMM dd, yyyy')} - ${format(new Date(endDate), 'MMM dd, yyyy')}`
 		: selectedOption.days <= 1
-		? formatDate(start)
-		: `${formatDate(start)} - ${formatDate(end)}`;
+			? formatDate(start)
+			: `${formatDate(start)} - ${formatDate(end)}`;
 
 	const triggerLabel = isCustom ? 'Custom' : selectedLabel;
 
 	const handlePresetSelect = (label) => {
 		const option = DATE_RANGE_OPTIONS.find((o) => o.label === label);
 		const { start: s, end: e } = getDateRange(option.days);
-		dispatch(setDateRange({ startDate: toApiDate(s), endDate: toApiDate(e) }));
+		dispatch(
+			setDateRange({ startDate: toApiDate(s), endDate: toApiDate(e) })
+		);
 		setSelectedLabel(label);
 		setIsCustom(false);
 		setOpen(false);
@@ -93,7 +87,9 @@ const DateRangeFilter = () => {
 	};
 
 	const handleCustomApply = ({ startDate: s, endDate: e }) => {
-		dispatch(setDateRange({ startDate: toApiDate(s), endDate: toApiDate(e) }));
+		dispatch(
+			setDateRange({ startDate: toApiDate(s), endDate: toApiDate(e) })
+		);
 		setIsCustom(true);
 		setSelectedLabel('Custom');
 		setOpen(false);

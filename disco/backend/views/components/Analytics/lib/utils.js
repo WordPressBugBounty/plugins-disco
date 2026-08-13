@@ -26,7 +26,7 @@ export function fmt(n) {
  * @param {string} d
  * @returns {String} Local date string
  */
-export function fmtDate(d) {
+export function formatDate(d) {
 	if (!d) return '—';
 	return new Date(d).toLocaleDateString('en-US', {
 		month: 'short',

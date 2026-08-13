@@ -20,6 +20,8 @@ namespace Disco\App\Utility;
  * @property   false|mixed|string $filter
  * @property   string $discount_valid_from
  * @property   string $discount_valid_to
+ * @property   int|string $id
+ * @property   int|string $discount_max_user
  * @license    https://opensource.org/licenses/gpl-license.php GNU Public License
  * @category   Utility
  */

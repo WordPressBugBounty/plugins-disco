@@ -71,6 +71,11 @@ if ( ! function_exists( 'disco_add_order_meta' ) ) {
 
 		WC()->session->__unset( 'disco_campaign' );
 
+		// Drop the cached usage counts for the campaigns this order just used.
+		foreach ( $campaigns as $campaign_id ) {
+			\Disco\App\Features\UserLimit::flush_cache( (int) $campaign_id );
+		}
+
 		// Clear price cache so user limits are re-evaluated
 		if ( !function_exists( 'disco_clear_price_cache' ) ) {
 			return;
@@ -81,6 +86,81 @@ if ( ! function_exists( 'disco_add_order_meta' ) ) {
 
 	add_action( 'woocommerce_thankyou', 'disco_add_order_meta', PHP_INT_MAX );
 	add_action( 'woocommerce_payment_complete', 'disco_add_order_meta', PHP_INT_MAX );
+}
+
+if ( ! function_exists( 'disco_flush_campaign_usage_cache_on_status_change' ) ) {
+
+	/**
+	 * Invalidate cached campaign usage counts when an order changes status.
+	 *
+	 * The usage count only counts orders in processing / on-hold / completed, so
+	 * any status transition can change it. Flushing here keeps the cached count
+	 * correct without querying on every cart or fragment-refresh request.
+	 *
+	 * @param int $order_id Order ID.
+	 * @return void
+	 */
+	function disco_flush_campaign_usage_cache_on_status_change( $order_id ) {
+		$order = wc_get_order( $order_id );
+
+		if ( ! $order instanceof WC_Order ) {
+			return;
+		}
+
+		$meta = $order->get_meta( 'disco_campaign', false );
+
+		if ( empty( $meta ) || ! is_array( $meta ) ) {
+			return;
+		}
+
+		foreach ( wp_list_pluck( $meta, 'value' ) as $campaign_id ) {
+			\Disco\App\Features\UserLimit::flush_cache( (int) $campaign_id );
+		}
+	}
+
+	add_action( 'woocommerce_order_status_changed', 'disco_flush_campaign_usage_cache_on_status_change', 10, 1 );
+	add_action( 'woocommerce_trash_order', 'disco_flush_campaign_usage_cache_on_status_change', 10, 1 );
+	add_action( 'woocommerce_untrash_order', 'disco_flush_campaign_usage_cache_on_status_change', 10, 1 );
+	add_action( 'woocommerce_before_delete_order', 'disco_flush_campaign_usage_cache_on_status_change', 10, 1 );
+	add_action( 'woocommerce_delete_order', 'disco_flush_campaign_usage_cache_on_status_change', 10, 1 );
+}
+
+if ( ! function_exists( 'disco_flush_campaign_usage_cache_on_meta_write' ) ) {
+
+	/**
+	 * Invalidate cached campaign usage counts when disco_campaign meta is written
+	 * outside of this plugin.
+	 *
+	 * Imports, migrations and third-party code write order meta directly rather
+	 * than going through disco_add_order_meta(), so without this the cached count
+	 * would stay stale until its TTL expired.
+	 *
+	 * @param int|array $meta_id    Meta ID (array on delete).
+	 * @param int       $object_id  Order ID.
+	 * @param string    $meta_key   Meta key.
+	 * @param mixed     $meta_value Meta value.
+	 * @return void
+	 */
+	// $meta_id and $object_id are unused but required: the meta hooks pass their
+	// arguments positionally, so $meta_key and $meta_value cannot be reached
+	// without declaring them.
+	function disco_flush_campaign_usage_cache_on_meta_write( $meta_id, $object_id, $meta_key, $meta_value ) { //phpcs:ignore
+		if ( 'disco_campaign' !== $meta_key ) {
+			return;
+		}
+
+		\Disco\App\Features\UserLimit::flush_cache( (int) $meta_value );
+	}
+
+	// Legacy (post table) orders.
+	add_action( 'added_post_meta', 'disco_flush_campaign_usage_cache_on_meta_write', 10, 4 );
+	add_action( 'updated_post_meta', 'disco_flush_campaign_usage_cache_on_meta_write', 10, 4 );
+	add_action( 'deleted_post_meta', 'disco_flush_campaign_usage_cache_on_meta_write', 10, 4 );
+
+	// HPOS orders.
+	add_action( 'added_wc_order_meta', 'disco_flush_campaign_usage_cache_on_meta_write', 10, 4 );
+	add_action( 'updated_wc_order_meta', 'disco_flush_campaign_usage_cache_on_meta_write', 10, 4 );
+	add_action( 'deleted_wc_order_meta', 'disco_flush_campaign_usage_cache_on_meta_write', 10, 4 );
 }
 
 if ( ! function_exists( 'disco_reset_campaign_session' ) ) {

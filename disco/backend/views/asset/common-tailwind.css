@@ -715,11 +715,6 @@ video {
   margin: 0px;
 }
 
-.disco-mx-1 {
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
-}
-
 .disco-mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -799,10 +794,6 @@ video {
 
 .disco-ml-2 {
   margin-left: 0.5rem;
-}
-
-.disco-ml-\[100px\] {
-  margin-left: 100px;
 }
 
 .disco-mr-1 {
@@ -920,11 +911,6 @@ video {
 .disco-size-\[18px\] {
   width: 18px;
   height: 18px;
-}
-
-.disco-size-\[52px\] {
-  width: 52px;
-  height: 52px;
 }
 
 .disco-size-\[6px\] {
@@ -1194,10 +1180,6 @@ video {
 
 .disco-w-\[350px\] {
   width: 350px;
-}
-
-.disco-w-\[478px\] {
-  width: 478px;
 }
 
 .disco-w-\[48px\] {
@@ -1805,11 +1787,6 @@ video {
   border-color: rgb(248 113 113 / var(--tw-border-opacity, 1));
 }
 
-.disco-border-slate-200 {
-  --tw-border-opacity: 1;
-  border-color: rgb(226 232 240 / var(--tw-border-opacity, 1));
-}
-
 .disco-border-transparent {
   border-color: transparent;
 }
@@ -1899,11 +1876,6 @@ video {
 
 .disco-bg-\[\#FFCBA133\] {
   background-color: #FFCBA133;
-}
-
-.disco-bg-\[\#d7f5e2\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(215 245 226 / var(--tw-bg-opacity, 1));
 }
 
 .disco-bg-\[\#dcfce7\] {
@@ -2077,11 +2049,6 @@ video {
   background-color: rgb(255 241 242 / var(--tw-bg-opacity, 1));
 }
 
-.disco-bg-slate-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(226 232 240 / var(--tw-bg-opacity, 1));
-}
-
 .disco-bg-teal-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(240 253 250 / var(--tw-bg-opacity, 1));
@@ -2157,10 +2124,6 @@ video {
 
 .disco-bg-clip-text {
   background-clip: text;
-}
-
-.disco-fill-green-500\/20 {
-  fill: rgb(34 197 94 / 0.2);
 }
 
 .disco-object-cover {
@@ -2252,11 +2215,6 @@ video {
 .disco-px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
-}
-
-.disco-px-9 {
-  padding-left: 2.25rem;
-  padding-right: 2.25rem;
 }
 
 .disco-px-\[14px\] {
@@ -2411,20 +2369,8 @@ video {
   padding-top: 0.75rem;
 }
 
-.disco-pt-4 {
-  padding-top: 1rem;
-}
-
-.disco-pt-5 {
-  padding-top: 1.25rem;
-}
-
 .disco-pt-6 {
   padding-top: 1.5rem;
-}
-
-.disco-pt-9 {
-  padding-top: 2.25rem;
 }
 
 .disco-pt-\[14px\] {
@@ -2640,10 +2586,6 @@ video {
   letter-spacing: -0.14px;
 }
 
-.disco-tracking-\[-0\.24px\] {
-  letter-spacing: -0.24px;
-}
-
 .disco-tracking-\[-0\.2px\] {
   letter-spacing: -0.2px;
 }
@@ -2656,10 +2598,6 @@ video {
   letter-spacing: 0.06em;
 }
 
-.disco-tracking-\[0\.16px\] {
-  letter-spacing: 0.16px;
-}
-
 .disco-tracking-\[0\.22px\] {
   letter-spacing: 0.22px;
 }
@@ -2670,10 +2608,6 @@ video {
 
 .disco-tracking-\[0\.5px\] {
   letter-spacing: 0.5px;
-}
-
-.disco-tracking-\[0\.88px\] {
-  letter-spacing: 0.88px;
 }
 
 .disco-tracking-\[2\.5px\] {
@@ -2779,11 +2713,6 @@ video {
 .disco-text-\[\#374151\] {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity, 1));
-}
-
-.disco-text-\[\#422006\] {
-  --tw-text-opacity: 1;
-  color: rgb(66 32 6 / var(--tw-text-opacity, 1));
 }
 
 .disco-text-\[\#475569\] {
@@ -2898,10 +2827,6 @@ video {
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
 
-.disco-text-black\/75 {
-  color: rgb(0 0 0 / 0.75);
-}
-
 .disco-text-blue-600 {
   --tw-text-opacity: 1;
   color: rgb(37 99 235 / var(--tw-text-opacity, 1));
@@ -2992,16 +2917,6 @@ video {
   color: rgb(239 68 68 / var(--tw-text-opacity, 1));
 }
 
-.disco-text-slate-400 {
-  --tw-text-opacity: 1;
-  color: rgb(148 163 184 / var(--tw-text-opacity, 1));
-}
-
-.disco-text-slate-600 {
-  --tw-text-opacity: 1;
-  color: rgb(71 85 105 / var(--tw-text-opacity, 1));
-}
-
 .disco-text-transparent {
   color: transparent;
 }
@@ -3065,12 +2980,6 @@ video {
 .disco-shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.disco-shadow-\[0_0_0_6px_rgba\(34\,197\,94\,0\.1\)\] {
-  --tw-shadow: 0 0 0 6px rgba(34,197,94,0.1);
-  --tw-shadow-colored: 0 0 0 6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -3310,10 +3219,6 @@ li {
 
 .last\:disco-border-b-0:last-child {
   border-bottom-width: 0px;
-}
-
-.visited\:disco-text-primary:visited {
-  color: rgb(71 205 137 );
 }
 
 .visited\:disco-outline-none:visited {

@@ -9,7 +9,7 @@
  * Plugin Name:       Disco
  * Plugin URI:        https://webappick.com/
  * Description:       Create logical, dynamic and automated discounts for your WooCommerce Store based on product, cart, and cart item information.
- * Version:           1.4.7
+ * Version:           1.4.8
  * Author:            WebAppick
  * Author URI:        https://webappick.com/
  * License:           GPLv3 or later
@@ -19,7 +19,7 @@
  *
  * WP Requirement & Test
  * Requires at least: 5.9
- * Tested up to: 7.0.3
+ * Tested up to: 7.0.4
  * Requires PHP: 7.4
  * Requires Plugins: woocommerce
  *
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'We\'re sorry, but you can not directly access this file.' );
 }
 
-const DISCO_VERSION    = '1.4.7';
+const DISCO_VERSION    = '1.4.8';
 const DISCO_TEXTDOMAIN = 'disco';
 const DISCO_NAME       = 'Disco';
 

@@ -653,15 +653,8 @@ trait IntentHelper {//phpcs:ignore
 			 *
 			 * Compare with total product meta and apply discount
 			 */
-			$discount_limit = $intent->campaign->discount_max_user;
-
-			// Only count applied orders when a limit is actually configured.
-			if ( ! empty( $discount_limit ) && $discount_limit >= 0 ) {
-				$total_applied_campaign = ( new UserLimit )->disco_get_total_applied_campaign( $intent->campaign->id );
-
-				if ( $total_applied_campaign >= $discount_limit ) {
-					continue;
-				}
+			if ( ( new UserLimit )->disco_is_limit_reached( $intent->campaign ) ) {
+				continue;
 			}
 
 			$items         = $this->get_items_for_discount( $cart, $intent->campaign );
@@ -778,15 +771,8 @@ trait IntentHelper {//phpcs:ignore
 			 *
 			 * Compare with total product meta and apply discount
 			 */
-			$discount_limit = $intent->campaign->discount_max_user;
-
-			// Only count applied orders when a limit is actually configured.
-			if ( ! empty( $discount_limit ) && $discount_limit >= 0 ) {
-				$total_applied_campaign = ( new UserLimit )->disco_get_total_applied_campaign( $intent->campaign->id );
-
-				if ( $total_applied_campaign >= $discount_limit ) {
-					continue;
-				}
+			if ( ( new UserLimit )->disco_is_limit_reached( $intent->campaign ) ) {
+				continue;
 			}
 
 			$items         = $this->get_items_for_discount( $cart, $intent->campaign );

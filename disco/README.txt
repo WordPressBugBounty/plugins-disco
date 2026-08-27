@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: woocommerce discount, discount rules, dynamic pricing, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.1
-Stable tag: 1.4.10
+Stable tag: 1.4.11
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -15,7 +15,7 @@ WooCommerce discount rules plugin to create automatic product and cart discounts
 
 **Disco** is a complete WooCommerce discount rules plugin that automatically applies percentage discounts and fixed discounts based on conditions you define. Unlike coupon codes that customers must find and enter manually, Disco discount rules activate instantly when shoppers meet your criteria. No codes to distribute, no codes to forget.
 
-**Create product discounts, cart discounts, bulk discounts, bundle discounts, BOGO deals, and free shipping** offers using an intuitive visual interface – all without writing code or managing coupon codes.
+**Create product discounts, cart discounts, bulk discounts, bundle discounts, BOGO deals, and free shipping offers** using an intuitive visual interface – covering 100+ scenarios without writing code or managing coupon codes.
 
 **[Upgrade to Pro](https://discoplugin.com/pricing/?utm_source=org-to-pro&utm_medium=org-to-pro&utm_campaign=org-to-pro&utm_id=1) | [View Demo](https://app.instawp.io/launch?s=discopro&d=v2) | [Complete Documentation](https://discoplugin.com/docs/) | [Video Tutorials](https://www.youtube.com/@WebAppick) | [Get Support](https://discoplugin.com/support/)**
 
@@ -26,7 +26,7 @@ Fully updated for 2026 with the latest **WooCommerce 11.x** and **WordPress 7.x*
 [youtube https://www.youtube.com/watch?v=fER9yli8JW0&ab_channel=WebAppick]
 
 
-=== 😩 The Problem with Traditional WooCommerce Discounts ===
+=== The Problem with Traditional WooCommerce Discounts ===
 
 Traditional WooCommerce discounts rely on coupon codes. This creates several challenges for store owners:
 
@@ -35,7 +35,7 @@ You have to create codes, distribute them through email or social media, hope cu
 Coupon codes also create customer service issues. **Why didn't my code work?**, **Can I get a new code, mine expired?**, **I forgot to enter my code, can you apply it after purchase?** These support requests take time and create friction.Disco eliminates these problems entirely.
 
 
-=== 😎 How WooCommerce Discount Rules Work ===
+=== How WooCommerce Discount Rules Work ===
 
 With Disco, you create discount rules with conditions instead of coupon codes. When a customer meets the conditions, the discount applies automatically. There's nothing to enter, nothing to remember.
 
@@ -46,7 +46,7 @@ Or create a rule: **Free shipping on orders over $50.** Customers adding items t
 This automatic approach leads to higher conversion rates because you've removed the friction between the customer and their discount. They don't have to do anything except meet the conditions you've set.
 
 
-=== ☞  🔥 Six Types of WooCommerce Discount Campaigns 🔥 ===
+=== Six Types of WooCommerce Discount Campaigns ===
 
 **Disco supports six distinct discount campaign types**, each designed for different promotional strategies. You can run multiple campaigns simultaneously to create sophisticated promotional programs.
 
@@ -99,6 +99,8 @@ You define which products make up a bundle and what discount applies when custom
 
 ➡️ <a target="_blank" href="https://discoplugin.com/docs-category/buy-one-get-one/"> **BOGO Discounts (Pro Feature):** </a> Buy One Get One deals are among the most effective promotional strategies. **Disco Pro lets you create flexible BOGO discount rules with various configurations.**
 
+[youtube https://www.youtube.com/watch?v=1yEhgX4xb9M]
+
 Configure the *buy* quantity (how many items customers must purchase), the *get* quantity (how many discounted items they receive), and the discount on the *get* items (*free, percentage off, or fixed amount off*).
 
 BOGO rules can apply within the same product or across different products (buy product X, get product Y discounted).
@@ -113,6 +115,8 @@ BOGO rules can apply within the same product or across different products (buy p
 
 ➡️ <a target="_blank" href="https://discoplugin.com/docs-category/free-shipping-discount/"> **Free Shipping Discounts:** </a> Free shipping offers effectively reduce cart abandonment and increase conversions. Disco lets you create conditional free shipping rules based on cart value, specific products, customer attributes, or other criteria.
 
+[youtube https://www.youtube.com/watch?v=tryJ9i9DPdE&list=PLapCcXJAoEem7o-IxIzGE1pYibhb3KScJ&index=3]
+
 When customers qualify, **Disco automatically sets shipping to free at checkout.** Combined with messaging that shows **You're $X away from free shipping,** you can motivate customers to add more items.
 
 **Free shipping rule examples:**
@@ -124,7 +128,7 @@ When customers qualify, **Disco automatically sets shipping to free at checkout.
 * Free shipping when cart contains 10 or more items
 * Free shipping on orders containing specific products
 
-=== 💯 Advanced WooCommerce Discount Conditions for Every Scenario 💯 ===
+=== 💯 Advanced WooCommerce Discount Conditions for Every Scenario ===
 
 **The power of Disco lies in combining multiple conditions to create precisely targeted discount rules.** You're not limited to broad promotions – you can create sophisticated rules that target exactly the right products, customers, and timing.
 
@@ -414,17 +418,34 @@ WooCommerce coupons require customers to obtain a code and enter it at checkout.
 
 Disco supports six discount campaign types: Product discounts apply percentage or fixed discounts to specific products, categories, or tags. Cart discounts reduce the entire cart total based on subtotal or item count. Bulk discounts create tiered quantity pricing. Bundle discounts offer savings on product combinations. BOGO deals provide buy-one-get-one offers (Pro feature). Free shipping rules offer conditional free shipping.
 
+* **Product discounts** — apply percentage or fixed discounts to specific products, categories, tags, attributes, or your entire catalog.
+* **Cart discounts** — reduce the entire order based on subtotal, item count, or total quantity.
+* **Bulk discounts** — create tiered, quantity-based pricing that rewards larger purchases.
+* **Bundle discounts** — offer savings when specific product combinations are purchased together.
+* **BOGO discounts (Pro)** — flexible buy-X-get-Y offers, including free, percentage-off, or fixed-amount-off variants, within or across products/categories.
+* **Free shipping discounts** — conditional free shipping based on cart value, products, customer type, or region.
+
+Each of these types can be layered with product, cart, price, customer, schedule, and purchase-history conditions — which is how Disco reaches 100+ configurable discount scenarios without needing separate "types" for each one (e.g., a storewide sale, a category-specific sale, or a spend-based discount are all built from these six types plus conditions, not standalone features).
+
 = Can I create percentage discounts and fixed amount discounts? =
 
 Yes. Every discount type in Disco supports both percentage-based discounts (such as 10% off or 25% off) and fixed amount discounts (such as $5 off or $20 off). You select which discount method works best for each campaign you create.
 
-= Does Disco work with variable products and product variations? =
+= Can I set a global discount for all products with Disco? =
 
-Yes. Disco fully supports WooCommerce variable products. Discount rules apply to all variations that match your specified conditions. You can also target specific variations using product attributes in your condition settings.
+Yes! Disco's Product-Based Discounts let you apply a percentage or fixed discount across your entire product catalog — not just specific items or categories. Simply create a discount rule and select "entire catalog" as the scope.
+
+This is perfect for storewide sales events like Black Friday or seasonal promotions. You can also combine it with Schedule Conditions to run the discount only during a specific date range, so it automatically starts and ends without any manual work.
+
+Once active, discounted prices display automatically across your shop — with the original price shown as strikethrough — no coupon codes required.
 
 = Can I apply discounts to specific categories only? =
 
 Yes. Product conditions allow you to target specific categories including both parent categories and child subcategories. You can also combine category conditions with other conditions such as customer role or cart value for precise targeting.
+
+= Does Disco work with variable products and product variations? =
+
+Yes. Disco fully supports WooCommerce variable products. Discount rules apply to all variations that match your specified conditions. You can also target specific variations using product attributes in your condition settings.
 
 = Can I create different discounts for different customer groups? =
 
@@ -438,29 +459,43 @@ Yes. Every discount campaign can have a specific start date and time plus an end
 
 Yes. Usage limit settings let you specify maximum uses per individual customer and maximum total uses across all customers. This prevents discount abuse and helps you control promotional costs for limited offers.
 
+= Can I create multiple discount offers? =
+
+Yes. You can run multiple discount campaigns at the same time with Disco. Whether it's a bulk discount on one category, a BOGO offer on another, and free shipping storewide — you can set them all up simultaneously to build a sophisticated, layered promotional strategy.
+
+Each rule works independently based on the conditions you set (products, cart contents, customer type, schedule, etc.), so your offers apply automatically to the right customers without conflicting or requiring manual management.
+
+= How many discount rules can I create? =
+
+Disco lets you create multiple discount rules and run them simultaneously for example, a bulk discount on one category, a BOGO offer on another, and a storewide free shipping rule, all active at once. This lets you build layered, sophisticated promotional campaigns without conflicts, since each rule applies automatically based on its own conditions.
+
 = Can multiple discounts apply to the same order? =
 
 Yes. When a customer qualifies for multiple discount rules, those discounts can stack together on the same order. You maintain control over discount priorities and can configure how multiple discounts interact.
 
-= Will Disco slow down my WooCommerce store? =
+= Do discounted prices show on product pages before checkout? =
 
-No. Disco is performance-optimized with efficient database queries and intelligent caching mechanisms. Discount calculations execute quickly without impacting page load times. The plugin is tested on high-traffic WooCommerce stores to ensure reliable performance.
-
-= Is Disco compatible with my WooCommerce theme? =
-
-Yes. Disco works with any properly coded WooCommerce theme. The plugin uses standard WooCommerce hooks and filters to display discounted prices, ensuring compatibility with most themes and page builders including Elementor, Divi, and others.
-
-= Does Disco support multiple currencies? =
-
-Yes. Disco integrates with popular multi-currency plugins including WPML WooCommerce Multilingual, FOX Currency Switcher, CURCY Multi Currency for WooCommerce, and Aelia Currency Switcher. Discount rules calculate and display correctly across all configured currencies.
+Yes. Product discounts display directly on product pages with the original price shown in strikethrough and the discounted price displayed prominently. Bulk discount pricing tables also display on product pages so customers see quantity tier savings before purchasing.
 
 = How do I create Buy One Get One (BOGO) offers? =
 
 BOGO deals are available in Disco Pro. The Pro version lets you create various BOGO configurations including buy-one-get-one-free, buy-two-get-one-free, buy-one-get-one-at-percentage-off, and cross-product deals where buying product X discounts product Y.
 
-= Do discounted prices show on product pages before checkout? =
+= Does Disco support multiple currencies? =
 
-Yes. Product discounts display directly on product pages with the original price shown in strikethrough and the discounted price displayed prominently. Bulk discount pricing tables also display on product pages so customers see quantity tier savings before purchasing.
+Yes. Disco integrates with popular multi-currency plugins including WPML WooCommerce Multilingual, FOX Currency Switcher, CURCY Multi Currency for WooCommerce, and Aelia Currency Switcher. Discount rules calculate and display correctly across all configured currencies.
+
+= Is Disco compatible with my WooCommerce theme? =
+
+Yes. Disco works with any properly coded WooCommerce theme. The plugin uses standard WooCommerce hooks and filters to display discounted prices, ensuring compatibility with most themes and page builders including Elementor, Divi, and others.
+
+= Will Disco slow down my WooCommerce store? =
+
+No. Disco is performance-optimized with efficient database queries and intelligent caching mechanisms. Discount calculations execute quickly without impacting page load times. The plugin is tested on high-traffic WooCommerce stores to ensure reliable performance.
+
+= What makes Disco different from other discount plugins? =
+
+Disco applies discounts automatically based on conditions you set — no coupon codes required. Customers simply see the discounted price the moment they qualify, whether that's a specific product, cart total, or customer type. This eliminates cart abandonment from forgotten codes and removes the "why didn't my code work" support tickets that come with traditional coupon-based discounting.
 
 = How do I get help if I have questions or issues? =
 
@@ -468,20 +503,23 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 
 == Screenshots ==
 1. Campaign list overview showing all discount rules.
-2. Showing create campaign page with all discount types.
+2. Showing the create campaign page with all discount types.
 3. Creating a new product-based discount campaign.
-4. Creating a new cart based discount campaign.
+4. Creating a new cart-based discount campaign.
 5. Creating a new free shipping discount campaign.
 6. Creating a new Bulk discount campaign.
 7. Creating a Buy one, Get one discount campaign.
-8. Showing conditions creations.
+8. Showing condition creation.
 9. Showing campaign display on product page.
-10. Conditions creations with cart conditions.
-11. Order history based conditions creation.
+10. Creating conditions with cart conditions.
+11. Order history-based conditions creation.
 12. Showing settings page.
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.4.11(Aug 27, 2026) =
+* Update: Readme text updated.
+
 = 1.4.10(Aug 20, 2026) =
 * Tweak: WordPress compatibility checked with version 7.1, no issue found.
 

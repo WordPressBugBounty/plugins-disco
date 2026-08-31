@@ -1,10 +1,10 @@
 === Discount Rules for WooCommerce – Disco | Dynamic Pricing, Conditions, Bulk, Bundle, BOGO ===
 Contributors: webappick,wahid0003
 Donate link: https://webappick.com/
-Tags: woocommerce discount, discount rules, dynamic pricing, bulk discount, bogo
+Tags: bundle discount plugin, free shipping, product discount, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.1
-Stable tag: 1.4.11
+Stable tag: 1.4.12
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -517,6 +517,9 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.4.12(Aug 31, 2026) =
+* Update: Plugin tags updated.
+
 = 1.4.11(Aug 27, 2026) =
 * Update: Readme text updated.
 

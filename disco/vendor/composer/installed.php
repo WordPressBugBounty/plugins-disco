@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'webappick/disco',
-        'pretty_version' => '1.4.12',
-        'version' => '1.4.12.0',
-        'reference' => '8e726cea62f67c71439380fe57812b5662450bbe',
+        'pretty_version' => '1.4.13',
+        'version' => '1.4.13.0',
+        'reference' => '5b2f9948778bc5e456a7a20bdf2af03438b2770d',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -47,9 +47,9 @@
             'dev_requirement' => false,
         ),
         'webappick/disco' => array(
-            'pretty_version' => '1.4.12',
-            'version' => '1.4.12.0',
-            'reference' => '8e726cea62f67c71439380fe57812b5662450bbe',
+            'pretty_version' => '1.4.13',
+            'version' => '1.4.13.0',
+            'reference' => '5b2f9948778bc5e456a7a20bdf2af03438b2770d',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

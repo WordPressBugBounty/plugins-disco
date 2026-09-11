@@ -65,32 +65,32 @@ const DiscountType = () => {
 	};
 
 	return (
-		<ComponentBox className="disco-mt-5">
+		<ComponentBox className="disco:mt-5">
 			<CommonHeadingBox
 				title={__(`${discount_intent} Rules`, 'disco')}
 				url={docUrls[discount_intent]}
 			/>
-			<div className="disco-flex disco-gap-6 disco-p-4">
-				<div className="disco-grow disco-max-w-[300px]">
-					<label className="disco-block !disco-text-base disco-text-black disco-mb-2">
+			<div className="disco:flex disco:gap-6 disco:p-4">
+				<div className="disco:grow disco:max-w-[300px]">
+					<label className="disco:block disco:text-base! disco:text-black disco:mb-2">
 						{__('Discount Type:', 'disco')}
 					</label>
 					{isLoading ? (
-						<div className="disco-bg-gray-200 disco-h-[42px] disco-rounded-md disco-animate-pulse"></div>
+						<div className="disco:bg-gray-200 disco:h-[42px] disco:rounded-md disco:animate-pulse"></div>
 					) : (
 						<SingleSelect
 							items={typeValues}
 							selected={discount_type}
 							onchange={handleTypeChange}
 							placeholder={__('Select Discount Type', 'disco')}
-							className="disco-bg-white"
+							className="disco:bg-white"
 						/>
 					)}
 				</div>
 
 				{discount_type !== 'free' && (
 					<div>
-						<label className="disco-block !disco-text-base disco-text-black disco-mb-2">
+						<label className="disco:block disco:text-base! disco:text-black disco:mb-2">
 							{__('Discount Value:', 'disco')}
 						</label>
 						<Input
@@ -105,8 +105,8 @@ const DiscountType = () => {
 				)}
 
 				{discount_intent === 'Cart' && (
-					<div className="disco-relative">
-						<label className="disco-block !disco-text-base disco-text-black disco-mb-2">
+					<div className="disco:relative">
+						<label className="disco:block disco:text-base! disco:text-black disco:mb-2">
 							{__('Discount Label:', 'disco')}
 						</label>
 						<Input

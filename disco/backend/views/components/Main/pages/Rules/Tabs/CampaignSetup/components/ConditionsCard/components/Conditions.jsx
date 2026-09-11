@@ -70,35 +70,35 @@ const Conditions = () => {
 
 	if (isLoading) {
 		return (
-			<div className="disco-px-5 disco-border-t disco-mt-5 disco-pt-5">
+			<div className="disco:px-5 disco:border-t disco:mt-5 disco:pt-5">
 				<LoadingSpinner />
 			</div>
 		);
 	}
 
 	return (
-		<div className="disco-px-4">
+		<div className="disco:px-4">
 			{conditionsGroup.map((conditionGroup, index) => {
 				return (
 					<div
 						key={conditionGroup.id}
-						className="disco-relative disco-border disco-rounded-lg disco-bg-white first:disco-mt-5 disco-mt-12 disco-pt-2 disco-pb-5"
+						className="disco:relative disco:border disco:rounded-lg disco:bg-white disco:first:mt-5 disco:mt-12 disco:pt-2 disco:pb-5"
 					>
 						<button
 							onClick={() =>
 								handleConditionGroupDelete(conditionGroup)
 							}
-							className="disco-absolute -disco-bottom-2 -disco-right-2 disco-transition-colors disco-text-white disco-rounded-full disco-flex disco-justify-center disco-items-center disco-h-5 disco-w-5"
+							className="disco:absolute disco:-bottom-2 disco:-right-2 disco:transition-colors disco:text-white disco:rounded-full disco:flex disco:justify-center disco:items-center disco:h-5 disco:w-5"
 						>
-							<div className="disco-inline-flex disco-border disco-p-0.5 disco-border-red-500 disco-rounded-full">
-								<XMarkIcon className="disco-h-4 disco-w-4 !disco-bg-red-500 disco-rounded-full" />
+							<div className="disco:inline-flex disco:border disco:p-0.5 disco:border-red-500 disco:rounded-full">
+								<XMarkIcon className="disco:h-4 disco:w-4 disco:bg-red-500! disco:rounded-full" />
 							</div>
 						</button>
-						<div className="disco-flex disco-justify-center">
+						<div className="disco:flex disco:justify-center">
 							{index !== 0 && (
-								<div className="disco-relative -disco-mt-11">
+								<div className="disco:relative disco:-mt-11">
 									<OperatorRadio
-										fontSize="disco-text-[11px]"
+										fontSize="disco:text-[11px]"
 										value={conditionGroup.base_operator}
 										onChange={(operator) =>
 											handleChangeGroupOperator(
@@ -113,9 +113,9 @@ const Conditions = () => {
 						{conditionGroup.base_filters.map((filter, index) => (
 							<div key={filter.id}>
 								{index !== 0 && (
-									<div className="disco-mt-3 disco-px-5">
+									<div className="disco:mt-3 disco:px-5">
 										<OperatorRadio
-											fontSize="disco-text-[11px]"
+											fontSize="disco:text-[11px]"
 											value={filter.operator}
 											onChange={(operator) =>
 												handleOperatorChange(
@@ -128,7 +128,7 @@ const Conditions = () => {
 									</div>
 								)}
 
-								<div className="disco-flex  disco-gap-4 disco-mt-3 disco-px-5">
+								<div className="disco:flex  disco:gap-4 disco:mt-3 disco:px-5">
 									<div className="">
 										<SelectFilterDropdown
 											allFilters={
@@ -138,7 +138,7 @@ const Conditions = () => {
 											condition={filter}
 										/>
 									</div>
-									<div className="disco-w-full disco-flex disco-gap-4 disco-justify-between disco-items-center">
+									<div className="disco:w-full disco:flex disco:gap-4 disco:justify-between disco:items-center">
 										<Condition
 											condition={filter}
 											conditionGroup={conditionGroup}
@@ -152,24 +152,24 @@ const Conditions = () => {
 													conditionGroup
 												)
 											}
-											className="disco-flex-shrink-0"
+											className="disco:shrink-0"
 										>
-											<TrashIcon className="disco-h-5 disco-w-5 disco-text-red-500 disco-transition-colors" />
+											<TrashIcon className="disco:h-5 disco:w-5 disco:text-red-500 disco:transition-colors" />
 										</button>
 									</div>
 								</div>
 							</div>
 						))}
-						<div className="disco-px-5 disco-mt-3">
+						<div className="disco:px-5 disco:mt-3">
 							<Button
 								testId="add-another-condition"
 								onClick={() =>
 									handleAddCondition(conditionGroup)
 								}
 								type={'transparent'}
-								className="!disco-px-2 !disco-py-1.5 !disco-text-sm !disco-font-regular"
+								className="disco:px-2! disco:py-1.5! disco:text-sm! disco:font-regular!"
 							>
-								<PlusCircleIcon className="disco-h-5 disco-w-5 disco-text-primary" />
+								<PlusCircleIcon className="disco:h-5 disco:w-5 disco:text-primary" />
 								{__('Add Another Condition', 'disco')}
 							</Button>
 						</div>

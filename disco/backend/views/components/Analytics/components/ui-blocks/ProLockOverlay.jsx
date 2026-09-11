@@ -28,8 +28,8 @@ const ProLockOverlay = ({
 	description,
 	showIcon = false,
 	size = 'default',
-	position = 'disco-inset-0',
-	rounded = 'disco-rounded-[10px]',
+	position = 'disco:inset-0',
+	rounded = 'disco:rounded-[10px]',
 	className,
 	style,
 	titleClassName,
@@ -40,30 +40,30 @@ const ProLockOverlay = ({
 		<div
 			style={style}
 			className={cn(
-				'disco-absolute disco-z-10 disco-flex disco-flex-col disco-items-center disco-justify-center disco-gap-3 disco-bg-white/80 disco-px-6 disco-text-center disco-backdrop-blur-[2px]',
+				'disco:absolute disco:z-10 disco:flex disco:flex-col disco:items-center disco:justify-center disco:gap-3 disco:bg-white/80 disco:px-6 disco:text-center disco:backdrop-blur-[2px]',
 				position,
 				rounded,
 				className
 			)}
 		>
 			{(showIcon || title || description) && (
-				<div className="disco-flex disco-flex-col disco-items-center disco-gap-1.5">
+				<div className="disco:flex disco:flex-col disco:items-center disco:gap-1.5">
 					{(showIcon || title) && (
-						<div className="disco-flex disco-items-center disco-gap-2">
+						<div className="disco:flex disco:items-center disco:gap-2">
 							{showIcon && (
 								<Lock
-									className="disco-size-[18px] disco-text-[#1f2937]"
+									className="disco:size-[18px] disco:text-[#1f2937]"
 									strokeWidth={2.5}
 								/>
 							)}
 							{title && (
 								<p
 									className={cn(
-										'disco-text-[#1f2937]',
+										'disco:text-[#1f2937]',
 										titleClassName ??
 											(isLg
-												? 'disco-text-2xl disco-font-bold disco-tracking-tight'
-												: 'disco-text-base disco-font-medium')
+												? 'disco:text-2xl disco:font-bold disco:tracking-tight'
+												: 'disco:text-base disco:font-medium')
 									)}
 								>
 									{title}
@@ -72,7 +72,7 @@ const ProLockOverlay = ({
 						</div>
 					)}
 					{description && (
-						<p className="disco-max-w-md disco-text-sm disco-text-[#6b7280]">
+						<p className="disco:max-w-md disco:text-sm disco:text-[#6b7280]">
 							{description}
 						</p>
 					)}
@@ -81,8 +81,8 @@ const ProLockOverlay = ({
 			<Button
 				onClick={() => window.open(PRICING_URL, '_blank')}
 				className={cn(
-					'disco-rounded disco-bg-primary disco-font-semibold disco-text-white disco-shadow-[3px_4px_2px_rgba(0,0,0,0.07)] hover:disco-bg-primary-dark',
-					isLg && 'disco-h-auto disco-px-6 disco-py-3 disco-text-base'
+					'disco:rounded disco:bg-primary disco:font-semibold disco:text-white disco:shadow-[3px_4px_2px_rgba(0,0,0,0.07)] disco:hover:bg-primary-dark',
+					isLg && 'disco:h-auto disco:px-6 disco:py-3 disco:text-base'
 				)}
 			>
 				{label}

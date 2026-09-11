@@ -73,7 +73,7 @@ const CountdownTimeView = () => {
 	};
 
 	return (
-		<BadgeCardContainer className="disco-h-[450px] disco-bg-white disco-top-0 !disco-sticky">
+		<BadgeCardContainer className="disco:h-[450px] disco:bg-white disco:top-0 disco:sticky!">
 			<div>
 				<ProductPreviewCard>
 					<CountdownTimer
@@ -92,10 +92,10 @@ const CountdownTimeView = () => {
 						minWidth={box?.['min-width'] || '50px'}
 					/>
 				</ProductPreviewCard>
-				<div className="disco-flex disco-mt-1 disco-justify-center disco-gap-4 disco-py-4">
+				<div className="disco:flex disco:mt-1 disco:justify-center disco:gap-4 disco:py-4">
 					<Button
 						type="transparent"
-						className="disco-border-red-500"
+						className="disco:border-red-500"
 						onClick={handleResetAll}
 					>
 						{__('Reset All', 'disco')}

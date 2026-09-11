@@ -73,29 +73,29 @@ const Settings = () => {
 
 	if (isLoading) {
 		return (
-			<div className="disco-h-96 disco-w-full disco-flex disco-justify-center disco-items-center">
+			<div className="disco:h-96 disco:w-full disco:flex disco:justify-center disco:items-center">
 				<LoadingSpinner />
 			</div>
 		);
 	}
 
 	return (
-		<div className="disco-mt-2.5 disco-mr-4 disco-ml-0.5 disco-flex disco-gap-4">
-			<div className="disco-flex-grow disco-border disco-bg-gray-50 disco-white disco-rounded-xl disco-p-5">
-				<div className="disco-border disco-border-t-0 disco-border-x-0 disco-border-b-white disco-mb-3">
+		<div className="disco:mt-2.5 disco:mr-4 disco:ml-0.5 disco:flex disco:gap-4">
+			<div className="disco:grow disco:border disco:bg-gray-50 disco:white disco:rounded-xl disco:p-5">
+				<div className="disco:border disco:border-t-0 disco:border-x-0 disco:border-b-white disco:mb-3">
 					<ComponentContainer
 						heading={__('Settings', 'disco')}
-						className="!disco-mt-0"
+						className="disco:mt-0!"
 					/>
 				</div>
-				<div className="disco-bg-white disco-p-4 disco-border disco-border-white disco-rounded-xl">
+				<div className="disco:bg-white disco:p-4 disco:border disco:border-white disco:rounded-xl">
 					<SettingsTitle
 						title={__('Product Price Type', 'disco')}
 						subtitle={__(
 							'Choose product price type by which discount will be calculate.',
 							'disco'
 						)}
-						className="disco-mb-2"
+						className="disco:mb-2"
 						url="https://discoplugin.com/docs/product-price-type/"
 					>
 						<SingleSelectRadio
@@ -113,7 +113,7 @@ const Settings = () => {
 							"Choose discount's amount to define the maximum and minimum discounts.",
 							'disco'
 						)}
-						className="disco-mb-2"
+						className="disco:mb-2"
 						url="https://discoplugin.com/docs/minimum-maximum-discount-amount/"
 					>
 						<SingleSelectRadio
@@ -133,12 +133,12 @@ const Settings = () => {
 							'Decide how WooCommerce coupons and Disco campaigns should work together.',
 							'disco'
 						)}
-						className="disco-mb-2"
+						className="disco:mb-2"
 						url="https://discoplugin.com/docs/coupons-campaigns-behavior/"
 					>
 						<SingleSelect
-							className="disco-bg-white disco-test-select-class"
-							buttonClass="disco-min-w-[320px]"
+							className="disco:bg-white disco-test-select-class"
+							buttonClass="disco:min-w-[320px]"
 							placeholder={__('Select Value', 'disco')}
 							items={items?.discount_priority_type}
 							selected={settings?.discount_priority_type ?? ''}
@@ -156,12 +156,12 @@ const Settings = () => {
 							'Decide how WooCommerce on sale badge shows for any discount rules.',
 							'disco'
 						)}
-						className="disco-mb-2"
+						className="disco:mb-2"
 						url="https://discoplugin.com/docs/woocommerce-on-sale-badge/"
 					>
 						<SingleSelect
-							className="disco-bg-white disco-test-select-class"
-							buttonClass="disco-min-w-[320px]"
+							className="disco:bg-white disco-test-select-class"
+							buttonClass="disco:min-w-[320px]"
 							placeholder={__('Select Value', 'disco')}
 							items={items?.on_sale_badge}
 							selected={settings?.on_sale_badge ?? ''}
@@ -176,10 +176,10 @@ const Settings = () => {
 							'Choose where the strike-through price appears across your store.',
 							'disco'
 						)}
-						className="disco-mb-2 "
+						className="disco:mb-2 "
 						url="https://discoplugin.com/docs/strikeout-price-settings/"
 					>
-						<div className="disco-flex disco-items-center disco-gap-8">
+						<div className="disco:flex disco:items-center disco:gap-8">
 							{Object.keys(items.show_strike_through).map(
 								(key) => (
 									<CheckBox
@@ -209,7 +209,7 @@ const Settings = () => {
 						</div>
 					</SettingsTitle>
 				</div>
-				<div className="disco-mt-8 disco-flex disco-justify-end disco-gap-4">
+				<div className="disco:mt-8 disco:flex disco:justify-end disco:gap-4">
 					<Link to="/">
 						<Button type="transparent">
 							{__('Back', 'disco')}

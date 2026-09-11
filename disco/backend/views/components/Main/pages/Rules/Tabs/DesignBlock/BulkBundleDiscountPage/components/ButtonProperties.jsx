@@ -40,7 +40,7 @@ const ButtonProperties = () => {
 	};
 
 	return (
-		<div className="disco-mt-2 disco-flex disco-gap-8 disco-justify-between">
+		<div className="disco:mt-2 disco:flex disco:gap-8 disco:justify-between">
 			<ButtonText
 				title={__('Button Text', 'disco')}
 				buttonText={button.text}
@@ -55,8 +55,8 @@ const ButtonProperties = () => {
 			/>
 			<BorderRadiusControl
 				title={__('Button Radius', 'disco')}
-				className="disco-flex-grow"
-				labelClassName="!disco-font-light"
+				className="disco:grow"
+				labelClassName="disco:font-light!"
 				button={button}
 				handleRadius={handleRadiusUpdate}
 				handleIsChain={handleIsChainToggle}

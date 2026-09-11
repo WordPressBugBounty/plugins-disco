@@ -85,11 +85,11 @@ const BOGORuleItem = ({ rule, index }) => {
 	}
 
 	return (
-		<div className="disco-grid disco-grid-cols-12 disco-gap-4 !disco-mt-0">
-			<div className="disco-col-span-3 disco-bg-gray-100 disco-border disco-p-3 disco-pt-2 disco-rounded-b-lg disco-border-white !disco-border-t-0 disco-flex disco-gap-4">
-				<div className="disco-grow flex-shrink-0">
+		<div className="disco:grid disco:grid-cols-12 disco:gap-4 disco:mt-0!">
+			<div className="disco:col-span-3 disco:bg-gray-100 disco:border disco:p-3 disco:pt-2 disco:rounded-b-lg disco:border-white disco:border-t-0! disco:flex disco:gap-4">
+				<div className="disco:grow flex-shrink-0">
 					<label
-						className="disco-text-base disco-block disco-text-black disco-mb-2"
+						className="disco:text-base disco:block disco:text-black disco:mb-2"
 						htmlFor="minimum-quantity"
 					>
 						{rule.recursive === 'yes'
@@ -100,7 +100,7 @@ const BOGORuleItem = ({ rule, index }) => {
 						value={rule.min}
 						onChange={handleChange}
 						name="min"
-						className="disco-w-full"
+						className="disco:w-full"
 						placeholder={
 							rule.recursive === 'yes'
 								? __('Item Quantity', 'disco')
@@ -111,9 +111,9 @@ const BOGORuleItem = ({ rule, index }) => {
 				</div>
 
 				{rule.recursive === 'no' && (
-					<div className="disco-grow flex-shrink-0">
+					<div className="disco:grow flex-shrink-0">
 						<label
-							className="disco-text-base disco-block disco-text-black disco-mb-2"
+							className="disco:text-base disco:block disco:text-black disco:mb-2"
 							htmlFor="maximum-quantity"
 						>
 							{__('Max Quantity', 'disco')}
@@ -122,7 +122,7 @@ const BOGORuleItem = ({ rule, index }) => {
 							value={rule.max}
 							onChange={handleChange}
 							name="max"
-							className="disco-w-full"
+							className="disco:w-full"
 							placeholder={__('Maximum', 'disco')}
 							type="number"
 						/>
@@ -130,17 +130,17 @@ const BOGORuleItem = ({ rule, index }) => {
 				)}
 			</div>
 
-			<div className="disco-col-span-9 disco-border disco-p-3 disco-pt-2 disco-bg-gray-100 disco-rounded-b-lg disco-border-white disco-border-t-0 disco-flex disco-gap-4">
+			<div className="disco:col-span-9 disco:border disco:p-3 disco:pt-2 disco:bg-gray-100 disco:rounded-b-lg disco:border-white disco:border-t-0 disco:flex disco:gap-4">
 				{bogo_type === 'products' && (
-					<div className="disco-grow flex-shrink-0">
+					<div className="disco:grow flex-shrink-0">
 						<label
-							className="disco-text-base disco-block disco-text-black disco-mb-2"
+							className="disco:text-base disco:block disco:text-black disco:mb-2"
 							htmlFor="discount-value"
 						>
 							{__('Select Products', 'disco')}
 						</label>
 						<AsyncMultiSelect
-							widthClass="disco-w-48 disco-bg-white disco-rounded-lg"
+							widthClass="disco:w-48 disco:bg-white disco:rounded-lg"
 							placeHolder={__('Search Product', 'disco')}
 							endpoint="/search/product/?search="
 							selected={rule.get_ids}
@@ -151,15 +151,15 @@ const BOGORuleItem = ({ rule, index }) => {
 				)}
 
 				{bogo_type === 'categories' && (
-					<div className="disco-grow flex-shrink-0">
+					<div className="disco:grow flex-shrink-0">
 						<label
-							className="disco-text-base disco-block disco-text-black disco-mb-2"
+							className="disco:text-base disco:block disco:text-black disco:mb-2"
 							htmlFor="discount-value"
 						>
 							{__('Select Categories', 'disco')}
 						</label>
 						<AsyncMultiSelect
-							widthClass="disco-w-48 disco-bg-white disco-rounded-lg"
+							widthClass="disco:w-48 disco:bg-white disco:rounded-lg"
 							placeHolder={__('Search Category', 'disco')}
 							endpoint="/search/category/?search="
 							selected={rule.get_ids}
@@ -169,9 +169,9 @@ const BOGORuleItem = ({ rule, index }) => {
 					</div>
 				)}
 
-				<div className="disco-grow flex-shrink-0">
+				<div className="disco:grow flex-shrink-0">
 					<label
-						className="disco-text-base disco-block disco-text-black disco-mb-2"
+						className="disco:text-base disco:block disco:text-black disco:mb-2"
 						htmlFor="discount-value"
 					>
 						{__('Get Quantity', 'disco')}
@@ -180,21 +180,21 @@ const BOGORuleItem = ({ rule, index }) => {
 						value={rule.get_quantity}
 						onChange={handleChange}
 						name="get_quantity"
-						className="disco-w-full"
+						className="disco:w-full"
 						placeholder={__('Get Quantity', 'disco')}
 						type="number"
 					/>
 				</div>
-				<div className="disco-min-w-[200px] disco-grow flex-shrink-0 disco-rounded-lg">
+				<div className="disco:min-w-[200px] disco:grow flex-shrink-0 disco:rounded-lg">
 					<label
-						className="disco-text-base disco-block disco-text-black disco-mb-2"
+						className="disco:text-base disco:block disco:text-black disco:mb-2"
 						htmlFor="discount-type"
 					>
 						{__('Discount Type', 'disco')}
 					</label>
 
 					<SingleSelect
-						className="disco-min-w-[200px] disco-w-full disco-bg-white disco-rounded-lg"
+						className="disco:min-w-[200px] disco:w-full disco:bg-white disco:rounded-lg"
 						items={types.values}
 						// items={Object.fromEntries(
 						// 	Object.entries(types.values).filter(([key]) => key === 'free')
@@ -206,9 +206,9 @@ const BOGORuleItem = ({ rule, index }) => {
 				</div>
 
 				{rule.discount_type !== 'free' && (
-					<div className="disco-grow flex-shrink-0">
+					<div className="disco:grow flex-shrink-0">
 						<label
-							className="disco-text-base disco-block disco-text-black disco-mb-2"
+							className="disco:text-base disco:block disco:text-black disco:mb-2"
 							htmlFor="discount-value"
 						>
 							{__('Discount Value', 'disco')}
@@ -217,20 +217,20 @@ const BOGORuleItem = ({ rule, index }) => {
 							value={rule.discount_value}
 							onChange={handleChange}
 							name="discount_value"
-							className="disco-w-full"
+							className="disco:w-full"
 							placeholder={__('Value', 'disco')}
 							type="number"
 						/>
 					</div>
 				)}
-				<div className=" disco-grow flex-shrink-0">
+				<div className=" disco:grow flex-shrink-0">
 					<label
-						className="disco-opacity-0 disco-text-sm disco-block disco-text-gray-500 disco-mb-1"
+						className="disco:opacity-0 disco:text-sm disco:block disco:text-gray-500 disco:mb-1"
 						htmlFor="bulk-title"
 					>
 						{__('Placeholder', 'disco')}
 					</label>
-					<div className="disco-flex disco-items-center disco-mt-4 disco-gap-4">
+					<div className="disco:flex disco:items-center disco:mt-4 disco:gap-4">
 						<CheckBox
 							checked={rule.recursive === 'yes' ? true : false}
 							onChange={handleRecursiveChange}
@@ -252,12 +252,12 @@ const BOGORuleItem = ({ rule, index }) => {
 						{index !== 0 ? (
 							<button
 								onClick={() => handleRuleDelete(rule.id)}
-								className=" disco-rounded-full disco-shrink-0 disco-items-center"
+								className=" disco:rounded-full disco:shrink-0 disco:items-center"
 							>
-								<TrashIcon className="disco-h-4 disco-w-4 disco-text-red-500 disco-transition-colors" />
+								<TrashIcon className="disco:h-4 disco:w-4 disco:text-red-500 disco:transition-colors" />
 							</button>
 						) : (
-							<div className="disco-shrink-0 disco-w-4"></div>
+							<div className="disco:shrink-0 disco:w-4"></div>
 						)}
 					</div>
 				</div>

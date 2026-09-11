@@ -16,13 +16,13 @@ const COLUMNS = [
 const renderRow = (c, index) => (
 	<tr
 		key={index}
-		className="disco-border-b disco-border-[#f3f4f6] last:disco-border-0 hover:disco-bg-[#f9fafb] disco-cursor-pointer disco-transition-colors"
+		className="disco:border-b disco:border-[#f3f4f6] disco:last:border-0 disco:hover:bg-[#f9fafb] disco:cursor-pointer disco:transition-colors"
 	>
-		<td className="disco-px-3 disco-py-2.5">
+		<td className="disco:px-3 disco:py-2.5">
 			{c.id != '0' ? (
 				<Link
 					to={`/customers/${c.id}`}
-					className="disco-flex disco-items-center disco-gap-2.5 disco-group"
+					className="disco:flex disco:items-center disco:gap-2.5 disco:group"
 				>
 					<CustomerAvatar
 						avatar={c.avatar}
@@ -30,45 +30,45 @@ const renderRow = (c, index) => (
 						color={c.color}
 					/>
 					<div>
-						<p className="disco-font-medium disco-text-gray-900 disco-leading-tight group-hover:disco-text-primary disco-transition-colors">
+						<p className="disco:font-medium disco:text-gray-900 disco:leading-tight disco:group-hover:text-primary disco:transition-colors">
 							{c.name}
 						</p>
-						<p className="disco-text-gray-400 disco-text-[10px] disco-mt-0.5 group-hover:disco-text-primary disco-transition-colors">
+						<p className="disco:text-gray-400 disco:text-[10px] disco:mt-0.5 disco:group-hover:text-primary disco:transition-colors">
 							{c.email}
 						</p>
 					</div>
 				</Link>
 			) : (
-				<div className="disco-flex disco-items-center disco-gap-2.5">
+				<div className="disco:flex disco:items-center disco:gap-2.5">
 					<CustomerAvatar
 						avatar={c.avatar}
 						fallback={c.initials}
 						color={c.color}
 					/>
 					<div>
-						<p className="disco-font-medium disco-text-gray-900 disco-leading-tight">
+						<p className="disco:font-medium disco:text-gray-900 disco:leading-tight">
 							{c.name || 'Guest'}
-							<span className="disco-text-gray-400 disco-text-[8px] disco-border disco-rounded-full disco-bg-orange-100 disco-border-orange-200 disco-px-2 disco-py-0.5 disco-ml-2">
+							<span className="disco:text-gray-400 disco:text-[8px] disco:border disco:rounded-full disco:bg-orange-100 disco:border-orange-200 disco:px-2 disco:py-0.5 disco:ml-2">
 								Not Registered
 							</span>
 						</p>
-						<p className="disco-text-gray-400 disco-text-[10px] disco-mt-0.5">
+						<p className="disco:text-gray-400 disco:text-[10px] disco:mt-0.5">
 							{c.email}
 						</p>
 					</div>
 				</div>
 			)}
 		</td>
-		<td className="disco-px-3 disco-py-2.5 disco-text-gray-500 disco-whitespace-nowrap">
+		<td className="disco:px-3 disco:py-2.5 disco:text-gray-500 disco:whitespace-nowrap">
 			{c.state}
 		</td>
-		<td className="disco-px-3 disco-py-2.5 disco-text-gray-500">
+		<td className="disco:px-3 disco:py-2.5 disco:text-gray-500">
 			<ProductsMoreDialog title="Campaigns" items={c.campaigns} />
 		</td>
-		<td className="disco-px-3 disco-py-2.5 disco-text-gray-600">
+		<td className="disco:px-3 disco:py-2.5 disco:text-gray-600">
 			{c.orders}
 		</td>
-		<td className="disco-px-3 disco-py-2.5 disco-font-semibold disco-text-gray-700">
+		<td className="disco:px-3 disco:py-2.5 disco:font-semibold disco:text-gray-700">
 			{c.spent}
 		</td>
 	</tr>
@@ -106,16 +106,16 @@ const CustomersTable = ({
 			totalPages={totalPages}
 			onPageChange={onPageChange}
 			isLoading={isLoading}
-			cellPadding="disco-px-3"
+			cellPadding="disco:px-3"
 			locked={!isPro}
 			lockOverlay={{
 				size: 'lg',
 				label: __('Upgrade to pro', 'disco'),
 				titleClassName:
-					'disco-max-w-md disco-text-base disco-font-normal disco-text-[#111827] disco-leading-snug',
+					'disco:max-w-md disco:text-base disco:font-normal disco:text-[#111827] disco:leading-snug',
 				title: (
 					<>
-						<strong className="disco-font-semibold">
+						<strong className="disco:font-semibold">
 							{__('Upgrade to Disco Pro', 'disco')}
 						</strong>{' '}
 						{__(

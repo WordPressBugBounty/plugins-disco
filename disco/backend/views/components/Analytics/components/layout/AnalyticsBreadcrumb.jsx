@@ -26,7 +26,7 @@ const DETAIL_ROUTES = [
 ];
 
 const linkClass =
-	'disco-no-underline hover:disco-text-primary focus:disco-text-primary';
+	'disco:no-underline disco:hover:text-primary disco:focus:text-primary';
 
 const AnalyticsBreadcrumb = ({ pathname, NAV_ITEMS }) => {
 	const detail = DETAIL_ROUTES.find((r) => pathname.startsWith(r.match));
@@ -53,7 +53,7 @@ const AnalyticsBreadcrumb = ({ pathname, NAV_ITEMS }) => {
 
 	return (
 		<Breadcrumb>
-			<BreadcrumbList className="disco-px-3 disco-py-2 disco-bg-[#f9fafb]">
+			<BreadcrumbList className=" disco:px-8 disco:py-2 disco:bg-[#f9fafb]">
 				<BreadcrumbItem>
 					<BreadcrumbLink
 						render={<NavLink to="/" end className={linkClass} />}

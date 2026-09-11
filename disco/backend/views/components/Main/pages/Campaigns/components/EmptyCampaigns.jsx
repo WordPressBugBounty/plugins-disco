@@ -95,16 +95,16 @@ const EmptyCampaigns = () => {
 	return (
 		<div
 			data-testid="empty-campaigns"
-			className="disco-flex disco-flex-col disco-items-center disco-pt-20 disco-pb-24 disco-px-4"
+			className="disco:flex disco:flex-col disco:items-center disco:pt-20 disco:pb-24 disco:px-4"
 		>
-			<div className="disco-flex disco-flex-col disco-items-center disco-gap-4 disco-text-center">
-				<h3 className="disco-text-[28px] disco-leading-10 disco-font-extrabold disco-text-[#111111] disco-m-0">
+			<div className="disco:flex disco:flex-col disco:items-center disco:gap-4 disco:text-center">
+				<h3 className="disco:text-[28px]! disco:leading-10! disco:font-extrabold disco:text-[#111111] disco:m-0!">
 					{__(
 						'No campaigns yet — your first one takes 2 minutes',
 						'disco'
 					)}
 				</h3>
-				<p className="disco-text-lg disco-leading-[25px] disco-font-medium disco-text-[#597A67] disco-max-w-[640px] disco-m-0">
+				<p className="disco:text-lg! disco:leading-6.25! disco:font-medium disco:text-[#597A67] disco:max-w-160 disco:m-0">
 					{__(
 						'Stores using automated discounts see up to 34% higher average order value. Start in 2 minutes',
 						'disco'
@@ -113,19 +113,19 @@ const EmptyCampaigns = () => {
 				<button
 					data-testid="create-first-campaign-btn"
 					onClick={handleCreateCampaign}
-					className="disco-flex disco-items-center disco-gap-1.5 disco-h-[43px] disco-px-5 disco-rounded-xl disco-bg-[#0BC88A] hover:disco-bg-[#0AB57D] disco-text-white disco-text-[17px] disco-font-semibold disco-shadow-[0px_3px_6px_0px_rgba(22,163,74,0.25)] disco-transition-colors disco-duration-200"
+					className="disco:flex disco:items-center disco:gap-1.5 disco:h-10.75 disco:px-5 disco:rounded-xl disco:bg-[#0BC88A] disco:hover:bg-[#0AB57D] disco:text-white disco:text-[17px] disco:font-semibold disco:shadow-[0px_3px_6px_0px_rgba(22,163,74,0.25)] disco:transition-colors disco:duration-200"
 				>
-					<PlusIcon className="disco-h-4 disco-w-4" />
+					<PlusIcon className="disco:h-4 disco:w-4" />
 					{__('Create Your First Campaign', 'disco')}
 				</button>
 			</div>
 
 			{showEmailField && (
-				<div className="disco-mt-12 disco-w-full disco-max-w-[631px] disco-rounded-2xl disco-border disco-border-white disco-bg-[#FEFEFE] disco-shadow-[0px_0px_32px_0px_rgba(0,0,0,0.04)] disco-p-7">
-					<p className="disco-text-base disco-leading-6 disco-font-bold disco-text-[#0F6E56] disco-m-0">
+				<div className="disco:mt-12 disco:w-full disco:max-w-157.75 disco:rounded-2xl disco:border disco:border-white disco:bg-[#FEFEFE] disco:shadow-[0px_0px_32px_0px_rgba(0,0,0,0.04)] disco:p-7">
+					<p className="disco:text-base! disco:leading-6! disco:font-bold disco:text-[#0F6E56] disco:m-0">
 						{__('Free weekly tips', 'disco')}
 					</p>
-					<p className="disco-mt-1 disco-text-lg disco-leading-7 disco-font-bold disco-text-[#111111] disco-mb-0">
+					<p className="disco:mt-1! disco:text-lg! disco:leading-7! disco:font-bold disco:text-[#111111] disco:mb-0">
 						{__(
 							'Get discount strategies that increase WooCommerce revenue sent every week.',
 							'disco'
@@ -133,7 +133,7 @@ const EmptyCampaigns = () => {
 					</p>
 					<form
 						onSubmit={handleSubscribe}
-						className="disco-mt-5 disco-flex disco-gap-3"
+						className="disco:mt-5 disco:flex disco:gap-3"
 					>
 						<input
 							type="email"
@@ -141,39 +141,39 @@ const EmptyCampaigns = () => {
 							onChange={(e) => setEmail(e.target.value)}
 							placeholder={__('your@store.com', 'disco')}
 							data-testid="subscribe-email-input"
-							className="disco-flex-1 disco-h-[50px] !disco-px-4 !disco-bg-white !disco-border !disco-border-[#A8E6CE] !disco-rounded-[9px] disco-text-base disco-text-[#111111] placeholder:disco-text-[#B0D4C8] focus:!disco-border-[#0BC88A] focus:!disco-shadow-none disco-outline-none"
+							className="disco:flex-1 disco:h-12.5 disco:px-4! disco:bg-white! disco:border! disco:border-[#A8E6CE]! disco:rounded-[9px]! disco:text-base disco:text-[#111111]! disco:placeholder:text-[#B0D4C8] disco:focus:border-[#0BC88A]! disco:focus:shadow-none! disco:outline-hidden!"
 						/>
 						<button
 							type="submit"
 							data-testid="subscribe-btn"
 							disabled={isSubmitting}
-							className="disco-h-[50px] disco-w-[130px] disco-shrink-0 disco-rounded-[9px] disco-bg-[#0BC88A] hover:disco-bg-[#0AB57D] disabled:disco-opacity-60 disabled:disco-cursor-not-allowed disco-text-white disco-text-lg disco-font-semibold disco-tracking-[-0.2px] disco-transition-colors disco-duration-200"
+							className="disco:h-12.5 disco:w-32.5 disco:shrink-0 disco:rounded-[9px] disco:bg-[#0BC88A] disco:hover:bg-[#0AB57D] disco:disabled:opacity-60 disco:disabled:cursor-not-allowed disco:text-white disco:text-lg disco:font-semibold disco:tracking-[-0.2px] disco:transition-colors disco:duration-200"
 						>
 							{isSubmitting
 								? __('Subscribing…', 'disco')
 								: __('Subscribe', 'disco')}
 						</button>
 					</form>
-					<p className="disco-mt-4 disco-text-xs disco-leading-4 disco-text-[#AAAAAA] disco-text-center disco-m-0">
+					<p className="disco:mt-4! disco:text-xs! disco:leading-4! disco:text-[#AAAAAA] disco:text-center! disco:m-0">
 						{__('By subscribing you agree to the', 'disco')}{' '}
 						<a
 							href={TERMS_OF_SERVICE_URL}
 							target="_blank"
 							rel="noreferrer"
-							className="!disco-text-[#0BC88A] visited:!disco-text-[#0BC88A] hover:!disco-text-[#0AB57D] disco-underline"
+							className="disco:text-[#0BC88A]! disco:visited:text-[#0BC88A]! disco:hover:text-[#0AB57D]! disco:underline"
 						>
 							{__('Terms', 'disco')}
 						</a>
-						<span className="disco-text-[#0BC88A]">.</span>{' '}
+						<span className="disco:text-[#0BC88A]">.</span>{' '}
 						<a
 							href={PRIVACY_POLICY_URL}
 							target="_blank"
 							rel="noreferrer"
-							className="!disco-text-[#0BC88A] visited:!disco-text-[#0BC88A] hover:!disco-text-[#0AB57D] disco-underline"
+							className="disco:text-[#0BC88A]! disco:visited:text-[#0BC88A]! disco:hover:text-[#0AB57D]! disco:underline"
 						>
 							{__('Policy', 'disco')}
 						</a>
-						<span className="disco-text-[#0BC88A]">.</span>
+						<span className="disco:text-[#0BC88A]">.</span>
 					</p>
 				</div>
 			)}

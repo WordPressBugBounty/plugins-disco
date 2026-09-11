@@ -1,5 +1,11 @@
 import { clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { extendTailwindMerge } from 'tailwind-merge';
+
+// Declared without a trailing separator: Tailwind v4 prefixes are variant-style
+// (`disco:flex`). This was previously a bare `twMerge` with no prefix at all.
+const twMerge = extendTailwindMerge({
+	prefix: 'disco',
+});
 
 export function cn(...inputs) {
 	return twMerge(clsx(inputs));

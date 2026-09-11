@@ -23,41 +23,41 @@ const TopCampaigns = ({ className }) => {
 	const campaigns = res?.data ?? [];
 
 	if (!isLoading && campaigns.length === 0) {
-		return <EmptyData />;
+		return <EmptyData title={'Top Campaigns '} />;
 	}
 
 	return (
 		<Card
 			className={cn(
-				'disco-relative disco-ring-0 disco-border-2 disco-border-[#e5e7eb] disco-rounded-[10px] disco-p-4 disco-gap-0',
+				'disco:relative disco:ring-0 disco:border-2 disco:border-[#e5e7eb] disco:rounded-[10px] disco:p-4 disco:gap-0',
 				className
 			)}
 		>
 			{!isPro && !isLoading && (
 				<ProLockOverlay
 					label={__('Upgrade to See All', 'disco')}
-					position="disco-inset-x-0 disco-bottom-0 disco-h-[55%]"
-					rounded="disco-rounded-b-[10px]"
+					position="disco:inset-x-0 disco:bottom-0 disco:h-[55%]"
+					rounded="disco:rounded-b-[10px]"
 				/>
 			)}
-			<div className="disco-flex disco-items-center disco-justify-between">
-				<h3 className="disco-text-base disco-font-semibold disco-text-[#1f2937]">
+			<div className="disco:flex disco:items-center disco:justify-between">
+				<h3 className="disco:text-base! disco:font-semibold disco:text-[#1f2937]!">
 					{__('Top campaigns', 'disco')}
 				</h3>
 				<Link
 					to="/campaigns-reports"
-					className="disco-text-xs disco-font-medium disco-text-primary hover:disco-underline hover:disco-text-primary"
+					className="disco:text-xs! disco:font-medium disco:text-primary! disco:hover:underline disco:hover:text-primary!"
 				>
 					{__('View all', 'disco')} →
 				</Link>
 			</div>
 
 			{isLoading ? (
-				<div className="disco-space-y-2">
+				<div className="disco:space-y-2">
 					{Array.from({ length: 5 }).map((_, i) => (
 						<div
 							key={i}
-							className="disco-h-8 disco-animate-pulse disco-rounded disco-bg-[#f3f4f6]"
+							className="disco:h-8 disco:animate-pulse disco:rounded disco:bg-[#f3f4f6]"
 						/>
 					))}
 				</div>
@@ -67,11 +67,11 @@ const TopCampaigns = ({ className }) => {
 						({ campaign_id, campaign_name, revenue }, index) => (
 							<li
 								key={campaign_id}
-								className="disco-flex disco-items-center disco-justify-between disco-py-2 disco-border-b disco-border-[#f3f4f6] last:disco-border-0"
+								className="disco:flex disco:items-center disco:justify-between disco:py-2 disco:border-b disco:border-[#f3f4f6] disco:last:border-0"
 							>
-								<span className="disco-flex disco-items-center disco-gap-2 disco-text-xs disco-font-medium disco-text-[#1f2937]">
+								<span className="disco:flex disco:items-center disco:gap-2 disco:text-xs disco:font-medium disco:text-[#1f2937]">
 									<span
-										className="disco-size-[6px] disco-rounded-[3px] disco-shrink-0"
+										className="disco:size-1.5 disco:rounded-[3px] disco:shrink-0"
 										style={{
 											background:
 												CAMPAIGN_COLORS[
@@ -82,7 +82,7 @@ const TopCampaigns = ({ className }) => {
 									/>
 									{truncate(campaign_name, 30)}
 								</span>
-								<span className="disco-text-xs disco-font-semibold disco-text-[#111827]">
+								<span className="disco:text-xs disco:font-semibold disco:text-[#111827]">
 									{fmt(revenue)}
 								</span>
 							</li>

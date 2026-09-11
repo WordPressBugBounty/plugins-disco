@@ -27,7 +27,7 @@ const CartPage = () => {
 			<BadgeTitle
 				title={__('Cart Notice', 'disco')}
 				url="https://discoplugin.com/docs/display-cart-notice/"
-				className="disco-mt-3"
+				className="disco:mt-3"
 			/>
 			<BadgeActions>
 				<Status

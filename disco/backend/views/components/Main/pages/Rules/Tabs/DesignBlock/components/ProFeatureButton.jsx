@@ -27,7 +27,7 @@ const ProFeatureButton = ({
 
 	return (
 		<Button
-			className={`disco-text-sm !disco-px-3 !disco-py-1.5 ${className}`}
+			className={`disco:text-sm disco:px-3! disco:py-1.5! ${className}`}
 			onClick={handleClick}
 			testId={`${testId}-edit-button`}
 		>

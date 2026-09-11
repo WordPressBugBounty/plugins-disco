@@ -44,9 +44,9 @@ const CountdownTimeItems = ({ className = '' }) => {
 
 	return (
 		<div
-			className={`disco-max-h-[544px] disco-overflow-y-auto disco-rounded-lg disco-bg-white disco-my-4 disco-py-4 disco-px-4 disco-border-1 ${className}`}
+			className={`disco:max-h-[544px] disco:overflow-y-auto disco:rounded-lg disco:bg-white disco:my-4 disco:py-4 disco:px-4 disco:border ${className}`}
 		>
-			<div className="disco-grid disco-grid-cols-2 disco-gap-4">
+			<div className="disco:grid disco:grid-cols-2 disco:gap-4">
 				{designs.length > 0 ? (
 					designs.map((design) => {
 						const isSelected =
@@ -76,10 +76,10 @@ const CountdownTimeItems = ({ className = '' }) => {
 							<div
 								key={design.id}
 								onClick={() => handleDesignSelect(design.id)}
-								className={`disco-flex disco-flex-col disco-border disco-rounded-md disco-p-3 disco-items-center disco-justify-center disco-cursor-pointer disco-transition-all hover:disco-border-primary ${
+								className={`disco:flex disco:flex-col disco:border disco:rounded-md disco:p-3 disco:items-center disco:justify-center disco:cursor-pointer disco:transition-all disco:hover:border-primary ${
 									isSelected
-										? 'disco-border-primary disco-ring-2 disco-ring-primary disco-ring-opacity-50'
-										: 'disco-border-gray-200'
+										? 'disco:border-primary disco:ring-2 disco:ring-primary/50'
+										: 'disco:border-gray-200'
 								}`}
 							>
 								{/* Countdown Preview */}
@@ -168,7 +168,7 @@ const CountdownTimeItems = ({ className = '' }) => {
 						);
 					})
 				) : (
-					<p className="disco-text-gray-500 disco-text-sm disco-col-span-4 disco-text-center">
+					<p className="disco:text-gray-500 disco:text-sm disco:col-span-4 disco:text-center">
 						{__(
 							'No designs available for the selected option.',
 							'disco'

@@ -43,7 +43,7 @@ export default function MonthScroller({ month, onMonthChange }) {
 	return (
 		<div
 			ref={scrollRef}
-			className="disco-flex-shrink-0 disco-overflow-y-auto"
+			className="disco:shrink-0 disco:overflow-y-auto"
 			style={{
 				width: 28,
 				height: CELL * SCROLLER_VISIBLE,
@@ -63,10 +63,10 @@ export default function MonthScroller({ month, onMonthChange }) {
 						}
 						style={{ height: CELL }}
 						className={cn(
-							'disco-flex disco-cursor-pointer disco-items-center disco-justify-center disco-rounded disco-text-[9px] disco-transition-colors',
+							'disco:flex disco:cursor-pointer disco:items-center disco:justify-center disco:rounded disco:text-[9px] disco:transition-colors',
 							isCurrent
-								? 'disco-font-bold disco-text-[rgba(74,74,74,0.9)]'
-								: 'disco-text-[rgba(74,74,74,0.3)] hover:disco-text-[rgba(74,74,74,0.7)]'
+								? 'disco:font-bold disco:text-[rgba(74,74,74,0.9)]'
+								: 'disco:text-[rgba(74,74,74,0.3)] disco:hover:text-[rgba(74,74,74,0.7)]'
 						)}
 					>
 						{MONTH_LABELS[it.month]}

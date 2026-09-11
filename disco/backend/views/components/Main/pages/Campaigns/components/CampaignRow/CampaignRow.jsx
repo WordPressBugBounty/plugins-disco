@@ -53,45 +53,45 @@ const CampaignRow = ({ discountIntents, campaign, last }) => {
 
 	return (
 		<tr
-			className={`even:!disco-bg-white odd:!disco-bg-gray-50 disco-rounded disco-w-full disco-bg-white`}
+			className={`disco:even:bg-white! disco:odd:bg-gray-50! disco:rounded disco:w-full disco:bg-white`}
 		>
 			<TableCell
 				className={cn(
-					'disco-ps-4 disco-border-b disco-border-gray-100 disco-whitespace-nowrap disco-py-2 disco-pr-4 disco-text-sm ',
-					{ 'disco-rounded-bl-lg': last }
+					'disco:ps-4 disco:border-b disco:border-gray-100 disco:whitespace-nowrap disco:py-2 disco:pr-4 disco:text-sm ',
+					{ 'disco:rounded-bl-lg': last }
 				)}
 			>
 				<button
 					onClick={() => handleToggleCampaignSelect(campaign.id)}
-					className={`disco-shrink-0 disco-h-4 disco-w-4 disco-rounded disco-border disco-flex disco-justify-center disco-items-center ${
+					className={`disco:shrink-0 disco:h-4 disco:w-4 disco:rounded-sm disco:border disco:flex disco:justify-center disco:items-center ${
 						campaign_ids.includes(campaign.id)
-							? 'disco-border-primary-dark'
-							: 'disco-border-gray-500 '
+							? 'disco:border-primary-dark'
+							: 'disco:border-gray-500 '
 					}`}
 				>
 					{campaign_ids.includes(campaign.id) && (
-						<CheckIcon className="disco-text-primary-dark" />
+						<CheckIcon className="disco:text-primary-dark" />
 					)}
 				</button>
 			</TableCell>
-			<TableCell className="disco-border-b disco-border-gray-100 disco-whitespace-nowrap disco-py-2 disco-pr-4 disco-text-sm disco-text-gray-900">
+			<TableCell className="disco:border-b disco:border-gray-100 disco:whitespace-nowrap disco:py-2 disco:pr-4 disco:text-sm disco:text-gray-900">
 				<StatusToggler campaign={campaign} />
 			</TableCell>
-			<TableCell className=" disco-border-b disco-border-gray-100 disco-whitespace-nowrap disco-py-2 disco-pr-4 disco-text-sm ">
+			<TableCell className=" disco:border-b disco:border-gray-100 disco:whitespace-nowrap disco:py-2 disco:pr-4 disco:text-sm ">
 				<div role="button" onClick={handleNavigateToEdit}>
-					<span className="disco-block disco-text-base disco-transition-colors hover:disco-text-primary">
+					<span className="disco:block disco:text-base disco:transition-colors disco:hover:text-primary">
 						{truncate(campaign.name, 30)}
 					</span>
 				</div>
 			</TableCell>
-			<TableCell className=" disco-border-b disco-border-gray-100 disco-whitespace-nowrap disco-py-2 disco-pr-4 disco-text-sm disco-text-gray-900">
+			<TableCell className=" disco:border-b disco:border-gray-100 disco:whitespace-nowrap disco:py-2 disco:pr-4 disco:text-sm disco:text-gray-900">
 				{discountIntents.values[campaign.discount_intent]}
 			</TableCell>
-			<TableCell className=" disco-border-b disco-border-gray-100 disco-whitespace-nowrap disco-py-2 disco-pr-4 disco-text-sm disco-text-gray-900">
+			<TableCell className=" disco:border-b disco:border-gray-100 disco:whitespace-nowrap disco:py-2 disco:pr-4 disco:text-sm disco:text-gray-900">
 				{campaign.discount_intent === 'Product' ||
 				campaign.discount_intent === 'Cart' ? (
 					<>
-						<span className="disco-capitalize">
+						<span className="disco:capitalize">
 							{campaign?.discount_rules[0]?.discount_type
 								?.split('_')
 								?.join(' ') +
@@ -104,10 +104,10 @@ const CampaignRow = ({ discountIntents, campaign, last }) => {
 					<span>Mixed</span>
 				)}
 			</TableCell>
-			<TableCell className=" disco-border-b disco-border-gray-100 disco-whitespace-nowrap disco-py-2 disco-pr-4 disco-text-sm disco-text-gray-900">
+			<TableCell className=" disco:border-b disco:border-gray-100 disco:whitespace-nowrap disco:py-2 disco:pr-4 disco:text-sm disco:text-gray-900">
 				{dateTimeFormatter(campaign.created_date)}
 			</TableCell>
-			<TableCell className="disco-flex disco-justify-center disco-border-b disco-border-gray-100 disco-whitespace-nowrap disco-py-2 disco-text-sm disco-text-gray-900">
+			<TableCell className="disco:flex disco:justify-center disco:border-b disco:border-gray-100 disco:whitespace-nowrap disco:py-2 disco:text-sm disco:text-gray-900">
 				<StatusImage
 					status={getStatus(
 						campaign.discount_valid_from,
@@ -118,12 +118,12 @@ const CampaignRow = ({ discountIntents, campaign, last }) => {
 
 			<TableCell
 				className={cn(
-					'disco-border-b disco-border-gray-100 disco-whitespace-nowrap disco-py-2 disco-text-sm disco-text-gray-900',
-					{ 'disco-rounded-br-lg': last }
+					'disco:border-b disco:border-gray-100 disco:whitespace-nowrap disco:py-2 disco:text-sm disco:text-gray-900',
+					{ 'disco:rounded-br-lg': last }
 				)}
 			>
-				<div className="disco-flex disco-w-full disco-justify-center disco-items-center">
-					<div className="disco-w-5" />
+				<div className="disco:flex disco:w-full disco:justify-center disco:items-center">
+					<div className="disco:w-5" />
 					<ActionMenu
 						campaign={campaign}
 						setDeleteModalOpen={setDeleteModalOpen}

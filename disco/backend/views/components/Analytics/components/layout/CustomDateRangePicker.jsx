@@ -89,24 +89,24 @@ const CustomDateRangePicker = ({ onApply }) => {
 			DayButton: CustomDayButton,
 			Chevron: ({ orientation }) =>
 				orientation === 'left' ? (
-					<ChevronLeft className="disco-h-4 disco-w-4" />
+					<ChevronLeft className="disco:h-4 disco:w-4" />
 				) : (
-					<ChevronRight className="disco-h-4 disco-w-4" />
+					<ChevronRight className="disco:h-4 disco:w-4" />
 				),
 		},
 	};
 
 	return (
-		<div className="disco-flex disco-flex-col disco-gap-3">
-			<div className="disco-flex disco-gap-4">
+		<div className="disco:flex disco:flex-col disco:gap-3">
+			<div className="disco:flex disco:gap-4">
 				{/* From calendar panel */}
-				<div className="disco-flex disco-flex-1 disco-flex-col">
+				<div className="disco:flex disco:flex-1 disco:flex-col">
 					<DateHeader
 						label="From"
 						date={range.from}
 						onDateChange={handleFromDateChange}
 					/>
-					<div className="disco-relative disco-flex disco-items-start disco-gap-1">
+					<div className="disco:relative disco:flex disco:items-start disco:gap-1">
 						<DayPicker
 							{...pickerProps}
 							month={fromMonth}
@@ -123,16 +123,16 @@ const CustomDateRangePicker = ({ onApply }) => {
 				</div>
 
 				{/* Vertical divider */}
-				<div className="disco-w-px disco-self-stretch disco-bg-[#e5e7eb]" />
+				<div className="disco:w-px disco:self-stretch disco:bg-[#e5e7eb]" />
 
 				{/* To calendar panel */}
-				<div className="disco-flex disco-flex-1 disco-flex-col">
+				<div className="disco:flex disco:flex-1 disco:flex-col">
 					<DateHeader
 						label="To"
 						date={range.to}
 						onDateChange={handleToDateChange}
 					/>
-					<div className="disco-relative disco-flex disco-items-start disco-gap-1">
+					<div className="disco:relative disco:flex disco:items-start disco:gap-1">
 						<DayPicker
 							{...pickerProps}
 							month={toMonth}
@@ -149,10 +149,10 @@ const CustomDateRangePicker = ({ onApply }) => {
 			</div>
 
 			{/* Actions */}
-			<div className="disco-flex disco-items-center disco-justify-end disco-gap-2">
+			<div className="disco:flex disco:items-center disco:justify-end disco:gap-2">
 				<button
 					onClick={handleClear}
-					className="disco-h-6 disco-cursor-pointer disco-rounded-[5px] disco-bg-[#f8f8f8] disco-px-3 disco-text-[10px] disco-font-medium disco-text-[#8a8a8a] disco-transition-colors hover:disco-bg-[#efefef]"
+					className="disco:h-6 disco:cursor-pointer disco:rounded-[5px] disco:bg-[#f8f8f8] disco:px-3 disco:text-[10px] disco:font-medium disco:text-[#8a8a8a] disco:transition-colors disco:hover:bg-[#efefef]"
 				>
 					Clear
 				</button>
@@ -160,8 +160,8 @@ const CustomDateRangePicker = ({ onApply }) => {
 					onClick={handleApply}
 					disabled={!canApply}
 					className={cn(
-						'disco-h-6 disco-cursor-pointer disco-rounded-[5px] disco-bg-[#08c889] disco-px-3 disco-text-[10px] disco-font-medium disco-text-white disco-transition-colors hover:disco-bg-[#07b87c]',
-						!canApply && 'disco-cursor-not-allowed disco-opacity-50'
+						'disco:h-6 disco:cursor-pointer disco:rounded-[5px] disco:bg-[#08c889] disco:px-3 disco:text-[10px] disco:font-medium disco:text-white disco:transition-colors disco:hover:bg-[#07b87c]',
+						!canApply && 'disco:cursor-not-allowed disco:opacity-50'
 					)}
 				>
 					Apply

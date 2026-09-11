@@ -13,12 +13,12 @@ const EmptyData = ({ title, description }) => {
 	return (
 		<Empty
 			className={cn(
-				'disco-bg-white disco-rounded-xl disco-border disco-border-[#e5e7eb] disco-overflow-hidden disco-py-10'
+				'disco:bg-white disco:rounded-xl disco:border disco:border-[#e5e7eb] disco:overflow-hidden disco:py-10'
 			)}
 		>
 			<EmptyHeader>
 				<EmptyMedia variant="icon">
-					<TriangleAlert className="disco-size-8 disco-text-red-400" />
+					<TriangleAlert className="disco:size-8 disco:text-red-400" />
 				</EmptyMedia>
 				<EmptyTitle>
 					{__(`${title} Not Found!`, 'disco') || 'No Data Found!'}

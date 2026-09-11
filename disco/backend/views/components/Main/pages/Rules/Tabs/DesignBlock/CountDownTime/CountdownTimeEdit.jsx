@@ -70,15 +70,15 @@ const CountdownTimeEdit = () => {
 	}
 
 	return (
-		<div className="disco-bg-gray-50 disco-mr-4 disco-rounded-lg disco-pb-4">
-			<div className="disco-px-5 disco-py-1">
+		<div className="disco:bg-gray-50 disco:mr-4 disco:rounded-lg disco:pb-4">
+			<div className="disco:px-5 disco:py-1">
 				<BadgeHeader
 					title={__('Countdown Timer', 'disco')}
 					description="Customize your countdown timer on single product page."
 				/>
-				<div className="disco-max-h-[calc(100vh-225px)] disco-flex disco-gap-8 disco-pt-2 disco-mt-2 disco-justify-between">
-					<div className="disco-w-1/2 disco-max-h-full disco-overflow-y-auto disco-no-scrollbar disco-overscroll-contain">
-						<p className="disco-text-base">
+				<div className="disco:max-h-[calc(100vh-225px)] disco:flex disco:gap-8 disco:pt-2 disco:mt-2 disco:justify-between">
+					<div className="disco:w-1/2 disco:max-h-full disco:overflow-y-auto disco-no-scrollbar disco:overscroll-contain">
+						<p className="disco:text-base">
 							{__('Select Countdown Design', 'disco')}
 						</p>
 						<CountdownTimeItems />
@@ -97,7 +97,7 @@ const CountdownTimeEdit = () => {
 						{/* Secondary Text */}
 						<CountdownFontProperties
 							label={__('Secondary Text', 'disco')}
-							className="disco-mt-3"
+							className="disco:mt-3"
 							type="subtitle"
 						/>
 						<CountdownTextInput
@@ -110,8 +110,8 @@ const CountdownTimeEdit = () => {
 						/>
 
 						{/* Select Position */}
-						<div className="disco-flex disco-gap-2 disco-items-center disco-mt-3">
-							<div className="disco-text-sm disco-font-semibold">
+						<div className="disco:flex disco:gap-2 disco:items-center disco:mt-3">
+							<div className="disco:text-sm disco:font-semibold">
 								{__('Select Position', 'disco')}
 							</div>
 							<SingleSelect
@@ -129,8 +129,8 @@ const CountdownTimeEdit = () => {
 									countdown?.position || 'after_add_to_cart'
 								}
 								onchange={handlePositionChange}
-								className="disco-bg-white disco-w-44"
-								buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+								className="disco:bg-white disco:w-44"
+								buttonClass="disco:rounded-lg! disco:py-1! disco:font-thin! disco:text-sm!"
 							/>
 						</div>
 
@@ -144,7 +144,7 @@ const CountdownTimeEdit = () => {
 							onTabChange={(value) => setActiveTab(value)}
 						/>
 					</div>
-					<div className="disco-w-1/2">
+					<div className="disco:w-1/2">
 						<CountdownTimeView />
 					</div>
 				</div>

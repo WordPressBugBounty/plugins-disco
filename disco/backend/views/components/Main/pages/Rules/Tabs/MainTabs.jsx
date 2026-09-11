@@ -61,10 +61,10 @@ const MainTabs = () => {
 			selectedIndex={ui[0]}
 			manual
 		>
-			<Tab.List className="disco-flex disco-z-50 disco-sticky disco-top-8 disco-bg-gray-50 disco-p-2 disco-rounded-t-xl">
+			<Tab.List className="disco:flex disco:z-50 disco:sticky disco:top-8 disco:bg-gray-50 disco:p-2 disco:rounded-t-xl">
 				{tabsButtons.map((button, index) => (
 					<TabButton key={button.id} disabled={!edit && index > 0}>
-						<span className="disco-flex disco-justify-center disco-items-center disco-gap-2">
+						<span className="disco:flex disco:justify-center disco:items-center disco:gap-2">
 							{button.text}
 							{!isPro && index === 1 ? <ProIcon /> : ''}
 						</span>

@@ -70,9 +70,9 @@ const ButtonSection = () => {
 	};
 
 	return (
-		<div className="disco-mt-3">
-			<div className="disco-flex disco-justify-between disco-items-center disco-mb-1">
-				<h1 className="disco-text-sm disco-font-semibold">
+		<div className="disco:mt-3">
+			<div className="disco:flex disco:justify-between disco:items-center disco:mb-1">
+				<h1 className="disco:text-sm disco:font-semibold">
 					{__('Banner Button', 'disco')}
 				</h1>
 				<Status
@@ -81,7 +81,7 @@ const ButtonSection = () => {
 				/>
 			</div>
 			<>
-				<div className="disco-flex disco-justify-between disco-items-center disco-bg-white disco-p-2 disco-gap-2 disco-rounded-lg">
+				<div className="disco:flex disco:justify-between disco:items-center disco:bg-white disco:p-2 disco:gap-2 disco:rounded-lg">
 					<FontStyleButtons
 						isBold={isBold}
 						isItalic={isItalic}
@@ -97,12 +97,12 @@ const ButtonSection = () => {
 						onchange={(value) =>
 							handleButtonChange('font-family', value)
 						}
-						className="disco-bg-white disco-flex-grow"
-						buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+						className="disco:bg-white disco:grow"
+						buttonClass="disco:rounded-lg! disco:py-1! disco:font-thin! disco:text-sm!"
 					/>
 					<CustomNumberInput
 						placeholder={__('Size', 'disco')}
-						className="!disco-py-1 disco-gap-1 disco-flex-shrink-0 disco-font-thin disco-text-sm"
+						className="disco:py-1! disco:gap-1 disco:shrink-0 disco:font-thin disco:text-sm"
 						initialValue={parseInt(button['font-size']) || 14}
 						min={4}
 						max={30}
@@ -115,11 +115,11 @@ const ButtonSection = () => {
 						items={fontWeightItems}
 						selected={currentWeight}
 						onchange={handleFontWeightChange}
-						className="disco-bg-white disco-flex-grow"
-						buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+						className="disco:bg-white disco:grow"
+						buttonClass="disco:rounded-lg! disco:py-1! disco:font-thin! disco:text-sm!"
 					/>
 				</div>
-				<div className="disco-flex disco-justify-between disco-gap-4 disco-mt-3">
+				<div className="disco:flex disco:justify-between disco:gap-4 disco:mt-3">
 					<Input
 						type="text"
 						value={button?.text || ''}
@@ -127,7 +127,7 @@ const ButtonSection = () => {
 							handleButtonChange('text', e.target.value)
 						}
 						placeholder={__('Shop Now', 'disco')}
-						className="!disco-w-full disco-h-8 disco-text-sm"
+						className="disco:w-full! disco:h-8 disco:text-sm"
 					/>
 					<Input
 						type="text"
@@ -136,7 +136,7 @@ const ButtonSection = () => {
 							handleButtonChange('url', e.target.value)
 						}
 						placeholder={__('Enter your button url', 'disco')}
-						className="!disco-w-full !disco-h-8 disco-text-sm"
+						className="disco:w-full! disco:h-8! disco:text-sm"
 					/>
 				</div>
 			</>

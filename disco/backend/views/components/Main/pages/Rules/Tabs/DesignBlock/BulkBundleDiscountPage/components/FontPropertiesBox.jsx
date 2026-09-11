@@ -15,10 +15,10 @@ const FontPropertiesBox = ({
 }) => {
 	return (
 		<div className={`${className}`}>
-			<h1 className="disco-text-sm disco-font-semibold disco-mb-2">
+			<h1 className="disco:text-sm disco:font-semibold disco:mb-2">
 				{title}
 			</h1>
-			<div className="disco-flex disco-justify-between 2xl:disco-justify-start disco-bg-white disco-p-2 disco-rounded-md">
+			<div className="disco:flex disco:justify-between disco:2xl:justify-start disco:bg-white disco:p-2 disco:rounded-md">
 				<SingleSelect
 					placeholder={__('Select Font', 'disco')}
 					items={{
@@ -32,12 +32,12 @@ const FontPropertiesBox = ({
 					}}
 					selected={selectedFont} // Use prop value
 					onchange={onFontChange} // Use prop function
-					className="disco-bg-white disco-w-44"
-					buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+					className="disco:bg-white disco:w-44"
+					buttonClass="disco:rounded-lg! disco:py-1! disco:font-thin! disco:text-sm!"
 				/>
 				<CustomNumberInput
 					placeholder={__('Font Size', 'disco')}
-					className="disco-w-44 disco-font-extralight"
+					className="disco:w-44 disco:font-extralight"
 					initialValue={fontSize}
 					min={4}
 					max={30}
@@ -53,8 +53,8 @@ const FontPropertiesBox = ({
 					}}
 					selected={selectedFontWeight} // Use prop value
 					onchange={onFontWeightChange} // Use prop function
-					className="disco-bg-white disco-w-44"
-					buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+					className="disco:bg-white disco:w-44"
+					buttonClass="disco:rounded-lg! disco:py-1! disco:font-thin! disco:text-sm!"
 				/>
 			</div>
 		</div>

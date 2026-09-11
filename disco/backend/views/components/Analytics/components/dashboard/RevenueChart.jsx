@@ -30,21 +30,21 @@ const RevenueChart = ({ className }) => {
 	return (
 		<Card
 			className={cn(
-				'disco-ring-0 disco-border-2 disco-border-[#e5e7eb] disco-rounded-[10px] disco-p-4 disco-gap-2',
+				'disco:ring-0 disco:border-2 disco:border-[#e5e7eb] disco:rounded-[10px] disco:p-4 disco:gap-2',
 				className
 			)}
 		>
 			<div>
-				<h3 className="disco-text-base disco-font-semibold disco-text-[#1f2937]">
+				<h3 className="disco:text-base! disco:font-semibold disco:text-[#1f2937]!">
 					{__('Revenue over time', 'disco')}
 				</h3>
-				<p className="disco-text-xs disco-text-[#9ca3af]">
+				<p className="disco:text-xs! disco:text-[#9ca3af]">
 					{__('Net revenue vs disco', 'disco')}
 				</p>
 			</div>
 
 			{isLoading ? (
-				<div className="disco-h-[280px] disco-animate-pulse disco-rounded-lg disco-bg-[#f3f4f6]" />
+				<div className="disco:h-[280px] disco:animate-pulse disco:rounded-lg disco:bg-[#f3f4f6]" />
 			) : (
 				<ResponsiveContainer width="100%" height={280}>
 					<LineChart

@@ -10,11 +10,11 @@ const LayoutControl = ({
 	onRowBorderChange,
 }) => {
 	return (
-		<div className="disco-flex disco-justify-between disco-gap-4 disco-mt-2">
+		<div className="disco:flex disco:justify-between disco:gap-4 disco:mt-2">
 			<CustomNumberInput
 				title={__('Height', 'disco')}
 				placeholder={__('Height', 'disco')}
-				className="disco-w-full"
+				className="disco:w-full"
 				id="height"
 				name="height"
 				initialValue={height}
@@ -25,7 +25,7 @@ const LayoutControl = ({
 			<CustomNumberInput
 				title={__('Column Border Width', 'disco')}
 				placeholder={__('Column Border', 'disco')}
-				className="disco-w-full"
+				className="disco:w-full"
 				id="column-border"
 				name="column-border"
 				initialValue={columnBorder}
@@ -36,7 +36,7 @@ const LayoutControl = ({
 			<CustomNumberInput
 				title={__('Row Border Width', 'disco')}
 				placeholder={__('Row Border', 'disco')}
-				className="disco-w-full"
+				className="disco:w-full"
 				id="row-border"
 				name="row-border"
 				initialValue={rowBorder}

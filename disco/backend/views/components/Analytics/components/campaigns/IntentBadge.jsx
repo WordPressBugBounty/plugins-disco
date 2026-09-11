@@ -11,7 +11,7 @@ const IntentBadge = ({ intent }) => {
 	const style = INTENT_STYLES[intent] ?? { bg: '#f3f4f6', text: '#6b7280' };
 	return (
 		<span
-			className="disco-inline-flex disco-items-center disco-px-2 disco-py-0.5 disco-rounded disco-text-[10px] disco-font-semibold disco-tracking-wide disco-uppercase"
+			className="disco:inline-flex disco:items-center disco:px-2 disco:py-0.5 disco:rounded disco:text-[10px] disco:font-semibold disco:tracking-wide disco:uppercase"
 			style={{ backgroundColor: style.bg, color: style.text }}
 		>
 			{intent}

@@ -70,12 +70,12 @@ const SaveAndExitButton = () => {
 	}, [added, updated, addingError]);
 
 	return (
-		<div className="disco-flex disco-gap-3">
+		<div className="disco:flex disco:gap-3">
 			{searchParams.get('edit') ? (
-				<div className="disco-flex disco-items-center disco-gap-3">
+				<div className="disco:flex disco:items-center disco:gap-3">
 					<UpdateButton />
 					<Button
-						className="!disco-py-1.5 !disco-px-4 !disco-font-normal"
+						className="disco:py-1.5! disco:px-4! disco:font-normal!"
 						disabled={updating || showEditor}
 						onClick={handleUpdateAndExit}
 						icon={
@@ -88,7 +88,7 @@ const SaveAndExitButton = () => {
 						iconPositionLeft=""
 					>
 						{updating ? (
-							<div className="disco-flex disco-gap-2 disco-items-center">
+							<div className="disco:flex disco:gap-2 disco:items-center">
 								<span>{__(publishLoadingText, 'disco')}</span>
 								<LoadingSpinner size={4} />
 							</div>
@@ -98,7 +98,7 @@ const SaveAndExitButton = () => {
 					</Button>
 				</div>
 			) : (
-				<div className="disco-flex disco-items-center disco-gap-3">
+				<div className="disco:flex disco:items-center disco:gap-3">
 					<SaveButton disabled={showEditor} />
 				</div>
 			)}

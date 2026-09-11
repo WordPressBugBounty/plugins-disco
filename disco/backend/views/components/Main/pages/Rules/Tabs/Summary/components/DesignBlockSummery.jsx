@@ -36,31 +36,31 @@ const DesignBlockSummery = ({ className }) => {
 
 	return (
 		<div className={`${className}`}>
-			<div className="disco-flex disco-gap-6">
-				<p className="disco-text-xl disco-font-semibold">
+			<div className="disco:flex disco:gap-6">
+				<p className="disco:text-xl disco:font-semibold">
 					{__('Design Block', 'disco')}
 				</p>
 				<Button
 					type="transparent"
 					onClick={handleNavigation}
-					className="!disco-px-3 !disco-py-1 !disco-font-light disco-text-sm disco-border disco-border-gray-300 disco-rounded-lg"
+					className="disco:px-3! disco:py-1! disco:font-light! disco:text-sm disco:border disco:border-gray-300 disco:rounded-lg"
 					icon={
-						<PencilSquareIcon className="disco-h-4 disco-w-4 disco-text-primary" />
+						<PencilSquareIcon className="disco:h-4 disco:w-4 disco:text-primary" />
 					}
 				>
 					{__('Edit Now', 'disco')}
 				</Button>
 			</div>
 
-			<div className="disco-p-4 disco-grid disco-grid-cols-3 disco-mt-4 disco-gap-4 disco-border disco-rounded-xl">
+			<div className="disco:p-4 disco:grid disco:grid-cols-3 disco:mt-4 disco:gap-4 disco:border disco:rounded-xl">
 				{enabledComponents.length > 0 ? (
 					enabledComponents.map((key) => {
 						const ComponentToRender = ComponentMap[key];
 						return <ComponentToRender key={key} />;
 					})
 				) : (
-					<div className="disco-col-span-3 disco-text-center disco-text-gray-500">
-						<h1 className="disco-text-gray-500 disco-text-base">
+					<div className="disco:col-span-3 disco:text-center disco:text-gray-500">
+						<h1 className="disco:text-gray-500 disco:text-base">
 							{__('No Design Block Enabled!', 'disco')}
 						</h1>
 					</div>

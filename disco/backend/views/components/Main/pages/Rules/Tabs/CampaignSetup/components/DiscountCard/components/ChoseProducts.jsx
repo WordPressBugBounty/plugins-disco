@@ -45,10 +45,10 @@ const ChoseProducts = () => {
 
 	return (
 		<div>
-			<div className="disco-flex disco-gap-4">
+			<div className="disco:flex disco:gap-4">
 				<SearchProduct/>
 				<div
-					className="disco-border disco-flex disco-items-start disco-gap-2 disco-flex-wrap disco-bg-white disco-min-h-[80px] disco-w-full disco-rounded-lg disco-p-3"
+					className="disco:border disco:flex disco:items-start disco:gap-2 disco:flex-wrap disco:bg-white disco:min-h-[80px] disco:w-full disco:rounded-lg disco:p-3"
 				>
 					{selectedProducts.length > 0 ? (
 						<>
@@ -56,52 +56,52 @@ const ChoseProducts = () => {
 							{selectedProducts.slice(0, 7).map((product) => (
 								<div
 									key={product.id}
-									className="disco-bg-white disco-border disco-rounded-md disco-ps-2 disco-py-0.5 disco-flex disco-items-center disco-gap-2"
+									className="disco:bg-white disco:border disco:rounded-md disco:ps-2 disco:py-0.5 disco:flex disco:items-center disco:gap-2"
 								>
-									<img src={product.image} className="disco-h-5 disco-w-5"/>
-									<span className="disco-text-base">{`${product.name} `}</span>
+									<img src={product.image} className="disco:h-5 disco:w-5"/>
+									<span className="disco:text-base">{`${product.name} `}</span>
 									<button
-										className="disco-font-medium disco-select-none disco-pr-1"
+										className="disco:font-medium disco:select-none disco:pr-1"
 										onClick={() => handleRemoveProduct(product)}
 									>
-										<XMarkIcon className="disco-h-4 disco-w-4"/>
+										<XMarkIcon className="disco:h-4 disco:w-4"/>
 									</button>
 								</div>
 							))}
 
 							{/* Show 'See More' button if there are more than 7 products */}
 							{selectedProducts.length > 7 && (
-								<div className="disco-relative">
+								<div className="disco:relative">
 									<button
-										className="disco-bg-white disco-text-base disco-border disco-border-primary disco-text-black disco-px-3 disco-py-0.5 disco-rounded-md disco-flex disco-items-center"
+										className="disco:bg-white disco:text-base disco:border disco:border-primary disco:text-black disco:px-3 disco:py-0.5 disco:rounded-md disco:flex disco:items-center"
 										onClick={handleToggleDropdown}
 									>
 										See More {selectedProducts.length - 7} Products
-										<ChevronDownIcon className="disco-h-4 disco-w-4 disco-text-primary disco-ml-2"/>
+										<ChevronDownIcon className="disco:h-4 disco:w-4 disco:text-primary disco:ml-2"/>
 									</button>
 
 									{/* Dropdown Menu */}
 									{showDropdown && (
 										<div
 											ref={dropdownRef}
-											className="disco-absolute disco-z-10 disco-bg-white disco-border disco-shadow-lg disco-rounded-md disco-min-w-60 disco-max-w-100 disco-mt-2 disco-max-h-60 disco-overflow-y-auto disco-p-2">
+											className="disco:absolute disco:z-10 disco:bg-white disco:border disco:shadow-lg disco:rounded-md disco:min-w-60 disco:max-w-100 disco:mt-2 disco:max-h-60 disco:overflow-y-auto disco:p-2">
 											{selectedProducts.slice(7).map((product) => (
 												<div
 													key={product.id}
-													className="disco-flex disco-items-center disco-gap-2 disco-p-1 disco-mb-1 disco-rounded-md hover:disco-bg-gray-100"
+													className="disco:flex disco:items-center disco:gap-2 disco:p-1 disco:mb-1 disco:rounded-md disco:hover:bg-gray-100"
 												>
 													{/* Product Info */}
-													<div className="disco-flex disco-flex-col disco-gap-1">
-														<div className="disco-flex disco-justify-center disco-items-center disco-gap-1">
+													<div className="disco:flex disco:flex-col disco:gap-1">
+														<div className="disco:flex disco:justify-center disco:items-center disco:gap-1">
 															<span
-																className="disco-flex disco-gap-1 disco-items-center disco-text-red-600 disco-text-xs disco-cursor-pointer"
+																className="disco:flex disco:gap-1 disco:items-center disco:text-red-600 disco:text-xs disco:cursor-pointer"
 																onClick={() => handleRemoveProduct(product)}
 															>
-																<XMarkIcon className="disco-h-4 disco-w-4"/>
-																<img src={product.image} className="disco-h-5 disco-w-5"/>
+																<XMarkIcon className="disco:h-4 disco:w-4"/>
+																<img src={product.image} className="disco:h-5 disco:w-5"/>
 															</span>
 															<span
-																className="disco-text-base"> {`${product.name}`} </span>
+																className="disco:text-base"> {`${product.name}`} </span>
 														</div>
 													</div>
 												</div>
@@ -112,14 +112,14 @@ const ChoseProducts = () => {
 							)}
 
 							{/* Total Products Count */}
-							<div className="disco-w-full disco-flex disco-gap-1 disco-mt-2 disco-text-sm disco-text-gray-700">
-								<InformationCircleIcon className="disco-h-5 disco-w-5 disco-text-amber-400" />
+							<div className="disco:w-full disco:flex disco:gap-1 disco:mt-2 disco:text-sm disco:text-gray-700">
+								<InformationCircleIcon className="disco:h-5 disco:w-5 disco:text-amber-400" />
 								<p>{`Total ${selectedProducts.length} products have been selected.`}</p>
 							</div>
 						</>
 					) : (
 						<div>
-							<p className="disco-text-gray-500">
+							<p className="disco:text-gray-500">
 								{__('Selected Product Will Appear Here.', 'disco')}
 							</p>
 						</div>

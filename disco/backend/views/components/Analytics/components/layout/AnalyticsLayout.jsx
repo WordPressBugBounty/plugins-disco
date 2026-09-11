@@ -22,13 +22,13 @@ const AnalyticsLayout = () => {
 	const { pathname } = useLocation();
 
 	return (
-		<div className="disco-min-h-[calc(100vh-42px)] disco-bg-white">
+		<div className="disco:min-h-[calc(100vh-42px)] disco:bg-white">
 			<div
 				className={cn(
-					'disco-sticky disco-top-8 disco-z-50 disco-flex disco-items-center disco-justify-between disco-border-b disco-border-[#e5e7eb] disco-bg-white disco-px-3 disco-py-[13px]'
+					'disco:sticky disco:top-8 disco:z-50 disco:flex disco:items-center disco:justify-between disco:border-b disco:border-[#e5e7eb] disco:bg-white disco:px-3 disco:py-3.25'
 				)}
 			>
-				<nav className="disco-flex disco-items-center disco-gap-1">
+				<nav className="disco:flex disco:items-center disco:gap-1">
 					{NAV_ITEMS.map(({ label, path, end }) => (
 						<NavLink
 							key={path}
@@ -40,14 +40,14 @@ const AnalyticsLayout = () => {
 										variant: 'ghost',
 										size: 'sm',
 									}),
-									'disco-h-7 !disco-rounded-md disco-px-3 disco-text-sm disco-font-medium disco-font-sans disco-no-underline ',
+									'disco:h-7 disco:rounded-md! disco:px-3 disco:text-sm disco:font-medium disco:font-sans disco:no-underline ',
 									isActive ||
 										(DETAIL_PREFIXES[path] &&
 											pathname.startsWith(
 												DETAIL_PREFIXES[path]
 											))
-										? 'disco-bg-[#0dc98b] disco-text-white hover:disco-bg-[#0dc98b] hover:disco-text-white'
-										: 'disco-text-gray-600 focus:!disco-text-gray-600 hover:disco-bg-transparent hover:disco-text-gray-600 focus:disco-outline-none visited:disco-outline-none'
+										? 'disco:bg-[#0dc98b] disco:text-white! disco:hover:bg-[#0dc98b] disco:hover:text-white!'
+										: 'disco:text-gray-600! disco:focus:text-gray-600! disco:hover:bg-transparent disco:hover:text-gray-600! disco:focus:outline-hidden disco:visited:outline-hidden'
 								)
 							}
 						>

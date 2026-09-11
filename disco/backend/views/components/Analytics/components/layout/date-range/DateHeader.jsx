@@ -74,11 +74,11 @@ export default function DateHeader({ label, date, onDateChange }) {
 	return (
 		<div
 			className={cn(
-				'disco-mb-2 disco-flex disco-items-center disco-gap-2 disco-rounded-[5px] disco-border disco-px-3 disco-py-1.5',
-				error ? 'disco-border-red-400' : 'disco-border-[#e5e7eb]'
+				'disco:mb-2 disco:flex disco:items-center disco:gap-2 disco:rounded-[5px] disco:border disco:px-3 disco:py-1.5',
+				error ? 'disco:border-red-400' : 'disco:border-[#e5e7eb]'
 			)}
 		>
-			<span className="disco-text-xs disco-font-medium disco-text-[rgba(74,74,74,0.45)]">
+			<span className="disco:text-xs disco:font-medium disco:text-[rgba(74,74,74,0.45)]">
 				{label}
 			</span>
 
@@ -94,14 +94,14 @@ export default function DateHeader({ label, date, onDateChange }) {
 					onBlur={handleBlur}
 					onKeyDown={handleKeyDown}
 					placeholder={PLACEHOLDER}
-					className="!disco-border-none disco-bg-transparent disco-p-0 disco-text-xs disco-font-semibold disco-text-gray-700 !disco-outline-none !disco-shadow-none focus:!disco-outline-none focus:!disco-shadow-none focus:!disco-border-none disco-h-[30px] !disco-min-h-0 disco-max-w-28"
+					className="disco:border-none! disco:bg-transparent! disco:p-0! disco:text-xs disco:font-semibold disco:text-gray-700! disco:outline-hidden! disco:shadow-none! disco:focus:outline-hidden! disco:focus:shadow-none! disco:focus:border-none! disco:h-[30px] disco:min-h-0! disco:max-w-28"
 				/>
 			) : (
 				<span
 					onClick={handleClick}
 					className={cn(
-						'disco-text-xs disco-font-semibold disco-text-gray-700 disco-h-[30px] disco-leading-8',
-						onDateChange && 'disco-cursor-text'
+						'disco:text-xs disco:font-semibold disco:text-gray-700 disco:h-[30px] disco:leading-8',
+						onDateChange && 'disco:cursor-text'
 					)}
 				>
 					{formattedDate || '--'}

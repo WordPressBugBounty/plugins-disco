@@ -4,33 +4,33 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "disco-group/button disco-inline-flex disco-shrink-0 disco-items-center disco-justify-center disco-rounded-lg disco-border disco-border-transparent disco-bg-clip-padding disco-text-sm disco-font-medium disco-whitespace-nowrap disco-transition-all disco-outline-none disco-select-none focus-visible:disco-border-ring focus-visible:disco-ring-3 focus-visible:disco-ring-ring/50 active:not-aria-[haspopup]:disco-translate-y-px disabled:disco-pointer-events-none disabled:disco-opacity-50 aria-invalid:disco-border-destructive aria-invalid:disco-ring-3 aria-invalid:disco-ring-destructive/20 dark:aria-invalid:disco-border-destructive/50 dark:aria-invalid:disco-ring-destructive/40 [&_svg]:disco-pointer-events-none [&_svg]:disco-shrink-0 [&_svg:not([class*=size-])]:disco-size-4",
+  "disco:group/button disco:inline-flex disco:shrink-0 disco:items-center disco:justify-center disco:rounded-lg disco:border disco:border-transparent disco:bg-clip-padding disco:text-sm disco:font-medium disco:whitespace-nowrap disco:transition-all disco:outline-hidden disco:select-none disco:focus-visible:border-ring disco:focus-visible:ring-3 disco:focus-visible:ring-ring/50 disco:active:not-aria-[haspopup]:translate-y-px disco:disabled:pointer-events-none disco:disabled:opacity-50 disco:aria-invalid:border-destructive disco:aria-invalid:ring-3 disco:aria-invalid:ring-destructive/20 disco:dark:aria-invalid:border-destructive/50 disco:dark:aria-invalid:ring-destructive/40 disco:[&_svg]:pointer-events-none disco:[&_svg]:shrink-0 disco:[&_svg:not([class*=size-])]:size-4",
   {
     variants: {
       variant: {
-        default: "disco-bg-primary disco-text-primary-foreground [a]:hover:disco-bg-primary/80",
+        default: "disco:bg-primary disco:text-primary-foreground disco:[a]:hover:bg-primary/80",
         outline:
-          "disco-border-border disco-bg-background hover:disco-bg-muted hover:disco-text-foreground aria-expanded:disco-bg-muted aria-expanded:disco-text-foreground dark:disco-border-input dark:disco-bg-input/30 dark:hover:disco-bg-input/50",
+          "disco:border-border disco:bg-background disco:hover:bg-muted disco:hover:text-foreground disco:aria-expanded:bg-muted disco:aria-expanded:text-foreground disco:dark:border-input disco:dark:bg-input/30 disco:dark:hover:bg-input/50",
         secondary:
-          "disco-bg-secondary disco-text-secondary-foreground hover:disco-bg-secondary/80 aria-expanded:disco-bg-secondary aria-expanded:disco-text-secondary-foreground",
+          "disco:bg-secondary disco:text-secondary-foreground disco:hover:bg-secondary/80 disco:aria-expanded:bg-secondary disco:aria-expanded:text-secondary-foreground",
         ghost:
-          "hover:disco-bg-muted hover:disco-text-foreground aria-expanded:disco-bg-muted aria-expanded:disco-text-foreground dark:hover:disco-bg-muted/50",
+          "disco:hover:bg-muted disco:hover:text-foreground disco:aria-expanded:bg-muted disco:aria-expanded:text-foreground disco:dark:hover:bg-muted/50",
         destructive:
-          "disco-bg-destructive/10 disco-text-destructive hover:disco-bg-destructive/20 focus-visible:disco-border-destructive/40 focus-visible:disco-ring-destructive/20 dark:disco-bg-destructive/20 dark:hover:disco-bg-destructive/30 dark:focus-visible:disco-ring-destructive/40",
-        link: "disco-text-primary disco-underline-offset-4 hover:disco-underline",
+          "disco:bg-destructive/10 disco:text-destructive disco:hover:bg-destructive/20 disco:focus-visible:border-destructive/40 disco:focus-visible:ring-destructive/20 disco:dark:bg-destructive/20 disco:dark:hover:bg-destructive/30 disco:dark:focus-visible:ring-destructive/40",
+        link: "disco:text-primary disco:underline-offset-4 disco:hover:underline",
       },
       size: {
         default:
-          "disco-h-8 disco-gap-1.5 disco-px-2.5 has-data-[icon=inline-end]:disco-pr-2 has-data-[icon=inline-start]:disco-pl-2",
-        xs: "disco-h-6 disco-gap-1 disco-rounded-[min(var(--radius-md),10px)] disco-px-2 disco-text-xs in-data-[slot=button-group]:disco-rounded-lg has-data-[icon=inline-end]:disco-pr-1.5 has-data-[icon=inline-start]:disco-pl-1.5 [&_svg:not([class*=size-])]:disco-size-3",
-        sm: "disco-h-7 disco-gap-1 disco-rounded-[min(var(--radius-md),12px)] disco-px-2.5 disco-text-[0.8rem] in-data-[slot=button-group]:disco-rounded-lg has-data-[icon=inline-end]:disco-pr-1.5 has-data-[icon=inline-start]:disco-pl-1.5 [&_svg:not([class*=size-])]:disco-size-3.5",
-        lg: "disco-h-9 disco-gap-1.5 disco-px-2.5 has-data-[icon=inline-end]:disco-pr-2 has-data-[icon=inline-start]:disco-pl-2",
-        icon: "disco-size-8",
+          "disco:h-8 disco:gap-1.5 disco:px-2.5 disco:has-data-[icon=inline-end]:pr-2 disco:has-data-[icon=inline-start]:pl-2",
+        xs: "disco:h-6 disco:gap-1 disco:rounded-[min(var(--radius-md),10px)] disco:px-2 disco:text-xs disco:in-data-[slot=button-group]:rounded-lg disco:has-data-[icon=inline-end]:pr-1.5 disco:has-data-[icon=inline-start]:pl-1.5 disco:[&_svg:not([class*=size-])]:size-3",
+        sm: "disco:h-7 disco:gap-1 disco:rounded-[min(var(--radius-md),12px)] disco:px-2.5 disco:text-[0.8rem] disco:in-data-[slot=button-group]:rounded-lg disco:has-data-[icon=inline-end]:pr-1.5 disco:has-data-[icon=inline-start]:pl-1.5 disco:[&_svg:not([class*=size-])]:size-3.5",
+        lg: "disco:h-9 disco:gap-1.5 disco:px-2.5 disco:has-data-[icon=inline-end]:pr-2 disco:has-data-[icon=inline-start]:pl-2",
+        icon: "disco:size-8",
         "icon-xs":
-          "disco-size-6 disco-rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:disco-rounded-lg [&_svg:not([class*=size-])]:disco-size-3",
+          "disco:size-6 disco:rounded-[min(var(--radius-md),10px)] disco:in-data-[slot=button-group]:rounded-lg disco:[&_svg:not([class*=size-])]:size-3",
         "icon-sm":
-          "disco-size-7 disco-rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:disco-rounded-lg",
-        "icon-lg": "disco-size-9",
+          "disco:size-7 disco:rounded-[min(var(--radius-md),12px)] disco:in-data-[slot=button-group]:rounded-lg",
+        "icon-lg": "disco:size-9",
       },
     },
     defaultVariants: {

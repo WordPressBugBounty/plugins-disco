@@ -86,7 +86,7 @@ const SummaryCards = () => {
 	const data = res?.data;
 
 	return (
-		<div className="disco-grid disco-grid-cols-4 disco-gap-2.5 disco-mb-3">
+		<div className="disco:grid disco:grid-cols-4 disco:gap-2.5 disco:mb-3">
 			{CARD_CONFIGS.map(
 				({
 					title,

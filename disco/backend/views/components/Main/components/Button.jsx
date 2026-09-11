@@ -1,3 +1,5 @@
+import cn from '../utilities/cn';
+
 const Button = ({
 	testId = '',
 	disabled = false,
@@ -9,18 +11,27 @@ const Button = ({
 	onClick = () => {},
 }) => {
 	const baseClassNames =
-		'disco-text-base disco-shadow-custom disco-border disco-rounded-lg disco-px-8 disco-py-2.5 disco-flex disco-items-center disco-gap-2 disco-outline-none disco-font-medium disco-transition-colors disco-duration-200';
+		'disco:text-base! disco:shadow-custom disco:border disco:rounded-lg disco:px-3 disco:py-1.5 disco:flex disco:items-center disco:gap-2 disco:outline-hidden disco:font-medium disco:transition-colors disco:duration-200';
 
 	const getTypeClassNames = () => {
 		switch (type) {
 			case 'primary':
-				return `${baseClassNames} disco-text-white disco-bg-primary disco-border-primary hover:disco-bg-primary-dark hover:disco-border-primary-dark`;
+				return cn(
+					baseClassNames,
+					'disco:text-white disco:bg-primary disco:border-primary disco:hover:bg-primary-dark disco:hover:border-primary-dark'
+				);
 
 			case 'secondary':
-				return `${baseClassNames} disco-text-grey-dark disco-bg-gray-100 disco-border-gray-200 hover:disco-bg-gray-200 hover:disco-border-gray-300`;
+				return cn(
+					baseClassNames,
+					'disco:text-grey-dark disco:bg-gray-100 disco:border-gray-200 disco:hover:bg-gray-200 disco:hover:border-gray-300'
+				);
 
 			case 'transparent':
-				return `${baseClassNames} disco-text-black disco-bg-transparent disco-border-primary`;
+				return cn(
+					baseClassNames,
+					'disco:text-black disco:bg-transparent disco:border-primary'
+				);
 
 			default:
 				return baseClassNames;
@@ -31,12 +42,12 @@ const Button = ({
 
 	// Handle icon position (right/left)
 	if (!iconPositionLeft) {
-		buttonClasses += ' !disco-flex-row-reverse';
+		buttonClasses += ' disco:flex-row-reverse!';
 	}
 
 	// Apply disabled styles
 	if (disabled) {
-		buttonClasses += ' disco-opacity-50 disco-cursor-not-allowed';
+		buttonClasses += ' disco:opacity-50 disco:cursor-not-allowed';
 	}
 
 	return (

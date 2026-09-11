@@ -104,8 +104,8 @@ const ProductBadgeEdit = () => {
 	}, []);
 
 	return (
-		<div className="disco-bg-gray-50 disco-mr-4 disco-rounded-lg disco-pb-4">
-			<div className="disco-px-5 disco-py-1">
+		<div className="disco:bg-gray-50 disco:mr-4 disco:rounded-lg disco:pb-4">
+			<div className="disco:px-5 disco:py-1">
 				<BadgeHeader
 					title={__('Product Badge', 'disco')}
 					description={__(
@@ -113,8 +113,8 @@ const ProductBadgeEdit = () => {
 						'disco'
 					)}
 				/>
-				<div className="disco-max-h-[calc(100vh-225px)] disco-flex disco-gap-8 disco-pt-2 disco-mt-2 disco-justify-between">
-					<div className="disco-w-2/3 disco-overflow-y-auto disco-no-scrollbar disco-overscroll-contain">
+				<div className="disco:max-h-[calc(100vh-225px)] disco:flex disco:gap-8 disco:pt-2 disco:mt-2 disco:justify-between">
+					<div className="disco:w-2/3 disco:overflow-y-auto disco-no-scrollbar disco:overscroll-contain">
 						<BadgeSelector
 							title={__('Choose Badge', 'disco')}
 							options={badgeOptions}
@@ -202,7 +202,7 @@ const ProductBadgeEdit = () => {
 							</>
 						)}
 					</div>
-					<div className="disco-w-1/3">
+					<div className="disco:w-1/3">
 						<ProductBadgeCardView
 							setSelectedBadge={setSelectedBadge}
 						/>

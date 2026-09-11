@@ -61,22 +61,22 @@ const TextHighlightView = ({ setSelectedBadge }) => {
 	};
 
 	return (
-		<BadgeCardContainer className="disco-h-[400px] disco-px-3 disco-bg-white disco-top-0 !disco-sticky">
+		<BadgeCardContainer className="disco:h-[400px] disco:px-3 disco:bg-white disco:top-0 disco:sticky!">
 			<div className="">
-				<div className="disco-flex disco-gap-3 disco-bg-gray-50 disco-border disco-border-white disco-rounded-lg disco-px-6 disco-py-6 disco-shadow-md">
-					<div className="disco-bg-white disco-flex disco-justify-center disco-items-center disco-rounded-md disco-p-4">
-						<img src={product2} alt="img" className="disco-h-40" />
+				<div className="disco:flex disco:gap-3 disco:bg-gray-50 disco:border disco:border-white disco:rounded-lg disco:px-6 disco:py-6 disco:shadow-md">
+					<div className="disco:bg-white disco:flex disco:justify-center disco:items-center disco:rounded-md disco:p-4">
+						<img src={product2} alt="img" className="disco:h-40" />
 					</div>
 					<div>
-						<p className="disco-text-lg disco-font-medium disco-text-black">
+						<p className="disco:text-lg disco:font-medium disco:text-black">
 							{__('Full Shirt for Men', 'disco')}
 						</p>
-						<div className="disco-mt-0.5 disco-flex disco-justify-between disco-items-center">
-							<div className="disco-flex disco-gap-2 disco-items-center">
-								<span className="disco-text-lg disco-font-bold">
+						<div className="disco:mt-0.5 disco:flex disco:justify-between disco:items-center">
+							<div className="disco:flex disco:gap-2 disco:items-center">
+								<span className="disco:text-lg disco:font-bold">
 									$165
 								</span>
-								<span className="disco-text-base disco-line-through disco-decoration-red-500">
+								<span className="disco:text-base disco:line-through disco:decoration-red-500">
 									$285
 								</span>
 							</div>
@@ -135,24 +135,24 @@ const TextHighlightView = ({ setSelectedBadge }) => {
 							</>
 						)}
 						{/* Text highlighter badge preview */}
-						<div className="disco-flex disco-gap-1 disco-items-center disco-mt-0.5">
+						<div className="disco:flex disco:gap-1 disco:items-center disco:mt-0.5">
 							<Rating
 								ratingHight={4}
 								ratingWidth={4}
-								ratingAvgClass="!disco-text-base"
-								totalReviewClass="!disco-text-sm"
+								ratingAvgClass="disco:text-base!"
+								totalReviewClass="disco:text-sm!"
 							/>
 						</div>
-						<button className="disco-text-orange-400 disco-text-sm disco-border disco-border-orange-400 disco-w-full disco-p-1 disco-mt-1">
+						<button className="disco:text-orange-400 disco:text-sm disco:border disco:border-orange-400 disco:w-full disco:p-1 disco:mt-1">
 							{__('Add to Cart', 'disco')}
 						</button>
 					</div>
 				</div>
-				<div className="disco-flex disco-mt-1 disco-justify-center disco-gap-4 disco-py-4">
+				<div className="disco:flex disco:mt-1 disco:justify-center disco:gap-4 disco:py-4">
 					<Button
 						onClick={handleResetBanner}
 						type="transparent"
-						className="disco-border-red-500"
+						className="disco:border-red-500"
 					>
 						{__('Reset All', 'disco')}
 					</Button>

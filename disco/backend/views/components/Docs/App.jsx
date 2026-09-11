@@ -60,15 +60,15 @@ export default function App() {
 		: [];
 
 	return (
-		<div className="disco-py-4 disco-pr-4">
+		<div className="disco:py-4 disco:pr-4">
 			<HelpCenter
 				searchQuery={searchQuery}
 				setSearchQuery={setSearchQuery}
 				searchResults={searchResults}
 			/>
 			{/* Accordions */}
-			<div className="disco-flex disco-justify-between disco-gap-5 disco-py-5">
-				<div className="disco-w-[70%]">
+			<div className="disco:flex disco:justify-between disco:gap-5 disco:py-5">
+				<div className="disco:w-[70%]">
 					<DiscoAccordion docsData={docsData} />
 					{/* Contact Form */}
 					<DiscoSupportSection />

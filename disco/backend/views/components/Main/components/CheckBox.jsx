@@ -3,16 +3,16 @@ import { CheckIcon } from '@heroicons/react/24/solid';
 
 const CheckBox = ({ checked, onChange, label, testid }) => {
 	return (
-		<Field className="disco-flex disco-items-center disco-gap-2 disco-cursor-pointer disco-mb-4">
+		<Field className="disco:flex disco:items-center disco:gap-2 disco:cursor-pointer disco:mb-4">
 			<Checkbox
 				checked={checked}
 				onChange={onChange}
 				data-testid={testid}
-				className="disco-w-4 disco-h-4 disco-rounded disco-border disco-border-primary data-[checked]:disco-bg-primary data-[checked]:disco-border-primary disco-bg-white disco-flex disco-items-center disco-justify-center"
+				className="disco:w-4 disco:h-4 disco:rounded disco:border disco:border-primary disco:data-checked:bg-primary disco:data-checked:border-primary disco:bg-white disco:flex disco:items-center disco:justify-center"
 			>
-				<CheckIcon className="disco-hidden disco-w-3 disco-h-3 disco-text-white [[data-checked]_&]:disco-block" />
+				<CheckIcon className="disco:hidden disco:w-3 disco:h-3 disco:text-white disco:in-data-checked:block" />
 			</Checkbox>
-			<Label className="disco-text-base disco-select-none disco-cursor-pointer">
+			<Label className="disco:text-base disco:select-none disco:cursor-pointer">
 				{label}
 			</Label>
 		</Field>

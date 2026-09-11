@@ -73,7 +73,7 @@ const RenderBlocks = ({ discount_intent }) => {
 
 	if (!isProActive) {
 		return (
-			<div className="disco-flex disco-flex-col disco-gap-4 disco-bg-[#f6f7f9] disco-p-4 disco-rounded-b-xl">
+			<div className="disco:flex disco:flex-col disco:gap-4 disco:bg-[#f6f7f9] disco:p-4 disco:rounded-b-xl">
 				<UnlockProBanner />
 				<FeaturePreviewCards />
 			</div>
@@ -81,7 +81,7 @@ const RenderBlocks = ({ discount_intent }) => {
 	}
 
 	return (
-		<ComponentContainer className="disco-max-h-[calc(100vh-200px)] disco-overflow-y-auto disco-no-scrollbar disco-overscroll-contain disco-grid disco-gap-4 disco-grid-cols-3 2xl:disco-grid-cols-4 3xl:disco-grid-cols-5 disco-pb-5">
+		<ComponentContainer className="disco:max-h-[calc(100vh-200px)] disco:overflow-y-auto disco-no-scrollbar disco:overscroll-contain disco:grid disco:gap-4 disco:grid-cols-3 disco:2xl:grid-cols-4 disco:3xl:grid-cols-5 disco:pb-5">
 			{renderComponent()}
 		</ComponentContainer>
 	);

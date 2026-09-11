@@ -62,9 +62,9 @@ const Campaigns = () => {
 		(allCampaigns === undefined || allCampaigns.length === 0);
 
 	return (
-		<div className="disco-flex disco-mt-2.5 disco-w-full">
-			<div className="disco-bg-gray-50 disco-flex-grow disco-rounded-lg disco-mr-4 disco-ml-0.5">
-				<div className="disco-p-5">
+		<div className="disco:flex disco:mt-2.5 disco:w-full">
+			<div className="disco:bg-gray-50 disco:grow disco:rounded-lg disco:mr-4 disco:ml-0.5">
+				<div className="disco:p-5">
 					<Header />
 					{hasNoCampaigns ? (
 						<EmptyCampaigns />
@@ -81,7 +81,7 @@ const Campaigns = () => {
 				</div>
 			</div>
 			{!isPro && (
-				<div className="disco-min-w-[290px] disco-max-w-[290px] disco-mr-4">
+				<div className="disco:min-w-72.5 disco:max-w-72.5 disco:mr-4">
 					<ProCard />
 				</div>
 			)}

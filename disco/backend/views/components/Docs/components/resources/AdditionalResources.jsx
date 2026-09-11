@@ -64,25 +64,25 @@ export default function DiscoResources() {
 	}, []);
 
 	return (
-		<div className="disco-w-full disco-py-6 disco-font-sans">
+		<div className="disco:w-full disco:py-6 disco:font-sans">
 			<h2
-				className="disco-text-3xl disco-font-bold disco-m-0 disco-mb-2"
+				className="disco:text-3xl! disco:font-bold! disco:m-0 disco:mb-2!"
 				style={{ color: '#38bdf8' }}
 			>
 				Additional Resources
 			</h2>
-			<p className="disco-text-gray-400 disco-text-base disco-m-0 disco-mb-6">
+			<p className="disco:text-gray-400 disco:text-base! disco:m-0 disco:mb-6!">
 				Need help with disco? These resources are great to start.
 			</p>
 
 			{error && (
-				<p className="disco-text-red-400 disco-text-sm">
+				<p className="disco:text-red-400 disco:text-sm">
 					Failed to load posts: {error}
 				</p>
 			)}
 
 			<div
-				className="disco-grid disco-gap-5"
+				className="disco:grid disco:gap-5"
 				style={{
 					gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
 				}}

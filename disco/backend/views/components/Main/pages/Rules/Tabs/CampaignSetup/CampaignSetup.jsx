@@ -80,7 +80,7 @@ const CampaignSetup = () => {
 	}, []);
 
 	return (
-		<div className="disco-max-h-[calc(100vh-122px)] disco-overflow-y-auto disco-overscroll-container disco-no-scrollbar">
+		<div className="disco:max-h-[calc(100vh-122px)] disco:overflow-y-auto disco:overscroll-container disco-no-scrollbar">
 			<CampaignName />
 			<DiscountIntention />
 			{discount_intent && (

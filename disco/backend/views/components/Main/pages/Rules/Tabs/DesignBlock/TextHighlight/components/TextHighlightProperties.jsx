@@ -104,8 +104,8 @@ const BadgeFontProperties = ({
 
 	return (
 		<div className={` ${className}`}>
-			<span className="disco-text-sm disco-font-semibold">{label}</span>
-			<div className="disco-flex disco-justify-between disco-items-center 2xl:disco-justify-start disco-bg-white disco-p-2 disco-gap-2 disco-rounded-lg disco-mt-1">
+			<span className="disco:text-sm disco:font-semibold">{label}</span>
+			<div className="disco:flex disco:justify-between disco:items-center disco:2xl:justify-start disco:bg-white disco:p-2 disco:gap-2 disco:rounded-lg disco:mt-1">
 				<FontStyleButtons
 					isBold={isBold}
 					isItalic={isItalic}
@@ -113,7 +113,7 @@ const BadgeFontProperties = ({
 					onBoldToggle={handleBoldToggle}
 					onItalicToggle={handleItalicToggle}
 					onUnderlineToggle={handleUnderlineToggle}
-					className="disco-font-bold disco-text-base"
+					className="disco:font-bold disco:text-base"
 					disabled={isValueEditable}
 				/>
 				<SingleSelect
@@ -124,8 +124,8 @@ const BadgeFontProperties = ({
 						setSelectedFont(value);
 						handleTextChange('font-family', value);
 					}}
-					className="disco-bg-white disco-min-w-[165px]"
-					buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+					className="disco:bg-white disco:min-w-41.25"
+					buttonClass="disco:rounded-lg! disco:pt-1! disco:pb-1! disco:font-thin! disco:text-sm!"
 					disabled={isValueEditable}
 				/>
 				<CustomNumberInput
@@ -137,7 +137,7 @@ const BadgeFontProperties = ({
 						setFontSize(value);
 						handleTextChange('font-size', value + 'px');
 					}}
-					className="!disco-py-1 disco-gap-1 disco-flex-shrink-0 disco-font-thin disco-text-sm"
+					className="disco:py-1! disco:gap-1 disco:shrink-0 disco:font-thin disco:text-sm"
 					disabled={isValueEditable}
 				/>
 				<SingleSelect
@@ -151,8 +151,8 @@ const BadgeFontProperties = ({
 							parseInt(value) || value
 						);
 					}}
-					className="disco-bg-white disco-flex-grow disco-min-w-[135px]"
-					buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+					className="disco:bg-white disco:grow disco:min-w-33.75"
+					buttonClass="disco:rounded-lg! disco:pt-1! disco:pb-1! disco:font-thin! disco:text-sm!"
 					disabled={isValueEditable}
 				/>
 				<SingleSelect
@@ -160,8 +160,8 @@ const BadgeFontProperties = ({
 					items={customOptions}
 					selected=""
 					onchange={handleCustomOptionSelect}
-					className="disco-bg-white disco-flex-grow"
-					buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+					className="disco:bg-white disco:grow"
+					buttonClass="disco:rounded-lg! disco:pt-1! disco:pb-1! disco:font-thin! disco:text-sm!"
 				/>
 			</div>
 		</div>

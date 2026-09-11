@@ -84,7 +84,7 @@ describe('CampaignsReports', () => {
 			const { container } = renderWithProviders(<CampaignsReports />);
 
 			const pulseElements = container.querySelectorAll(
-				'.disco-animate-pulse'
+				'.disco\\:animate-pulse'
 			);
 			expect(pulseElements.length).toBeGreaterThan(0);
 			expect(screen.queryByText('Campaign 1')).not.toBeInTheDocument();

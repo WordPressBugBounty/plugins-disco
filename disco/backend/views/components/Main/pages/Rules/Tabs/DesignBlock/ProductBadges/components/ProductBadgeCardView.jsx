@@ -45,42 +45,42 @@ const ProductBadgeCardView = ({ setSelectedBadge }) => {
 	};
 
 	return (
-		<BadgeCardContainer className="disco-bg-white disco-max-h-[480px] !disco-rounded-xl disco-top-20 !disco-sticky disco-flex-col">
-			<div className="disco-bg-gray-25 disco-border-2 disco-border-white disco-rounded-xl disco-p-4">
-				<div className="disco-bg-white disco-flex disco-items-start disco-justify-center disco-rounded-lg disco-py-6 disco-px-6 disco-relative">
+		<BadgeCardContainer className="disco:bg-white disco:max-h-[480px] disco:rounded-xl! disco:top-20 disco:sticky! disco:flex-col">
+			<div className="disco:bg-gray-25 disco:border-2 disco:border-white disco:rounded-xl disco:p-4">
+				<div className="disco:bg-white disco:flex disco:items-start disco:justify-center disco:rounded-lg disco:py-6 disco:px-6 disco:relative">
 					<img
 						src={product1}
 						alt="img"
-						className="disco-h-52 disco-w-50"
+						className="disco:h-52 disco:w-50"
 					/>
 					{/* Preview badge */}
 					<ProductBadgePreview />
 					{/* Preview badge */}
 				</div>
-				<p className="disco-text-xl disco-font-medium disco-text-black disco-mt-1">
+				<p className="disco:text-xl disco:font-medium disco:text-black disco:mt-1">
 					{__('Summer Kids T-shirt', 'disco')}
 				</p>
 				<Rating
 					ratingHight={4}
 					ratingWidth={4}
-					ratingAvgClass="!disco-text-lg"
-					totalReviewClass="!disco-text-base"
+					ratingAvgClass="disco:text-lg!"
+					totalReviewClass="disco:text-base!"
 				/>
-				<div className="disco-mt-1 disco-flex disco-justify-between disco-items-center">
-					<div className="disco-flex disco-gap-2 disco-items-center">
-						<span className="!disco-text-xl disco-font-bold">
+				<div className="disco:mt-1 disco:flex disco:justify-between disco:items-center">
+					<div className="disco:flex disco:gap-2 disco:items-center">
+						<span className="disco:text-xl! disco:font-bold">
 							$165
 						</span>
-						<span className="disco-text-xl disco-line-through disco-decoration-red-500">
+						<span className="disco:text-xl disco:line-through disco:decoration-red-500">
 							$285
 						</span>
 					</div>
 				</div>
 			</div>
-			<div className="disco-flex disco-justify-center disco-gap-2 disco-py-2">
+			<div className="disco:flex disco:justify-center disco:gap-2 disco:py-2">
 				<Button
 					type="transparent"
-					className="disco-border-red-500"
+					className="disco:border-red-500"
 					onClick={handleResetBanner}
 				>
 					{__('Reset All', 'disco')}

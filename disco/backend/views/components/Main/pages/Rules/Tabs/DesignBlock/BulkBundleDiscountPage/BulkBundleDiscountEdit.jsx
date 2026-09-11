@@ -18,8 +18,8 @@ const BulkBundleDiscountEdit = () => {
 	}, []);
 
 	return (
-		<div className="disco-bg-gray-50 disco-mr-4 disco-rounded-lg disco-pb-4">
-			<div className="disco-px-5 disco-py-1">
+		<div className="disco:bg-gray-50 disco:mr-4 disco:rounded-lg disco:pb-4">
+			<div className="disco:px-5 disco:py-1">
 				<BadgeHeader
 					title={__(`${discount_intent} Table`, 'disco')}
 					description={__(
@@ -27,8 +27,8 @@ const BulkBundleDiscountEdit = () => {
 						'disco'
 					)}
 				/>
-				<div className="disco-max-h-[calc(100vh-225px)] disco-flex disco-gap-8 disco-pt-2 disco-mt-2 disco-justify-between">
-					<div className="disco-w-1/2 disco-max-h-full disco-overflow-y-auto disco-no-scrollbar disco-overscroll-contain">
+				<div className="disco:max-h-[calc(100vh-225px)] disco:flex disco:gap-8 disco:pt-2 disco:mt-2 disco:justify-between">
+					<div className="disco:w-1/2 disco:max-h-full disco:overflow-y-auto disco-no-scrollbar disco:overscroll-contain">
 						<TableItems />
 						<HeadingCustomization />
 						<CellCustomization />
@@ -36,7 +36,7 @@ const BulkBundleDiscountEdit = () => {
 						<TablePosition />
 						<TableTabControl />
 					</div>
-					<div className="disco-w-1/2">
+					<div className="disco:w-1/2">
 						<DiscountView />
 					</div>
 				</div>

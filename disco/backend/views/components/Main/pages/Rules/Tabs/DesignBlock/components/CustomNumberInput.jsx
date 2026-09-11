@@ -70,15 +70,15 @@ const CustomNumberInput = ({
 	return (
 		<div className={`${className}`}>
 			{title && (
-				<div className="disco-text-sm disco-font-semibold disco-mb-2">
+				<div className="disco:text-sm disco:font-semibold disco:mb-2">
 					{title}
 				</div>
 			)}
-			<div className="disco-relative disco-inline-flex disco-items-center disco-w-full disco-border disco-border-gray-200 disco-rounded-lg disco-bg-white disco-overflow-hidden disco-pl-1 disco-pr-2">
+			<div className="disco:relative disco:inline-flex disco:items-center disco:w-full disco:border disco:border-gray-200 disco:rounded-lg disco:bg-white disco:overflow-hidden disco:pl-1 disco:pr-2">
 				<input
 					autoComplete="off"
 					className={cn(
-						`disco-bg-transparent disco-c-appearance-none disco-w-full disco-text-gray-500 disco-text-sm !disco-border-none !disco-outline-none focus:!disco-border-none focus:!disco-ring-0 disabled:disco-cursor-not-allowed`,
+						`disco:bg-transparent! disco-c-appearance-none disco:w-full disco:text-gray-500! disco:text-sm disco:border-none! disco:outline-hidden! disco:focus:border-none! disco:focus:ring-0! disco:disabled:cursor-not-allowed`,
 						className
 					)}
 					type="number"
@@ -92,14 +92,14 @@ const CustomNumberInput = ({
 					data-testid={testid}
 					disabled={disabled}
 				/>
-				<div className="disco-flex disco-flex-col disco-items-center disco-justify-center disco-border disco-border-gray-200 disco-rounded-full disco-w-6 disco-h-6 disco-px-0.5 disco-ml-2 disco-bg-gray-100">
+				<div className="disco:flex disco:flex-col disco:items-center disco:justify-center disco:border disco:border-gray-200 disco:rounded-full disco:w-6 disco:h-6 disco:px-0.5 disco:ml-2 disco:bg-gray-100">
 					<ChevronUpIcon
 						onClick={handleIncrement}
-						className="disco-w-4 disco-h-4 disco-text-gray-500 disco-cursor-pointer hover:disco-text-gray-700"
+						className="disco:w-4 disco:h-4 disco:text-gray-500 disco:cursor-pointer disco:hover:text-gray-700"
 					/>
 					<ChevronDownIcon
 						onClick={handleDecrement}
-						className="disco-w-4 disco-h-4 disco-text-gray-500 disco-cursor-pointer hover:disco-text-gray-700"
+						className="disco:w-4 disco:h-4 disco:text-gray-500 disco:cursor-pointer disco:hover:text-gray-700"
 					/>
 				</div>
 			</div>

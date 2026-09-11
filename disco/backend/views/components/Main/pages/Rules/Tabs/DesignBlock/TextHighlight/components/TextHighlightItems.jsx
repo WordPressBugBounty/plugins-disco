@@ -60,9 +60,9 @@ const TextHighlightItems = ({ className = '', selectedBadge }) => {
 
 	return (
 		<div
-			className={`disco-max-h-[544px] disco-rounded-lg disco-bg-white disco-my-4 disco-py-4 disco-px-4 disco-border-1 ${className}`}
+			className={`disco:max-h-[544px] disco:rounded-lg disco:bg-white disco:my-4 disco:py-4 disco:px-4 disco:border ${className}`}
 		>
-			<div className="disco-grid disco-grid-cols-2 disco-gap-4 ">
+			<div className="disco:grid disco:grid-cols-2 disco:gap-4 ">
 				{textHighlightDesign[selectedBadge].length > 0 ? (
 					Object.values(textHighlightDesign?.[selectedBadge]).map(
 						(design, index) => {
@@ -76,19 +76,19 @@ const TextHighlightItems = ({ className = '', selectedBadge }) => {
 									onClick={() =>
 										handleDesignSelect(designKey)
 									}
-									className={`disco-flex disco-flex-col disco-border disco-rounded-md disco-p-3 disco-items-center disco-justify-center ${isSelected && 'disco-border-primary'}`}
+									className={`disco:flex disco:flex-col disco:border disco:rounded-md disco:p-3 disco:items-center disco:justify-center ${isSelected && 'disco:border-primary'}`}
 								>
 									<img
 										src={design.image.url}
 										alt={`Badge ${index + 1}`}
-										className="disco-object-contain"
+										className="disco:object-contain"
 									/>
 								</div>
 							);
 						}
 					)
 				) : (
-					<p className="disco-text-gray-500 disco-text-sm disco-col-span-4 disco-text-center">
+					<p className="disco:text-gray-500 disco:text-sm disco:col-span-4 disco:text-center">
 						{__(
 							'No badges available for the selected option.',
 							'disco'

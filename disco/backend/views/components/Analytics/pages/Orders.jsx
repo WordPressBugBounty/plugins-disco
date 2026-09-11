@@ -71,12 +71,12 @@ const Orders = () => {
 	};
 
 	return (
-		<div className="disco-min-h-screen disco-bg-[#f9fafb] disco-p-6">
-			<div className="disco-mb-5">
-				<h1 className="disco-text-lg disco-font-bold disco-text-[#111827] disco-tracking-tight">
+		<div className="disco:min-h-screen disco:bg-[#f9fafb] disco:px-6 disco:py-2">
+			<div className="disco:mb-5">
+				<h1 className="disco:text-lg! disco:font-bold! disco:text-[#111827]! disco:tracking-tight">
 					{__('Orders', 'disco')}
 				</h1>
-				<p className="disco-text-xs disco-text-[#9ca3af] disco-mt-0.5">
+				<p className="disco:text-xs! disco:text-[#9ca3af] disco:mt-0.5">
 					{__('Orders influenced by Disco campaigns', 'disco')}
 				</p>
 			</div>

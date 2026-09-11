@@ -91,7 +91,7 @@ const AreaEdit = () => {
 	return (
 		<>
 			{/* Border, Radius */}
-			<div className="disco-w-full disco-mt-3 disco-flex disco-justify-between disco-gap-4">
+			<div className="disco:w-full disco:mt-3 disco:flex disco:justify-between disco:gap-4">
 				<CustomNumberInput
 					title={__('Border', 'disco')}
 					name="border"
@@ -128,7 +128,7 @@ const AreaEdit = () => {
 			</div>
 
 			{/* Padding */}
-			<div className="disco-w-full disco-mt-3 disco-flex disco-justify-between disco-gap-4">
+			<div className="disco:w-full disco:mt-3 disco:flex disco:justify-between disco:gap-4">
 				<CustomNumberInput
 					title={__('Padding Top', 'disco')}
 					name="padding-top"
@@ -168,22 +168,22 @@ const AreaEdit = () => {
 			</div>
 
 			{/* Colors */}
-			<div className="disco-flex disco-mt-4 disco-justify-between disco-gap-2">
+			<div className="disco:flex disco:mt-4 disco:justify-between disco:gap-2">
 				<ColorPiker
 					title={__('Primary Text', 'disco')}
-					className="disco-min-w-32 disco-flex-grow"
+					className="disco:min-w-32 disco:grow"
 					value={title?.color || '#FFFFFF'}
 					onChange={handleTitleColorChange}
 				/>
 				<ColorPiker
 					title={__('Secondary Text', 'disco')}
-					className="disco-min-w-32 disco-flex-grow"
+					className="disco:min-w-32 disco:grow"
 					value={subtitle?.color || '#FFFFFF'}
 					onChange={handleSubtitleColorChange}
 				/>
 				<ColorPiker
 					title={__('Background', 'disco')}
-					className="disco-min-w-32 disco-flex-grow"
+					className="disco:min-w-32 disco:grow"
 					value={container?.background || '#07C889'}
 					hideGradient={false}
 					onChange={(value) =>
@@ -192,7 +192,7 @@ const AreaEdit = () => {
 				/>
 				<ColorPiker
 					title={__('Border Color', 'disco')}
-					className="disco-min-w-32 disco-flex-grow"
+					className="disco:min-w-32 disco:grow"
 					value={container?.['border-color'] || 'rgba(0, 0, 0, 0)'}
 					onChange={(value) =>
 						handleContainerChange('border-color', value)

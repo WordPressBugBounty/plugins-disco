@@ -7,7 +7,7 @@ import CTAFooter from './components/CTAFooter';
 
 export default function DiscoPricingPage() {
 	return (
-		<div className="disco-min-h-screen disco-bg-white disco-font-sans disco-my-4 disco-mr-4 disco-p-5 disco-rounded-2xl">
+		<div className="disco:min-h-screen disco:bg-white disco:font-sans disco:my-4 disco:mr-4 disco:p-5 disco:rounded-2xl">
 			<HeroSection />
 			<PricingSection />
 			<ComparisonSection />

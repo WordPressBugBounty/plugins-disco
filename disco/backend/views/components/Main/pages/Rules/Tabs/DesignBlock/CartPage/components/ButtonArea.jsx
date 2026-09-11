@@ -38,7 +38,7 @@ const ButtonArea = () => {
 	return (
 		<>
 			{/* Height, Width, Border, Radius */}
-			<div className="disco-w-full disco-mt-3 disco-flex disco-justify-between disco-gap-4">
+			<div className="disco:w-full disco:mt-3 disco:flex disco:justify-between disco:gap-4">
 				<CustomNumberInput
 					title={__('Height', 'disco')}
 					name="height"
@@ -100,16 +100,16 @@ const ButtonArea = () => {
 			</div>
 
 			{/* Color Pickers */}
-			<div className="disco-flex disco-mt-4 disco-justify-between disco-gap-2">
+			<div className="disco:flex disco:mt-4 disco:justify-between disco:gap-2">
 				<ColorPiker
 					title={__('Text Color', 'disco')}
-					className="disco-min-w-32 disco-flex-grow"
+					className="disco:min-w-32 disco:grow"
 					value={button?.color || '#07C889'}
 					onChange={(value) => handleButtonChange('color', value)}
 				/>
 				<ColorPiker
 					title={__('Background', 'disco')}
-					className="disco-min-w-32 disco-flex-grow"
+					className="disco:min-w-32 disco:grow"
 					value={button?.background || '#ffffff'}
 					onChange={(value) =>
 						handleButtonChange('background', value)
@@ -117,7 +117,7 @@ const ButtonArea = () => {
 				/>
 				<ColorPiker
 					title={__('Border Color', 'disco')}
-					className="disco-min-w-32 disco-flex-grow"
+					className="disco:min-w-32 disco:grow"
 					value={button?.['border-color'] || '#ffffff'}
 					onChange={(value) =>
 						handleButtonChange('border-color', value)

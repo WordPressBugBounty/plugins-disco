@@ -62,7 +62,7 @@ const ButtonTabSection = () => {
 					handleColorChange('border-color', value)
 				}
 			/>
-			<div className="disco-flex disco-flex-start disco-gap-4 disco-pt-2">
+			<div className="disco:flex disco:flex-start disco:gap-4 disco:pt-2">
 				<CustomNumberInput
 					title={__('Button Height', 'disco')}
 					placeholder={__('Height', 'disco')}

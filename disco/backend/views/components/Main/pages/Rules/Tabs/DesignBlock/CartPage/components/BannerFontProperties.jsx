@@ -124,8 +124,8 @@ const BannerFontProperties = ({
 
 	return (
 		<div className={`${className}`}>
-			<span className="disco-text-sm disco-font-semibold">{label}</span>
-			<div className="disco-flex disco-justify-between disco-items-center 2xl:disco-justify-start disco-bg-white disco-p-2 disco-gap-2 disco-rounded-lg disco-mt-1">
+			<span className="disco:text-sm disco:font-semibold">{label}</span>
+			<div className="disco:flex disco:justify-between disco:items-center disco:2xl:justify-start disco:bg-white disco:p-2 disco:gap-2 disco:rounded-lg disco:mt-1">
 				<FontStyleButtons
 					isBold={isBold}
 					isItalic={isItalic}
@@ -141,12 +141,12 @@ const BannerFontProperties = ({
 					onchange={(value) =>
 						handleBannerChange('font-family', value)
 					}
-					className="disco-bg-white disco-flex-grow"
-					buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+					className="disco:bg-white disco:grow"
+					buttonClass="disco:rounded-lg! disco:py-1! disco:font-thin! disco:text-sm!"
 				/>
 				<CustomNumberInput
 					placeholder={__('Size', 'disco')}
-					className="!disco-py-1 disco-gap-1 disco-flex-shrink-0 disco-font-thin disco-text-sm"
+					className="disco:py-1! disco:gap-1 disco:shrink-0 disco:font-thin disco:text-sm"
 					initialValue={parseInt(banner['font-size']) || 14}
 					min={4}
 					max={30}
@@ -159,16 +159,16 @@ const BannerFontProperties = ({
 					items={fontWeightItems}
 					selected={currentWeight}
 					onchange={handleFontWeightChange}
-					className="disco-bg-white disco-flex-grow"
-					buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+					className="disco:bg-white disco:grow"
+					buttonClass="disco:rounded-lg! disco:py-1! disco:font-thin! disco:text-sm!"
 				/>
 				<SingleSelect
 					placeholder={__('Variable', 'disco')}
 					items={customOptions}
 					selected=""
 					onchange={handleCustomOptionSelect}
-					className="disco-bg-white disco-flex-grow"
-					buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+					className="disco:bg-white disco:grow"
+					buttonClass="disco:rounded-lg! disco:py-1! disco:font-thin! disco:text-sm!"
 				/>
 			</div>
 		</div>

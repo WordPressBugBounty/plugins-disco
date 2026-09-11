@@ -28,7 +28,7 @@ const UserLimit = () => {
 			name="discount_max_user"
 			value={maxUserValue}
 			type="number"
-			className="disco-w-full !disco-px-0.5 !disco-ps-2"
+			className="disco:w-full disco:px-0.5! disco:ps-2!"
 			placeholder={
 				!isPro && discount_intent !== 'Product'
 					? __('', 'disco')

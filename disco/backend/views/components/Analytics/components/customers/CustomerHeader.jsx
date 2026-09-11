@@ -25,31 +25,31 @@ const CustomerHeader = ({ customer }) => {
 	const color = AVATAR_COLORS[id % AVATAR_COLORS.length];
 
 	return (
-		<div className="disco-bg-white disco-border disco-border-[#e5e7eb] disco-rounded-xl disco-px-4 disco-py-4 disco-flex disco-items-center disco-gap-3">
+		<div className="disco:bg-white disco:border disco:border-[#e5e7eb] disco:rounded-xl disco:px-4 disco:py-4 disco:flex disco:items-center disco:gap-3">
 			<CustomerAvatar
 				avatar={avatar}
 				fallback={getInitials(name)}
 				color={color}
 			/>
 			<div>
-				<h2 className="disco-text-sm disco-font-bold disco-text-[#111827] disco-tracking-tight disco-leading-snug">
+				<h2 className="disco:text-sm disco:font-bold disco:text-[#111827] disco:tracking-tight disco:leading-snug">
 					{name}
 				</h2>
-				<div className="disco-flex disco-items-center disco-gap-3 disco-mt-1.5 disco-flex-wrap">
+				<div className="disco:flex disco:items-center disco:gap-3 disco:mt-1.5 disco:flex-wrap">
 					{email && (
-						<span className="disco-flex disco-items-center disco-gap-1 disco-text-[10px] disco-text-[#6b7280]">
-							<Mail className="disco-size-3 disco-text-[#9ca3af]" />
+						<span className="disco:flex disco:items-center disco:gap-1 disco:text-[10px] disco:text-[#6b7280]">
+							<Mail className="disco:size-3 disco:text-[#9ca3af]" />
 							{email}
 						</span>
 					)}
 					{state && (
-						<span className="disco-flex disco-items-center disco-gap-1 disco-text-[10px] disco-text-[#6b7280]">
-							<MapPin className="disco-size-3 disco-text-[#9ca3af]" />
+						<span className="disco:flex disco:items-center disco:gap-1 disco:text-[10px] disco:text-[#6b7280]">
+							<MapPin className="disco:size-3 disco:text-[#9ca3af]" />
 							{state}
 						</span>
 					)}
-					<span className="disco-flex disco-items-center disco-gap-1 disco-text-[10px] disco-text-[#9ca3af]">
-						<User className="disco-size-3" />
+					<span className="disco:flex disco:items-center disco:gap-1 disco:text-[10px] disco:text-[#9ca3af]">
+						<User className="disco:size-3" />
 						ID: {id}
 					</span>
 				</div>

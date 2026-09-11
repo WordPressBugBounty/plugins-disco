@@ -16,20 +16,20 @@ const COLUMNS = [
 const renderRow = (customer, index) => (
 	<tr
 		key={index}
-		className="disco-border-b disco-border-[#f3f4f6] last:disco-border-0 hover:disco-bg-[#f9fafb] disco-transition-colors"
+		className="disco:border-b disco:border-[#f3f4f6] disco:last:border-0 disco:hover:bg-[#f9fafb] disco:transition-colors"
 	>
-		<td className="disco-px-4 disco-py-3">
-			<span className="disco-font-medium disco-text-[#0dc98b]">
+		<td className="disco:px-4 disco:py-3">
+			<span className="disco:font-medium disco:text-[#0dc98b]">
 				{customer.name}
 			</span>
 		</td>
-		<td className="disco-px-4 disco-py-3 disco-text-[#6b7280]">
+		<td className="disco:px-4 disco:py-3 disco:text-[#6b7280]">
 			{customer.email}
 		</td>
-		<td className="disco-px-4 disco-py-3 disco-text-[#374151]">
+		<td className="disco:px-4 disco:py-3 disco:text-[#374151]">
 			{customer.orders}
 		</td>
-		<td className="disco-px-4 disco-py-3 disco-font-semibold disco-text-[#111827]">
+		<td className="disco:px-4 disco:py-3 disco:font-semibold disco:text-[#111827]">
 			{fmt(customer.total_spent)}
 		</td>
 	</tr>
@@ -86,7 +86,7 @@ const CampaignCustomersTable = ({ campaignId }) => {
 			totalPages={totalPages}
 			onPageChange={setPage}
 			isLoading={isLoading || isFetching}
-			className="disco-rounded-tl-none disco-rounded-tr-none"
+			className="disco:rounded-tl-none disco:rounded-tr-none"
 			locked={!isPro}
 		/>
 	);

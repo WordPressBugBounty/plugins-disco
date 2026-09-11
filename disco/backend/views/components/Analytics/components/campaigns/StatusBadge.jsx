@@ -9,11 +9,11 @@ const StatusBadge = ({ status }) => {
 
 	return (
 		<span
-			className="disco-inline-flex disco-items-center disco-gap-1.5 disco-text-xs"
+			className="disco:inline-flex disco:items-center disco:gap-1.5 disco:text-xs"
 			style={{ color: style.text }}
 		>
 			<span
-				className="disco-size-[6px] disco-rounded-full disco-shrink-0"
+				className="disco:size-[6px] disco:rounded-full disco:shrink-0"
 				style={{ backgroundColor: style.dot }}
 			/>
 			{status}

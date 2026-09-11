@@ -30,9 +30,9 @@ const SuccessMessageSection = () => {
 	};
 
 	return (
-		<div className="disco-mt-3">
-			<div className="disco-flex disco-justify-between disco-items-center disco-mb-1">
-				<h1 className="disco-text-sm disco-font-semibold">
+		<div className="disco:mt-3">
+			<div className="disco:flex disco:justify-between disco:items-center disco:mb-1">
+				<h1 className="disco:text-sm disco:font-semibold">
 					{__('Success Message', 'disco')}
 				</h1>
 				<Status
@@ -43,7 +43,7 @@ const SuccessMessageSection = () => {
 					dataTestid="cart-notice-success-status"
 				/>
 			</div>
-			<p className="disco-text-xs disco-font-thin disco-mb-1">
+			<p className="disco:text-xs disco:font-thin disco:mb-1">
 				{__(
 					'Shown instead of the banner text once the customer has claimed the discount. When turned off, the banner is hidden after the discount is applied.',
 					'disco'

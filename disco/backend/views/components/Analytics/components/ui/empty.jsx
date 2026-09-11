@@ -10,7 +10,7 @@ function Empty({
     <div
       data-slot="empty"
       className={cn(
-        "disco-flex disco-w-full disco-min-w-0 disco-flex-1 disco-flex-col disco-items-center disco-justify-center disco-gap-4 disco-rounded-xl disco-border-dashed disco-p-6 disco-text-center disco-text-balance",
+        "disco:flex disco:w-full disco:min-w-0 disco:flex-1 disco:flex-col disco:items-center disco:justify-center disco:gap-4 disco:rounded-xl disco:border-dashed disco:p-6 disco:text-center disco:text-balance",
         className
       )}
       {...props} />
@@ -25,7 +25,7 @@ function EmptyHeader({
     <div
       data-slot="empty-header"
       className={cn(
-        "disco-flex disco-max-w-sm disco-flex-col disco-items-center disco-gap-2",
+        "disco:flex disco:max-w-sm disco:flex-col disco:items-center disco:gap-2",
         className
       )}
       {...props} />
@@ -33,12 +33,12 @@ function EmptyHeader({
 }
 
 const emptyMediaVariants = cva(
-  "disco-mb-2 disco-flex disco-shrink-0 disco-items-center disco-justify-center [&_svg]:disco-pointer-events-none [&_svg]:disco-shrink-0",
+  "disco:mb-2 disco:flex disco:shrink-0 disco:items-center disco:justify-center disco:[&_svg]:pointer-events-none disco:[&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "disco-bg-transparent",
-        icon: "disco-flex disco-size-8 disco-shrink-0 disco-items-center disco-justify-center disco-rounded-lg disco-bg-muted disco-text-foreground [&_svg:not([class*=size-])]:disco-size-4",
+        default: "disco:bg-transparent",
+        icon: "disco:flex disco:size-8 disco:shrink-0 disco:items-center disco:justify-center disco:rounded-lg disco:bg-muted disco:text-foreground disco:[&_svg:not([class*=size-])]:size-4",
       },
     },
     defaultVariants: {
@@ -68,7 +68,7 @@ function EmptyTitle({
   return (
     <div
       data-slot="empty-title"
-      className={cn("disco- disco-text-sm disco-font-medium disco-tracking-tight", className)}
+      className={cn("disco:text-sm disco:font-medium disco:tracking-tight", className)}
       {...props} />
   );
 }
@@ -81,7 +81,7 @@ function EmptyDescription({
     <div
       data-slot="empty-description"
       className={cn(
-        "disco-text-sm/relaxed disco-text-muted-foreground [&>a]:disco-underline [&>a]:disco-underline-offset-4 [&>a:hover]:disco-text-primary",
+        "disco:text-sm/relaxed disco:text-muted-foreground disco:[&>a]:underline disco:[&>a]:underline-offset-4 disco:[&>a:hover]:text-primary",
         className
       )}
       {...props} />
@@ -96,7 +96,7 @@ function EmptyContent({
     <div
       data-slot="empty-content"
       className={cn(
-        "disco-flex disco-w-full disco-max-w-sm disco-min-w-0 disco-flex-col disco-items-center disco-gap-2.5 disco-text-sm disco-text-balance",
+        "disco:flex disco:w-full disco:max-w-sm disco:min-w-0 disco:flex-col disco:items-center disco:gap-2.5 disco:text-sm disco:text-balance",
         className
       )}
       {...props} />

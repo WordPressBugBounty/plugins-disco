@@ -78,10 +78,10 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 	}
 
 	return (
-		<div className="disco-flex disco-items-end disco-gap-4">
-			<div className="disco-grow flex-shrink-0">
+		<div className="disco:flex disco:items-end disco:gap-4">
+			<div className="disco:grow flex-shrink-0">
 				<label
-					className="disco-block !disco-text-base disco-text-black disco-mb-2"
+					className="disco:block disco:text-base! disco:text-black disco:mb-2"
 					htmlFor="minimum-quantity"
 				>
 					{discountIntent === 'Bulk'
@@ -92,7 +92,7 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 					value={rule.min}
 					onChange={handleChange}
 					name="min"
-					className="disco-w-full"
+					className="disco:w-full"
 					placeholder={
 						discountIntent === 'Bulk'
 							? __('Minimum', 'disco')
@@ -102,9 +102,9 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 				/>
 			</div>
 			{discountIntent === 'Bulk' && (
-				<div className="disco-grow flex-shrink-0">
+				<div className="disco:grow flex-shrink-0">
 					<label
-						className="disco-block !disco-text-base disco-text-black disco-mb-2"
+						className="disco:block disco:text-base! disco:text-black disco:mb-2"
 						htmlFor="maximum-quantity"
 					>
 						{__('Maximum Quantity', 'disco')}
@@ -113,22 +113,22 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 						value={rule.max}
 						onChange={handleChange}
 						name="max"
-						className="disco-w-full"
+						className="disco:w-full"
 						placeholder={__('Maximum', 'disco')}
 						type="number"
 					/>
 				</div>
 			)}
-			<div className="disco-grow flex-shrink-0">
+			<div className="disco:grow flex-shrink-0">
 				<label
-					className="disco-block !disco-text-base disco-text-black disco-mb-2"
+					className="disco:block disco:text-base! disco:text-black disco:mb-2"
 					htmlFor="discount-type"
 				>
 					{__('Discount Type', 'disco')}
 				</label>
 
 				<SingleSelect
-					className="disco-min-w-[250px] disco-w-full !disco-bg-white"
+					className="disco:min-w-[250px] disco:w-full disco:bg-white!"
 					items={typeValues}
 					selected={rule.discount_type}
 					onchange={handleTypeChange}
@@ -136,9 +136,9 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 				/>
 			</div>
 			{rule.discount_type !== 'free' && (
-				<div className="disco-grow flex-shrink-0">
+				<div className="disco:grow flex-shrink-0">
 					<label
-						className="disco-block !disco-text-base disco-text-black disco-mb-2"
+						className="disco:block disco:text-base! disco:text-black disco:mb-2"
 						htmlFor="discount-value"
 					>
 						{__('Discount Value', 'disco')}
@@ -147,15 +147,15 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 						value={rule.discount_value}
 						onChange={handleChange}
 						name="discount_value"
-						className="disco-w-full"
+						className="disco:w-full"
 						placeholder={__('Value', 'disco')}
 						type="number"
 					/>
 				</div>
 			)}
-			<div className="disco-grow flex-shrink-0">
+			<div className="disco:grow flex-shrink-0">
 				<label
-					className="disco-block !disco-text-base disco-text-black disco-mb-2"
+					className="disco:block disco:text-base! disco:text-black disco:mb-2"
 					htmlFor="bulk-title"
 				>
 					{__('Discount Label', 'disco')}
@@ -165,16 +165,16 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 					value={rule.discount_label}
 					onChange={handleChange}
 					name="discount_label"
-					className="disco-w-full"
+					className="disco:w-full"
 					placeholder={__('Discount Label', 'disco')}
 				/>
 			</div>
 			<div className="">
-				<div className="disco-flex disco-items-center disco-gap-4 disco-mb-3">
+				<div className="disco:flex disco:items-center disco:gap-4 disco:mb-3">
 					{discountIntent === 'Bundle' && (
-						<div className="disco-flex disco-items-center -disco-mb-1 disco-gap-1">
+						<div className="disco:flex disco:items-center disco:-mb-1 disco:gap-1">
 							<input
-								className="!disco-text-white !disco-border-primary disco-rounded-sm focus:disco-ring-primary focus:disco-ring-offset-2"
+								className="disco:text-white! disco:border-primary! disco:rounded-sm! disco:focus:ring-primary disco:focus:ring-offset-2"
 								checked={
 									rule.recursive === 'yes' ? true : false
 								}
@@ -184,7 +184,7 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 								type="checkbox"
 							/>
 							<label
-								className="disco-text-sm disco-select-none disco-block disco-text-black disco-mb-1"
+								className="disco:text-sm disco:select-none disco:block disco:text-black disco:mb-1"
 								htmlFor={rule.id}
 							>
 								{__('Recursive', 'disco')}
@@ -195,12 +195,12 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 					{index !== 0 ? (
 						<button
 							onClick={() => handleRuleDelete(rule.id)}
-							className="disco-shrink-0"
+							className="disco:shrink-0"
 						>
-							<TrashIcon className="disco-h-4 disco-w-4 disco-text-red-500 disco-transition-colors"/>
+							<TrashIcon className="disco:h-4 disco:w-4 disco:text-red-500 disco:transition-colors"/>
 						</button>
 					) : (
-						<div className="disco-shrink-0 disco-w-4"></div>
+						<div className="disco:shrink-0 disco:w-4"></div>
 					)}
 				</div>
 			</div>

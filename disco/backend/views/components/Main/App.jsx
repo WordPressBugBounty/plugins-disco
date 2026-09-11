@@ -23,9 +23,9 @@ export default function CreateDiscount() {
 				</HashRouter>
 				<ToastContainer style={{ zIndex: 99999 }} autoClose={1500} />
 				<div
-					className="hover:disco-bg-primary-dark disco-transition-colors disco-text-[11px] hidden disco-w-96 hover:disco-bg-primary/90 disco-text-gray-500
-					disco-bg-red-100
-					disco-border-gray-200"
+					className="disco:transition-colors disco:text-[11px] hidden disco:w-96 disco:hover:bg-primary/90 disco:text-gray-500
+					disco:bg-red-100
+					disco:border-gray-200"
 				></div>
 			</Provider>
 		</>

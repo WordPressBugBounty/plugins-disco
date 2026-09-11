@@ -14,13 +14,13 @@ const Input = ({
 	icon = '',
 }) => {
 	return (
-		<div className="disco-relative disco-inline-flex disco-items-center disco-w-full">
+		<div className="disco:relative disco:inline-flex disco:items-center disco:w-full">
 			{disabled && (
 				<a
 					href="https://discoplugin.com/pricing/?utm_source=pro-text&utm_medium=free-to-pro&utm_campaign=free-to-pro&utm_id=1"
 					target="_blank"
 					rel="noreferrer"
-					className="disco-absolute disco-pl-2 disco-flex disco-items-center disco-text-base disco-text-red-500 hover:disco-text-red-500 focus:!disco-outline-none visited:disco-text-red-500 focus:!disco-ring-0"
+					className="disco:absolute disco:pl-2 disco:flex disco:items-center disco:text-base disco:text-red-500 disco:hover:text-red-500 disco:focus:outline-hidden! disco:visited:text-red-500 disco:focus:ring-0!"
 				>
 					{__('(Pro)', 'disco')}
 				</a>
@@ -28,7 +28,7 @@ const Input = ({
 			<input
 				autoComplete="off"
 				className={cn(
-					`!disco-rounded-md !disco-bg-white !disco-ps-3 leading-[2] !disco-py-1 !disco-border-[0.5px] !disco-border-primary focus:!disco-border-primary focus:!disco-shadow-none disco-text-base !disco-leading-loose !disco-min-h-[30px] disco-outline-none disabled:disco-cursor-not-allowed`,
+					`disco:rounded-md! disco:bg-white! disco:ps-3! leading-[2] disco:py-1! disco:border-[0.5px]! disco:border-primary! disco:focus:border-primary! disco:focus:shadow-none! disco:text-base disco:leading-loose! disco:min-h-[30px]! disco:outline-hidden! disco:disabled:cursor-not-allowed`,
 					className
 				)}
 				type={type}

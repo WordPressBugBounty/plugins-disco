@@ -26,9 +26,9 @@ const BOGOSetup = () => {
 
 	if (isLoading || bogoTypesLoading) {
 		return (
-			<ComponentBox className="disco-mt-5">
+			<ComponentBox className="disco:mt-5">
 				<CommonHeadingBox title={__('BOGO', 'disco')} url="" />
-				<div className="disco-p-3">
+				<div className="disco:p-3">
 					<LoadingSpinner />
 				</div>
 			</ComponentBox>
@@ -36,16 +36,16 @@ const BOGOSetup = () => {
 	}
 
 	return (
-		<ComponentBox className="disco-mt-5 disco-rounded-xl">
+		<ComponentBox className="disco:mt-5 disco:rounded-xl">
 			<CommonHeadingBox title={__('BOGO', 'disco')} url="" />
-			<div className="disco-p-4">
-				<div className="disco-grid disco-grid-cols-12 disco-items-center disco-mb-2">
-					<div className="disco-col-span-2">
-						<p className="disco-text-base disco-font-medium disco-text-black">
+			<div className="disco:p-4">
+				<div className="disco:grid disco:grid-cols-12 disco:items-center disco:mb-2">
+					<div className="disco:col-span-2">
+						<p className="disco:text-base disco:font-medium disco:text-black">
 							{__('BOGO Type', 'disco')}
 						</p>
 					</div>
-					<div className="disco-col-span-3">
+					<div className="disco:col-span-3">
 						<SingleSelect
 							items={bogoTypes.values}
 							placeholder={__('Select BOGO Type', 'disco')}

@@ -72,13 +72,13 @@ const CountQuantityAs = () => {
 	const exampleTitle = COUNT_QUANTITY_AS_OPTIONS[count_quantity_as] ?? '';
 
 	return (
-		<div className="disco-border-2 disco-border-primary disco-rounded-lg disco-p-4 disco-mb-5">
-			<div className="disco-flex disco-items-center disco-gap-2 disco-mb-1.5">
-				<label className="disco-text-base disco-font-medium disco-text-primary-dark disco-mb-0">
+		<div className="disco:border-2 disco:border-primary disco:rounded-lg disco:p-4 disco:mb-5">
+			<div className="disco:flex disco:items-center disco:gap-2 disco:mb-1.5">
+				<label className="disco:text-base disco:font-medium disco:text-primary-dark disco:mb-0">
 					{__('Count Quantity As', 'disco')}
 				</label>
 			</div>
-			<p className="disco-text-xs disco-text-gray-500 disco-leading-snug disco-mb-3 disco-max-w-xl">
+			<p className="disco:text-xs disco:text-gray-500 disco:leading-snug disco:mb-3 disco:max-w-xl">
 				{__(
 					'Decides how items add up toward the quantity required below.',
 					'disco'
@@ -91,15 +91,15 @@ const CountQuantityAs = () => {
 				selected={count_quantity_as}
 				onchange={handleChange}
 				placeholder={__('Select', 'disco')}
-				className="disco-max-w-xs"
-				buttonClass="!disco-border-primary !disco-bg-white"
+				className="disco:max-w-xs"
+				buttonClass="disco:border-primary! disco:bg-white!"
 			/>
 
-			<div className="disco-bg-white disco-border disco-border-primary disco-rounded-md disco-mt-3 disco-py-2.5 disco-px-3.5">
-				<p className="disco-text-[13px] disco-font-bold disco-text-primary-dark disco-mb-1">
+			<div className="disco:bg-white disco:border disco:border-primary disco:rounded-md disco:mt-3 disco:py-2.5 disco:px-3.5">
+				<p className="disco:text-[13px] disco:font-bold disco:text-primary-dark disco:mb-1">
 					{exampleTitle}
 				</p>
-				<p className="disco-text-[13px] disco-text-gray-700 disco-leading-normal disco-mb-0">
+				<p className="disco:text-[13px] disco:text-gray-700 disco:leading-normal disco:mb-0">
 					{exampleBody}
 				</p>
 			</div>

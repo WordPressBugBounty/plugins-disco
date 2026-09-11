@@ -104,18 +104,18 @@ const DateRangeFilter = () => {
 		<Popover.Root open={open} onOpenChange={handleOpenChange}>
 			<Popover.Trigger
 				className={cn(
-					'disco-inline-flex disco-h-7 disco-cursor-pointer disco-items-center disco-gap-1.5',
-					'disco-rounded-[6px] disco-border disco-border-[#d6d6d6] disco-bg-white',
-					'disco-px-2.5 disco-text-xs disco-text-[#7e7e7e]',
-					'disco-transition-colors hover:disco-bg-transparent hover:disco-text-[#7e7e7e]',
-					'focus:disco-outline-none'
+					'disco:inline-flex disco:h-7 disco:cursor-pointer disco:items-center disco:gap-1.5',
+					'disco:rounded-[6px] disco:border disco:border-[#d6d6d6] disco:bg-white',
+					'disco:px-2.5 disco:text-xs! disco:text-[#7e7e7e]',
+					'disco:transition-colors disco:hover:bg-transparent disco:hover:text-[#7e7e7e]',
+					'disco:focus:outline-hidden'
 				)}
 			>
 				{triggerLabel}
 				<ChevronDown
 					className={cn(
-						'disco-size-3 disco-text-[#7e7e7e] disco-transition-transform disco-duration-200',
-						open && 'disco-rotate-180'
+						'disco:size-3 disco:text-[#7e7e7e] disco:transition-transform disco:duration-200',
+						open && 'disco:rotate-180'
 					)}
 				/>
 			</Popover.Trigger>
@@ -129,30 +129,30 @@ const DateRangeFilter = () => {
 				>
 					<Popover.Popup
 						className={cn(
-							'disco-overflow-hidden disco-rounded-[8px] disco-border disco-border-[#e5e7eb] disco-bg-white',
-							'disco-shadow-[0px_6px_5px_0px_rgba(0,0,0,0.05)]',
+							'disco:overflow-hidden disco:rounded-[8px] disco:border disco:border-[#e5e7eb] disco:bg-white',
+							'disco:shadow-[0px_6px_5px_0px_rgba(0,0,0,0.05)]',
 							view === 'custom'
-								? 'disco-w-auto disco-p-4'
-								: 'disco-w-[300px] disco-pb-[18px] disco-pr-px disco-pt-[14px]'
+								? 'disco:w-auto disco:p-4'
+								: 'disco:w-[300px] disco:pb-[18px] disco:pr-px disco:pt-[14px]'
 						)}
 					>
 						{view === 'list' ? (
 							<>
 								{/* Header */}
-								<div className="disco-px-6">
-									<p className="disco-text-[12px] disco-font-normal disco-not-italic disco-tracking-[-0.12px] disco-text-[rgba(74,74,74,0.8)]">
+								<div className="disco:px-6">
+									<p className="disco:text-[12px] disco:font-normal disco:not-italic disco:tracking-[-0.12px] disco:text-[rgba(74,74,74,0.8)]">
 										{triggerLabel}
 									</p>
-									<p className="disco-mt-[6px] disco-text-[14px] disco-font-bold disco-not-italic disco-tracking-[-0.14px] disco-text-black">
+									<p className="disco:mt-[6px] disco:text-[14px] disco:font-bold disco:not-italic disco:tracking-[-0.14px] disco:text-black">
 										{dateRangeText}
 									</p>
 								</div>
 
 								{/* Top separator */}
-								<div className="disco-my-3 disco-h-px disco-bg-[#e5e7eb]" />
+								<div className="disco:my-3 disco:h-px disco:bg-[#e5e7eb]" />
 
 								{/* Preset options */}
-								<div className="disco-flex disco-flex-col">
+								<div className="disco:flex disco:flex-col">
 									{DATE_RANGE_OPTIONS.map((option) => {
 										const isActive =
 											!isCustom &&
@@ -166,11 +166,11 @@ const DateRangeFilter = () => {
 													)
 												}
 												className={cn(
-													'disco-w-full disco-cursor-pointer disco-px-[23px] disco-py-[8px] disco-text-left',
-													'disco-text-[14px] disco-not-italic disco-tracking-[-0.14px] disco-transition-colors',
+													'disco:w-full disco:cursor-pointer disco:px-[23px] disco:py-[8px] disco:text-left',
+													'disco:text-[14px] disco:not-italic disco:tracking-[-0.14px] disco:transition-colors',
 													isActive
-														? 'disco-font-bold disco-text-[#08c889]'
-														: 'disco-font-semibold disco-text-[rgba(74,74,74,0.8)] hover:disco-text-[rgba(74,74,74,1)]'
+														? 'disco:font-bold disco:text-[#08c889]'
+														: 'disco:font-semibold disco:text-[rgba(74,74,74,0.8)] disco:hover:text-[rgba(74,74,74,1)]'
 												)}
 											>
 												{option.label}
@@ -180,17 +180,17 @@ const DateRangeFilter = () => {
 								</div>
 
 								{/* Bottom separator */}
-								<div className="disco-my-1 disco-h-px disco-bg-[#e5e7eb]" />
+								<div className="disco:my-1 disco:h-px disco:bg-[#e5e7eb]" />
 
 								{/* Custom option */}
 								<button
 									onClick={() => setView('custom')}
 									className={cn(
-										'disco-w-full disco-cursor-pointer disco-px-[23px] disco-py-[8px] disco-text-left',
-										'disco-text-[14px] disco-font-semibold disco-not-italic disco-tracking-[-0.14px]',
+										'disco:w-full disco:cursor-pointer disco:px-[23px] disco:py-[8px] disco:text-left',
+										'disco:text-[14px] disco:font-semibold disco:not-italic disco:tracking-[-0.14px]',
 										isCustom
-											? 'disco-font-bold disco-text-[#08c889]'
-											: 'disco-text-[rgba(74,74,74,0.8)] disco-transition-colors hover:disco-text-[rgba(74,74,74,1)]'
+											? 'disco:font-bold disco:text-[#08c889]'
+											: 'disco:text-[rgba(74,74,74,0.8)] disco:transition-colors disco:hover:text-[rgba(74,74,74,1)]'
 									)}
 								>
 									Custom...

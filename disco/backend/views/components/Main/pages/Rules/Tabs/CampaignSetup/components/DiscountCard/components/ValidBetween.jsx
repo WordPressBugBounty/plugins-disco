@@ -15,8 +15,8 @@ const ValidBetween = () => {
 
 	return (
 		<div
-			className="disco-flex disco-items-center disco-py-1.5 disco-px-1 disco-border-[0.5px] disco-border-primary
-		 disco-border-solid disco-rounded-lg disco-bg-white"
+			className="disco:flex disco:items-center disco:py-1.5 disco:px-1 disco:border-[0.5px] disco:border-primary
+		 disco:border-solid disco:rounded-lg disco:bg-white"
 		>
 			<DatePickerField
 				testid="discount_valid_from"
@@ -24,7 +24,7 @@ const ValidBetween = () => {
 				value={discount_valid_from}
 				onDateChange={handleDateChange}
 			/>
-			<ArrowsRightLeftIcon className="disco-h-5 disco-w-5 disco-mx-3 disco-flex-shrink-0 disco-text-gray-500" />
+			<ArrowsRightLeftIcon className="disco:h-5 disco:w-5 disco:mx-3 disco:shrink-0 disco:text-gray-500" />
 			<DatePickerField
 				testid="discount_valid_to"
 				name="discount_valid_to"

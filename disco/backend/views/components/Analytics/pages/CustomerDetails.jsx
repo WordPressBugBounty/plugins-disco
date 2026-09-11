@@ -22,15 +22,15 @@ const CustomerDetails = () => {
 	}
 
 	return (
-		<div className="disco-min-h-screen disco-bg-[#f9fafb] disco-p-6 disco-space-y-3">
+		<div className="disco:min-h-screen disco:bg-[#f9fafb] disco:px-6 disco:py-2 disco:space-y-3">
 			{isLoading ? (
-				<div className="disco-space-y-3">
-					<div className="disco-h-16 disco-animate-pulse disco-rounded-xl disco-bg-white disco-border disco-border-[#e5e7eb]" />
-					<div className="disco-flex disco-gap-3">
+				<div className="disco:space-y-3">
+					<div className="disco:h-16 disco:animate-pulse disco:rounded-xl disco:bg-white disco:border disco:border-[#e5e7eb]" />
+					<div className="disco:flex disco:gap-3">
 						{Array.from({ length: 4 }).map((_, i) => (
 							<div
 								key={i}
-								className="disco-flex-1 disco-h-20 disco-animate-pulse disco-rounded-xl disco-bg-white disco-border disco-border-[#e5e7eb]"
+								className="disco:flex-1 disco:h-20 disco:animate-pulse disco:rounded-xl disco:bg-white disco:border disco:border-[#e5e7eb]"
 							/>
 						))}
 					</div>

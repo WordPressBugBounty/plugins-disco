@@ -47,7 +47,7 @@ const ConditionPreview = ({ conditions = [] }) => {
 
 				return (
 					<div
-						className="disco-flex disco-p-2 disco-text-xs disco-bg-gray-50 disco-rounded disco-mb-1"
+						className="disco:flex disco:p-2 disco:text-xs disco:bg-gray-50 disco:rounded disco:mb-1"
 						key={index}
 					>
 						{content}
@@ -69,7 +69,7 @@ const ConditionPreview = ({ conditions = [] }) => {
 				return (
 					<React.Fragment key={group.id || groupIndex}>
 						{/* Condition Group Card */}
-						<div className="disco-w-[410px] disco-p-4 disco-bg-white disco-border disco-border-gray-200 disco-rounded-xl disco-shadow-md disco-mb-2">
+						<div className="disco:w-[410px] disco:p-4 disco:bg-white disco:border disco:border-gray-200 disco:rounded-xl disco:shadow-md disco:mb-2">
 							{group?.base_filters?.map((filter, filterIndex) => {
 								const nextFilter =
 									group.base_filters[filterIndex + 1];
@@ -78,23 +78,23 @@ const ConditionPreview = ({ conditions = [] }) => {
 									<React.Fragment
 										key={filter.id || filterIndex}
 									>
-										<div className="disco-grid disco-grid-cols-3 disco-gap-2 disco-mb-1 disco-text-sm disco-font-light disco-items-center">
-											<span className="disco-truncate disco-justify-self-start">
+										<div className="disco:grid disco:grid-cols-3 disco:gap-2 disco:mb-1 disco:text-sm disco:font-light disco:items-center">
+											<span className="disco:truncate disco:justify-self-start">
 												{capitalize(
 													filter?.compare_with
 												)}
 											</span>
-											<span className="disco-truncate disco-justify-self-center">
+											<span className="disco:truncate disco:justify-self-center">
 												{capitalize(filter?.condition)}
 											</span>
-											<span className="disco-truncate disco-justify-self-end">
+											<span className="disco:truncate disco:justify-self-end">
 												{capitalize(filter?.compare)}
 											</span>
 										</div>
 
 										{/* Connector inside same group */}
 										{nextFilter?.operator && (
-											<div className="disco-text-sm disco-font-light disco-text-primary disco-mb-2">
+											<div className="disco:text-sm disco:font-light disco:text-primary disco:mb-2">
 												{nextFilter.operator.toUpperCase()}
 											</div>
 										)}
@@ -105,8 +105,8 @@ const ConditionPreview = ({ conditions = [] }) => {
 
 						{/* Connector between groups - use next group's first filter operator */}
 						{nextGroupConnector && (
-							<div className="disco-flex disco-mb-2">
-								<div className="disco-text-sm disco-font-light disco-text-white disco-bg-primary disco-flex disco-px-2 disco-py-1 disco-rounded disco-text-center">
+							<div className="disco:flex disco:mb-2">
+								<div className="disco:text-sm disco:font-light disco:text-white disco:bg-primary disco:flex disco:px-2 disco:py-1 disco:rounded disco:text-center">
 									{nextGroupConnector.toUpperCase()}
 								</div>
 							</div>

@@ -29,7 +29,7 @@ const TextHighlight = () => {
 			<BadgeTitle
 				title={__('Text Highlight', 'disco')}
 				url="https://discoplugin.com/docs/display-text-highlight/"
-				className="disco-mt-3"
+				className="disco:mt-3"
 			/>
 			<BadgeActions>
 				<Status

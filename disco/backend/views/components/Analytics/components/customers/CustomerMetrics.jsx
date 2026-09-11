@@ -33,7 +33,7 @@ const CustomerMetrics = ({ totalSpent, orders, campaignsCount }) => {
 	];
 
 	return (
-		<div className="disco-flex disco-gap-3">
+		<div className="disco:flex disco:gap-3">
 			{metrics.map((m, index) => (
 				<MetricCard key={m.label} {...m} locked={!isPro && index > 0} />
 			))}

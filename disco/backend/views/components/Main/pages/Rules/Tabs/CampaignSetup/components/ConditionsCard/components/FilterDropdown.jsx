@@ -45,30 +45,30 @@ const SelectFilterDropdown = ({ allFilters, condition, conditionGroup }) => {
 	}, [discount_intent]);
 
 	return (
-		<Listbox className="disco-w-[420px] " onChange={handleFilterChange}>
-			<div className="disco-relative">
-				<Listbox.Button className="disco-relative disco-cursor-pointer disco-w-full disco-rounded-md disco-border disco-text-base disco-border-gray-200 disco-py-2 disco-pl-3 disco-pr-10 disco-text-left focus:disco-outline-none">
-					<span className="disco-block disco-truncate disco-filter-select">
+		<Listbox className="disco:w-[420px] " onChange={handleFilterChange}>
+			<div className="disco:relative">
+				<Listbox.Button className="disco:relative disco:cursor-pointer disco:w-full disco:rounded-md disco:border disco:text-base disco:border-gray-200 disco:py-2 disco:pl-3 disco:pr-10 disco:text-left disco:focus:outline-hidden">
+					<span className="disco:block disco:truncate disco-filter-select">
 						{filterData?.title
 							? filterData?.title
 							: __('Select Filter', 'disco')}
 					</span>
-					<span className="disco-pointer-events-none disco-absolute disco-inset-y-0 disco-right-0 disco-flex disco-items-center disco-pr-2">
+					<span className="disco:pointer-events-none disco:absolute disco:inset-y-0 disco:right-0 disco:flex disco:items-center disco:pr-2">
 						<ChevronUpDownIcon
-							className="disco-h-5 disco-w-5 disco-text-gray-400"
+							className="disco:h-5 disco:w-5 disco:text-gray-400"
 							aria-hidden="true"
 						/>
 					</span>
 				</Listbox.Button>
 				<Transition
 					as={Fragment}
-					leave="disco-transition disco-ease-in disco-duration-100"
-					leaveFrom="disco-opacity-100"
-					leaveTo="disco-opacity-0"
+					leave="disco:transition disco:ease-in disco:duration-100"
+					leaveFrom="disco:opacity-100"
+					leaveTo="disco:opacity-0"
 				>
 					<Listbox.Options
 						data-testid="filters-item"
-						className="disco-z-50 disco-pt-2 disco-absolute disco-mt-1.5 disco-max-h-72 disco-w-full disco-overflow-auto disco-rounded-md disco-bg-white disco-text-base disco-shadow-lg disco-ring-1 disco-ring-black disco-ring-opacity-5 focus:disco-outline-none sm:disco-text-sm"
+						className="disco:z-50 disco:pt-2 disco:absolute disco:mt-1.5 disco:max-h-72 disco:w-full disco:overflow-auto disco:rounded-md disco:bg-white disco:text-base disco:shadow-lg disco:ring-1 disco:ring-black/5 disco:focus:outline-hidden disco:sm:text-sm"
 					>
 						{allFilters
 							.filter(
@@ -84,16 +84,16 @@ const SelectFilterDropdown = ({ allFilters, condition, conditionGroup }) => {
 										{/* Option Group */}
 										<Listbox.Option
 											disabled={true} // Always disable the group
-											className={`disco-pl-4 disco-font-bold disco-mb-0 ${
+											className={`disco:pl-4 disco:font-bold disco:mb-0 ${
 												isGroupDisabled
-													? 'disco-text-gray-400 disco-cursor-not-allowed'
+													? 'disco:text-gray-400 disco:cursor-not-allowed'
 													: ''
 											}`}
 											data-test-id={o.optionGroup}
 										>
 											{o.optionGroup}{' '}
 											{isGroupDisabled && (
-												<span className="disco-bg-red-500 disco-p-1 disco-text-xs disco-text-white disco-rounded-md">
+												<span className="disco:bg-red-500 disco:p-1 disco:text-xs disco:text-white disco:rounded-md">
 													<a
 														href="https://discoplugin.com/pricing/?utm_source=pro-text&utm_medium=free-to-pro&utm_campaign=free-to-pro&utm_id=1"
 														target="_blank"
@@ -101,7 +101,7 @@ const SelectFilterDropdown = ({ allFilters, condition, conditionGroup }) => {
 														onClick={(e) =>
 															e.stopPropagation()
 														}
-														className="disco-text-xs disco-font-semibold disco-text-white hover:!disco-text-white focus:!disco-outline-none visited:disco-text-white focus:!disco-ring-0"
+														className="disco:text-xs disco:font-semibold disco:text-white disco:hover:text-white! disco:focus:outline-hidden! disco:visited:text-white disco:focus:ring-0!"
 													>
 														{__('Pro', 'disco')}
 													</a>
@@ -119,21 +119,21 @@ const SelectFilterDropdown = ({ allFilters, condition, conditionGroup }) => {
 														className={({
 															active,
 														}) =>
-															`disco-pl-8 disco-relative disco-py-1 disco-mb-0  ${
+															`disco:pl-8 disco:relative disco:py-1 disco:mb-0  ${
 																active
-																	? 'disco-bg-primary-light'
-																	: 'disco-text-gray-900'
+																	? 'disco:bg-primary-light'
+																	: 'disco:text-gray-900'
 															} ${
 																condition?.compare_with ===
 																opt
-																	? 'disco-font-medium'
+																	? 'disco:font-medium'
 																	: ''
 															} ${
 																isGroupDisabled ||
 																o.options[opt]
 																	.disable
-																	? '!disco-text-gray-400 !disco-cursor-not-allowed'
-																	: 'disco-cursor-pointer'
+																	? 'disco:text-gray-400! disco:cursor-not-allowed!'
+																	: 'disco:cursor-pointer'
 															}`
 														}
 														disabled={
@@ -145,13 +145,13 @@ const SelectFilterDropdown = ({ allFilters, condition, conditionGroup }) => {
 														{o.options[opt].title}{' '}
 														{o.options[opt]
 															.disable && (
-															<span className="disco-bg-red-500 disco-px-1.5 disco-py-1 disco-text-xs disco-text-white disco-rounded-md ">
+															<span className="disco:bg-red-500 disco:px-1.5 disco:py-1 disco:text-xs disco:text-white disco:rounded-md ">
 																<a
 																	href="https://discoplugin.com/?utm_source=conditions&utm_medium=text_button&utm_campaign=free-pro&utm_id=1"
 																	target="_blank"
 																	rel="noreferrer"
 																	onClick={(e) => e.stopPropagation()}
-																		className="disco-text-xs disco-text-white hover:!disco-text-white focus:!disco-outline-none visited:disco-text-white focus:!disco-ring-0"
+																		className="disco:text-xs disco:text-white disco:hover:text-white! disco:focus:outline-hidden! disco:visited:text-white disco:focus:ring-0!"
 																>
 																	{__(
 																		'Pro',

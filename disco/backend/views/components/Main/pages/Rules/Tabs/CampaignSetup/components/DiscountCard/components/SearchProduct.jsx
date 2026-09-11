@@ -88,7 +88,7 @@ const SearchProduct = () => {
 	// product loading state content
 	if (isLoading) {
 		content = (
-			<div className="disco-py-4">
+			<div className="disco:py-4">
 				{__('Product Searching...', 'disco')}
 			</div>
 		);
@@ -96,7 +96,7 @@ const SearchProduct = () => {
 
 	// error state content
 	if (isError) {
-		content = <div className="disco-py-4">{error?.data?.message}</div>;
+		content = <div className="disco:py-4">{error?.data?.message}</div>;
 	}
 
 	// successfully product fetching state
@@ -108,27 +108,27 @@ const SearchProduct = () => {
 					handleSelect(product);
 				}}
 				key={product.id}
-				className="disco-flex disco-items-center disco-gap-4 disco-my-4"
+				className="disco:flex disco:items-center disco:gap-4 disco:my-4"
 			>
 				<label
-					className={`disco-text-sm disco-flex disco-items-center disco-gap-3 `}
+					className={`disco:text-sm disco:flex disco:items-center disco:gap-3 `}
 					htmlFor={product.id}
 				>
 					<div
-						className={`disco-shrink-0 disco-h-4 disco-w-4 disco-rounded disco-border disco-flex disco-justify-center disco-items-center ${
+						className={`disco:shrink-0 disco:h-4 disco:w-4 disco:rounded-sm disco:border disco:flex disco:justify-center disco:items-center ${
 							selectedProducts.find(
 								(_product) => _product.id === product.id
 							)
-								? 'disco-border-primary-dark'
-								: 'disco-border-gray-500 '
+								? 'disco:border-primary-dark'
+								: 'disco:border-gray-500 '
 						}`}
 					>
 						{selectedProducts.find(
 							(_product) => _product.id === product.id
-						) && <CheckIcon className="disco-text-primary-dark" />}
+						) && <CheckIcon className="disco:text-primary-dark" />}
 					</div>
 					<img
-						className="disco-shrink-0 disco-rounded disco-h-8 disco-w-8 disco-object-cover"
+						className="disco:shrink-0 disco:rounded disco:h-8 disco:w-8 disco:object-cover"
 						src={product.image}
 						alt={product.name}
 					/>
@@ -139,8 +139,8 @@ const SearchProduct = () => {
 	}
 
 	return (
-		<div ref={dropdownRef} className="disco-relative">
-			<div className="disco-relative">
+		<div ref={dropdownRef} className="disco:relative">
+			<div className="disco:relative">
 				<input
 					onFocus={(e) => {
 						if (e.target.value.length > 0) {
@@ -150,26 +150,26 @@ const SearchProduct = () => {
 					ref={searchRef}
 					name="search_products"
 					onChange={handleSearch}
-					className="disco-w-80 !disco-rounded-md !disco-pe-1 !disco-ps-9 !disco-py-1 !disco-border-1 !disco-border-gray-200 !disco-shadow-none focus:!disco-border-primary  disco-text-base disco-outline-none"
+					className="disco:w-80 disco:rounded-md! disco:pe-1! disco:ps-9! disco:py-1! disco:border! disco:border-gray-200! disco:shadow-none! disco:focus:border-primary!  disco:text-base disco:outline-hidden!"
 					type="text"
 					placeholder={__('Search Product', 'disco')}
 				/>
-				<div className="disco-absolute disco-top-0 disco-bottom-0 disco-left-3  disco-h-full disco-flex disco-items-center disco-justify-center">
+				<div className="disco:absolute disco:top-0 disco:bottom-0 disco:left-3  disco:h-full disco:flex disco:items-center disco:justify-center">
 					{searchQuery.length > 0 ? (
 						<button
 							onClick={handleClose}
-							className="disco-h-5 disco-w-5 disco-text-gray-400"
+							className="disco:h-5 disco:w-5 disco:text-gray-400"
 						>
 							<XMarkIcon />
 						</button>
 					) : (
-						<MagnifyingGlassIcon className="disco-h-5 disco-w-5 disco-text-gray-400" />
+						<MagnifyingGlassIcon className="disco:h-5 disco:w-5 disco:text-gray-400" />
 					)}
 				</div>
 			</div>
 			{showSearchResult && (
-				<div className="disco-absolute disco-mt-2 disco-w-full disco-shadow-lg disco-z-50">
-					<div className="disco-border disco-border-gray-200 disco-bg-white  disco-rounded-md disco-px-4 disco-max-h-96 disco-overflow-y-auto">
+				<div className="disco:absolute disco:mt-2 disco:w-full disco:shadow-lg disco:z-50">
+					<div className="disco:border disco:border-gray-200 disco:bg-white  disco:rounded-md disco:px-4 disco:max-h-96 disco:overflow-y-auto">
 						{content}
 					</div>
 				</div>

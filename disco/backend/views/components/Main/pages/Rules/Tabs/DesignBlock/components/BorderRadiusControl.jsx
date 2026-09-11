@@ -34,39 +34,39 @@ const BorderRadiusControl = ({
 
 	return (
 		<div
-			className={`${className} ${disabled ? 'disco-opacity-50 disco-cursor-not-allowed' : ''}`}
+			className={`${className} ${disabled ? 'disco:opacity-50 disco:cursor-not-allowed' : ''}`}
 		>
-			<div className="disco-flex disco-items-center disco-justify-between disco-pb-1">
+			<div className="disco:flex disco:items-center disco:justify-between disco:pb-1">
 				<span
-					className={`disco-text-sm disco-font-semibold ${labelClassName}`}
+					className={`disco:text-sm! disco:font-medium! ${labelClassName}`}
 				>
 					{title}
 				</span>
 				<button
 					onClick={handleIsChain}
-					className="disco-p-1 disco-text-gray-500 disco-hover:text-gray-700"
+					className="disco:p-1 disco:text-gray-500 disco:hover:text-gray-700"
 					disabled={disabled}
 				>
 					{button.isChain ? (
-						<LinkIcon className="disco-w-4 disco-h-4 disco-rotate-45 disco-text-green-500" /> // Linked icon
+						<LinkIcon className="disco:w-4 disco:h-4 disco:rotate-45 disco:text-green-500" /> // Linked icon
 					) : (
-						<LinkIcon className="disco-w-4 disco-h-4 disco-rotate-45 disco-text-gray-400" /> // Unlinked icon
+						<LinkIcon className="disco:w-4 disco:h-4 disco:rotate-45 disco:text-gray-400" /> // Unlinked icon
 					)}
 				</button>
 			</div>
 
-			<div className="disco-flex disco-space-x-1.5">
+			<div className="disco:flex disco:space-x-1.5">
 				{corners.map((corner) => (
-					<span key={corner} className="disco-relative">
+					<span key={corner} className="disco:relative">
 						<div
-							className={`disco-absolute ${
+							className={`disco:absolute ${
 								corner === 'top-left'
-									? 'disco-top-0 disco-left-0 disco-scale-x-[-1]'
+									? 'disco:top-0 disco:left-0 disco:scale-x-[-1]'
 									: corner === 'top-right'
-										? 'disco-top-0 disco-right-0'
+										? 'disco:top-0 disco:right-0'
 										: corner === 'bottom-left'
-											? 'disco-bottom-0 disco-left-0 disco-rotate-180'
-											: 'disco-bottom-px -disco-right-px disco-rotate-90'
+											? 'disco:bottom-0 disco:left-0 disco:rotate-180'
+											: 'disco:bottom-px disco:-right-px disco:rotate-90'
 							}`}
 						>
 							<svg
@@ -90,7 +90,7 @@ const BorderRadiusControl = ({
 							value={parseInt(button.radius[corner])}
 							name={corner}
 							onChange={(e) => handleChange(e, corner)}
-							className="disco-w-full disco-h-8 disco-flex disco-text-center disco-bg-transparent disco-py-2 !disco-rounded-lg disco-c-appearance-none disco-text-gray-500 disco-justify-center disco-text-sm !disco-border-gray-200 !disco-outline-none focus:!disco-border-gray-300 focus:!disco-ring-0 disabled:disco-cursor-not-allowed"
+							className="disco:w-full disco:h-8 disco:flex disco:text-center disco:bg-transparent! disco:py-2! disco:rounded-lg! disco-c-appearance-none disco:text-gray-500! disco:justify-center disco:text-sm disco:border-gray-200! disco:outline-hidden! disco:focus:border-gray-300! disco:focus:ring-0! disco:disabled:cursor-not-allowed"
 						/>
 					</span>
 				))}

@@ -39,36 +39,38 @@ const BadgeHeader = ({ title, description, className = '', children = '' }) => {
 
 	return (
 		<div
-			className={`${className} disco-sticky disco-bg-[#F9FAFB] disco-top-[100px] disco-z-50`}
+			className={`${className} disco:sticky disco:bg-[#F9FAFB] disco:top-25 disco:z-50`}
 		>
-			<div className="disco-flex disco-justify-between disco-items-center disco-pb-2 disco-border-b">
+			<div className="disco:flex disco:justify-between disco:items-center disco:pb-2 disco:border-b">
 				<span>
-					<h1 className="disco-text-2xl">{title}</h1>
-					<p className="disco-text-base disco-mt-1">{description}</p>
+					<h1 className="disco:text-2xl! disco:font-normal!">
+						{title}
+					</h1>
+					<p className="disco:text-base disco:mt-1">{description}</p>
 				</span>
 
-				<span className="disco-flex disco-gap-2 disco-items-center">
+				<span className="disco:flex disco:gap-2 disco:items-center">
 					{saveStatus === 'saving' && (
-						<div className="disco-flex disco-items-center disco-gap-1">
+						<div className="disco:flex disco:items-center disco:gap-1">
 							<LoadingSpinner size={5} />
-							<span className="disco-text-base disco-text-primary disco-font-semibold">
+							<span className="disco:text-base disco:text-primary disco:font-semibold">
 								{__('Saving', 'disco')}
 							</span>
 						</div>
 					)}
 
 					{showSuccess && (
-						<div className="disco-flex disco-gap-1 disco-text-base disco-text-primary disco-font-semibold disco-items-center disco-justify-center">
-							<CheckCircleIcon className="disco-h-5 disco-w-5" />
+						<div className="disco:flex disco:gap-1 disco:text-base disco:text-primary disco:font-semibold disco:items-center disco:justify-center">
+							<CheckCircleIcon className="disco:h-5 disco:w-5" />
 							{__('Saved', 'disco')}
 						</div>
 					)}
 
 					<Button
 						onClick={handleBackClick}
-						className="!disco-px-2 !disco-py-2"
+						className="disco:px-2! disco:py-2!"
 						icon={
-							<ArrowLeftCircleIcon className="disco-h-6 disco-w-6 disco-text-white" />
+							<ArrowLeftCircleIcon className="disco:h-6 disco:w-6 disco:text-white" />
 						}
 					>
 						{__('Back to Display', 'disco')}

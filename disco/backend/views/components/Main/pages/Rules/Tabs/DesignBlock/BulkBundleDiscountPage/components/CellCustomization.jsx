@@ -17,7 +17,7 @@ const CellCustomization = () => {
 	return (
 		<SettingsContainer
 			title={__('Cell Customization', 'disco')}
-			className="disco-mt-3"
+			className="disco:mt-3"
 		>
 			<SingleSelect
 				placeholder={__('Select Font', 'disco')}
@@ -34,12 +34,12 @@ const CellCustomization = () => {
 						})
 					);
 				}}
-				className="disco-bg-white disco-w-full"
-				buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+				className="disco:bg-white disco:w-full"
+				buttonClass="disco:rounded-lg! disco:py-1! disco:font-thin! disco:text-sm!"
 			/>
 			<CustomNumberInput
 				placeholder={__('Font Size', 'disco')}
-				className="disco-w-44 disco-flex-shrink-0 disco-font-extralight"
+				className="disco:w-44 disco:shrink-0 disco:font-extralight"
 				initialValue={parseInt(cell_customization['font-size'])}
 				min={4}
 				max={30}
@@ -70,8 +70,8 @@ const CellCustomization = () => {
 						})
 					);
 				}}
-				className="disco-bg-white disco-w-full"
-				buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+				className="disco:bg-white disco:w-full"
+				buttonClass="disco:rounded-lg! disco:py-1! disco:font-thin! disco:text-sm!"
 			/>
 		</SettingsContainer>
 	);

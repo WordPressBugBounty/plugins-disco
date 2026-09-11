@@ -81,7 +81,7 @@ const CustomTooltip = ({ active, payload }) => {
 		payload: { color },
 	} = payload[0];
 	return (
-		<div className="disco-bg-white disco-border disco-border-[#e5e7eb] disco-rounded-lg disco-px-2 disco-py-1 disco-text-[10px] disco-shadow disco-z-50">
+		<div className="disco:bg-white disco:border disco:border-[#e5e7eb] disco:rounded-lg disco:px-2 disco:py-1 disco:text-[10px] disco:shadow disco:z-50">
 			<span style={{ color }}>{name}: </span>
 			<strong>{value}%</strong>
 		</div>
@@ -122,7 +122,7 @@ const RevenueByIntent = ({ className }) => {
 	return (
 		<Card
 			className={cn(
-				'disco-relative disco-ring-0 disco-border-2 disco-border-[#e5e7eb] disco-rounded-[10px] disco-p-4 disco-gap-2',
+				'disco:relative disco:ring-0 disco:border-2 disco:border-[#e5e7eb] disco:rounded-[10px] disco:p-4 disco:gap-2',
 				className
 			)}
 		>
@@ -134,20 +134,20 @@ const RevenueByIntent = ({ className }) => {
 				/>
 			)}
 			<div>
-				<h3 className="disco-text-base disco-font-semibold disco-text-[#1f2937]">
+				<h3 className="disco:text-base! disco:font-semibold disco:text-[#1f2937]!">
 					{__('Revenue by intent', 'disco')}
 				</h3>
-				<p className="disco-text-xs disco-text-[#9ca3af]">
+				<p className="disco:text-xs! disco:text-[#9ca3af]">
 					{__('Campaign type breakdown', 'disco')}
 				</p>
 			</div>
 
 			{isLoading ? (
-				<div className="disco-h-[200px] disco-animate-pulse disco-rounded-lg disco-bg-[#f3f4f6]" />
+				<div className="disco:h-[200px] disco:animate-pulse disco:rounded-lg disco:bg-[#f3f4f6]" />
 			) : (
-				<div className="disco-flex disco-flex-col disco-items-center disco-gap-4">
+				<div className="disco:flex disco:flex-col disco:items-center disco:gap-4">
 					<div
-						className="disco-relative disco-shrink-0"
+						className="disco:relative disco:shrink-0"
 						style={{ width: 160, height: 160 }}
 					>
 						<ResponsiveContainer width="100%" height="100%">
@@ -174,30 +174,30 @@ const RevenueByIntent = ({ className }) => {
 								/>
 							</PieChart>
 						</ResponsiveContainer>
-						<div className="disco-absolute disco-inset-0 disco-flex disco-flex-col disco-items-center disco-justify-center disco-pointer-events-none">
-							<span className="disco-text-base disco-font-bold disco-text-[#111827]">
+						<div className="disco:absolute disco:inset-0 disco:flex disco:flex-col disco:items-center disco:justify-center disco:pointer-events-none">
+							<span className="disco:text-base disco:font-bold disco:text-[#111827]">
 								{totalLabel}
 							</span>
-							<span className="disco-text-xs disco-text-[#9ca3af]">
+							<span className="disco:text-xs disco:text-[#9ca3af]">
 								{__('revenue', 'disco')}
 							</span>
 						</div>
 					</div>
 
-					<ul className="disco-w-full disco-flex disco-flex-col disco-flex-1">
+					<ul className="disco:w-full disco:flex disco:flex-col disco:flex-1">
 						{intentsData?.map(({ name, value, color }) => (
 							<li
 								key={name}
-								className="disco-flex disco-items-center disco-justify-between disco-text-xs"
+								className="disco:flex disco:items-center disco:justify-between disco:text-xs"
 							>
-								<span className="disco-flex disco-items-center disco-gap-1.5 disco-text-[#4b5563]">
+								<span className="disco:flex disco:items-center disco:gap-1.5 disco:text-[#4b5563]">
 									<span
-										className="disco-size-[6px] disco-rounded-sm disco-shrink-0"
+										className="disco:size-[6px] disco:rounded-sm disco:shrink-0"
 										style={{ background: color }}
 									/>
 									{name}
 								</span>
-								<span className="disco-font-semibold disco-text-[#1f2937]">
+								<span className="disco:font-semibold disco:text-[#1f2937]">
 									{value}%
 								</span>
 							</li>

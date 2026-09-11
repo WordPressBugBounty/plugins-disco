@@ -50,9 +50,9 @@ const BadgeItems = ({ selectedBadge, className }) => {
 	return (
 		<>
 			<div
-				className={`disco-max-h-[300px] disco-overflow-y-auto disco-overscroll-contain disco-rounded-lg disco-bg-white disco-my-4 disco-py-4 disco-px-4 disco-border-1 disco-no-scrollbar ${className}`}
+				className={`disco:max-h-[300px] disco:overflow-y-auto disco:overscroll-contain disco:rounded-lg disco:bg-white disco:my-4 disco:py-4 disco:px-4 disco:border disco-no-scrollbar ${className}`}
 			>
-				<div className="disco-grid disco-grid-cols-4 disco-gap-4 ">
+				<div className="disco:grid disco:grid-cols-4 disco:gap-4 ">
 					{productBadgeDesign?.[selectedBadge] ? (
 						Object.values(productBadgeDesign[selectedBadge]).map(
 							(badgeDesign, index) => (
@@ -61,7 +61,7 @@ const BadgeItems = ({ selectedBadge, className }) => {
 									onClick={() =>
 										handleDesignSelect(badgeDesign?.id)
 									}
-									className={`disco-flex disco-flex-col disco-border disco-rounded-md disco-p-3 disco-items-center disco-justify-center ${badgeDesign.id === isSelectedDesign && 'disco-border-primary'}`}
+									className={`disco:flex disco:flex-col disco:border disco:rounded-md disco:p-3 disco:items-center disco:justify-center ${badgeDesign.id === isSelectedDesign && 'disco:border-primary'}`}
 									style={{
 										minHeight: '96px',
 										overflow: 'hidden',
@@ -71,7 +71,7 @@ const BadgeItems = ({ selectedBadge, className }) => {
 										<img
 											src={badgeDesign.image.url}
 											alt={`Badge ${index + 1}`}
-											className="disco-object-contain"
+											className="disco:object-contain"
 										/>
 									) : (
 										<BadgeDesignPreview
@@ -82,7 +82,7 @@ const BadgeItems = ({ selectedBadge, className }) => {
 							)
 						)
 					) : (
-						<p className="disco-text-gray-500 disco-text-sm disco-col-span-4 disco-text-center">
+						<p className="disco:text-gray-500 disco:text-sm disco:col-span-4 disco:text-center">
 							{__(
 								'No badges available for the selected option.',
 								'disco'

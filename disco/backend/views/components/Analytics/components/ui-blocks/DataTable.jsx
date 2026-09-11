@@ -7,7 +7,7 @@ import ProLockOverlay from './ProLockOverlay';
 import TableFooterWithPagination from './TableFooterWithPagination';
 
 const SortIcon = ({ active, dir }) => (
-	<span className="disco-ml-0.5 disco-text-[10px]">
+	<span className="disco:ml-0.5 disco:text-[10px]">
 		{active ? (dir === 'asc' ? '↑' : '↓') : '↕'}
 	</span>
 );
@@ -29,7 +29,7 @@ const DataTable = ({
 	onPageChange,
 	isLoading = false,
 	rowKey = 'id',
-	cellPadding = 'disco-px-4',
+	cellPadding = 'disco:px-4',
 	className = '',
 	locked = false,
 	visibleRows = 2,
@@ -39,10 +39,10 @@ const DataTable = ({
 		size: 'lg',
 		label: __('Upgrade to pro', 'disco'),
 		titleClassName:
-			'disco-max-w-md disco-text-base disco-font-normal disco-text-[#111827] disco-leading-snug',
+			'disco:max-w-md disco:text-base disco:font-normal disco:text-[#111827] disco:leading-snug',
 		title: (
 			<>
-				<strong className="disco-font-semibold">
+				<strong className="disco:font-semibold">
 					{__('Upgrade to Disco Pro', 'disco')}
 				</strong>{' '}
 				{__(
@@ -79,25 +79,25 @@ const DataTable = ({
 	return (
 		<div
 			className={cn(
-				`disco-bg-white disco-rounded-xl disco-border disco-border-[#e5e7eb] disco-overflow-hidden ${className}`
+				`disco:bg-white disco:rounded-xl disco:border disco:border-[#e5e7eb] disco:overflow-hidden ${className}`
 			)}
 		>
 			{/* Toolbar */}
-			<div className="disco-flex disco-items-center disco-justify-between disco-px-4 disco-py-3 disco-border-b disco-border-[#f3f4f6]">
-				<span className="disco-text-sm disco-font-semibold disco-text-[#1f2937]">
+			<div className="disco:flex disco:items-center disco:justify-between disco:px-4 disco:py-3 disco:border-b disco:border-[#f3f4f6]">
+				<span className="disco:text-sm disco:font-semibold disco:text-[#1f2937]">
 					{__(title)}
-					<span className="disco-text-[#9ca3af] disco-font-normal disco-text-xs">
+					<span className="disco:text-[#9ca3af] disco:font-normal disco:text-xs">
 						({total})
 					</span>
 				</span>
-				<div className="disco-relative">
-					<Search className="disco-absolute disco-left-2.5 disco-top-1/2 disco--translate-y-1/2 disco-size-3 disco-text-[#9ca3af]" />
+				<div className="disco:relative">
+					<Search className="disco:absolute disco:left-2.5 disco:top-1/2 disco:-translate-y-1/2 disco:size-3 disco:text-[#9ca3af]" />
 					<input
 						type="text"
 						placeholder={searchPlaceholder}
 						value={search}
 						onChange={(e) => onSearchChange(e.target.value)}
-						className="!disco-pl-7 disco-pr-3 disco-py-1.5 disco-text-xs disco-border !disco-border-gray-300 !disco-rounded-lg disco-bg-gray-100 disco-text-gray-500 placeholder:disco-text-gray-400 !disco-outline-none focus:!disco-border-primary disco-w-44 focus:!disco-shadow-none"
+						className={`disco:pl-7! disco:pr-3! disco:py-1.5! disco:text-xs! disco:border disco:border-gray-300! disco:rounded-lg! disco:bg-gray-100! disco:text-gray-500! disco:placeholder:text-gray-400 disco:outline-hidden! disco:focus:border-primary! disco:w-44 disco:focus:shadow-none! ${locked && 'disco:cursor-not-allowed'}`}
 						disabled={locked}
 					/>
 				</div>
@@ -106,7 +106,7 @@ const DataTable = ({
 			{/* Table */}
 			<div
 				ref={tableWrapRef}
-				className="disco-relative disco-overflow-x-auto"
+				className="disco:relative disco:overflow-x-auto"
 				style={
 					showLock && overlayTop !== null
 						? { minHeight: overlayTop + 200 }
@@ -116,18 +116,18 @@ const DataTable = ({
 				{showLock && overlayTop !== null && (
 					<ProLockOverlay
 						{...overlayProps}
-						position="disco-inset-x-0 disco-bottom-0"
-						rounded="disco-rounded-none"
-						className="disco-bg-white/[0.94]"
+						position="disco:inset-x-0 disco:bottom-0"
+						rounded="disco:rounded-none"
+						className="disco:bg-white/94"
 						style={{ top: overlayTop }}
 					/>
 				)}
 				{data.length === 0 && !isLoading ? (
 					<EmptyData title={title.split(' ').at(-1)} />
 				) : (
-					<table className="disco-w-full disco-text-xs">
+					<table className="disco:w-full disco:text-xs">
 						<thead>
-							<tr className="disco-bg-[#f9fafb] disco-border-b disco-border-[#f3f4f6]">
+							<tr className="disco:bg-[#f9fafb] disco:border-b disco:border-[#f3f4f6]">
 								{columns.map((col) => (
 									<th
 										key={col.key}
@@ -138,12 +138,12 @@ const DataTable = ({
 										}
 										className={cn(
 											cellPadding,
-											'disco-py-2.5 disco-text-left disco-font-semibold disco-tracking-[0.06em] disco-uppercase disco-text-[10px] disco-whitespace-nowrap',
+											'disco:py-2.5 disco:text-left disco:font-semibold disco:tracking-[0.06em] disco:uppercase disco:text-[10px] disco:whitespace-nowrap',
 											col.sortable &&
-												'disco-cursor-pointer disco-select-none',
+												'disco:cursor-pointer disco:select-none',
 											sortKey === col.key
-												? 'disco-text-[#2fa86d]'
-												: 'disco-text-[#9ca3af]'
+												? 'disco:text-[#2fa86d]'
+												: 'disco:text-[#9ca3af]'
 										)}
 									>
 										{col.label}
@@ -162,16 +162,16 @@ const DataTable = ({
 								? Array.from({ length: 5 }).map((_, i) => (
 										<tr
 											key={i}
-											className="disco-border-b disco-border-[#f3f4f6] last:disco-border-0"
+											className="disco:border-b disco:border-[#f3f4f6] disco:last:border-0"
 										>
 											<td
 												colSpan={columns.length}
 												className={cn(
 													cellPadding,
-													'disco-py-3'
+													'disco:py-3'
 												)}
 											>
-												<div className="disco-h-5 disco-animate-pulse disco-rounded disco-bg-[#f3f4f6]" />
+												<div className="disco:h-5 disco:animate-pulse disco:rounded disco:bg-[#f3f4f6]" />
 											</td>
 										</tr>
 									))

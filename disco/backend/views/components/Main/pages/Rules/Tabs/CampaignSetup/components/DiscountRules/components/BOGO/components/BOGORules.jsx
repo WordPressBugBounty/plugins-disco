@@ -24,20 +24,20 @@ const BOGORules = () => {
 	};
 
 	return (
-		<ComponentBox className="disco-mt-5">
+		<ComponentBox className="disco:mt-5">
 			<CommonHeadingBox title={__('BOGO Rules', 'disco')} url="" />
-			<div className="disco-p-4">
+			<div className="disco:p-4">
 				{bogo_type !== 'all' && <CountQuantityAs />}
 
-				<div className="disco-grid disco-grid-cols-12 disco-gap-4">
-					<h4 className="disco-col-span-3 disco-font-medium disco-text-lg  disco-bg-gray-100 disco-p-2 disco-border disco-border-white disco-border-solid disco-rounded-t-lg">
+				<div className="disco:grid disco:grid-cols-12 disco:gap-4">
+					<h4 className="disco:col-span-3 disco:font-medium disco:text-lg  disco:bg-gray-100 disco:p-2 disco:border disco:border-white disco:border-solid disco:rounded-t-lg">
 						{__('Customer Buy', 'disco')}
 					</h4>
-					<h4 className="disco-col-span-9 disco-font-medium disco-text-lg  disco-bg-gray-100 disco-p-2 disco-border disco-border-white disco-border-solid disco-rounded-t-lg">
+					<h4 className="disco:col-span-9 disco:font-medium disco:text-lg  disco:bg-gray-100 disco:p-2 disco:border disco:border-white disco:border-solid disco:rounded-t-lg">
 						{__('Customer Get', 'disco')}
 					</h4>
 				</div>
-				<div className="disco-space-y-4">
+				<div className="disco:space-y-4">
 					{discount_rules.map((rule, index) => (
 						<BOGORuleItem key={rule.id} index={index} rule={rule} />
 					))}
@@ -45,14 +45,14 @@ const BOGORules = () => {
 			</div>
 
 			{!hasRecursiveRule && (
-				<div className="disco-flex disco-justify-between disco-items-center">
-					<div className="disco-px-4 disco-py-2">
+				<div className="disco:flex disco:justify-between disco:items-center">
+					<div className="disco:px-4 disco:py-2">
 						<Button
 							onClick={handleAddBOGORule}
 							type="transparent"
-							className="!disco-px-3 !disco-py-2 !disco-text-sm !disco-font-normal"
+							className="disco:px-3! disco:py-2! disco:text-sm! disco:font-normal!"
 							icon={
-								<PlusCircleIcon className="disco-h-5 disco-w-5 !disco-text-primary" />
+								<PlusCircleIcon className="disco:h-5 disco:w-5 disco:text-primary!" />
 							}
 						>
 							{__('Add More', 'disco')}

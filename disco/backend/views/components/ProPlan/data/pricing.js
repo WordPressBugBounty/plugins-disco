@@ -24,7 +24,7 @@ const pricingPlans = [
 			'Priority support',
 		],
 		renewNote: 'Renews at same price after 1 year',
-		renewColor: 'disco-text-red-500',
+		renewColor: 'disco:text-red-500',
 	},
 	{
 		name: '5 Sites',
@@ -51,7 +51,7 @@ const pricingPlans = [
 			'White-label support (addon)',
 		],
 		renewNote: 'Lifetime free after 1 year',
-		renewColor: 'disco-text-emerald-600',
+		renewColor: 'disco:text-emerald-600',
 	},
 	{
 		name: '10 Sites',
@@ -78,7 +78,7 @@ const pricingPlans = [
 			'Get free setup + migration',
 		],
 		renewNote: 'Lifetime free after 1 year',
-		renewColor: 'disco-text-emerald-600',
+		renewColor: 'disco:text-emerald-600',
 	},
 ];
 

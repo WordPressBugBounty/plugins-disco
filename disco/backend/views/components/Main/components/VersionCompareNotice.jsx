@@ -32,13 +32,13 @@ export default function VersionCompareNotice() {
 	}
 
 	return (
-		<div className="disco-flex disco-align-center disco-mb-2">
-			<div className="disco-bg-red-500 disco-rounded-l-md disco-align-center disco-p-2">
-				<InformationCircleIcon className="disco-size-7 disco-text-white" />
+		<div className="disco:flex disco:align-center disco:mb-2">
+			<div className="disco:bg-red-500 disco:rounded-l-md disco:align-center disco:p-2">
+				<InformationCircleIcon className="disco:size-7 disco:text-white" />
 			</div>
-			<div className="disco-flex-grow disco-gap-2 disco-border disco-border-red-500 disco-rounded-r-md disco-py-2 disco-pr-2">
-				<p className="disco-text-base disco-pl-2">
-					<span className="disco-text-red-500 disco-font-bold">
+			<div className="disco:grow disco:gap-2 disco:border disco:border-red-500 disco:rounded-r-md disco:py-2 disco:pr-2">
+				<p className="disco:text-base disco:pl-2">
+					<span className="disco:text-red-500 disco:font-bold">
 						{__('Need to Fix -', 'disco')}{' '}
 					</span>
 					{__('Please update', 'disco')}{' '}

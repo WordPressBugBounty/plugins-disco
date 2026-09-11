@@ -35,7 +35,7 @@ const TextHighlightStyleBox = () => {
 	};
 
 	return (
-		<div className="disco-w-full disco-mt-3 disco-flex disco-justify-between disco-gap-4">
+		<div className="disco:w-full disco:mt-3 disco:flex disco:justify-between disco:gap-4">
 			<CustomNumberInput
 				title={__('Width', 'disco')}
 				name={'width'}

@@ -12,12 +12,12 @@ const ColorPikerBox = ({
 	borderColorDisabled,
 }) => {
 	return (
-		<div className="disco-w-full disco-mt-4 disco-flex disco-justify-between disco-gap-4">
+		<div className="disco:w-full disco:mt-4 disco:flex disco:justify-between disco:gap-4">
 			<CustomColorPiker
 				title={__('Font Color', 'disco')}
 				value={fontColor}
 				onChange={handleFontColor}
-				className="disco-w-full"
+				className="disco:w-full"
 			/>
 			<CustomColorPiker
 				title={__('Background Color', 'disco')}
@@ -25,13 +25,13 @@ const ColorPikerBox = ({
 				onChange={handleBackgroundColor}
 				hideGradient={false}
 				disabled={bgColorDisabled}
-				className="disco-w-full"
+				className="disco:w-full"
 			/>
 			<CustomColorPiker
 				title={__('Border Color', 'disco')}
 				value={borderColor}
 				onChange={handleBorderColor}
-				className="disco-w-full"
+				className="disco:w-full"
 				disabled={borderColorDisabled}
 			/>
 		</div>

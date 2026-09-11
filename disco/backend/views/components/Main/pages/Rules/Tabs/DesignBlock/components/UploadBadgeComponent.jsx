@@ -60,7 +60,7 @@ const UploadBadgeComponent = ({
 	);
 
 	return (
-		<div className="disco-mt-4 disco-w-full disco-max-w-full disco-mx-auto">
+		<div className="disco:mt-4 disco:w-full disco:max-w-full disco:mx-auto">
 			<ImagePreview
 				images={uploadedImages}
 				onDelete={handleDelete}
@@ -69,8 +69,8 @@ const UploadBadgeComponent = ({
 				selectedDesign={selectedDesign}
 			/>
 
-			<div className="disco-p-4 disco-bg-white disco-border disco-border-primary disco-rounded-lg disco-shadow-md">
-				<h2 className="disco-text-base disco-font-semibold disco-mb-2">
+			<div className="disco:p-4 disco:bg-white disco:border disco:border-primary disco:rounded-lg disco:shadow-md">
+				<h2 className="disco:text-base disco:font-semibold disco:mb-2">
 					{title}
 				</h2>
 				<ImageDropZone

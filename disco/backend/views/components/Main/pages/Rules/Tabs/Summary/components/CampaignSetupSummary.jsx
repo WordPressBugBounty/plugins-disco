@@ -87,78 +87,78 @@ const CampaignSetupSummary = ({ className }) => {
 				open={isPopupOpen}
 				onClose={() => setIsPopupOpen(false)}
 			/>
-			<div className="disco-flex disco-items-center disco-gap-3">
-				<p className="disco-text-lg">
+			<div className="disco:flex disco:items-center disco:gap-3">
+				<p className="disco:text-lg">
 					{__('Campaign setup info', 'disco')}
 				</p>
 				<Button
 					type="transparent"
 					onClick={handleNavigation}
 					testId="summery-edit-campaign"
-					className="!disco-px-3 !disco-py-1 !disco-font-light disco-text-sm disco-border disco-border-gray-300 disco-rounded-lg"
+					className="disco:px-3! disco:py-1! disco:font-light! disco:text-sm disco:border disco:border-gray-300 disco:rounded-lg"
 					icon={
-						<PencilSquareIcon className="disco-h-4 disco-w-4 disco-text-primary" />
+						<PencilSquareIcon className="disco:h-4 disco:w-4 disco:text-primary" />
 					}
 				>
 					{__('Edit Now', 'disco')}
 				</Button>
 			</div>
-			<div className="disco-mt-4 disco-p-4 disco-border disco-rounded-xl">
-				<div className="disco-flex">
-					<div className="disco-w-1/2 disco-flex disco-justify-between">
-						<div className="disco-w-1/3">
-							<p className="disco-text-base disco-mb-2">
+			<div className="disco:mt-4 disco:p-4 disco:border disco:rounded-xl">
+				<div className="disco:flex">
+					<div className="disco:w-1/2 disco:flex disco:justify-between">
+						<div className="disco:w-1/3">
+							<p className="disco:text-base disco:mb-2">
 								{__('Products', 'disco')}
 							</p>
-							<p className="disco-text-base disco-mb-2">
+							<p className="disco:text-base disco:mb-2">
 								{__('User Limit', 'disco')}
 							</p>
-							<p className="disco-text-base disco-mb-2">
+							<p className="disco:text-base disco:mb-2">
 								{__('Valid Between', 'disco')}
 							</p>
 						</div>
-						<div className="disco-w-2/3">
-							<div className="disco-text-base disco-flex disco-font-light disco-mb-2 disco-gap-1">
+						<div className="disco:w-2/3">
+							<div className="disco:text-base disco:flex disco:font-light disco:mb-2 disco:gap-1">
 								{totalProducts}
 								<button onClick={handleShowProductsModal}>
 									{products.length >= 1 &&
 										products[0] !== 'all' && (
-											<ArrowTopRightOnSquareIcon className="disco-h-5 disco-w-5 disco-font-base disco-text-primary" />
+											<ArrowTopRightOnSquareIcon className="disco:h-5 disco:w-5 disco:font-base disco:text-primary" />
 										)}
 								</button>
 							</div>
-							<div className="disco-text-base disco-font-light disco-mb-2">
+							<div className="disco:text-base disco:font-light disco:mb-2">
 								{userLimit}
 							</div>
-							<div className="disco-text-base disco-font-light disco-mb-2">
+							<div className="disco:text-base disco:font-light disco:mb-2">
 								{validBetween}
 							</div>
 						</div>
 					</div>
-					<div className="disco-w-1/2 disco-flex disco-justify-between">
-						<div className="disco-w-1/3">
-							<p className="disco-text-base disco-mb-2">
+					<div className="disco:w-1/2 disco:flex disco:justify-between">
+						<div className="disco:w-1/3">
+							<p className="disco:text-base disco:mb-2">
 								{__('Discount Type:', 'disco')}
 							</p>
-							<p className="disco-text-base disco-mb-2">
+							<p className="disco:text-base disco:mb-2">
 								{__('Discount Value:', 'disco')}
 							</p>
 						</div>
-						<div className="disco-w-2/3">
-							<div className="disco-text-base disco-font-light disco-mb-2">
+						<div className="disco:w-2/3">
+							<div className="disco:text-base disco:font-light disco:mb-2">
 								{discount_type}
 							</div>
-							<div className="disco-text-base disco-font-light disco-mb-2">
+							<div className="disco:text-base disco:font-light disco:mb-2">
 								{discount_value}
 							</div>
 						</div>
 					</div>
 				</div>
-				<div className="disco-space-y-4 disco-mt-4">
-					<h3 className="disco-text-lg disco-font-light disco-flex disco-gap-2">
+				<div className="disco:space-y-4 disco:mt-4">
+					<h3 className="disco:text-lg disco:font-light disco:flex disco:gap-2">
 						{__('Applied Condition:', 'disco')}
 						{conditions.length === 0 && (
-							<div className="disco-text-base disco-flex disco-items-center">
+							<div className="disco:text-base disco:flex disco:items-center">
 								{__('No Conditions Applied', 'disco')}
 							</div>
 						)}

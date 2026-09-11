@@ -33,19 +33,19 @@ const CustomNumberInput = ({
 
 	return (
 		<div
-			className={`disco-border disco-border-green-400 disco-bg-white disco-rounded-md disco-px-2 disco-flex disco-justify-between disco-items-center ${className} ${disabled ? 'disco-opacity-50 disco-cursor-not-allowed' : ''}`}
+			className={`disco:border disco:border-green-400 disco:bg-white disco:rounded-md disco:px-2 disco:flex disco:justify-between disco:items-center ${className} ${disabled ? 'disco:opacity-50 disco:cursor-not-allowed' : ''}`}
 		>
-			<span className="disco-text-black disco-text-sm">
+			<span className="disco:text-black disco:text-sm!">
 				{placeholder}
 			</span>
-			<div className="disco-flex disco-space-x-1">
+			<div className="disco:flex disco:space-x-1">
 				<MinusCircleIcon
-					className="disco-w-5 disco-h-5 disco-text-primary disco-text-sm"
+					className="disco:w-5 disco:h-5 disco:text-primary disco:text-sm"
 					onClick={handleDecrement}
 				/>
-				<span className="disco-text-sm">{initialValue}</span>
+				<span className="disco:text-sm">{initialValue}</span>
 				<PlusCircleIcon
-					className="disco-w-5 disco-h-5 disco-text-primary"
+					className="disco:w-5 disco:h-5 disco:text-primary"
 					onClick={handleIncrement}
 				/>
 			</div>

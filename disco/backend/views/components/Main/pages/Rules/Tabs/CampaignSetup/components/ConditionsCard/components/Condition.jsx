@@ -79,11 +79,11 @@ const Condition = ({ allFilters, condition, conditionGroup }) => {
 		);
 	};
 	return (
-		<div className="disco-flex disco-w-full disco-gap-4">
+		<div className="disco:flex disco:w-full disco:gap-4">
 			{filterData.condition && (
-				<div className='disco-flex-shrink-0 disco-w-1/3 2xl:disco-w-1/2'>
+				<div className='disco:shrink-0 disco:w-1/3 disco:2xl:w-1/2'>
 					<SingleSelect
-						className="disco-min-w-[210px] disco-flex-grow disco-condition-select"
+						className="disco:min-w-[210px] disco:grow disco-condition-select"
 						placeHolder={__('Select Condition','disco')}
 						selected={selectedCondition}
 						items={filterData.condition}
@@ -101,7 +101,7 @@ const Condition = ({ allFilters, condition, conditionGroup }) => {
 						{filterData.input_type.option_type == 'manual' && (
 							<>
 								{filterData.input_type.multiple ? (
-									<div className='disco-flex-grow'>
+									<div className='disco:grow'>
 										<MultiSelect
 
 											placeHolder={__(
@@ -119,7 +119,7 @@ const Condition = ({ allFilters, condition, conditionGroup }) => {
 									</div>
 								) : (
 									<SingleSelect
-										className='disco-flex-grow'
+										className='disco:grow'
 										placeHolder={__(
 											'Select Value',
 											'disco'
@@ -134,7 +134,7 @@ const Condition = ({ allFilters, condition, conditionGroup }) => {
 					</>
 					<>
 						{filterData.input_type.option_type == 'api' && (
-							<div className='disco-flex-grow'>
+							<div className='disco:grow'>
 								<AsyncMultiSelect
 									placeHolder={__(
 										'Search ' + filterData.title.split(' ').slice(-1)[0],
@@ -158,9 +158,9 @@ const Condition = ({ allFilters, condition, conditionGroup }) => {
 					{condition.compare_with && (
 						<>
 							{condition?.condition === 'between' || condition?.condition === 'date_between' ? (
-								<div className="disco-flex disco-flex-grow disco-items-center disco-gap-3">
+								<div className="disco:flex disco:grow disco:items-center disco:gap-3">
 									<Input
-										className='disco-flex-grow'
+										className='disco:grow'
 										onChange={(e) =>
 											handleBetweenValueChange(e, 0)
 										}
@@ -172,10 +172,10 @@ const Condition = ({ allFilters, condition, conditionGroup }) => {
 										)}
 									/>
 									<div>
-										<ArrowsRightLeftIcon className="disco-h-5 disco-flex-shrink-0 disco-w-5" />
+										<ArrowsRightLeftIcon className="disco:h-5 disco:shrink-0 disco:w-5" />
 									</div>
 									<Input
-										className='disco-flex-grow'
+										className='disco:grow'
 										onChange={(e) =>
 											handleBetweenValueChange(e, 1)
 										}
@@ -186,7 +186,7 @@ const Condition = ({ allFilters, condition, conditionGroup }) => {
 								</div>
 							) : (
 								<Input
-									className='disco-flex-grow'
+									className='disco:grow'
 									onChange={handleValueChange}
 									type={filterData.input_type}
 									value={condition?.compare}

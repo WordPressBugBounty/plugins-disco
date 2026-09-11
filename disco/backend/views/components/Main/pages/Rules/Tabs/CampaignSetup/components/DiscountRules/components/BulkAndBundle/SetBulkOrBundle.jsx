@@ -26,7 +26,7 @@ const SetBulkOrBundle = () => {
 	if (isLoading) {
 		return (
 			<Card heading={`${discount_intent} Rules`}>
-				<div className="disco-p-4">
+				<div className="disco:p-4">
 					<LoadingSpinner />
 				</div>
 			</Card>
@@ -34,13 +34,13 @@ const SetBulkOrBundle = () => {
 	}
 
 	return (
-		<ComponentBox className="disco-mt-5 disco-rounded-xl">
+		<ComponentBox className="disco:mt-5 disco:rounded-xl">
 			<CommonHeadingBox
 				title={__(`${discount_intent} Rules`, 'disco')}
 				url={docUrls[discount_intent]}
 			/>
 
-			<div className="disco-space-y-6 disco-p-4">
+			<div className="disco:space-y-6 disco:p-4">
 				<CountQuantityAs />
 
 				{discount_rules.map((rule, index) => (
@@ -56,13 +56,13 @@ const SetBulkOrBundle = () => {
 				))}
 			</div>
 
-			<div className="disco-flex disco-justify-between disco-border-t disco-border-gray-200 disco-items-center">
-				<div className="disco-px-4 disco-py-2">
+			<div className="disco:flex disco:justify-between disco:border-t disco:border-gray-200 disco:items-center">
+				<div className="disco:px-4 disco:py-2">
 					<Button
 						onClick={handleAddBulkOption}
-						className="!disco-px-3 !disco-py-1.5 !disco-text-sm !disco-font-normal"
+						className="disco:px-3! disco:py-1.5! disco:text-sm! disco:font-normal!"
 						icon={
-							<PlusCircleIcon className="disco-h-5 disco-w-5" />
+							<PlusCircleIcon className="disco:h-5 disco:w-5" />
 						}
 					>
 						{__('Add More', 'disco')}

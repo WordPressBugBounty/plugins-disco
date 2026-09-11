@@ -19,40 +19,40 @@ const COLUMNS = [
 const renderRow = (campaign) => (
 	<tr
 		key={campaign.id}
-		className="disco-border-b disco-border-[#f3f4f6] last:disco-border-0 hover:disco-bg-[#f9fafb] disco-cursor-pointer disco-transition-colors"
+		className="disco:border-b disco:border-[#f3f4f6] disco:last:border-0 disco:hover:bg-[#f9fafb] disco:cursor-pointer disco:transition-colors"
 	>
-		<td className="disco-px-4 disco-py-3">
-			<span className="disco-flex disco-items-center disco-gap-2">
+		<td className="disco:px-4 disco:py-3">
+			<span className="disco:flex disco:items-center disco:gap-2">
 				<span
-					className="disco-size-[7px] disco-rounded-[2px] disco-shrink-0"
+					className="disco:size-1.75 disco:rounded-xs disco:shrink-0"
 					style={{
 						backgroundColor: campaign.dotColor,
 					}}
 				/>
 				<Link
 					to={`/campaigns-reports/${campaign.id}`}
-					className="disco-font-medium disco-text-gray-900 hover:disco-text-primary focus:disco-text-primary"
+					className="disco:font-medium! disco:text-gray-900! disco:hover:text-primary! disco:focus:text-primary!"
 				>
 					{truncate(campaign.name, 30)}
 				</Link>
 			</span>
 		</td>
-		<td className="disco-px-4 disco-py-3">
+		<td className="disco:px-4 disco:py-3">
 			<IntentBadge intent={campaign.intent} />
 		</td>
-		<td className="disco-px-4 disco-py-3 disco-font-medium disco-text-[#374151]">
+		<td className="disco:px-4 disco:py-3 disco:font-medium disco:text-[#374151]">
 			{campaign.revenue}
 		</td>
-		<td className="disco-px-4 disco-py-3 disco-text-[#6b7280]">
+		<td className="disco:px-4 disco:py-3 disco:text-[#6b7280]">
 			{campaign.dateRange}
 		</td>
-		<td className="disco-px-4 disco-py-3 disco-text-[#374151]">
+		<td className="disco:px-4 disco:py-3 disco:text-[#374151]">
 			{campaign.orders}
 		</td>
-		<td className="disco-px-4 disco-py-3 disco-text-[#374151]">
+		<td className="disco:px-4 disco:py-3 disco:text-[#374151]">
 			{campaign.customers}
 		</td>
-		<td className="disco-px-4 disco-py-3">
+		<td className="disco:px-4 disco:py-3">
 			<StatusBadge status={campaign.status} />
 		</td>
 	</tr>
@@ -95,10 +95,10 @@ const CampaignsTable = ({
 				size: 'lg',
 				label: __('Upgrade to pro', 'disco'),
 				titleClassName:
-					'disco-max-w-md disco-text-base disco-font-normal disco-text-[#111827] disco-leading-snug',
+					'disco:max-w-md disco:text-base disco:font-normal disco:text-[#111827] disco:leading-snug',
 				title: (
 					<>
-						<strong className="disco-font-semibold">
+						<strong className="disco:font-semibold">
 							{__('Upgrade to Disco Pro', 'disco')}
 						</strong>{' '}
 						{__(

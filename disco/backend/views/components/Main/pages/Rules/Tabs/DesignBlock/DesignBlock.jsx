@@ -68,7 +68,7 @@ const DesignBlock = () => {
 
 	return (
 		<>
-			<div className="disco-mx-3">
+			<div className="disco:mx-3">
 				{!showEditor ? (
 					<RenderBlocks discount_intent={discount_intent} />
 				) : (

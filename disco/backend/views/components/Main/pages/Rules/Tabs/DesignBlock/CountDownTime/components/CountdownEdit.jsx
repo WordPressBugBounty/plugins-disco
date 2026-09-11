@@ -96,7 +96,7 @@ const CountdownEdit = () => {
 	return (
 		<>
 			{/* Box: Border, Radius */}
-			<div className="disco-w-full disco-mt-3 disco-flex disco-justify-between disco-gap-4">
+			<div className="disco:w-full disco:mt-3 disco:flex disco:justify-between disco:gap-4">
 				<CustomNumberInput
 					title={__('Border', 'disco')}
 					name="box-border"
@@ -130,7 +130,7 @@ const CountdownEdit = () => {
 			</div>
 
 			{/* Box Padding */}
-			<div className="disco-w-full disco-mt-3 disco-flex disco-justify-between disco-gap-4">
+			<div className="disco:w-full disco:mt-3 disco:flex disco:justify-between disco:gap-4">
 				<CustomNumberInput
 					title={__('Padding Top', 'disco')}
 					name="box-padding-top"
@@ -170,27 +170,27 @@ const CountdownEdit = () => {
 			</div>
 
 			{/* Box Colors */}
-			<div className="disco-flex disco-mt-4 disco-justify-between disco-gap-2">
+			<div className="disco:flex disco:mt-4 disco:justify-between disco:gap-2">
 				<ColorPiker
 					title={__('Background', 'disco')}
-					className="disco-min-w-32 disco-flex-grow"
+					className="disco:min-w-32 disco:grow"
 					value={box?.background || '#FFFFFF'}
 					onChange={(value) => handleBoxChange('background', value)}
 				/>
 				<ColorPiker
 					title={__('Border Color', 'disco')}
-					className="disco-min-w-32 disco-flex-grow"
+					className="disco:min-w-32 disco:grow"
 					value={box?.['border-color'] || 'rgba(0, 0, 0, 0)'}
 					onChange={(value) => handleBoxChange('border-color', value)}
 				/>
 			</div>
 
 			{/* Number Properties */}
-			<div className="disco-mt-4">
-				<h1 className="disco-text-sm disco-mb-2 disco-font-semibold">
+			<div className="disco:mt-4">
+				<h1 className="disco:text-sm! disco:mb-2! disco:font-semibold!">
 					{__('Number Properties', 'disco')}
 				</h1>
-				<div className="disco-flex disco-justify-between disco-items-center disco-gap-4">
+				<div className="disco:flex disco:justify-between disco:items-center disco:gap-4">
 					<SingleSelect
 						placeholder={__('Select Font', 'disco')}
 						items={fontItems}
@@ -198,8 +198,8 @@ const CountdownEdit = () => {
 						onchange={(value) =>
 							handleNumberChange('font-family', value)
 						}
-						className="disco-bg-white disco-min-w-40"
-						buttonClass="!disco-py-1 disco-font-thin disco-text-sm"
+						className="disco:bg-white disco:min-w-40"
+						buttonClass="disco:py-1! disco:font-thin! disco:text-sm!"
 					/>
 					<CustomNumberInput
 						placeholder={__('Size', 'disco')}
@@ -220,11 +220,11 @@ const CountdownEdit = () => {
 								parseInt(value) || value
 							)
 						}
-						className="disco-bg-white disco-min-w-28"
-						buttonClass="!disco-py-1 disco-font-thin disco-text-sm"
+						className="disco:bg-white disco:min-w-28"
+						buttonClass="disco:py-1! disco:font-thin! disco:text-sm!"
 					/>
 					<ColorPiker
-						className="disco-min-w-32 disco-flex-grow"
+						className="disco:min-w-32 disco:grow"
 						value={number?.color || '#FF4133'}
 						onChange={(value) => handleNumberChange('color', value)}
 					/>
@@ -232,11 +232,11 @@ const CountdownEdit = () => {
 			</div>
 
 			{/* Clock Text (Label) Properties */}
-			<div className="disco-mt-4">
-				<h1 className="disco-text-sm disco-mb-2 disco-font-semibold">
+			<div className="disco:mt-4">
+				<h1 className="disco:text-sm! disco:mb-2! disco:font-semibold!">
 					{__('Clock Text', 'disco')}
 				</h1>
-				<div className="disco-flex disco-justify-between disco-items-center disco-gap-4">
+				<div className="disco:flex disco:justify-between disco:items-center disco:gap-4">
 					<SingleSelect
 						placeholder={__('Select Font', 'disco')}
 						items={fontItems}
@@ -244,8 +244,8 @@ const CountdownEdit = () => {
 						onchange={(value) =>
 							handleLabelChange('font-family', value)
 						}
-						className="disco-bg-white disco-min-w-40"
-						buttonClass="!disco-py-1 disco-font-thin disco-text-sm"
+						className="disco:bg-white disco:min-w-40"
+						buttonClass="disco:py-1! disco:font-thin! disco:text-sm!"
 					/>
 					<CustomNumberInput
 						placeholder={__('Size', 'disco')}
@@ -266,11 +266,11 @@ const CountdownEdit = () => {
 								parseInt(value) || value
 							)
 						}
-						className="disco-bg-white disco-min-w-28"
-						buttonClass="!disco-py-1 disco-font-thin disco-text-sm"
+						className="disco:bg-white disco:min-w-28"
+						buttonClass="disco:py-1! disco:font-thin! disco:text-sm!"
 					/>
 					<ColorPiker
-						className="disco-min-w-32 disco-flex-grow"
+						className="disco:min-w-32 disco:grow"
 						value={label?.color || '#1A1D1F'}
 						onChange={(value) => handleLabelChange('color', value)}
 					/>

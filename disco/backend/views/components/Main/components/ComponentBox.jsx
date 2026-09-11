@@ -2,7 +2,7 @@
 const ComponentBox = ({ children, className = '' }) => {
 	return (
 		<div
-			className={`disco-border disco-border-white disco-bg-gray-25 disco-rounded-xl ${className}`}
+			className={`disco:border disco:border-white disco:bg-gray-25 disco:rounded-xl ${className}`}
 		>
 			{children}
 		</div>

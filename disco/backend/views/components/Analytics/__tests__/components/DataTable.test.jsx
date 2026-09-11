@@ -129,7 +129,7 @@ describe('DataTable', () => {
 
 		// Should render skeleton rows
 		const pulseElements = container.querySelectorAll(
-			'.disco-animate-pulse'
+			'.disco\\:animate-pulse'
 		);
 		expect(pulseElements.length).toBe(5); // 5 skeleton rows
 	});

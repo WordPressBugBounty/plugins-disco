@@ -64,19 +64,19 @@ const BadgeTextWithDynamicProperties = forwardRef(
 		);
 
 		return (
-			<div className="disco-rounded-lg disco-mt-2 disco-relative">
-				<div className="disco-absolute disco-right-2 disco-top-1">
+			<div className="disco:rounded-lg disco:mt-2 disco:relative">
+				<div className="disco:absolute disco:right-2 disco:top-1">
 					<button
 						type="button"
 						onClick={handleTogglePicker}
-						className="disco-text-lg"
+						className="disco:text-lg"
 					>
 						😊
 					</button>
 					{showPicker && (
 						<div
 							ref={emojiPickerRef}
-							className="disco-absolute disco-z-10 disco-top-8 disco-right-0 disco-bg-white disco-shadow-lg disco-rounded-lg"
+							className="disco:absolute disco:z-10 disco:top-8 disco:right-0 disco:bg-white disco:shadow-lg disco:rounded-lg"
 						>
 							<EmojiPicker
 								onEmojiClick={handleEmojiClick}
@@ -91,25 +91,25 @@ const BadgeTextWithDynamicProperties = forwardRef(
 					value={value}
 					onChange={onChange}
 					rows={2}
-					className="disco-w-full disco-px-3 disco-py-2 disco-pr-10 disco-text-gray-700 disco-bg-white disco-border disco-border-primary disco-rounded-lg focus:disco-outline-none focus:disco-ring-0 focus:disco-ring-primary focus:disco-border-primary"
+					className="disco:w-full disco:px-3 disco:py-2 disco:pr-10 disco:text-gray-700 disco:bg-white disco:border disco:border-primary! disco:rounded-lg disco:focus:outline-hidden! disco:focus:ring-0 disco:focus:ring-primary disco:focus:border-primary"
 				/>
 
 				{/* Information Section */}
-				<div className="disco-mt-1 disco-space-y-1 disco-text-sm">
+				<div className="disco:mt-1 disco:space-y-1 disco:text-sm">
 					{dynamicVariables.map((item, index) => (
 						<div
 							key={index}
-							className="disco-flex disco-items-center disco-space-x-2"
+							className="disco:flex disco:items-center disco:space-x-2"
 						>
-							<span className="disco-text-red-500">
-								<InformationCircleIcon className="disco-w-4 disco-h-4" />
+							<span className="disco:text-red-500">
+								<InformationCircleIcon className="disco:w-4 disco:h-4" />
 							</span>
 							<p>
-								<span className="disco-font-base disco-font-thin">
+								<span className="disco:font-base disco:font-thin">
 									{'[' + item.label + ']'}
 								</span>{' '}
 								→{' '}
-								<span className="disco-italic disco-font-semibold">
+								<span className="disco:italic disco:font-semibold">
 									{item.example}
 								</span>
 							</p>

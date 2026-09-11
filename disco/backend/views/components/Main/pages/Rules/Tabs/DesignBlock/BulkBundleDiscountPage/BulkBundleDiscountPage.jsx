@@ -36,7 +36,7 @@ const BulkBundleDiscountPage = () => {
 			<BadgeTitle
 				title={__(`${discount_intent} Table`, 'disco')}
 				url={docUrl}
-				className="disco-mt-3"
+				className="disco:mt-3"
 			/>
 
 			<BadgeActions>

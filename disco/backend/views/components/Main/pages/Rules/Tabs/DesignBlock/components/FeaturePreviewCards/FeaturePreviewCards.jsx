@@ -17,7 +17,7 @@ const ProBadge = () => {
 	return (
 		<span
 			onClick={handleOnClick}
-			className="disco-inline-flex disco-items-center disco-justify-center disco-rounded-full disco-font-extrabold disco-cursor-pointer disco-bg-amber-100 disco-text-amber-800 disco-text-[10px] disco-h-[18px] disco-px-[9px] disco-whitespace-nowrap"
+			className="disco:inline-flex disco:items-center disco:justify-center disco:rounded-full disco:font-extrabold disco:cursor-pointer disco:bg-amber-100 disco:text-amber-800 disco:text-[10px] disco:h-[18px] disco:px-[9px] disco:whitespace-nowrap"
 		>
 			🔒 Pro
 		</span>
@@ -88,23 +88,23 @@ const FEATURE_CARDS = [
 ];
 
 const FeaturePreviewCards = () => (
-	<div className="disco-grid disco-gap-4 disco-w-full disco-grid-cols-1 sm:disco-grid-cols-2 xl:disco-grid-cols-3">
+	<div className="disco:grid disco:gap-4 disco:w-full disco:grid-cols-1 disco:sm:grid-cols-2 disco:xl:grid-cols-3">
 		{FEATURE_CARDS.map((card) => (
 			<div
 				key={card.id}
-				className="disco-bg-white disco-flex disco-flex-col disco-p-4 disco-border disco-border-[#f6f7f9] disco-gap-5 disco-rounded-[12px] disco-justify-between"
+				className="disco:bg-white disco:flex disco:flex-col disco:p-4 disco:border disco:border-[#f6f7f9] disco:gap-5 disco:rounded-xl disco:justify-between"
 			>
 				{/* Preview area */}
-				<div className="disco-bg-[#fafafa] disco-rounded-[8px] disco-overflow-hidden disco-w-full disco-min-h-[280px]">
+				<div className="disco:bg-[#fafafa] disco:rounded-lg disco:overflow-hidden disco:w-full disco:min-h-70">
 					{card.preview}
 				</div>
 
 				{/* Content */}
-				<div className="disco-flex disco-flex-col disco-gap-3">
+				<div className="disco:flex disco:flex-col disco:gap-3">
 					{/* Title row */}
-					<div className="disco-flex disco-items-center disco-justify-between">
-						<div className="disco-flex disco-items-center disco-gap-2">
-							<span className=" disco-text-lg disco-font-bold disco-text-[#1a1d1f]">
+					<div className="disco:flex disco:items-center disco:justify-between">
+						<div className="disco:flex disco:items-center disco:gap-2">
+							<span className=" disco:text-lg disco:font-bold disco:text-[#1a1d1f]">
 								{card.title}
 							</span>
 						</div>
@@ -113,7 +113,7 @@ const FeaturePreviewCards = () => (
 
 					{/* Description */}
 					<p
-						className="disco-text-[#64748b] disco-font-normal disco-m-0"
+						className="disco:text-[#64748b] disco:font-normal disco:m-0"
 						style={{ fontSize: 14, lineHeight: '20px' }}
 					>
 						{card.description}
@@ -125,7 +125,7 @@ const FeaturePreviewCards = () => (
 					href={card.url}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="disco-flex disco-items-center disco-justify-center disco-gap-2 disco-w-full disco-no-underline disco-font-extrabold disco-text-[#fafafa] disco-rounded-[8px] focus:!disco-rounded-[8px] hover:disco-text-white hover:disco-scale-105 disco-transition-all disco-duration-300 disco-h-[40px] disco-border disco-border-[#0dc98b] disco-shadow-[2px_2px_0_rgba(88,98,118,0.32)] disco-text-[16px] focus:!disco-shadow-none focus:!disco-outline-none focus:!disco-border-none disco-bg-primary"
+					className="disco:flex disco:items-center disco:justify-center disco:gap-2 disco:w-full disco:no-underline disco:font-extrabold disco:text-white! disco:rounded-lg disco:focus:rounded-lg! disco:hover:text-white! disco:hover:scale-105 disco:transition-all! disco:duration-300 disco:h-10 disco:border disco:border-[#0dc98b] disco:shadow-[2px_2px_0_rgba(88,98,118,0.32)] disco:text-[16px] disco:focus:shadow-none! disco:focus:outline-hidden! disco:focus:border-none! disco:bg-primary"
 				>
 					{__('How it works →', 'disco')}
 				</a>

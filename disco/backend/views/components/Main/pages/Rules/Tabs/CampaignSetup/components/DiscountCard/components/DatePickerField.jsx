@@ -11,29 +11,29 @@ import {
 import TimeColumn from './TimeColumn';
 
 const PICKER_CLASSES = {
-	root: 'disco-p-0',
-	months: 'disco-flex disco-flex-col',
-	month: 'disco-flex disco-flex-col disco-gap-1',
+	root: 'disco:p-0',
+	months: 'disco:flex disco:flex-col',
+	month: 'disco:flex disco:flex-col disco:gap-1',
 	month_caption:
-		'disco-relative disco-flex disco-h-8 disco-items-center disco-justify-center',
+		'disco:relative disco:flex disco:h-8 disco:items-center disco:justify-center',
 	caption_label:
-		'disco-text-sm disco-font-semibold disco-text-gray-800 disco-select-none',
-	nav: 'disco-absolute disco-inset-x-0 disco-top-0 disco-flex disco-items-center disco-justify-between',
+		'disco:text-sm disco:font-semibold disco:text-gray-800 disco:select-none',
+	nav: 'disco:absolute disco:inset-x-0 disco:top-0 disco:flex disco:items-center disco:justify-between',
 	button_previous:
-		'disco-flex disco-h-8 disco-w-8 disco-cursor-pointer disco-items-center disco-justify-center disco-rounded disco-text-gray-400 disco-transition-colors hover:disco-text-gray-700 disabled:disco-opacity-30 disco-z-10',
+		'disco:flex disco:h-8 disco:w-8 disco:cursor-pointer disco:items-center disco:justify-center disco:rounded disco:text-gray-400 disco:transition-colors disco:hover:text-gray-700 disco:disabled:opacity-30 disco:z-10',
 	button_next:
-		'disco-flex disco-h-8 disco-w-8 disco-cursor-pointer disco-items-center disco-justify-center disco-rounded disco-text-gray-400 disco-transition-colors hover:disco-text-gray-700 disabled:disco-opacity-30 disco-z-10',
-	weekdays: 'disco-flex',
+		'disco:flex disco:h-8 disco:w-8 disco:cursor-pointer disco:items-center disco:justify-center disco:rounded disco:text-gray-400 disco:transition-colors disco:hover:text-gray-700 disco:disabled:opacity-30 disco:z-10',
+	weekdays: 'disco:flex',
 	weekday:
-		'disco-flex disco-h-8 disco-w-8 disco-items-center disco-justify-center disco-select-none disco-text-xs disco-font-medium disco-text-gray-400',
-	weeks: 'disco-flex disco-flex-col',
-	week: 'disco-flex',
-	day: 'disco-flex disco-h-8 disco-w-8 disco-items-center disco-justify-center disco-p-0 disco-cursor-pointer disco-text-sm disco-rounded-full hover:disco-bg-gray-100 disco-transition-colors',
-	today: 'disco-font-bold',
-	selected: `disco-rounded-full !disco-text-white`,
-	outside: 'disco-text-gray-300',
-	disabled: 'disco-opacity-30 disco-pointer-events-none',
-	hidden: 'disco-invisible',
+		'disco:flex disco:h-8 disco:w-8 disco:items-center disco:justify-center disco:select-none disco:text-xs disco:font-medium disco:text-gray-400',
+	weeks: 'disco:flex disco:flex-col',
+	week: 'disco:flex',
+	day: 'disco:flex disco:h-8 disco:w-8 disco:items-center disco:justify-center disco:p-0 disco:cursor-pointer disco:text-sm disco:rounded-full disco:hover:bg-gray-100 disco:transition-colors',
+	today: 'disco:font-bold',
+	selected: `disco:rounded-full disco:text-white!`,
+	outside: 'disco:text-gray-300',
+	disabled: 'disco:opacity-30 disco:pointer-events-none',
+	hidden: 'disco:invisible',
 };
 
 const HOURS = Array.from({ length: 12 }, (_, i) => i + 1);
@@ -78,14 +78,14 @@ const DatePickerField = ({ name, value, testid, onDateChange }) => {
 	};
 
 	return (
-		<div className="disco-flex disco-flex-1 disco-items-center disco-gap-1">
+		<div className="disco:flex disco:flex-1 disco:items-center disco:gap-1">
 			<Popover.Root open={open} onOpenChange={setOpen}>
 				<Popover.Trigger
 					data-testid={testid}
-					className="disco-w-48 disco-flex disco-flex-1 disco-cursor-pointer disco-items-center disco-gap-1.5 disco-rounded-md disco-bg-white disco-px-2 disco-py-1 disco-text-sm disco-text-gray-700 hover:disco-bg-gray-50 focus:disco-outline-none"
+					className="disco:w-48 disco:flex disco:flex-1 disco:cursor-pointer disco:items-center disco:gap-1.5 disco:rounded-md disco:bg-white disco:px-2 disco:py-1 disco:text-sm disco:text-gray-700 disco:hover:bg-gray-50 disco:focus:outline-hidden"
 				>
-					<CalendarDays className="disco-h-4 disco-w-4 disco-flex-shrink-0 disco-text-gray-400" />
-					<span className={value ? '' : 'disco-text-gray-400'}>
+					<CalendarDays className="disco:h-4 disco:w-4 disco:shrink-0 disco:text-gray-400" />
+					<span className={value ? '' : 'disco:text-gray-400'}>
 						{value ? formatDisplay(value) : 'dd/mm/yyyy, --:-- --'}
 					</span>
 				</Popover.Trigger>
@@ -96,10 +96,10 @@ const DatePickerField = ({ name, value, testid, onDateChange }) => {
 						sideOffset={6}
 						style={{ zIndex: 99999 }}
 					>
-						<Popover.Popup className="disco-overflow-hidden disco-rounded-xl disco-border disco-border-gray-200 disco-bg-white disco-shadow-lg">
-							<div className="disco-flex">
+						<Popover.Popup className="disco:overflow-hidden disco:rounded-xl disco:border disco:border-gray-200 disco:bg-white disco:shadow-lg">
+							<div className="disco:flex">
 								{/* Calendar side */}
-								<div className="disco-flex disco-flex-col disco-p-3">
+								<div className="disco:flex disco:flex-col disco:p-3">
 									<DayPicker
 										mode="single"
 										selected={selectedDate}
@@ -115,23 +115,23 @@ const DatePickerField = ({ name, value, testid, onDateChange }) => {
 										components={{
 											Chevron: ({ orientation }) =>
 												orientation === 'left' ? (
-													<ChevronLeft className="disco-h-4 disco-w-4" />
+													<ChevronLeft className="disco:h-4 disco:w-4" />
 												) : (
-													<ChevronRight className="disco-h-4 disco-w-4" />
+													<ChevronRight className="disco:h-4 disco:w-4" />
 												),
 										}}
 									/>
 									{/* Clear / Today buttons */}
-									<div className="disco-mt-2 disco-flex disco-items-center disco-justify-between disco-border-t disco-border-gray-200 disco-pt-2">
+									<div className="disco:mt-2 disco:flex disco:items-center disco:justify-between disco:border-t disco:border-gray-200 disco:pt-2">
 										<button
 											onClick={handleClear}
-											className="disco-cursor-pointer disco-rounded-md disco-px-3 disco-py-1 disco-text-xs disco-font-medium disco-text-gray-500 disco-transition-colors hover:disco-bg-gray-100"
+											className="disco:cursor-pointer disco:rounded-md disco:px-3 disco:py-1 disco:text-xs disco:font-medium disco:text-gray-500 disco:transition-colors disco:hover:bg-gray-100"
 										>
 											Clear
 										</button>
 										<button
 											onClick={handleToday}
-											className="disco-cursor-pointer disco-rounded-md disco-px-3 disco-py-1 disco-text-xs disco-font-medium disco-transition-colors hover:disco-opacity-80 disco-text-primary"
+											className="disco:cursor-pointer disco:rounded-md disco:px-3 disco:py-1 disco:text-xs disco:font-medium disco:transition-colors disco:hover:opacity-80 disco:text-primary"
 										>
 											Today
 										</button>
@@ -139,14 +139,14 @@ const DatePickerField = ({ name, value, testid, onDateChange }) => {
 								</div>
 
 								{/* Divider */}
-								<div className="disco-w-px disco-self-stretch disco-bg-gray-200" />
+								<div className="disco:w-px disco:self-stretch disco:bg-gray-200" />
 
 								{/* Time picker side */}
-								<div className="disco-flex disco-flex-col disco-p-3">
-									<p className="disco-mb-2 disco-text-center disco-text-xs disco-font-semibold disco-text-gray-500">
+								<div className="disco:flex disco:flex-col disco:p-3">
+									<p className="disco:mb-2 disco:text-center disco:text-xs disco:font-semibold disco:text-gray-500">
 										Time
 									</p>
-									<div className="disco-flex disco-gap-1">
+									<div className="disco:flex disco:gap-1">
 										<TimeColumn
 											items={HOURS}
 											selected={hour}

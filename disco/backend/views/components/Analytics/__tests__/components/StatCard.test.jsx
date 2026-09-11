@@ -52,7 +52,7 @@ describe('StatCard', () => {
 
 		// Should have pulse animation elements
 		const pulseElements = container.querySelectorAll(
-			'.disco-animate-pulse'
+			'.disco\\:animate-pulse'
 		);
 		expect(pulseElements.length).toBeGreaterThanOrEqual(2);
 	});
@@ -61,7 +61,7 @@ describe('StatCard', () => {
 		const { container } = render(
 			<StatCard {...defaultProps} variant="campaigns" />
 		);
-		expect(container.firstChild).toHaveClass('disco-bg-[#f3efff]');
+		expect(container.firstChild).toHaveClass('disco:bg-[#f3efff]');
 	});
 
 	it('handles fallback value "--" correctly', () => {

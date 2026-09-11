@@ -27,7 +27,7 @@ const CountdownTime = () => {
 			<BadgeTitle
 				title={__('Countdown Time', 'disco')}
 				url="https://discoplugin.com/docs/display-countdown-timer/"
-				className="disco-mt-3"
+				className="disco:mt-3"
 			/>
 			<BadgeActions>
 				<Status

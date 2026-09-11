@@ -32,7 +32,7 @@ const TableItems = () => {
 	};
 
 	return (
-		<div className="disco-max-h-[320px] disco-overflow-y-auto disco-overscroll-contain disco-no-scrollbar lg:disco-grid-cols-2 disco-gap-2 disco-grid">
+		<div className="disco:max-h-80 disco:overflow-y-auto disco:overscroll-contain disco-no-scrollbar disco:lg:grid-cols-2 disco:gap-2 disco:grid">
 			{Object.entries(tableItems).map(([name, tableImage]) => {
 				const isSelected = selectedName === name;
 
@@ -41,16 +41,16 @@ const TableItems = () => {
 						key={name}
 						data-testid="bulk-table-design-item"
 						onClick={() => handleSelect(name)}
-						className={`disco-flex disco-flex-col disco-mb-4 disco-items-center disco-justify-center disco-bg-white disco-border disco-rounded-md disco-cursor-pointer transition-all duration-200 ${
+						className={`disco:flex disco:flex-col disco:mb-4 disco:items-center disco:justify-center disco:bg-white disco:border disco:rounded-md disco:cursor-pointer transition-all duration-200 ${
 							isSelected
-								? 'disco-border-primary' // Highlighted style for selected item
-								: 'disco-border-gray-200 hover:disco-border-gray-400' // Default/hover style
+								? 'disco:border-primary' // Highlighted style for selected item
+								: 'disco:border-gray-200 disco:hover:border-gray-400' // Default/hover style
 						}`}
 					>
 						<img
 							src={tableImage}
 							alt={name}
-							className="disco-object-contain disco-w-full disco-h-auto disco-rounded-md"
+							className="disco:object-contain disco:w-full disco:h-auto disco:rounded-md"
 						/>
 					</div>
 				);

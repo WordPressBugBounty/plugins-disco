@@ -222,10 +222,10 @@ describe('ProductBadgeEdit', () => {
 		it('renders the root wrapper with expected classes', () => {
 			const { container } = render(<ProductBadgeEdit />);
 			const root = container.firstChild;
-			expect(root).toHaveClass('disco-bg-gray-50');
-			expect(root).toHaveClass('disco-mr-4');
-			expect(root).toHaveClass('disco-rounded-lg');
-			expect(root).toHaveClass('disco-pb-4');
+			expect(root).toHaveClass('disco:bg-gray-50');
+			expect(root).toHaveClass('disco:mr-4');
+			expect(root).toHaveClass('disco:rounded-lg');
+			expect(root).toHaveClass('disco:pb-4');
 		});
 
 		it('renders BadgeHeader with correct title and description', () => {

@@ -228,7 +228,7 @@ describe('TextHighlight Component', () => {
 
 			const title = screen.getByTestId('badge-title');
 			expect(title).toHaveTextContent('Text Highlight');
-			expect(title).toHaveClass('disco-mt-3');
+			expect(title).toHaveClass('disco:mt-3');
 		});
 
 		test('renders the Edit Now button with correct text', () => {

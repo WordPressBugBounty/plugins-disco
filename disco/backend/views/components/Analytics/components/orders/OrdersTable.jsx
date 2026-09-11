@@ -16,24 +16,24 @@ const COLUMNS = [
 const renderRow = (order) => (
 	<tr
 		key={order.id}
-		className="disco-border-b disco-border-[#f3f4f6] last:disco-border-0 hover:disco-bg-[#f9fafb] disco-cursor-pointer disco-transition-colors"
+		className="disco:border-b disco:border-[#f3f4f6] disco:last:border-0 disco:hover:bg-[#f9fafb] disco:cursor-pointer disco:transition-colors"
 	>
-		<td className="disco-px-4 disco-py-3 disco-font-mono disco-text-[#9ca3af]">
+		<td className="disco:px-4 disco:py-3 disco:font-mono disco:text-[#9ca3af]">
 			{order.id}
 		</td>
-		<td className="disco-px-4 disco-py-3 disco-font-medium disco-text-[#111827] disco-whitespace-nowrap">
+		<td className="disco:px-4 disco:py-3 disco:font-medium disco:text-[#111827] disco:whitespace-nowrap">
 			{order.customer}
 		</td>
-		<td className="disco-px-4 disco-py-3 disco-font-semibold disco-text-[#111827]">
+		<td className="disco:px-4 disco:py-3 disco:font-semibold disco:text-[#111827]">
 			{order.total_spent}
 		</td>
-		<td className="disco-px-4 disco-py-3 disco-font-medium disco-text-[#2fa86d] disco-whitespace-nowrap">
+		<td className="disco:px-4 disco:py-3 disco:font-medium disco:text-[#2fa86d] disco:whitespace-nowrap">
 			{truncate(order.campaign, 30)}
 		</td>
-		<td className="disco-px-4 disco-py-3 disco-text-[#6b7280]">
+		<td className="disco:px-4 disco:py-3 disco:text-[#6b7280]">
 			<ProductsMoreDialog title="Products" items={order.products} />
 		</td>
-		<td className="disco-px-4 disco-py-3 disco-text-[#9ca3af] disco-whitespace-nowrap">
+		<td className="disco:px-4 disco:py-3 disco:text-[#9ca3af] disco:whitespace-nowrap">
 			{order.date}
 		</td>
 	</tr>
@@ -76,10 +76,10 @@ const OrdersTable = ({
 				size: 'lg',
 				label: __('Upgrade to pro', 'disco'),
 				titleClassName:
-					'disco-max-w-md disco-text-base disco-font-normal disco-text-[#111827] disco-leading-snug',
+					'disco:max-w-md disco:text-base disco:font-normal disco:text-[#111827] disco:leading-snug',
 				title: (
 					<>
-						<strong className="disco-font-semibold">
+						<strong className="disco:font-semibold">
 							{__('Upgrade to Disco Pro', 'disco')}
 						</strong>{' '}
 						{__(

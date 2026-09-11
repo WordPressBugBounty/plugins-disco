@@ -56,7 +56,7 @@ const ImageDropZone = forwardRef(
 		return (
 			<div>
 				<div
-					className="disco-relative disco-flex disco-flex-col disco-items-center disco-justify-center disco-h-48 disco-border disco-border-dashed disco-border-gray-300 disco-rounded-lg disco-bg-gray-50 disco-cursor-pointer"
+					className="disco:relative disco:flex disco:flex-col disco:items-center disco:justify-center disco:h-48 disco:border disco:border-dashed disco:border-gray-300 disco:rounded-lg disco:bg-gray-50 disco:cursor-pointer"
 					onDragOver={handleDragOver}
 					onDrop={handleDrop}
 				>
@@ -64,15 +64,15 @@ const ImageDropZone = forwardRef(
 						<img
 							src={preview}
 							alt="Selected"
-							className="disco-h-full disco-w-full disco-object-contain disco-rounded-lg"
+							className="disco:h-full disco:w-full disco:object-contain disco:rounded-lg"
 						/>
 					) : (
-						<div className="disco-flex disco-flex-col disco-items-center disco-text-gray-500">
-							<PlusCircleIcon className="disco-w-8 disco-h-8 disco-text-green-500" />
-							<p className="disco-mt-2 disco-text-sm">
+						<div className="disco:flex disco:flex-col disco:items-center disco:text-gray-500">
+							<PlusCircleIcon className="disco:w-8 disco:h-8 disco:text-green-500" />
+							<p className="disco:mt-2 disco:text-sm">
 								{placeholderText}
 							</p>
-							<p className="disco-text-xs disco-text-gray-400 disco-mt-1">
+							<p className="disco:text-xs disco:text-gray-400 disco:mt-1">
 								{__(
 									'Supported formats: PNG, JPG, JPEG, WebP (max 100 KB)',
 									'disco'
@@ -85,11 +85,11 @@ const ImageDropZone = forwardRef(
 						type="file"
 						accept=".png,.jpg,.jpeg,.webp"
 						onChange={handleChange}
-						className="disco-absolute disco-inset-0 disco-opacity-0 disco-cursor-pointer"
+						className="disco:absolute disco:inset-0 disco:opacity-0 disco:cursor-pointer"
 					/>
 				</div>
 				{error && (
-					<p className="disco-text-red-500 disco-text-xs disco-mt-1">
+					<p className="disco:text-red-500 disco:text-xs disco:mt-1">
 						{error}
 					</p>
 				)}
@@ -97,7 +97,7 @@ const ImageDropZone = forwardRef(
 					<button
 						onClick={onUpload}
 						disabled={isUploading}
-						className="disco-w-full disco-mt-2 disco-py-1.5 disco-bg-primary disco-text-white disco-rounded-md disco-text-sm disco-font-semibold disco-cursor-pointer hover:disco-opacity-90 disabled:disco-opacity-50 disabled:disco-cursor-not-allowed"
+						className="disco:w-full disco:mt-2 disco:py-1.5 disco:bg-primary disco:text-white disco:rounded-md disco:text-sm disco:font-semibold disco:cursor-pointer disco:hover:opacity-90 disco:disabled:opacity-50 disco:disabled:cursor-not-allowed"
 					>
 						{isUploading
 							? __('Uploading...', 'disco')

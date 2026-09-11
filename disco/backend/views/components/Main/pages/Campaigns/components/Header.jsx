@@ -80,37 +80,37 @@ const Header = () => {
 	return (
 		<>
 			<VersionCompareNotice />
-			<div className="disco-flex disco-items-center disco-justify-between">
-				<div className="disco-flex disco-items-center disco-gap-3">
-					<h2 className="disco-text-2xl disco-font-regular">
+			<div className="disco:flex disco:items-center disco:justify-between">
+				<div className="disco:flex disco:items-center disco:gap-3">
+					<h2 className="disco:text-2xl! disco:font-normal!">
 						{__('Discount Campaigns', 'disco')}
 					</h2>
 				</div>
-				<div className="disco-flex disco-gap-4">
+				<div className="disco:flex disco:gap-4">
 					<Button
 						onClick={handleNewCampaign}
-						className="!disco-px-4 !disco-py-2.5 disco-text-sm"
+						className="disco:px-4! disco:py-2.5! disco:text-sm"
 						icon={
-							<Square3Stack3DIcon className="disco-h-4 disco-w-4" />
+							<Square3Stack3DIcon className="disco:h-4 disco:w-4" />
 						}
 					>
 						{__('Create a Discount', 'disco')}
 					</Button>
 
-					<div className="disco-flex disco-border !disco-rounded-lg disco-shadow-custom !disco-border-primary disco-gap-2 disco-items-center">
+					<div className="disco:flex disco:border disco:rounded-lg! disco:shadow-custom disco:border-primary! disco:gap-2 disco:items-center">
 						<input
 							placeholder={__('Select Disco File', 'disco')}
 							onChange={handleJSONUpload}
 							id="disco_import_discount_json"
 							type="file"
 							accept=".disco"
-							className="disco-hidden"
+							className="disco:hidden"
 						/>
 						<label
-							className="disco-bg-transparent disco-flex disco-items-center disco-gap-2 disco-font-medium disco-text-sm disco-px-2.5 disco-ps-2 disco-py-2.5"
+							className="disco:bg-transparent disco:flex disco:items-center disco:gap-2 disco:font-medium disco:text-sm disco:px-2.5 disco:ps-2 disco:py-2.5"
 							htmlFor="disco_import_discount_json"
 						>
-							<ArrowDownTrayIcon className="disco-h-4 disco-w-4 disco-text-primary" />
+							<ArrowDownTrayIcon className="disco:h-4 disco:w-4 disco:text-primary" />
 							{importing
 								? __('Importing', 'disco')
 								: __('Import', 'disco')}
@@ -121,9 +121,9 @@ const Header = () => {
 					<Button
 						onClick={handleNavigateToSettings}
 						type="transparent"
-						className="!disco-px-2.5 !disco-py-2 disco-text-sm"
+						className="disco:px-2.5! disco:py-2! disco:text-sm"
 						icon={
-							<Cog6ToothIcon className="disco-h-4 disco-w-4 disco-text-primary" />
+							<Cog6ToothIcon className="disco:h-4 disco:w-4 disco:text-primary" />
 						}
 					>
 						{__('Settings', 'disco')}

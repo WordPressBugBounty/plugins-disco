@@ -74,7 +74,7 @@ describe('Orders', () => {
 			const { container } = renderWithProviders(<Orders />);
 
 			const pulseElements = container.querySelectorAll(
-				'.disco-animate-pulse'
+				'.disco\\:animate-pulse'
 			);
 			expect(pulseElements.length).toBeGreaterThan(0);
 		});

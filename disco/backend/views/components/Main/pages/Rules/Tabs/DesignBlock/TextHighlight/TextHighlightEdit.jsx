@@ -111,9 +111,9 @@ const TextHighlightEdit = () => {
 	}, []);
 
 	return (
-		<div className="disco-bg-gray-50 disco-mr-4 disco-rounded-lg disco-pb-4">
+		<div className="disco:bg-gray-50 disco:mr-4 disco:rounded-lg disco:pb-4">
 			{/* <BadgeHeaderTabs /> */}
-			<div className="disco-px-5 disco-py-1">
+			<div className="disco:px-5 disco:py-1">
 				<BadgeHeader
 					title={__('Text Highlight', 'disco')}
 					description={__(
@@ -121,8 +121,8 @@ const TextHighlightEdit = () => {
 						'disco'
 					)}
 				/>
-				<div className="disco-max-h-[calc(100vh-225px)] disco-flex disco-gap-8 disco-pt-2 disco-pb-4 disco-mt-2 disco-justify-between">
-					<div className="disco-w-3/5 disco-max-h-full disco-overflow-y-auto disco-no-scrollbar disco-overscroll-contain">
+				<div className="disco:max-h-[calc(100vh-225px)] disco:flex disco:gap-8 disco:pt-2 disco:pb-4 disco:mt-2 disco:justify-between">
+					<div className="disco:w-3/5 disco:max-h-full disco:overflow-y-auto disco-no-scrollbar disco:overscroll-contain">
 						<BadgeSelector
 							title={__('Choose Badge', 'disco')}
 							options={badgeOptions}
@@ -169,8 +169,8 @@ const TextHighlightEdit = () => {
 								/>
 
 								{/* Select Position */}
-								<div className="disco-flex disco-gap-2 disco-items-center disco-mt-3">
-									<div className="disco-text-sm disco-font-semibold">
+								<div className="disco:flex disco:gap-2 disco:items-center disco:mt-3">
+									<div className="disco:text-sm disco:font-semibold">
 										Select Position
 									</div>
 									<SingleSelect
@@ -187,8 +187,8 @@ const TextHighlightEdit = () => {
 											'after_add_to_cart'
 										}
 										onchange={handlePositionChange}
-										className="disco-bg-white disco-w-44"
-										buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+										className="disco:bg-white disco:w-44"
+										buttonClass="disco:rounded-lg! disco:py-1! disco:font-thin! disco:text-sm!"
 									/>
 								</div>
 
@@ -226,7 +226,7 @@ const TextHighlightEdit = () => {
 							</>
 						)}
 					</div>
-					<div className="disco-w-2/5">
+					<div className="disco:w-2/5">
 						<TextHighlightView
 							setSelectedBadge={setSelectedBadge}
 						/>

@@ -24,7 +24,7 @@ const HeadingTextSection = () => {
 		<div>
 			<SettingsContainer
 				title={__('Heading Customization', 'disco')}
-				className="disco-mt-3"
+				className="disco:mt-3"
 			>
 				<SingleSelect
 					placeholder={__('Select Font', 'disco')}
@@ -41,12 +41,12 @@ const HeadingTextSection = () => {
 							})
 						);
 					}} // Use prop function
-					className="disco-bg-white disco-w-44"
-					buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+					className="disco:bg-white disco:w-44"
+					buttonClass="disco:rounded-lg! disco:py-1! disco:font-thin! disco:text-sm!"
 				/>
 				<CustomNumberInput
 					placeholder={__('Font Size', 'disco')}
-					className="disco-w-44 disco-font-extralight"
+					className="disco:w-44 disco:font-extralight"
 					initialValue={parseInt(heading_customization['font-size'])}
 					min={4}
 					max={30}
@@ -77,12 +77,12 @@ const HeadingTextSection = () => {
 							})
 						);
 					}}
-					className="disco-bg-white disco-w-44"
-					buttonClass="!disco-rounded-lg !disco-py-1 disco-font-thin disco-text-sm"
+					className="disco:bg-white disco:w-44"
+					buttonClass="disco:rounded-lg! disco:py-1! disco:font-thin! disco:text-sm!"
 				/>
 			</SettingsContainer>
 
-			<div className="disco-flex disco-mt-2 disco-gap-5 disco-justify-between 2xl:disco-justify-start">
+			<div className="disco:flex disco:mt-2 disco:gap-5 disco:justify-between disco:2xl:justify-start">
 				{Object.keys(heading).map((key) => (
 					<Input
 						key={key}
@@ -92,7 +92,7 @@ const HeadingTextSection = () => {
 							handleTableHeading('heading', key, e);
 						}}
 						value={heading[key]}
-						className="disco-h-8 disco-w-32 disco-text-xs"
+						className="disco:h-8 disco:w-32 disco:text-xs"
 					/>
 				))}
 			</div>

@@ -94,15 +94,15 @@ const ActionsBar = ({ allCampaigns }) => {
 	};
 
 	return (
-		<div className="disco-mt-8 disco-mb-4 disco-flex disco-justify-between">
-			<div className="disco-flex disco-gap-4">
-				<div className="disco-min-w-[160px] disco-flex disco-items-center disco-gap-2">
+		<div className="disco:mt-8 disco:mb-4 disco:flex disco:justify-between">
+			<div className="disco:flex disco:gap-4">
+				<div className="disco:min-w-40 disco:flex disco:items-center disco:gap-2">
 					<SingleSelect
 						disabled={patchLoading || deleteLoading}
 						items={actions}
 						selected={selectedAction}
 						onchange={handleActionChange}
-						className="disco-bg-white disco-w-[140px]"
+						className="disco:bg-white disco:w-35"
 						placeholder={__('Bulk Actions', 'disco')}
 					/>
 					{(patchLoading || deleteLoading) && (
@@ -110,14 +110,14 @@ const ActionsBar = ({ allCampaigns }) => {
 					)}
 				</div>
 			</div>
-			<div className="disco-flex disco-gap-4">
+			<div className="disco:flex disco:gap-4">
 				<Input
-					className="!disco-ps-8"
+					className="disco:ps-8!"
 					value={searchTerm}
 					onChange={handleSearchTermChange}
 					placeholder={__('Search Campaign', 'disco')}
 					icon={
-						<MagnifyingGlassIcon className="disco-h-4 disco-w-4 disco-absolute disco-left-3 disco-text-gray-500" />
+						<MagnifyingGlassIcon className="disco:h-4 disco:w-4 disco:absolute disco:left-3 disco:text-gray-500" />
 					}
 				/>
 			</div>

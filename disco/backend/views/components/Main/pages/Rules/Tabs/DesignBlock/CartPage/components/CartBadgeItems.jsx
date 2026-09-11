@@ -40,13 +40,13 @@ const CartBadgeItems = ({ className = '' }) => {
 
 	return (
 		<>
-			<p className="disco-text-sm disco-mt-4 disco-font-semibold">
+			<p className="disco:text-sm disco:mt-4 disco:font-semibold">
 				{__('Select Banner Design', 'disco')}
 			</p>
 			<div
-				className={`disco-max-h-[300px] disco-overflow-y-auto disco-no-scrollbar disco-overscroll-contain disco-rounded-lg disco-bg-white disco-my-4 disco-py-4 disco-px-4 disco-border-1 ${className}`}
+				className={`disco:max-h-[300px] disco:overflow-y-auto disco-no-scrollbar disco:overscroll-contain disco:rounded-lg disco:bg-white disco:my-4 disco:py-4 disco:px-4 disco:border ${className}`}
 			>
-				<div className="disco-grid disco-gap-4 disco-grid-cols-1">
+				<div className="disco:grid disco:gap-4 disco:grid-cols-1">
 					{Object.entries(bannerDesigns).map(([key, design]) => {
 						const isSelected = cart?.selected_design === key;
 
@@ -74,22 +74,22 @@ const CartBadgeItems = ({ className = '' }) => {
 							<div
 								key={key}
 								onClick={() => handleBannerSelect(key)}
-								className={`disco-border disco-rounded-md disco-p-3 disco-cursor-pointer disco-transition-all ${
+								className={`disco:border disco:rounded-md disco:p-3 disco:cursor-pointer disco:transition-all ${
 									isSelected
-										? 'disco-border-primary disco-bg-primary/5'
-										: 'hover:disco-border-gray-300'
+										? 'disco:border-primary disco:bg-primary/5'
+										: 'disco:hover:border-gray-300'
 								}`}
 							>
 								{/* Preview of banner design */}
 								<div
 									style={bannerStyle}
-									className="disco-flex disco-items-center disco-justify-center disco-gap-4 disco-text-center"
+									className="disco:flex disco:items-center disco:justify-center disco:gap-4 disco:text-center"
 								>
 									<span>{replaceVariables(design.text)}</span>
 									{design.button.enable && (
 										<button
 											style={buttonStyle}
-											className="disco-flex-shrink-0 disco-whitespace-nowrap"
+											className="disco:shrink-0 disco:whitespace-nowrap"
 										>
 											{design.button.text}
 										</button>

@@ -81,7 +81,7 @@ const BannerView = ({ showSuccess = false }) => {
 	// With the success message off, the banner disappears once the discount is claimed.
 	if (showSuccess && !isSuccessView) {
 		return (
-			<div className="disco-border disco-border-dashed disco-border-gray-300 disco-rounded disco-py-3 disco-text-center disco-text-xs disco-text-gray-500">
+			<div className="disco:border disco:border-dashed disco:border-gray-300 disco:rounded disco:py-3 disco:text-center disco:text-xs disco:text-gray-500">
 				{__('Banner is hidden after the discount is applied', 'disco')}
 			</div>
 		);

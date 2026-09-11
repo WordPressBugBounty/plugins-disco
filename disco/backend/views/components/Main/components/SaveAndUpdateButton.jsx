@@ -47,17 +47,17 @@ export const SaveButton = ({ disabled = false }) => {
 
 	return (
 		<Button
-			className="!disco-py-2 !disco-px-4 !disco-font-normal disabled:disco-opacity-50 disabled:!disco-cursor-not-allowed"
+			className="disco:py-2! disco:px-4! disco:font-normal! disco:disabled:opacity-50 disco:disabled:cursor-not-allowed!"
 			disabled={isLoading || !discount_intent || disabled}
 			onClick={handleSave}
 			type="transparent"
 			iconPositionLeft={false}
 			icon={
-				<CheckCircleIcon className="disco-h-5 disco-w-5 !disco-text-primary" />
+				<CheckCircleIcon className="disco:h-5 disco:w-5 disco:text-primary!" />
 			}
 		>
 			{isLoading ? (
-				<div className="disco-flex disco-gap-2 disco-items-center">
+				<div className="disco:flex disco:gap-2 disco:items-center">
 					<span>{__('Saving', 'disco')}</span>
 					<LoadingSpinner size={4} />
 				</div>
@@ -116,8 +116,8 @@ export const UpdateButton = ({ disabled = false }) => {
 
 	return (
 		<>
-			<div className="disco-flex disco-gap-2 disco-justify-center disco-items-center">
-				<h2 className="disco-text-base disco-font-semibold">
+			<div className="disco:flex disco:gap-2 disco:justify-center disco:items-center">
+				<h2 className="disco:text-base disco:font-semibold">
 					{discount.status === '1'
 						? __('Enabled', 'disco')
 						: __('Disabled', 'disco')}
@@ -130,31 +130,31 @@ export const UpdateButton = ({ disabled = false }) => {
 					checked={discount.status === '1' ? true : false}
 					className={`${
 						discount.status === '1'
-							? 'disco-bg-primary'
-							: 'disco-bg-gray-200'
+							? 'disco:bg-primary'
+							: 'disco:bg-gray-200'
 					}
-											disco-relative disco-inline-flex disco-h-5 disco-w-9 disco-flex-shrink-0 disco-cursor-pointer disco-rounded-full disco-border-2 disco-border-transparent disco-transition-colors disco-duration-200 disco-ease-in-out focus:disco-outline-none
+											disco:relative disco:inline-flex disco:h-5 disco:w-9 disco:shrink-0 disco:cursor-pointer disco:rounded-full disco:border-2 disco:border-transparent disco:transition-colors disco:duration-200 disco:ease-in-out disco:focus:outline-hidden
 										`}
 				>
 					<span
 						aria-hidden="true"
 						className={` ${
 							discount.status === '1'
-								? 'disco-translate-x-4'
-								: 'disco-translate-x-0'
-						} disco-pointer-events-none disco-inline-block disco-h-4 disco-w-4 disco-transform disco-rounded-full disco-bg-white disco-shadow disco-ring-0 disco-transition disco-duration-200 disco-ease-in-out
+								? 'disco:translate-x-4'
+								: 'disco:translate-x-0'
+						} disco:pointer-events-none disco:inline-block disco:h-4 disco:w-4 disco:transform disco:rounded-full disco:bg-white disco:shadow-sm disco:ring-0 disco:transition disco:duration-200 disco:ease-in-out
 											`}
 					/>
 				</Switch>
 			</div>
 
 			<Button
-				className="!disco-py-1.5 !disco-px-4 !disco-font-normal"
+				className="disco:py-1.5! disco:px-4! disco:font-normal!"
 				disabled={isLoading || disabled}
 				onClick={handleUpdate}
 			>
 				{isLoading ? (
-					<div className="disco-flex disco-gap-2 disco-items-center">
+					<div className="disco:flex disco:gap-2 disco:items-center">
 						<span> {__('Updating', 'disco')}</span>
 						<LoadingSpinner size={4} />
 					</div>

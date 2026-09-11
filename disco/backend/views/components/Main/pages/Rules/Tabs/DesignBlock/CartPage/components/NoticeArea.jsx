@@ -31,7 +31,7 @@ const NoticeArea = () => {
 	return (
 		<>
 			{/* Height, Border, Radius */}
-			<div className="disco-w-full disco-mt-3 disco-flex disco-justify-between disco-gap-4">
+			<div className="disco:w-full disco:mt-3 disco:flex disco:justify-between disco:gap-4">
 				<CustomNumberInput
 					title={__('Height', 'disco')}
 					name="height"
@@ -74,16 +74,16 @@ const NoticeArea = () => {
 					}
 				/>
 			</div>
-			<div className="disco-flex disco-mt-4 disco-justify-between disco-gap-2">
+			<div className="disco:flex disco:mt-4 disco:justify-between disco:gap-2">
 				<ColorPiker
 					title={__('Text Color', 'disco')}
-					className="disco-min-w-32 disco-flex-grow"
+					className="disco:min-w-32 disco:grow"
 					value={banner?.color || '#ffffff'}
 					onChange={(value) => handleBannerChange('color', value)}
 				/>
 				<ColorPiker
 					title={__('Background', 'disco')}
-					className="disco-min-w-32 disco-flex-grow"
+					className="disco:min-w-32 disco:grow"
 					value={banner?.background || '#07C889'}
 					onChange={(value) =>
 						handleBannerChange('background', value)
@@ -91,7 +91,7 @@ const NoticeArea = () => {
 				/>
 				<ColorPiker
 					title={__('Border Color', 'disco')}
-					className="disco-min-w-32 disco-flex-grow"
+					className="disco:min-w-32 disco:grow"
 					value={banner?.['border-color'] || '#07C889'}
 					onChange={(value) =>
 						handleBannerChange('border-color', value)

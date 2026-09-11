@@ -109,7 +109,7 @@ const AxisBox = () => {
 	};
 
 	return (
-		<div className="disco-mt-4 disco-flex disco-justify-between disco-gap-4">
+		<div className="disco:mt-4 disco:flex disco:justify-between disco:gap-4">
 			<VerticalPosition
 				title={__('Vertical', 'disco')}
 				options={['top', 'middle', 'bottom']}

@@ -19,10 +19,10 @@ const Summary = () => {
 
 	return (
 		<>
-			<ComponentBox className="disco-mx-3 disco-my-3 disco-p-4 disco-bg-white disco-rounded-xl">
+			<ComponentBox className="disco:mx-3 disco:my-3 disco:p-4 disco:bg-white disco:rounded-xl">
 				<CampaignNameSummary />
-				<CampaignSetupSummary className="disco-mt-6" />
-				<DesignBlockSummery className="disco-mt-4" />
+				<CampaignSetupSummary className="disco:mt-6" />
+				<DesignBlockSummery className="disco:mt-4" />
 			</ComponentBox>
 			<FooterButtons next={false} handleBack={handleBack} />
 		</>

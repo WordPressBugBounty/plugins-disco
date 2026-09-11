@@ -23,7 +23,7 @@ export default function CompatiblePluginListApp() {
 	}, []);
 
 	return (
-		<div className="disco-min-h-screen disco-bg-white disco-font-sans disco-my-4 disco-mr-4 disco-rounded-2xl">
+		<div className="disco:min-h-screen disco:bg-white disco:font-sans disco:my-4 disco:mr-4 disco:rounded-2xl">
 			<HeroSection />
 			<PluginGrid plugins={plugins} />
 		</div>

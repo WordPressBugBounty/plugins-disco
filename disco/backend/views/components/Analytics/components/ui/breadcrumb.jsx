@@ -17,10 +17,10 @@ function Breadcrumb({ className, ...props }) {
 
 function BreadcrumbList({ className, ...props }) {
 	return (
-		<ol
+		<ul
 			data-slot="breadcrumb-list"
 			className={cn(
-				'disco-flex disco-flex-wrap disco-items-center disco-gap-1.5 disco-text-sm disco-wrap-break-word disco-text-muted-foreground',
+				'disco:flex disco:flex-wrap disco:items-center disco:gap-1.5 disco:text-sm disco:wrap-break-word disco:text-muted-foreground',
 				className
 			)}
 			{...props}
@@ -33,7 +33,7 @@ function BreadcrumbItem({ className, ...props }) {
 		<li
 			data-slot="breadcrumb-item"
 			className={cn(
-				'disco-inline-flex disco-items-center disco-gap-1',
+				'disco:inline-flex disco:items-center disco:gap-1',
 				className
 			)}
 			{...props}
@@ -47,7 +47,7 @@ function BreadcrumbLink({ className, render, ...props }) {
 		props: mergeProps(
 			{
 				className: cn(
-					'transition-colors hover:text-foreground',
+					'disco:transition-colors disco:text-gray-600! disco:hover:text-primary!',
 					className
 				),
 			},
@@ -67,7 +67,7 @@ function BreadcrumbPage({ className, ...props }) {
 			role="link"
 			aria-disabled="true"
 			aria-current="page"
-			className={cn('disco-font-normal disco-text-foreground', className)}
+			className={cn('disco:font-normal disco:text-foreground', className)}
 			{...props}
 		/>
 	);
@@ -79,7 +79,7 @@ function BreadcrumbSeparator({ children, className, ...props }) {
 			data-slot="breadcrumb-separator"
 			role="presentation"
 			aria-hidden="true"
-			className={cn('[&>svg]:disco-size-3.5', className)}
+			className={cn('disco:[&>svg]:size-3.5', className)}
 			{...props}
 		>
 			{children ?? <ChevronRightIcon />}
@@ -94,13 +94,13 @@ function BreadcrumbEllipsis({ className, ...props }) {
 			role="presentation"
 			aria-hidden="true"
 			className={cn(
-				'disco-flex disco-size-5 disco-items-center disco-justify-center [&>svg]:disco-size-4',
+				'disco:flex disco:size-5 disco:items-center disco:justify-center disco:[&>svg]:size-4',
 				className
 			)}
 			{...props}
 		>
 			<MoreHorizontalIcon />
-			<span className="disco-sr-only">More</span>
+			<span className="disco:sr-only">More</span>
 		</span>
 	);
 }

@@ -46,15 +46,15 @@ const CampaignDetails = () => {
 		: null;
 
 	return (
-		<div className="disco-min-h-screen disco-bg-[#f9fafb] disco-p-6 disco-space-y-3">
+		<div className="disco:min-h-screen disco:bg-[#f9fafb] disco:px-6 disco:py-2 disco:space-y-3">
 			{isLoading ? (
-				<div className="disco-space-y-3">
-					<div className="disco-h-16 disco-animate-pulse disco-rounded-xl disco-bg-white disco-border disco-border-[#e5e7eb]" />
-					<div className="disco-flex disco-gap-3">
+				<div className="disco:space-y-3">
+					<div className="disco:h-16 disco:animate-pulse disco:rounded-xl disco:bg-white disco:border disco:border-[#e5e7eb]" />
+					<div className="disco:flex disco:gap-3">
 						{Array.from({ length: 2 }).map((_, i) => (
 							<div
 								key={i}
-								className="disco-flex-1 disco-h-20 disco-animate-pulse disco-rounded-xl disco-bg-white disco-border disco-border-[#e5e7eb]"
+								className="disco:flex-1 disco:h-20 disco:animate-pulse disco:rounded-xl disco:bg-white disco:border disco:border-[#e5e7eb]"
 							/>
 						))}
 					</div>
@@ -75,17 +75,17 @@ const CampaignDetails = () => {
 			) : null}
 
 			{/* Tabs */}
-			<div className="disco-bg-white disco-border disco-border-[#e5e7eb] disco-rounded-xl disco-overflow-hidden">
-				<div className="disco-flex disco-gap-0 disco-border-b disco-border-[#e5e7eb] disco-px-4 disco-pt-3">
+			<div className="disco:bg-white disco:border disco:border-[#e5e7eb] disco:rounded-xl disco:overflow-hidden">
+				<div className="disco:flex disco:gap-0 disco:border-b disco:border-[#e5e7eb] disco:px-4 disco:pt-3">
 					{TABS.map((tab) => (
 						<button
 							key={tab.id}
 							onClick={() => setActiveTab(tab.id)}
 							className={cn(
-								'disco-px-3 disco-pb-2.5 disco-text-xs disco-font-medium disco-border-b-2 disco-transition-colors disco-mr-1',
+								'disco:px-3 disco:pb-2.5 disco:text-xs disco:font-medium disco:border-b-2 disco:transition-colors disco:mr-1',
 								activeTab === tab.id
-									? 'disco-border-[#0dc98b] disco-text-[#0dc98b]'
-									: 'disco-border-transparent disco-text-[#6b7280] hover:disco-text-[#111827]'
+									? 'disco:border-[#0dc98b] disco:text-[#0dc98b]'
+									: 'disco:border-transparent disco:text-[#6b7280] disco:hover:text-[#111827]'
 							)}
 						>
 							{tab.label}

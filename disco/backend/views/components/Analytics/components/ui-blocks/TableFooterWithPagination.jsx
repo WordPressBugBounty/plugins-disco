@@ -41,17 +41,17 @@ const TableFooterWithPagination = ({
 	const items = getPaginationItems(page, totalPages);
 
 	return (
-		<div className="disco-flex disco-items-center disco-justify-between disco-px-4 disco-py-2.5 disco-border-t disco-border-[#f3f4f6]">
-			<span className="disco-text-xs disco-text-[#9ca3af]">
+		<div className="disco:flex disco:items-center disco:justify-between disco:px-4 disco:py-2.5 disco:border-t disco:border-[#f3f4f6]">
+			<span className="disco:text-xs disco:text-[#9ca3af]">
 				Showing {page} of {totalPages}
 			</span>
 			{totalPages > 1 && (
 				<Pagination
 					aria-disabled={disabled}
 					className={cn(
-						'disco-border disco-border-primary disco-py-1 disco-px-2 disco-rounded-lg',
+						'disco:border disco:border-primary disco:py-1 disco:px-2 disco:rounded-lg',
 						disabled &&
-							'disco-pointer-events-none disco-opacity-50'
+							'disco:pointer-events-none disco:opacity-50'
 					)}
 				>
 					<PaginationContent>

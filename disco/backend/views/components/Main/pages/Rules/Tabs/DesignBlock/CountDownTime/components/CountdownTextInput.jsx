@@ -47,19 +47,19 @@ const CountdownTextInput = forwardRef(({ value, onChange }, ref) => {
 	}, []);
 
 	return (
-		<div className="disco-rounded-lg disco-mt-2 disco-relative">
-			<div className="disco-absolute disco-right-2 disco-top-1">
+		<div className="disco:rounded-lg disco:mt-2 disco:relative">
+			<div className="disco:absolute disco:right-2 disco:top-1">
 				<button
 					type="button"
 					onClick={handleTogglePicker}
-					className="disco-text-lg"
+					className="disco:text-lg"
 				>
 					😊
 				</button>
 				{showPicker && (
 					<div
 						ref={emojiPickerRef}
-						className="disco-absolute disco-z-10 disco-top-8 disco-right-0 disco-bg-white disco-shadow-lg disco-rounded-lg"
+						className="disco:absolute disco:z-10 disco:top-8 disco:right-0 disco:bg-white disco:shadow-lg disco:rounded-lg"
 					>
 						<EmojiPicker
 							onEmojiClick={handleEmojiClick}
@@ -74,7 +74,7 @@ const CountdownTextInput = forwardRef(({ value, onChange }, ref) => {
 				value={value}
 				onChange={onChange}
 				rows={2}
-				className="disco-w-full disco-px-3 disco-py-2 disco-pr-10 disco-text-gray-700 disco-bg-white disco-border disco-border-primary disco-rounded-lg focus:disco-outline-none focus:disco-ring-0 focus:disco-ring-primary focus:disco-border-primary"
+				className="disco:w-full disco:px-3 disco:py-2 disco:pr-10 disco:text-gray-700 disco:bg-white disco:border disco:border-primary! disco:rounded-lg disco:focus:outline-hidden disco:focus:ring-0 disco:focus:ring-primary! disco:focus:border-primary!"
 			/>
 		</div>
 	);

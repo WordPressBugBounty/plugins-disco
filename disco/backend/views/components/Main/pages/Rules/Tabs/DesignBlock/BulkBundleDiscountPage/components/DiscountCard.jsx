@@ -1,9 +1,9 @@
 import { StarIcon } from '@heroicons/react/16/solid';
+import { __ } from '@wordpress/i18n';
 import { useSelector } from 'react-redux';
 import product2 from '../../../../../../../../asset/img/badge-images/product-placeholder/product2.svg';
 import BadgeCardContainer from '../../components/BadgeCardContainer';
 import DiscountCardRow from './DiscountCardRow';
-import { __ } from '@wordpress/i18n';
 
 const DiscountCard = ({ discountType }) => {
 	const { table } = useSelector((state) => state.discount.design_blocks);
@@ -21,69 +21,69 @@ const DiscountCard = ({ discountType }) => {
 	];
 
 	return (
-		<BadgeCardContainer className="disco-p-2">
-			<div className="disco-flex disco-items-center disco-justify-center disco-w-full disco-h-full disco-py-4">
+		<BadgeCardContainer className="disco:p-2">
+			<div className="disco:flex disco:items-center disco:justify-center disco:w-full disco:h-full disco:py-4">
 				{/* Outer card */}
-				<div className="disco-bg-[#fafafa] disco-border-2 disco-border-white disco-rounded-[8px] disco-shadow-[0_0_18px_5px_rgba(238,238,238,0.4)] disco-p-3 disco-flex disco-gap-[9px] disco-items-start disco-overflow-hidden">
+				<div className="disco:bg-[#fafafa] disco:border-2 disco:border-white disco:rounded-lg disco:shadow-[0_0_18px_5px_rgba(238,238,238,0.4)] disco:p-3 disco:flex disco:gap-2.25 disco:items-start disco:overflow-hidden">
 					{/* Product photo */}
-					<div className="disco-bg-white disco-rounded-[7px] disco-flex disco-items-center disco-justify-center disco-shrink-0 disco-w-[72px] disco-h-[74px]">
+					<div className="disco:bg-white disco:rounded-[7px] disco:flex disco:items-center disco:justify-center disco:shrink-0 disco:w-18 disco:h-18.5">
 						<img
 							src={product2}
 							alt="Product"
-							className="disco-w-[60px] disco-h-[40px] disco-object-contain"
+							className="disco:w-15 disco:h-10 disco:object-contain"
 						/>
 					</div>
 
 					{/* Right content */}
-					<div className="disco-flex disco-flex-col disco-gap-[7px]">
+					<div className="disco:flex disco:flex-col disco:gap-1.75">
 						{/* Product name */}
-						<p className="disco-text-[10px] disco-font-medium disco-text-[rgba(0,0,0,0.87)] disco-whitespace-nowrap">
+						<p className="disco:text-[10px] disco:font-medium disco:text-[rgba(0,0,0,0.87)] disco:whitespace-nowrap">
 							{__('Women Winter Sweater', 'disco')}
 						</p>
 
 						{/* Rating row */}
-						<div className="disco-flex disco-items-center disco-gap-[3px]">
-							<span className="disco-text-[8px] disco-font-extrabold disco-text-[rgba(0,0,0,0.87)]">
+						<div className="disco:flex disco:items-center disco:gap-0.75">
+							<span className="disco:text-[8px] disco:font-extrabold disco:text-[rgba(0,0,0,0.87)]">
 								4.0
 							</span>
-							<div className="disco-flex disco-gap-[2px]">
+							<div className="disco:flex disco:gap-0.5">
 								{[0, 1, 2, 3].map((i) => (
 									<StarIcon
 										key={i}
-										className="disco-w-[8px] disco-h-[8px] disco-text-yellow-500"
+										className="disco:w-2 disco:h-2 disco:text-yellow-500"
 									/>
 								))}
 								<StarIcon
 									key="empty"
-									className="disco-w-[8px] disco-h-[8px] disco-text-gray-300"
+									className="disco:w-2 disco:h-2 disco:text-gray-300"
 								/>
 							</div>
-							<span className="disco-text-[7px] disco-text-[rgba(0,0,0,0.3)] disco-underline">
+							<span className="disco:text-[7px] disco:text-[rgba(0,0,0,0.3)] disco:underline">
 								{__('935 reviews', 'disco')}
 							</span>
 						</div>
 
 						{/* Price */}
-						<div className="disco-flex disco-items-center disco-gap-2">
-							<span className="disco-text-[12px] disco-font-bold disco-text-black">
+						<div className="disco:flex disco:items-center disco:gap-2">
+							<span className="disco:text-[12px] disco:font-bold disco:text-black">
 								$165
 							</span>
-							<span className="disco-relative disco-text-[10px] disco-text-black">
+							<span className="disco:relative disco:text-[10px] disco:text-black">
 								$285
-								<span className="disco-absolute disco-bg-[#ff1d1d] disco-h-[1px] disco-left-0 disco-right-0 disco-top-1/2" />
+								<span className="disco:absolute disco:bg-[#ff1d1d] disco:h-px disco:left-0 disco:right-0 disco:top-1/2" />
 							</span>
 						</div>
 
 						{/* Add to Cart button */}
-						<div className="disco-flex disco-items-center disco-justify-center disco-border-[#3056d3] disco-border-[0.5px] disco-py-[3px] disco-text-[5px] disco-text-[#3056d3] disco-font-semibold disco-w-[91px] disco-cursor-default">
+						<div className="disco:flex disco:items-center disco:justify-center disco:border-[#3056d3] disco:border-[0.5px] disco:py-0.75 disco:text-[5px] disco:text-[#3056d3] disco:font-semibold disco:w-22.75 disco:cursor-default">
 							{__('Add to Cart', 'disco')}
 						</div>
 
 						{/* Pricing table */}
-						<table className="disco-overflow-hidden disco-rounded-[4px] disco-shadow-[0_0_22px_6px_rgba(201,201,201,0.4)] disco-w-[170px]">
+						<table className="disco:overflow-hidden disco:rounded-sm disco:shadow-[0_0_22px_6px_rgba(201,201,201,0.4)] disco:w-42.5">
 							<thead>
 								<tr
-									className={` disco-flex disco-justify-around disco-items-center disco-bg-[#ff595e] disco-h-[17px]`}
+									className={` disco:flex disco:justify-around disco:items-center disco:bg-[#ff595e] disco:h-4.25`}
 									style={{
 										background:
 											table?.heading_customization
@@ -94,7 +94,12 @@ const DiscountCard = ({ discountType }) => {
 										(heading, index) => (
 											<th
 												key={index}
-												className=" disco-text-white disco-text-[6px] disco-font-semibold"
+												className=" disco:text-white disco:text-[6px] disco:font-semibold"
+												style={{
+													color: table
+														?.heading_customization
+														?.color,
+												}}
 											>
 												{heading}
 											</th>

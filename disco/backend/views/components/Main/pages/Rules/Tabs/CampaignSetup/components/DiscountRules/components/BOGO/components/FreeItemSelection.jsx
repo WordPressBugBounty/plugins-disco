@@ -59,8 +59,8 @@ const FreeItemSelection = () => {
 	const exampleTitle = FREE_ITEM_SELECTION_OPTIONS[free_item_selection] ?? '';
 
 	return (
-		<div className="disco-border disco-border-primary disco-rounded-lg disco-p-4 disco-mb-6">
-			<label className="disco-block disco-text-base disco-font-medium disco-text-black disco-mb-1.5">
+		<div className="disco:border disco:border-primary disco:rounded-lg disco:p-4 disco:mb-6">
+			<label className="disco:block disco:text-base disco:font-medium disco:text-black disco:mb-1.5">
 				{__('Free Item Selection', 'disco')}
 			</label>
 
@@ -69,14 +69,14 @@ const FreeItemSelection = () => {
 				selected={free_item_selection}
 				onchange={handleChange}
 				placeholder={__('Select', 'disco')}
-				className="disco-max-w-max disco-min-w-80 disco-mb-3 !disco-bg-white"
+				className="disco:max-w-max disco:min-w-80 disco:mb-3 disco:bg-white!"
 			/>
 
-			<div className="disco-bg-white disco-border disco-border-primary disco-rounded-md disco-py-2.5 disco-px-3.5">
-				<p className="disco-text-sm disco-font-bold disco-text-primary-dark disco-mb-1">
+			<div className="disco:bg-white disco:border disco:border-primary disco:rounded-md disco:py-2.5 disco:px-3.5">
+				<p className="disco:text-sm disco:font-bold disco:text-primary-dark disco:mb-1">
 					{exampleTitle}
 				</p>
-				<p className="disco-text-sm disco-text-gray-600 disco-leading-relaxed disco-mb-0">
+				<p className="disco:text-sm disco:text-gray-600 disco:leading-relaxed disco:mb-0">
 					{exampleBody}
 				</p>
 			</div>

@@ -29,6 +29,6 @@ const DiscountRules = () => {
 			break;
 	}
 
-	return <div className="disco-mx-5">{content}</div>;
+	return <div className="disco:mx-5">{content}</div>;
 };
 export default DiscountRules;

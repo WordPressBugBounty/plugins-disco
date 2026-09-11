@@ -8,7 +8,7 @@ const AsyncMultiSelect = ({
 	selected = [],
 	placeHolder,
 	endpoint = '',
-	widthClass = 'disco-w-96',
+	widthClass = 'disco:w-96',
 }) => {
 	const searchRef = useRef();
 	const dropdownRef = useRef();
@@ -80,13 +80,13 @@ const AsyncMultiSelect = ({
 	// item loading state content
 	if (isLoading) {
 		content = (
-			<div className="disco-py-4">{__('Searching...', 'disco')}</div>
+			<div className="disco:py-4">{__('Searching...', 'disco')}</div>
 		);
 	}
 
 	// error state content
 	if (isError) {
-		content = <div className="disco-py-4">{error?.data?.message}</div>;
+		content = <div className="disco:py-4">{error?.data?.message}</div>;
 	}
 
 	// successfully item fetching state
@@ -94,7 +94,7 @@ const AsyncMultiSelect = ({
 		content = data.map((item) => (
 			<div
 				key={item.id}
-				className="disco-flex disco-items-center disco-gap-4 disco-my-4"
+				className="disco:flex disco:items-center disco:gap-4 disco:my-4"
 			>
 				<input
 					checked={selected.find((_item) => _item.id === item.id)}
@@ -102,27 +102,27 @@ const AsyncMultiSelect = ({
 					name=""
 					id={item.id}
 					onChange={() => handleSelect(item)}
-					className="!disco-hidden"
+					className="disco:hidden!"
 				/>
 
 				<label
-					className={`disco-text-sm disco-flex disco-items-center disco-gap-3 `}
+					className={`disco:text-sm disco:flex disco:items-center disco:gap-3 `}
 					htmlFor={item.id}
 				>
 					<div
-						className={`disco-shrink-0 disco-h-4 disco-w-4 disco-rounded disco-border disco-flex disco-justify-center disco-items-center ${
+						className={`disco:shrink-0 disco:h-4 disco:w-4 disco:rounded-sm disco:border disco:flex disco:justify-center disco:items-center ${
 							selected.find((_item) => _item.id === item.id)
-								? 'disco-border-primary-dark'
-								: 'disco-border-gray-500 '
+								? 'disco:border-primary-dark'
+								: 'disco:border-gray-500 '
 						}`}
 					>
 						{selected.find((_item) => _item.id === item.id) && (
-							<CheckIcon className="disco-text-primary-dark" />
+							<CheckIcon className="disco:text-primary-dark" />
 						)}
 					</div>
 					{item.image && (
 						<img
-							className="disco-shrink-0 disco-rounded disco-h-8 disco-w-8 disco-object-cover"
+							className="disco:shrink-0 disco:rounded disco:h-8 disco:w-8 disco:object-cover"
 							src={item.image}
 							alt={item.name}
 						/>
@@ -134,18 +134,18 @@ const AsyncMultiSelect = ({
 	}
 
 	return (
-		<div ref={dropdownRef} className={`disco-relative ${widthClass}`}>
-			<div className="disco-relative disco-max-w-md disco-border disco-border-gray-200 disco-rounded-md">
+		<div ref={dropdownRef} className={`disco:relative ${widthClass}`}>
+			<div className="disco:relative disco:max-w-md disco:border disco:border-gray-200 disco:rounded-md">
 				<div
 					onClick={() => {
 						searchRef.current.focus();
 					}}
-					className="disco-flex disco-gap-1.5 disco-flex-wrap disco-items-center !disco-rounded-md disco-px-2 disco-py-1.5 disco-text-sm disco-outline-none"
+					className="disco:flex disco:gap-1.5 disco:flex-wrap disco:items-center disco:rounded-md! disco:px-2 disco:py-1.5 disco:text-sm disco:outline-hidden"
 				>
 					{selected.length > 0 &&
 						selected.map((item) => (
 							<div
-								className="disco-text-xs disco-px-1.5 disco-py-1.5 disco-rounded disco-flex disco-items-center disco-bg-gray-200"
+								className="disco:text-xs disco:px-1.5 disco:py-1.5 disco:rounded disco:flex disco:items-center disco:bg-gray-200"
 								key={item.id}
 							>
 								<span>{`${item.id} - ${item.name}`}</span>
@@ -153,7 +153,7 @@ const AsyncMultiSelect = ({
 								<XMarkIcon
 									role="button"
 									onClick={() => handleRemoveItem(item.id)}
-									className="disco-ml-1 disco-h-3 disco-w-3 "
+									className="disco:ml-1 disco:h-3 disco:w-3 "
 								/>
 							</div>
 						))}
@@ -165,7 +165,7 @@ const AsyncMultiSelect = ({
 						}}
 						ref={searchRef}
 						onChange={handleSearch}
-						className="!disco-border-none !disco-p-0 !disco-min-h-[0px] !disco-shadow-none"
+						className="disco:border-none! disco:p-0! disco:min-h-0! disco:shadow-none!"
 						type="text"
 						placeholder={placeHolder}
 					/>
@@ -173,9 +173,9 @@ const AsyncMultiSelect = ({
 			</div>
 			{showSearchResult && (
 				<div
-					className={`disco-absolute disco-mt-2 ${widthClass} disco-shadow-lg disco-z-50`}
+					className={`disco:absolute disco:mt-2 ${widthClass} disco:shadow-lg disco:z-50`}
 				>
-					<div className="disco-border disco-border-gray-200 disco-bg-white  disco-rounded-md disco-px-4 disco-max-h-96 disco-overflow-y-auto">
+					<div className="disco:border disco:border-gray-200 disco:bg-white  disco:rounded-md disco:px-4 disco:max-h-96 disco:overflow-y-auto">
 						{content}
 					</div>
 				</div>

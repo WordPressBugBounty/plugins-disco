@@ -7,11 +7,24 @@ import { toast } from 'react-toastify';
 import { setSearchTerm } from '../../../../../features/campaigns/campaignSlice';
 import { useDeleteCampaignMutation } from '../../../../../features/campaigns/campaignsApi';
 
-const DeleteConfirmation = ({ deleteId, deleteIds=[], open, setOpen, deleteBtnTestId='' }) => {
+const DeleteConfirmation = ({
+	deleteId,
+	deleteIds = [],
+	open,
+	setOpen,
+	deleteBtnTestId = '',
+	blocked = false,
+	blockedMessage = '',
+}) => {
 	const dispatch = useDispatch();
 	const [deleteCampaign, { isSuccess }] = useDeleteCampaignMutation();
 
 	const handleDelete = () => {
+		// An active campaign must be disabled before it can be deleted.
+		if (blocked) {
+			return;
+		}
+
 		if(Array.isArray(deleteIds) && deleteIds.length > 0) {
 			deleteIds.forEach((id) => {
 				deleteCampaign(id);
@@ -31,6 +44,21 @@ const DeleteConfirmation = ({ deleteId, deleteIds=[], open, setOpen, deleteBtnTe
 			toast.error(__('Campaign Deleted.', 'disco'));
 		}
 	}, [isSuccess]);
+
+	const title = blocked
+		? __('Campaign Is Active', 'disco')
+		: __('Delete Campaign', 'disco');
+
+	const message = blocked
+		? blockedMessage ||
+			__(
+				'This campaign is active. Please disable the campaign first, then you can delete it.',
+				'disco'
+			)
+		: __(
+				'Are you sure you want to delete the campaign? This action cannot be undone.',
+				'disco'
+			);
 
 	return (
 		<Transition.Root show={open} as={Fragment}>
@@ -72,36 +100,34 @@ const DeleteConfirmation = ({ deleteId, deleteIds=[], open, setOpen, deleteBtnTe
 											as="h3"
 											className="disco:text-base disco:font-semibold disco:leading-6 disco:text-gray-900"
 										>
-											{__(
-												'Delete Campaign',
-												'disco'
-											)}
+											{title}
 										</Dialog.Title>
 										<div className="disco:mt-2">
 											<p className="disco:text-sm disco:text-gray-500">
-												{__(
-													'Are you sure you want to delete the campaign? This action cannot be undone.',
-													'disco'
-												)}
+												{message}
 											</p>
 										</div>
 									</div>
 								</div>
 								<div className="disco:mt-5 disco:sm:mt-4 disco:sm:flex disco:sm:flex-row-reverse">
-									<button
-										data-testid={deleteBtnTestId}
-										type="button"
-										className="disco:inline-flex disco:w-full disco:justify-center disco:rounded-md disco:bg-red-600 disco:px-3 disco:py-2 disco:text-sm disco:font-semibold disco:text-white disco:shadow-sm disco:hover:bg-red-500 disco:sm:ml-3 disco:sm:w-auto"
-										onClick={handleDelete}
-									>
-										{__('Delete', 'disco')}
-									</button>
+									{!blocked && (
+										<button
+											data-testid={deleteBtnTestId}
+											type="button"
+											className="disco:inline-flex disco:w-full disco:justify-center disco:rounded-md disco:bg-red-600 disco:px-3 disco:py-2 disco:text-sm disco:font-semibold disco:text-white disco:shadow-sm disco:hover:bg-red-500 disco:sm:ml-3 disco:sm:w-auto"
+											onClick={handleDelete}
+										>
+											{__('Delete', 'disco')}
+										</button>
+									)}
 									<button
 										type="button"
 										className="disco:mt-3 disco:inline-flex disco:w-full disco:justify-center disco:rounded-md disco:bg-white disco:px-3 disco:py-2 disco:text-sm disco:font-semibold disco:text-gray-900 disco:shadow-sm disco:ring-1 disco:ring-inset disco:ring-gray-300 disco:hover:bg-gray-50 disco:sm:mt-0 disco:sm:w-auto"
 										onClick={() => setOpen(false)}
 									>
-										{__('Cancel', 'disco')}
+										{blocked
+											? __('Close', 'disco')
+											: __('Cancel', 'disco')}
 									</button>
 								</div>
 							</Dialog.Panel>

@@ -38,6 +38,12 @@ const ActionsBar = ({ allCampaigns }) => {
 		useDeleteCampaignMutation();
 
 	const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
+	// Active campaigns must be disabled before they can be deleted.
+	const hasActiveSelected = (allCampaigns || []).some(
+		(camp) => campaign_ids.includes(camp.id) && String(camp.status) === '1'
+	);
+
 	const handleActionChange = (action) => {
 		if (campaign_ids.length === 0) {
 			toast.error(__('Please select at least one campaign', 'disco'));
@@ -127,6 +133,11 @@ const ActionsBar = ({ allCampaigns }) => {
 				deleteIds={campaign_ids}
 				open={deleteModalOpen}
 				setOpen={setDeleteModalOpen}
+				blocked={hasActiveSelected}
+				blockedMessage={__(
+					'One or more selected campaigns are active. Please disable them first, then you can delete them.',
+					'disco'
+				)}
 			/>
 		</div>
 	);

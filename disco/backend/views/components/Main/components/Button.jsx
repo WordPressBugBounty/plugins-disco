@@ -11,7 +11,7 @@ const Button = ({
 	onClick = () => {},
 }) => {
 	const baseClassNames =
-		'disco:text-base! disco:shadow-custom disco:border disco:rounded-lg disco:px-3 disco:py-1.5 disco:flex disco:items-center disco:gap-2 disco:outline-hidden disco:font-medium disco:transition-colors disco:duration-200';
+		'disco:text-base! disco:shadow-custom disco:border disco:rounded-lg disco:px-8 disco:py-2.5 disco:flex disco:items-center disco:gap-2 disco:outline-hidden disco:font-medium disco:transition-colors disco:duration-200';
 
 	const getTypeClassNames = () => {
 		switch (type) {

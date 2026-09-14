@@ -8,20 +8,51 @@ import {
 
 import { Cog6ToothIcon } from '@heroicons/react/16/solid';
 import { __ } from '@wordpress/i18n';
-import { Fragment, useEffect, useRef } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import LoadingSpinner from '../../../../../components/LoadingSpinner';
 import { useAddCampaignMutation } from '../../../../../features/campaigns/campaignsApi';
+import cn from '../../../../../utilities/cn';
 import { prepareCampaignForRequest } from '../../../../../utilities/utilities';
 
-function classNames(...classes) {
-	return classes.filter(Boolean).join(' ');
-}
+// Rough height of the dropdown, used until it has been rendered once and measured.
+const ESTIMATED_MENU_HEIGHT = 160;
+// Matches the mt-2 / mb-2 gap between the trigger and the dropdown.
+const MENU_GAP = 8;
 
 const ActionMenu = ({ setDeleteModalOpen, campaign }) => {
 	const navigate = useNavigate();
 	const [addCampaign, { isLoading, isSuccess }] = useAddCampaignMutation();
+
+	// dropdown direction start
+	const triggerRef = useRef(null);
+	const menuHeightRef = useRef(ESTIMATED_MENU_HEIGHT);
+	const [openUpward, setOpenUpward] = useState(false);
+
+	// Keep the measured height around so the next open uses the real value.
+	const handleMenuRef = useCallback((node) => {
+		if (node) {
+			menuHeightRef.current = node.offsetHeight;
+		}
+	}, []);
+
+	// Flip the dropdown above the trigger when the viewport has no room below.
+	const updateDirection = useCallback(() => {
+		const trigger = triggerRef.current;
+
+		if (!trigger) {
+			return;
+		}
+
+		const rect = trigger.getBoundingClientRect();
+		const spaceBelow = window.innerHeight - rect.bottom;
+		const spaceAbove = rect.top;
+		const requiredSpace = menuHeightRef.current + MENU_GAP;
+
+		setOpenUpward(spaceBelow < requiredSpace && spaceAbove > spaceBelow);
+	}, []);
+	// dropdown direction end
 
 	// campaign export functionality start
 	const downloadLinkRef = useRef(null);
@@ -68,8 +99,11 @@ const ActionMenu = ({ setDeleteModalOpen, campaign }) => {
 				as="div"
 				className="disco:relative disco:inline-block disco:text-left"
 			>
-				<div>
-					<Menu.Button className="disco:flex">
+				<div ref={triggerRef}>
+					<Menu.Button
+						className="disco:flex disco:outline-none"
+						onClick={updateDirection}
+					>
 						<Cog6ToothIcon
 							data-testid="disco-campaign-actions"
 							className="disco:h-5 disco:w-5 disco:text-gray-600"
@@ -86,13 +120,21 @@ const ActionMenu = ({ setDeleteModalOpen, campaign }) => {
 					leaveFrom="disco:transform disco:opacity-100 disco:scale-100"
 					leaveTo="disco:transform disco:opacity-0 disco:scale-95"
 				>
-					<Menu.Items className="disco:absolute disco:-right-10 disco:z-10 disco:mt-2 disco:w-36 disco:origin-top-right disco:divide-y disco:divide-gray-100 disco:rounded-md disco:bg-white disco:shadow-lg disco:border disco:border-gray-200 disco:outline-hidden">
+					<Menu.Items
+						ref={handleMenuRef}
+						className={cn(
+							openUpward
+								? 'disco:bottom-full disco:mb-2 disco:origin-bottom-right'
+								: 'disco:top-full disco:mt-2 disco:origin-top-right',
+							'disco:absolute disco:-right-10 disco:z-10 disco:w-36 disco:divide-y disco:divide-gray-100 disco:rounded-md disco:bg-white disco:shadow-lg disco:border disco:border-gray-200 disco:outline-hidden'
+						)}
+					>
 						<div className="disco:py-1">
 							<Menu.Item>
 								{({ active }) => (
 									<button
 										onClick={() => handleAction('edit')}
-										className={classNames(
+										className={cn(
 											active
 												? 'disco:bg-primary-light disco:text-gray-900'
 												: 'disco:text-gray-700',
@@ -100,7 +142,7 @@ const ActionMenu = ({ setDeleteModalOpen, campaign }) => {
 										)}
 									>
 										<PencilSquareIcon
-											className="disco:mr-2 disco:h-[18px] disco:w-[18px] disco:text-gray-500 disco:group-hover:text-gray-600"
+											className="disco:mr-2 disco:h-4.5 disco:w-4.5 disco:text-gray-500 disco:group-hover:text-gray-600"
 											aria-hidden="true"
 										/>
 										{__('Edit', 'disco')}
@@ -113,7 +155,7 @@ const ActionMenu = ({ setDeleteModalOpen, campaign }) => {
 										onClick={() =>
 											handleAction('duplicate')
 										}
-										className={classNames(
+										className={cn(
 											active
 												? 'disco:bg-primary-light disco:text-gray-900'
 												: 'disco:text-gray-700',
@@ -121,7 +163,7 @@ const ActionMenu = ({ setDeleteModalOpen, campaign }) => {
 										)}
 									>
 										<DocumentDuplicateIcon
-											className="disco:mr-2 disco:h-[18px] disco:w-[18px] disco:text-gray-500 disco:group-hover:text-gray-600"
+											className="disco:mr-2 disco:h-4.5 disco:w-4.5 disco:text-gray-500 disco:group-hover:text-gray-600"
 											aria-hidden="true"
 										/>
 										{__('Duplicate', 'disco')}
@@ -134,7 +176,7 @@ const ActionMenu = ({ setDeleteModalOpen, campaign }) => {
 								{({ active }) => (
 									<button
 										onClick={() => handleAction('export')}
-										className={classNames(
+										className={cn(
 											active
 												? 'disco:bg-primary-light disco:text-gray-900'
 												: 'disco:text-gray-700',
@@ -142,7 +184,7 @@ const ActionMenu = ({ setDeleteModalOpen, campaign }) => {
 										)}
 									>
 										<DocumentArrowUpIcon
-											className="disco:mr-2 disco:h-[18px] disco:w-[18px] disco:text-gray-500 disco:group-hover:text-gray-600"
+											className="disco:mr-2 disco:h-4.5 disco:w-4.5 disco:text-gray-500 disco:group-hover:text-gray-600"
 											aria-hidden="true"
 										/>
 										{__('Export', 'disco')}
@@ -155,7 +197,7 @@ const ActionMenu = ({ setDeleteModalOpen, campaign }) => {
 								{({ active }) => (
 									<button
 										onClick={() => handleAction('delete')}
-										className={classNames(
+										className={cn(
 											active
 												? 'disco:bg-primary-light disco:text-gray-900'
 												: 'disco:text-gray-700',
@@ -163,7 +205,7 @@ const ActionMenu = ({ setDeleteModalOpen, campaign }) => {
 										)}
 									>
 										<TrashIcon
-											className="disco:mr-2 disco:h-[18px] disco:w-[18px] disco:text-red-500 disco:group-hover:text-red-600"
+											className="disco:mr-2 disco:h-4.5 disco:w-4.5 disco:text-red-500 disco:group-hover:text-red-600"
 											aria-hidden="true"
 										/>
 										{__('Delete', 'disco')}

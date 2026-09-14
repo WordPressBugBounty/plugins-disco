@@ -134,6 +134,7 @@ const CampaignRow = ({ discountIntents, campaign, last }) => {
 				deleteId={campaign.id}
 				open={deleteModalOpen}
 				setOpen={setDeleteModalOpen}
+				blocked={String(campaign.status) === '1'}
 			/>
 		</tr>
 	);

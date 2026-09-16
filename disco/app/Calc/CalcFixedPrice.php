@@ -78,7 +78,7 @@ class CalcFixedPrice extends CalcAbstract {
 			$forced                      = max( 0, (int) $this->item['disco_forced_qty'] );
 			$this->discounted_quantities = $forced;
 
-			return $forced > 0 ? (float) $fixed_discount : 0;
+			return apply_filters( 'disco_final_discounted_amount', $forced > 0 ? (float) $fixed_discount : 0, 'fixed_price' );
 		}
 		$min             = $this->rule['min'] ? (int) $this->rule['min'] : 0; // phpcs:ignore
 		$max             = $this->rule['max'] ? (int) $this->rule['max'] : 0; // phpcs:ignore
@@ -104,7 +104,7 @@ class CalcFixedPrice extends CalcAbstract {
 
 		$this->discounted_quantities = $discount_for_quantities;
 
-		return $discount_amount;
+		return apply_filters( 'disco_final_discounted_amount', $discount_amount, 'fixed_price' );
 	}
 
 	/**

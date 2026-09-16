@@ -664,11 +664,17 @@ trait IntentHelper {//phpcs:ignore
 				continue;
 			}
 
-			// Only stage campaigns whose discount actually applied to the cart.
-			( new UserLimit )->disco_start_session_on_checkout( $intent->campaign->id );
-
 			foreach ( $get_discounts as $item_id => $discount ) {
+				/**
+				 * Keep the campaign alongside its amount at the same index.
+				 *
+				 * Staging cannot happen yet: several campaigns can offer an amount
+				 * for the same item and only one of them survives the min/max
+				 * reduction below. Crediting every campaign here would consume the
+				 * usage limit of campaigns whose discount never reached the cart.
+				 */
 				$discounts[ $item_id ]['discounts'][] = max( $discount['discounts'] );
+				$discounts[ $item_id ]['campaigns'][] = (int) $intent->campaign->id;
 			}
 		}
 
@@ -677,9 +683,23 @@ trait IntentHelper {//phpcs:ignore
 			return false;
 		}
 
+		$applied_campaign_ids = array();
+
 		// Get the min or max discount amount for each item.
 		foreach ( $discounts as $item_id => $discount ) {
-			$discounts[ $item_id ] = $this->min_max_average( $discount['discounts'] );
+			$winning_amount = $this->min_max_average( $discount['discounts'] );
+			$winning_index  = array_search( $winning_amount, $discount['discounts'], true );
+
+			if ( false !== $winning_index && isset( $discount['campaigns'][ $winning_index ] ) ) {
+				$applied_campaign_ids[ $discount['campaigns'][ $winning_index ] ] = true;
+			}
+
+			$discounts[ $item_id ] = $winning_amount;
+		}
+
+		// Stage only the campaigns that actually won an item.
+		foreach ( array_keys( $applied_campaign_ids ) as $applied_campaign_id ) {
+			( new UserLimit )->disco_start_session_on_checkout( $applied_campaign_id );
 		}
 
 		return $discounts;
@@ -762,7 +782,8 @@ trait IntentHelper {//phpcs:ignore
 			return false;
 		}
 
-		$discounts = array();
+		$discounts              = array();
+		$candidate_campaign_ids = array();
 
 		// Loop through the intents.
 		foreach ( $intents as $intent ) {
@@ -782,8 +803,16 @@ trait IntentHelper {//phpcs:ignore
 				continue;
 			}
 
-			// Only stage campaigns whose discount actually applied to the cart.
-			( new UserLimit )->disco_start_session_on_checkout( $intent->campaign->id );
+			/**
+			 * Collect the campaign now, stage it later.
+			 *
+			 * What this method finally grants is decided well below: the rewards
+			 * are unioned across campaigns and a BuyXGetY (products) campaign can
+			 * then override the whole result authoritatively. Crediting a campaign
+			 * here would consume its usage limit even when the final result grants
+			 * it nothing.
+			 */
+			$candidate_campaign_ids[] = (int) $intent->campaign->id;
 
 			foreach ( $get_discounts as $item_id => $discount ) {
 				$discounts[ $item_id ]['discounts'][]           = max( $discount['discounts'] ); // phpcs:ignore
@@ -872,6 +901,22 @@ trait IntentHelper {//phpcs:ignore
 			$discounts['free']                = ! empty( $reward_map ); // phpcs:ignore
 			$discounts['bogo_type']           = $bogo_type;
 			$discounts['free_item_selection'] = $intent->campaign->get_free_item_selection();
+
+			/**
+			 * This branch is authoritative for the whole result, so the campaign
+			 * that owns it is the only one that can be credited.
+			 */
+			$candidate_campaign_ids = array( (int) $intent->campaign->id );
+		}
+
+		/**
+		 * Stage the campaigns only once the result is final, and only when it
+		 * actually grants free items.
+		 */
+		if ( ! empty( $discounts['free'] ) ) {
+			foreach ( array_unique( $candidate_campaign_ids ) as $applied_campaign_id ) {
+				( new UserLimit )->disco_start_session_on_checkout( $applied_campaign_id );
+			}
 		}
 
 		return $discounts;

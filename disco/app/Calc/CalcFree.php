@@ -63,7 +63,7 @@ class CalcFree extends CalcAbstract {
 	 * @return float Discount.
 	 */
 	public function calculate_discount(): float {
-		return 0;
+		return (float) apply_filters( 'disco_final_discounted_amount', 0.0, 'free' );
 	}
 
 	/**

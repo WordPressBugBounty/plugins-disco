@@ -162,10 +162,10 @@ if ( ! function_exists( 'disco_discounted_price' ) ) {
 	}
 
 	// Apply to simple and variation product prices (priority 999 for better compatibility)
-	add_filter( 'woocommerce_product_get_price', 'disco_discounted_price', 999, 2 );
-	add_filter( 'woocommerce_product_get_sale_price', 'disco_discounted_price', 999, 2 );
-	add_filter( 'woocommerce_product_variation_get_price', 'disco_discounted_price', 999, 2 );
-	add_filter( 'woocommerce_product_variation_get_sale_price', 'disco_discounted_price', 999, 2 );
+	add_filter( 'woocommerce_product_get_price', 'disco_discounted_price', PHP_INT_MAX, 2 );
+	add_filter( 'woocommerce_product_get_sale_price', 'disco_discounted_price', PHP_INT_MAX, 2 );
+	add_filter( 'woocommerce_product_variation_get_price', 'disco_discounted_price', PHP_INT_MAX, 2 );
+	add_filter( 'woocommerce_product_variation_get_sale_price', 'disco_discounted_price', PHP_INT_MAX, 2 );
 }
 
 if ( ! function_exists( 'disco_variable_product_discounted_price_html' ) ) {

@@ -91,7 +91,7 @@ class CalcPercentPerProduct extends CalcAbstract {
 			$product_discount            = $price ? $price * $discount_value / 100 : 0;
 			$this->discounted_quantities = $forced;
 
-			return $forced * $product_discount;
+			return apply_filters( 'disco_final_discounted_amount', $forced * $product_discount, 'percent_per_product' );
 		}
 		$min             = $this->rule['min'] ? (int) $this->rule['min'] : 0; //phpcs:ignore
 		$max             = ! empty( $this->rule['max'] ) ? (int) $this->rule['max'] : ( $this->discount_intent === 'Bulk' ? PHP_INT_MAX : 0 ); // phpcs:ignore
@@ -151,7 +151,7 @@ class CalcPercentPerProduct extends CalcAbstract {
 
 		$this->discounted_quantities = $discount_for_quantities;
 
-		return $discount_amount;
+		return apply_filters( 'disco_final_discounted_amount', $discount_amount, 'percent_per_product' );
 	}
 
 	/**

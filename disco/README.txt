@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: bundle discount plugin, free shipping, product discount, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.1
-Stable tag: 1.4.15
+Stable tag: 1.4.16
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -517,9 +517,13 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
-= 1.4.15 (Sep 14, 2026) =
+= 1.4.16 (Sep 16, 2026) =
 * Fixed: Prevented direct deletion of active campaigns.
 * Fixed: Campaign actions appearing outside the visible screen.
+
+= 1.4.15 (Sep 14, 2026) =
+* Fix: Incorrect discount intent supplied to `disco_final_discounted_amount` when multiple discounts with the same intent are active.
+* Fix: User limit issue counting issue when same intent campaign are active.
 
 = 1.4.14 (Sep 11, 2026) =
 * Updated: Tailwind updated to v4.3

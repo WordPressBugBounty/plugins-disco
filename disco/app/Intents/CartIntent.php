@@ -45,7 +45,8 @@ class CartIntent extends Intent {
 	 */
 	public function get_discounts( $items, $cart ) { // phpcs:ignore
 
-		$discount = 0;
+		$discount      = 0;
+		$discount_type = '';
 
 		if ( empty( $items ) ) {
 			return $discount;
@@ -92,7 +93,6 @@ class CartIntent extends Intent {
 			}
 		}
 
-		// @phpstan-ignore-next-line
 		return apply_filters( 'disco_final_discounted_amount', $discount, $discount_type );
 	}
 

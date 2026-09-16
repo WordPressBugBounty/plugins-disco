@@ -11,6 +11,7 @@ namespace Disco\App;
 
 use Disco\App\Calc\CalcFactory;
 use Disco\App\Features\UserLimit;
+use Disco\App\Utility\Config;
 use Disco\App\Utility\Settings;
 
 /**
@@ -82,8 +83,28 @@ class Disco {
 					continue;
 				}
 
-				// Store discount keyed by campaign id so the winning amount maps back to the right campaign.
-				$discounts[ $intent->campaign->id ] = $discount;
+				/**
+				 * Normalize each campaign's amount before the amounts compete.
+				 *
+				 * A percent amount is derived from the product price, which a
+				 * currency switcher has already converted, so it arrives in the
+				 * active currency. A fixed amount is the rule value as typed, so
+				 * it arrives in the store's base currency. Comparing the two
+				 * directly picks a winner by exchange rate rather than by size:
+				 * percent scales with the rate and fixed does not, so `max` would
+				 * select percent on almost every product and `min` would select
+				 * fixed. Converting here, with each campaign's own discount type,
+				 * puts every amount in the same currency before min/max runs.
+				 *
+				 * Filtering per campaign also matches what CartIntent and the
+				 * Calc classes already do, so every path now compares like for
+				 * like.
+				 */
+				$discounts[ $intent->campaign->id ] = (float) apply_filters(
+					'disco_final_discounted_amount',
+					(float) $discount,
+					$this->campaign_discount_type( $intent->campaign )
+				);
 			}
 
 			// If no discount is applied, return the original price.
@@ -91,17 +112,9 @@ class Disco {
 				return $price;
 			}
 
-			$discount_type = $intent->campaign->discount_rules[0]['discount_type'];
-
 			// Pick the winning discount amount, then map it back to the campaign that produced it.
-			$base_discount             = $this->min_max_average( array_values( $discounts ) );
-			$this->applied_campaign_id = (int) array_search( $base_discount, $discounts, true );
-
-			/**
-			 * Get the min or max discount amount according to plugin settings.
-			 * Apply the filter to modify final discounted amount based on discount types.
-			 */
-			$discounted_amount = apply_filters( 'disco_final_discounted_amount', $base_discount, $discount_type );
+			$discounted_amount         = $this->min_max_average( array_values( $discounts ) );
+			$this->applied_campaign_id = (int) array_search( $discounted_amount, $discounts, true );
 
 			if ( $discounted_amount <= $price ) {
 				// Get an applied campaign from DiscountLimit class.
@@ -258,19 +271,19 @@ class Disco {
 	 * @return array|false|\WC_Cart Cart object with applied discounts or false if no discounts are applicable.
 	 */
 	public function get_cart_items_discount_for_bogo( $cart ) {//phpcs:ignore
-        if ( ! $this->cart_is_valid() ) {
-            return $cart;
-        }
+		if ( ! $this->cart_is_valid() ) {
+				return $cart;
+		}
 
-        if ( ! defined( 'DOING_AJAX' ) && is_admin() ) {
-            return $cart;
-        }
+		if ( ! defined( 'DOING_AJAX' ) && is_admin() ) {
+				return $cart;
+		}
 
-        // Init Cart - Based Intents except Product & Shipping Intent.
-        $this->intents = $this->prepare_intents( array( 'BOGO' ) );
+		// Init Cart - Based Intents except Product & Shipping Intent.
+		$this->intents = $this->prepare_intents( array( 'BOGO' ) );
 
 		return $this->prepare_item_discounts_bogo_free( $this->intents, $cart );
-    }
+	}
 
 	/**
 	 * Apply the discount to shipping.
@@ -442,6 +455,34 @@ class Disco {
 		}
 
 		return in_array( $page_name, $pages, true );
+	}
+
+	/**
+	 * Resolve a campaign's discount type.
+	 *
+	 * Read through get_discount_rules() rather than the raw config property.
+	 * That accessor is what the intents use, so the type reported here is the
+	 * one the discount was actually calculated with: it decodes a rules payload
+	 * stored as JSON and fills in the defaults, neither of which the magic
+	 * property does. The property is also undeclared, so PHPStan cannot see it.
+	 *
+	 * @param \Disco\App\Utility\Config $campaign Campaign config.
+	 * @return string Discount type, or an empty string when it cannot be determined.
+	 */
+	private function campaign_discount_type( Config $campaign ): string {
+		$rules = $campaign->get_discount_rules();
+
+		if ( ! is_array( $rules ) || ! isset( $rules[0] ) || ! is_object( $rules[0] ) ) {
+			return '';
+		}
+
+		$discount_type = $rules[0]->discount_type ?? '';
+
+		if ( ! is_scalar( $discount_type ) ) {
+			return '';
+		}
+
+		return (string) $discount_type;
 	}
 
 }

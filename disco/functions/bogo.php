@@ -413,8 +413,13 @@ if ( ! function_exists( 'disco_apply_category_bogo_paid_ratio' ) ) {
 	/**
 	 * Scale a partly-free cart line's price down to its paid units.
 	 *
-	 * Runs after Disco's own product price filters (priority 999), so the free
-	 * units are removed from whatever price the other campaigns resolved.
+	 * Runs after Disco's own product price filters, so the free units are
+	 * removed from whatever price the other campaigns resolved. Those filters
+	 * sit at PHP_INT_MAX, so this one shares that priority and relies on
+	 * registration order: bogo.php is required after product.php, and WordPress
+	 * runs same-priority callbacks in the order they were added. Registering
+	 * lower would put this first, and disco_discounted_price would then re-read
+	 * the base price and discard the scaling.
 	 *
 	 * @param float|string $price   Product price.
 	 * @param \WC_Product  $product Product object.
@@ -435,8 +440,8 @@ if ( ! function_exists( 'disco_apply_category_bogo_paid_ratio' ) ) {
 		return (float) $price * $ratios[ $object_id ];
 	}
 
-	add_filter( 'woocommerce_product_get_price', 'disco_apply_category_bogo_paid_ratio', 1000, 2 );
-	add_filter( 'woocommerce_product_variation_get_price', 'disco_apply_category_bogo_paid_ratio', 1000, 2 );
+	add_filter( 'woocommerce_product_get_price', 'disco_apply_category_bogo_paid_ratio', PHP_INT_MAX, 2 );
+	add_filter( 'woocommerce_product_variation_get_price', 'disco_apply_category_bogo_paid_ratio', PHP_INT_MAX, 2 );
 }
 
 if ( ! function_exists( 'disco_free_product_label' ) ) {

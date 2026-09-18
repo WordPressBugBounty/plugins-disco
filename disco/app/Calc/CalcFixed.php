@@ -87,8 +87,13 @@ class CalcFixed extends CalcAbstract {
 		if ( isset( $this->item['disco_forced_qty'] ) ) {
 			$forced                      = max( 0, (int) $this->item['disco_forced_qty'] );
 			$this->discounted_quantities = $forced;
+			$amount                      = 0.0;
 
-			return apply_filters( 'disco_final_discounted_amount', $forced > 0 ? (float) $fixed_discount : 0, 'fixed' );
+			if ( $forced > 0 ) {
+				$amount = (float) $fixed_discount * $this->pooled_bundle_count( $forced );
+			}
+
+			return apply_filters( 'disco_final_discounted_amount', $amount, 'fixed' );
 		}
 
 		$min             = $this->rule['min'] ? (int) $this->rule['min'] : 0; // phpcs:ignore
@@ -181,6 +186,34 @@ class CalcFixed extends CalcAbstract {
 		}
 
 		return 0.0;
+	}
+
+	/**
+	 * How many times a flat amount is charged for a pooled group.
+	 *
+	 * The pooled path hands this class the whole qualifying quantity on a single
+	 * line, so the bundle count comes from that quantity rather than from a per
+	 * line multiplier. A non recursive rule is charged once however large the
+	 * pool; a recursive one is charged once per whole bundle in it.
+	 *
+	 * @param int $pooled_quantity Qualifying quantity across the pooled lines.
+	 */
+	private function pooled_bundle_count( int $pooled_quantity ): int {
+		if ( ! isset( $this->rule['recursive'] ) || 'yes' !== $this->rule['recursive'] ) {
+			return 1;
+		}
+
+		$minimum = 0;
+
+		if ( isset( $this->rule['min'] ) ) {
+			$minimum = absint( $this->rule['min'] );
+		}
+
+		if ( $minimum < 1 ) {
+			return 1;
+		}
+
+		return max( 1, (int) floor( $pooled_quantity / $minimum ) );
 	}
 
 }

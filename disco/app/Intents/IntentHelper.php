@@ -494,6 +494,35 @@ trait IntentHelper {//phpcs:ignore
 
 			$discountable_units = $this->grouped_discount_budget( $rule, $total_qualifying_units );
 
+			/**
+			 * A flat amount is charged for the pooled group as a whole.
+			 *
+			 * Pooling exists so the cart together can reach the tier minimum, so
+			 * the rule qualifies for the group rather than for each line that
+			 * contributed quantity. The Calc layer returns the rule value whole
+			 * for every line it is handed, because a flat amount does not scale
+			 * with units, so spreading it across lines multiplied the discount by
+			 * the line count: a flat 10 came out as 20 over two lines.
+			 *
+			 * It is applied to the first eligible line carrying the entire pooled
+			 * budget, which is what lets a recursive rule still charge once per
+			 * bundle: the Calc layer derives the bundle count from that quantity.
+			 * Per unit types keep every line, since their amount is meant to
+			 * scale with the units.
+			 */
+			if ( in_array( $rule['discount_type'], array( 'fixed', 'fixed_price' ), true ) ) {
+				$first_line = reset( $eligible_lines );
+
+				if ( ! empty( $first_line['item'] ) && $discountable_units > 0 ) {
+					$item                     = $first_line['item'];
+					$item['disco_forced_qty'] = $discountable_units;
+
+					$this->apply_rule_to_discount( $discounts, $campaign, $rule, $item, $cart, $total_applicable_qty );
+				}
+
+				continue;
+			}
+
 			// Hand out the discountable units across the eligible lines in cart order.
 			foreach ( $eligible_lines as $eligible_line ) {
 				if ( $discountable_units <= 0 ) {

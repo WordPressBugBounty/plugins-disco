@@ -34,7 +34,7 @@ const DiscountType = () => {
 				setTypeValues(types?.values);
 				break;
 		}
-	}, [discount_intent]);
+	}, [discount_intent, types]);
 
 	const { discount_type, discount_value } = discount_rules[0];
 

@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: bundle discount plugin, free shipping, product discount, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.1.1
-Stable tag: 1.4.17
+Stable tag: 1.4.18
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -517,6 +517,9 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.4.18 (Sep 22, 2026) =
+* Fixed: Multiple rules not removing in bundle discount, when recursive is enable.
+
 = 1.4.17 (Sep 18, 2026) =
 * Fixed: Wrong discount logic for Bulk, Bundle and BOGO fixed discount, when select all product from count quantity section.
 * Tweak: Compatibility checked with WordPress version 7.1.1, no issue found.

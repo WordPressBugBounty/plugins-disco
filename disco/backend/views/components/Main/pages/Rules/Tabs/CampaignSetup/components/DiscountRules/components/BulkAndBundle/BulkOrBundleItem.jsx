@@ -1,38 +1,42 @@
-import {useEffect, useState} from "react";
 import { TrashIcon } from '@heroicons/react/24/outline';
 import { __ } from '@wordpress/i18n';
-import {useDispatch, useSelector} from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import AlertPopup from '../../../../../../../../components/AlertPopup';
 import Input from '../../../../../../../../components/Input';
 import LoadingSpinner from '../../../../../../../../components/LoadingSpinner';
 import { useGetDiscountTypesQuery } from '../../../../../../../../features/discount/discountApi';
 import {
 	deleteDiscountRule,
-	updateDiscountRule, updateTable,
+	keepOnlyRecursiveRule,
+	updateDiscountRule,
+	updateTable,
 } from '../../../../../../../../features/discount/discountSlice';
+import { discountRulesToTableData } from '../../../../../../../../utilities/utilities';
 import SingleSelect from '../../.././../../../../../components/SingleSelect';
-import {discountRulesToTableData} from "../../../../../../../../utilities/utilities";
 const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 	const { data: types, isLoading } = useGetDiscountTypesQuery();
 	const { discount_intent } = useSelector((state) => state.discount);
 	const dispatch = useDispatch();
 
 	const [typeValues, setTypeValues] = useState({});
+	const [showRecursiveModal, setShowRecursiveModal] = useState(false);
 	const { discount_rules } = useSelector((state) => state.discount);
 	const rowData = discountRulesToTableData(discount_rules);
 
 	useEffect(() => {
-		const {...typesValueCopy} = types?.values || {};
+		const { ...typesValueCopy } = types?.values || {};
 		switch (discount_intent) {
 			case 'Bulk':
 			case 'Bundle':
-				delete typesValueCopy.free
-				setTypeValues(typesValueCopy)
+				delete typesValueCopy.free;
+				setTypeValues(typesValueCopy);
 				break;
 			default:
-				setTypeValues(types?.values)
+				setTypeValues(types?.values);
 				break;
 		}
-	}, [discount_intent]);
+	}, [discount_intent, types]);
 
 	const handleChange = (e) => {
 		dispatch(
@@ -42,10 +46,12 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 			})
 		);
 
-		dispatch( updateTable({
-			name: 'data',
-			value: rowData,
-		}) );
+		dispatch(
+			updateTable({
+				name: 'data',
+				value: rowData,
+			})
+		);
 	};
 	const handleTypeChange = (active) => {
 		dispatch(
@@ -56,13 +62,25 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 		);
 	};
 
-	const handleRecursiveChange = (e) => {
-		dispatch(
-			updateDiscountRule({
-				...rule,
-				[e.target.name]: rule.recursive === 'yes' ? 'no' : 'yes',
-			})
-		);
+	const handleRecursiveChange = () => {
+		// Disabling recursive: just toggle off.
+		if (rule.recursive === 'yes') {
+			dispatch(updateDiscountRule({ ...rule, recursive: 'no' }));
+			return;
+		}
+
+		// Enabling recursive while other rules exist: confirm before dropping them.
+		if (discount_rules.length > 1) {
+			setShowRecursiveModal(true);
+			return;
+		}
+
+		// Single rule: enable recursive directly.
+		dispatch(updateDiscountRule({ ...rule, recursive: 'yes' }));
+	};
+
+	const handleRecursiveConfirm = () => {
+		dispatch(keepOnlyRecursiveRule(rule.id));
 	};
 
 	const handleRuleDelete = (id) => {
@@ -128,11 +146,11 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 				</label>
 
 				<SingleSelect
-					className="disco:min-w-[250px] disco:w-full disco:bg-white!"
+					className="disco:min-w-62.5 disco:w-full disco:bg-white!"
 					items={typeValues}
 					selected={rule.discount_type}
 					onchange={handleTypeChange}
-					placeholder={__('Select Discount Type','disco')}
+					placeholder={__('Select Discount Type', 'disco')}
 				/>
 			</div>
 			{rule.discount_type !== 'free' && (
@@ -174,13 +192,14 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 					{discountIntent === 'Bundle' && (
 						<div className="disco:flex disco:items-center disco:-mb-1 disco:gap-1">
 							<input
-								className="disco:text-white! disco:border-primary! disco:rounded-sm! disco:focus:ring-primary disco:focus:ring-offset-2"
+								className="disco:text-white! disco:border-primary! disco:rounded-sm! disco:focus:ring-primary! disco:focus:ring-offset-2 disco:focus:outline-none! disco:shadow-none! disco:cursor-pointer disco:accent-green-500!"
 								checked={
 									rule.recursive === 'yes' ? true : false
 								}
 								name="recursive"
 								onChange={handleRecursiveChange}
 								id={rule.id}
+								data-testid={`recursive-checkbox-${index}`}
 								type="checkbox"
 							/>
 							<label
@@ -189,6 +208,18 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 							>
 								{__('Recursive', 'disco')}
 							</label>
+							<AlertPopup
+								open={showRecursiveModal}
+								setOpen={setShowRecursiveModal}
+								onRemove={handleRecursiveConfirm}
+								removeBtnTestId={`recursive-confirm-${index}`}
+								title={__('Switch to Recursive', 'disco')}
+								description={__(
+									'Recursive applies a single repeating rule based on the combined quantity. All other rules will be removed. Do you want to continue?',
+									'disco'
+								)}
+								confirmLabel={__('Continue', 'disco')}
+							/>
 						</div>
 					)}
 
@@ -197,7 +228,7 @@ const BulkOrBundleItem = ({ rule, index, discountIntent }) => {
 							onClick={() => handleRuleDelete(rule.id)}
 							className="disco:shrink-0"
 						>
-							<TrashIcon className="disco:h-4 disco:w-4 disco:text-red-500 disco:transition-colors"/>
+							<TrashIcon className="disco:h-4 disco:w-4 disco:text-red-500 disco:transition-colors" />
 						</button>
 					) : (
 						<div className="disco:shrink-0 disco:w-4"></div>

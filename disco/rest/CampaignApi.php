@@ -153,6 +153,18 @@ class CampaignApi extends WP_REST_Controller {//phpcs:ignore
 			);
 		}
 
+		/**
+		 * Newest first.
+		 *
+		 * Campaign::get_campaigns() returns rows in insertion order, so the list showed the
+		 * oldest campaign at the top. Sorted by id here rather than in the query
+		 * or in Campaign::get_rows(): that order is also the order the intents
+		 * are evaluated in, and it decides which campaign is credited when two
+		 * produce the same discount, so reversing it there would quietly change
+		 * attribution on the storefront.
+		 */
+		krsort( $campaigns, SORT_NUMERIC );
+
 		foreach ( $campaigns as $campaign ) {
 			$response = $this->prepare_item_for_response( $campaign, $request );
 			$data[]   = $this->prepare_response_for_collection( $response );

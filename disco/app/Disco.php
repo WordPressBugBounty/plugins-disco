@@ -112,9 +112,34 @@ class Disco {
 				return $price;
 			}
 
+			/**
+			 * Only amounts the product can actually carry take part in the choice.
+			 *
+			 * A flat amount larger than the price cannot be applied, and it used
+			 * to win the min/max selection anyway and then be rejected by the
+			 * guard below, leaving the product at full price even though another
+			 * campaign offered a discount that would have fitted. With a 70%
+			 * campaign and a 50.00 campaign, everything priced under 50.00 was
+			 * discounted by nothing at all while a 50.00 product went free.
+			 *
+			 * Dropping the ones that do not fit first means `max` picks the
+			 * largest discount that can be given rather than the largest that was
+			 * offered, which is what asking for the maximum discount means.
+			 */
+			$applicable = array_filter(
+				$discounts,
+				static function ( $amount ) use ( $price ) {
+					return (float) $amount <= (float) $price;
+				}
+			);
+
+			if ( empty( $applicable ) ) {
+				return $price;
+			}
+
 			// Pick the winning discount amount, then map it back to the campaign that produced it.
-			$discounted_amount         = $this->min_max_average( array_values( $discounts ) );
-			$this->applied_campaign_id = (int) array_search( $discounted_amount, $discounts, true );
+			$discounted_amount         = $this->min_max_average( array_values( $applicable ) );
+			$this->applied_campaign_id = (int) array_search( $discounted_amount, $applicable, true );
 
 			if ( $discounted_amount <= $price ) {
 				// Get an applied campaign from DiscountLimit class.

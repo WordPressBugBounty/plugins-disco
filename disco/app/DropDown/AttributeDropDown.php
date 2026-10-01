@@ -81,10 +81,33 @@ class AttributeDropDown {
 				);
 
 				foreach ( $fields as $field ) {
-					// old code
-                    // $options['acf_fields_' . $field->post_name] = DropDown::prepare_filters( $field->post_title );
-					// new code
-					$options['acf_fields_' . $field->post_excerpt] = DropDown::prepare_filters( $field->post_title );
+					// The field name, not the field key: that is what the value is
+					// stored under, and so what Product::get_product_meta() reads.
+					$key     = 'acf_fields_' . $field->post_excerpt;
+					$choices = self::get_acf_field_choices( $field );
+
+					/**
+					 * A field with a fixed set of choices (checkbox, select, radio)
+					 * is matched against that set, so it gets the list conditions
+					 * and a dropdown of its own options. Free text fields have no
+					 * options to offer and keep the string conditions.
+					 */
+					if ( empty( $choices ) ) {
+						$options[ $key ] = DropDown::prepare_filters( $field->post_title );
+
+						continue;
+					}
+
+					$options[ $key ] = DropDown::prepare_filters(
+						$field->post_title,
+						'select',
+						array(
+							'type'        => 'select',
+							'option_type' => 'manual',
+							'multiple'    => true,
+							'options'     => $choices,
+						)
+					);
 				}
 			}
 		}
@@ -101,6 +124,36 @@ class AttributeDropDown {
 			'options'     => $options,
 			'disabled'    => !Disco::is_pro(), // Disable if not pro.
 		);
+	}
+
+	/**
+	 * The choices an ACF field offers, keyed by the value that gets stored.
+	 *
+	 * Read from the field post's own settings rather than through the ACF API:
+	 * acf_get_fields() is avoided here because it misbehaves with repeaters and
+	 * returns trashed fields, and the settings blob carries everything needed.
+	 *
+	 * @param \WP_Post $field ACF field post.
+	 * @return array<string, string> Stored value => label, empty when the field has no fixed choices.
+	 */
+	private static function get_acf_field_choices( $field ): array {
+		$settings = maybe_unserialize( $field->post_content );
+
+		if ( ! is_array( $settings ) || empty( $settings['choices'] ) || ! is_array( $settings['choices'] ) ) {
+			return array();
+		}
+
+		$choices = array();
+
+		foreach ( $settings['choices'] as $value => $label ) {
+			if ( ! is_scalar( $label ) ) {
+				continue;
+			}
+
+			$choices[ (string) $value ] = (string) $label;
+		}
+
+		return $choices;
 	}
 
 }

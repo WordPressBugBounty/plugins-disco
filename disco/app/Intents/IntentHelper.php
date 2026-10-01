@@ -252,15 +252,37 @@ trait IntentHelper {//phpcs:ignore
 		$cost           = (float) $cost;
 		$discount_value = (float) $discount_value;
 
-		if ( 'percent' === $discount_type ) {
-			$cost = $cost * $discount_value / 100;
-		}
+		switch ( $discount_type ) {
+			case 'percent':
+				return $cost * $discount_value / 100;
 
-		if ( 'fixed' === $discount_type || 'fixed_per_product' === $discount_type ) {
-			$cost = $discount_value;
-		}
+			case 'fixed':
+			case 'fixed_per_product':
+				return $discount_value;
 
-		return $cost;
+			case 'free':
+				// The whole cost comes off, which is what makes the item free.
+				return $cost;
+
+			default:
+				/**
+				 * Anything else discounts nothing.
+				 *
+				 * This used to fall through and return $cost untouched, which the
+				 * callers then treat as the discount: ProductIntent hands it the
+				 * product price and CartIntent the cart subtotal, so an
+				 * unrecognised type gave away the product or the entire cart.
+				 *
+				 * Only Bulk, Bundle and BOGO route through the Calc classes,
+				 * where every type has an implementation; Product and Cart come
+				 * straight here, so the gap was reachable by any rule carrying a
+				 * type this method does not know: a campaign saved while
+				 * fixed_price and percent_per_product were still offered in the
+				 * builder, a REST write (discount_type inside discount_rules is
+				 * not validated), or a hand edited row.
+				 */
+				return 0.0;
+		}//end switch
 	}
 
 	/**

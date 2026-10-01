@@ -338,6 +338,12 @@ class Conditions { // phpcs:ignore
 					return !in_array( $compare_with, $compare, true );
 				}
 
+				// A single stored value against a single option: without this both
+				// list conditions fell through and returned false either way.
+				if ( is_string( $compare ) && is_string( $compare_with ) ) {
+					return $compare !== $compare_with;
+				}
+
 				return false;
 
 			case 'in_list':
@@ -356,6 +362,11 @@ class Conditions { // phpcs:ignore
 				if ( is_array( $compare ) && is_string( $compare_with ) ) {
 					// Check if a string $compare_with is in the array $compare
 					return in_array( $compare_with, $compare, true );
+				}
+
+				// A single stored value against a single option.
+				if ( is_string( $compare ) && is_string( $compare_with ) ) {
+					return $compare === $compare_with;
 				}
 
 				return false;
@@ -436,28 +447,34 @@ class Conditions { // phpcs:ignore
 			$compare = (string) $compare;
 		}
 
-		switch ( $condition ) {
-			case 'equal':
-				return strtolower( $compare ) === strtolower( $compare_with );
+		/**
+		 * A field can hold more than one value.
+		 *
+		 * An ACF checkbox group, or any multi select, stores an array. Which
+		 * comparison runs is decided by {@see self::get_type()} from the value
+		 * the merchant typed and the condition, never from what the product
+		 * side holds, so a plain "contains red" rule arrives here even when the
+		 * stored value is an array. Handing that array to stripos(), strtolower()
+		 * or substr() is fatal on PHP 8.
+		 *
+		 * Each stored value is compared in turn: a positive condition passes
+		 * when any of them matches, a negative one only when none do.
+		 */
+		$matched = false;
 
-			case 'not_equal':
-				return strtolower( $compare ) !== strtolower( $compare_with );
+		foreach ( $this->comparable_values( $compare_with ) as $haystack ) {
+			if ( $this->matches_string_condition( $haystack, $compare, $condition ) ) {
+				$matched = true;
 
-			case 'contain':
-				return stripos( $compare_with, $compare ) !== false;
+				break;
+			}
+		}
 
-			case 'not_contain':
-				return stripos( $compare_with, $compare ) === false;
+		if ( in_array( $condition, array( 'not_equal', 'not_contain' ), true ) ) {
+			return ! $matched;
+		}
 
-			case 'start_with':
-				return stripos( $compare_with, $compare ) === 0;
-
-			case 'end_with':
-				return substr( $compare_with, -strlen( $compare ) ) === $compare;
-
-			default:
-				return false;
-		}//end switch
+		return $matched;
 	}
 
 	/**
@@ -512,6 +529,14 @@ class Conditions { // phpcs:ignore
 		);
 
 		if ( in_array( $compare_with, $attributes_by_ids, true ) ) {
+			return 'id';
+		}
+
+		/**
+		 * ACF stores the choice value, while the option's name is its label, so
+		 * matching on the name would compare "Red" against a stored "red".
+		 */
+		if ( is_string( $compare_with ) && strpos( $compare_with, 'acf_fields_' ) === 0 ) {
 			return 'id';
 		}
 
@@ -598,6 +623,79 @@ class Conditions { // phpcs:ignore
 			default:
 				return false;
 		}
+	}
+
+	/**
+	 * Run one string condition against a single stored value.
+	 *
+	 * The negative conditions share the comparison of their positive
+	 * counterpart; {@see self::string_compare()} inverts the result once every
+	 * stored value has been checked.
+	 *
+	 * @param string $haystack  One stored value.
+	 * @param string $compare   Value the merchant typed.
+	 * @param string $condition Condition name.
+	 */
+	private function matches_string_condition( string $haystack, string $compare, string $condition ): bool {
+		switch ( $condition ) {
+			case 'equal':
+			case 'not_equal':
+				return strtolower( $haystack ) === strtolower( $compare );
+
+			case 'contain':
+			case 'not_contain':
+				return stripos( $haystack, $compare ) !== false;
+
+			case 'start_with':
+				return stripos( $haystack, $compare ) === 0;
+
+			case 'end_with':
+				return substr( $haystack, -strlen( $compare ) ) === $compare;
+
+			default:
+				return false;
+		}//end switch
+	}
+
+	/**
+	 * Flatten an attribute value into the strings a comparison can run against.
+	 *
+	 * A single value yields one string, a multi value field one per entry.
+	 * Anything that cannot be expressed as text, a nested array or an object,
+	 * is dropped. An empty result still yields one empty string, so a negative
+	 * condition has something to fail against rather than passing by default.
+	 *
+	 * @param mixed $value Attribute value.
+	 * @return array<int, string>
+	 */
+	private function comparable_values( $value ): array {
+		$values = array( $value );
+
+		if ( is_array( $value ) ) {
+			$values = $value;
+		}
+
+		$result = array();
+
+		foreach ( $values as $entry ) {
+			if ( null === $entry ) {
+				$result[] = '';
+
+				continue;
+			}
+
+			if ( ! is_scalar( $entry ) ) {
+				continue;
+			}
+
+			$result[] = (string) $entry;
+		}
+
+		if ( empty( $result ) ) {
+			return array( '' );
+		}
+
+		return $result;
 	}
 
 }

@@ -57,7 +57,7 @@ if ( ! function_exists( 'disco_add_order_meta' ) ) {
 		$existing = $order->get_meta( 'disco_campaign', false );
 
 		if ( ! empty( $existing ) ) {
-			WC()->session->__unset( 'disco_campaign' );
+			disco_finalise_campaign_usage( $order );
 
 			return;
 		}
@@ -86,6 +86,116 @@ if ( ! function_exists( 'disco_add_order_meta' ) ) {
 
 	add_action( 'woocommerce_thankyou', 'disco_add_order_meta', PHP_INT_MAX );
 	add_action( 'woocommerce_payment_complete', 'disco_add_order_meta', PHP_INT_MAX );
+}
+
+if ( ! function_exists( 'disco_finalise_campaign_usage' ) ) {
+
+	/**
+	 * Settle the caches and session for an order that already carries its meta.
+	 *
+	 * Normally the meta was written by disco_add_campaign_order_meta() as the
+	 * order was created. The usage caches have to be dropped here rather than
+	 * there: at creation the order is not persisted yet, so a flush would
+	 * immediately repopulate the old count from the database.
+	 *
+	 * @param \WC_Order $order Order object.
+	 * @return void
+	 */
+	function disco_finalise_campaign_usage( $order ) {
+		foreach ( disco_campaign_ids_on_order( $order ) as $campaign_id ) {
+			\Disco\App\Features\UserLimit::flush_cache( $campaign_id );
+		}
+
+		if ( WC()->session ) {
+			WC()->session->__unset( 'disco_campaign' );
+		}
+
+		if ( ! function_exists( 'disco_clear_price_cache' ) ) {
+			return;
+		}
+
+		disco_clear_price_cache();
+	}
+
+}
+
+if ( ! function_exists( 'disco_campaign_ids_on_order' ) ) {
+
+	/**
+	 * Campaign IDs already recorded on an order.
+	 *
+	 * @param \WC_Order $order Order object.
+	 * @return array<int, int>
+	 */
+	function disco_campaign_ids_on_order( $order ): array {
+		if ( ! $order instanceof WC_Order ) {
+			return array();
+		}
+
+		$meta = $order->get_meta( 'disco_campaign', false );
+
+		if ( empty( $meta ) ) {
+			return array();
+		}
+
+		return array_map( 'intval', wp_list_pluck( $meta, 'value' ) );
+	}
+
+}
+
+if ( ! function_exists( 'disco_add_campaign_order_meta' ) ) {
+
+	/**
+	 * Record the applied campaigns while the order is being created.
+	 *
+	 * The campaign IDs are staged in the WC session as the cart is priced, and
+	 * were previously read back on woocommerce_thankyou / payment_complete. Those
+	 * run in a later request, which is not always the same session: an off site
+	 * gateway can return the customer on a fresh one, and a payment webhook has
+	 * no customer session at all. The handover then found nothing and returned
+	 * silently, leaving a discounted order with no campaign recorded, so its
+	 * usage limit never counted it and Analytics never saw it.
+	 *
+	 * Reading the session here instead keeps both halves in the request that
+	 * priced the cart. The later hooks stay in place as a fallback for anything
+	 * that reaches them without meta, and to drop the usage caches once the order
+	 * actually exists.
+	 *
+	 * @param \WC_Order $order The order being created.
+	 * @return void
+	 */
+	function disco_add_campaign_order_meta( $order ) {
+		if ( ! $order instanceof WC_Order || ! WC()->session ) {
+			return;
+		}
+
+		$campaigns = WC()->session->get( 'disco_campaign' );
+
+		if ( empty( $campaigns ) || ! is_array( $campaigns ) ) {
+			return;
+		}
+
+		$existing = disco_campaign_ids_on_order( $order );
+
+		foreach ( $campaigns as $campaign_id ) {
+			$campaign_id = (int) $campaign_id;
+
+			if ( in_array( $campaign_id, $existing, true ) ) {
+				continue;
+			}
+
+			$order->add_meta_data( 'disco_campaign', $campaign_id, false );
+
+			$existing[] = $campaign_id;
+		}
+	}
+
+	// Classic (shortcode) checkout: order is saved by WC after this action.
+	add_action( 'woocommerce_checkout_create_order', 'disco_add_campaign_order_meta', 10 );
+
+	// Block / Store API checkout: WC_Checkout::create_order() does not run, so
+	// the action above never fires.
+	add_action( 'woocommerce_store_api_checkout_update_order_meta', 'disco_add_campaign_order_meta', 10 );
 }
 
 if ( ! function_exists( 'disco_flush_campaign_usage_cache_on_status_change' ) ) {

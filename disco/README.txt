@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: bundle discount plugin, free shipping, product discount, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.1.2
-Stable tag: 1.4.19
+Stable tag: 1.4.21
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -517,6 +517,15 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.4.21(Oct 01, 2026) =
+* Fix: Discount login doing incorrect, when multiple campaign active with different discount type.
+
+= 1.4.20(Oct 01, 2026) =
+* Fix: Order meta updating issue for on page checkout issue.
+* Fix: ACF plugin conditions not throwing fetal error, when field have multiple value option.
+* Fix: Product price show wrong, if user bypass the discount type.
+* Fix: Last created campaign showing in last issue.
+
 = 1.4.19(Sep 28, 2026) =
 * Tweak: WordPress compatibility checked with version 7.1.2, no issue found.
 * Tweak: WooCommerce compatibility checked with version 11.1.2, no issue found. 

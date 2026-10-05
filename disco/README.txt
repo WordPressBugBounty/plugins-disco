@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: bundle discount plugin, free shipping, product discount, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.1.2
-Stable tag: 1.4.21
+Stable tag: 1.4.22
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -17,7 +17,7 @@ WooCommerce discount rules plugin to create automatic product and cart discounts
 
 **Create product discounts, cart discounts, bulk discounts, bundle discounts, BOGO deals, and free shipping offers** using an intuitive visual interface – covering 100+ scenarios without writing code or managing coupon codes.
 
-**[Upgrade to Pro](https://discoplugin.com/pricing/?utm_source=org-to-pro&utm_medium=org-to-pro&utm_campaign=org-to-pro&utm_id=1) | [View Demo](https://app.instawp.io/launch?s=discopro&d=v2) | [Complete Documentation](https://discoplugin.com/docs/) | [Video Tutorials](https://www.youtube.com/@WebAppick) | [Get Support](https://discoplugin.com/support/)**
+**[Upgrade to Pro](https://discoplugin.com/pricing/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=header-upgrade) | [View Demo](https://app.instawp.io/launch?s=discopro&d=v2) | [Complete Documentation](https://discoplugin.com/docs/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=header-docs) | [Video Tutorials](https://www.youtube.com/@WebAppick) | [Get Support](https://discoplugin.com/support/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=header-support)**
 
 Fully updated for 2026 with the latest **WooCommerce 11.x** and **WordPress 7.x** compatibility.
 
@@ -51,7 +51,7 @@ This automatic approach leads to higher conversion rates because you've removed 
 **Disco supports six distinct discount campaign types**, each designed for different promotional strategies. You can run multiple campaigns simultaneously to create sophisticated promotional programs.
 
 
-➡️ <a target="_blank" href="https://discoplugin.com/docs-category/product-intent-discounts/"> **Product-Based Discounts:** </a>Product discounts let you apply **percentage or fixed amount discounts to specific products, entire categories, specific tags, product attributes, or your complete catalog.** This is the most versatile discount type.
+➡️ <a target="_blank" href="https://discoplugin.com/docs-category/product-intent-discounts/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=feature-docs"> **Product-Based Discounts:** </a>Product discounts let you apply **percentage or fixed amount discounts to specific products, entire categories, specific tags, product attributes, or your complete catalog.** This is the most versatile discount type.
 
 Use product discounts for flash sales on specific items, seasonal discounts on entire categories, clearance pricing on tagged products, or store-wide sales events.
 
@@ -63,7 +63,7 @@ Use product discounts for flash sales on specific items, seasonal discounts on e
 * 25% off all products from a specific brand or vendor
 * 30% off products priced over $100
 
-➡️ <a target="_blank" href="https://discoplugin.com/docs-category/cart-intent-discounts/"> **Cart-Based Discounts:** </a> Cart discounts apply to the entire shopping cart based on conditions like **subtotal amount, total item count, or total quantity.** These WooCommerce cart discounts encourage customers to add more items or spend more to unlock savings.
+➡️ <a target="_blank" href="https://discoplugin.com/docs-category/cart-intent-discounts/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=feature-docs"> **Cart-Based Discounts:** </a> Cart discounts apply to the entire shopping cart based on conditions like **subtotal amount, total item count, or total quantity.** These WooCommerce cart discounts encourage customers to add more items or spend more to unlock savings.
 
 **Cart discount examples:**
 
@@ -73,7 +73,7 @@ Use product discounts for flash sales on specific items, seasonal discounts on e
 * 5% off when cart contains products from 3 or more categories
 * $50 off orders over $300
 
-➡️ <a target="_blank" href="https://discoplugin.com/docs-category/bulk-intent-discount/"> **Bulk Discounts for WooCommerce:** </a> Bulk discounts create **tiered quantity-based pricing that encourages customers to purchase more units.** This WooCommerce bulk discount feature shows customers exactly how much they save at each quantity tier.
+➡️ <a target="_blank" href="https://discoplugin.com/docs-category/bulk-intent-discount/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=feature-docs"> **Bulk Discounts for WooCommerce:** </a> Bulk discounts create **tiered quantity-based pricing that encourages customers to purchase more units.** This WooCommerce bulk discount feature shows customers exactly how much they save at each quantity tier.
 
 You define quantity ranges and the discount percentage or amount for each range. **Disco displays a bulk pricing table on product pages** so customers understand the savings at each tier before they buy.
 
@@ -85,7 +85,7 @@ You define quantity ranges and the discount percentage or amount for each range.
 * 25-49 units: 30% off ($14 each)
 * 50+ units: 40% off ($12 each)
 
-➡️ <a target="_blank" href="https://discoplugin.com/docs-category/bundle-discount/"> **Bundle Discounts:** </a> Bundle discounts offer savings when customers purchase specific product combinations together. This WooCommerce bundle discount feature helps you upsell complementary products and increase average order value.
+➡️ <a target="_blank" href="https://discoplugin.com/docs-category/bundle-discount/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=feature-docs"> **Bundle Discounts:** </a> Bundle discounts offer savings when customers purchase specific product combinations together. This WooCommerce bundle discount feature helps you upsell complementary products and increase average order value.
 
 You define which products make up a bundle and what discount applies when customers add all bundle items to their cart. Bundles can require specific products or products from specific categories.
 
@@ -97,7 +97,7 @@ You define which products make up a bundle and what discount applies when custom
 * 50 units: 30% off ($14 each)
 * 80+ units: 40% off ($12 each)
 
-➡️ <a target="_blank" href="https://discoplugin.com/docs-category/buy-one-get-one/"> **BOGO Discounts (Pro Feature):** </a> Buy One Get One deals are among the most effective promotional strategies. **Disco Pro lets you create flexible BOGO discount rules with various configurations.**
+➡️ <a target="_blank" href="https://discoplugin.com/docs-category/buy-one-get-one/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=feature-docs"> **BOGO Discounts (Pro Feature):** </a> Buy One Get One deals are among the most effective promotional strategies. **Disco Pro lets you create flexible BOGO discount rules with various configurations.**
 
 [youtube https://www.youtube.com/watch?v=1yEhgX4xb9M]
 
@@ -113,7 +113,7 @@ BOGO rules can apply within the same product or across different products (buy p
 * Buy any 3 items from Category A, get 1 item from Category B free
 * Buy 2 pairs of shoes, get 3rd pair at $20 off
 
-➡️ <a target="_blank" href="https://discoplugin.com/docs-category/free-shipping-discount/"> **Free Shipping Discounts:** </a> Free shipping offers effectively reduce cart abandonment and increase conversions. Disco lets you create conditional free shipping rules based on cart value, specific products, customer attributes, or other criteria.
+➡️ <a target="_blank" href="https://discoplugin.com/docs-category/free-shipping-discount/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=feature-docs"> **Free Shipping Discounts:** </a> Free shipping offers effectively reduce cart abandonment and increase conversions. Disco lets you create conditional free shipping rules based on cart value, specific products, customer attributes, or other criteria.
 
 [youtube https://www.youtube.com/watch?v=tryJ9i9DPdE&list=PLapCcXJAoEem7o-IxIzGE1pYibhb3KScJ&index=3]
 
@@ -167,7 +167,7 @@ Control discounts based on product pricing details:
 * Sale schedule control with start and end dates
 
 
-**☞ Customer Conditions** <a target="_blank" href="https://discoplugin.com/pricing/"> (Pro) </a>
+**☞ Customer Conditions** <a target="_blank" href="https://discoplugin.com/pricing/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=pricing-link"> (Pro) </a>
 
 Target discounts to specific customer segments:
 
@@ -181,7 +181,7 @@ Target discounts to specific customer segments:
 * Customer registration date for new versus established customers
 
 
-**☞ Product Purchase History Based Conditions** <a target="_blank" href="https://discoplugin.com/pricing/"> (Pro) </a>
+**☞ Product Purchase History Based Conditions** <a target="_blank" href="https://discoplugin.com/pricing/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=pricing-link"> (Pro) </a>
 
 
 Create smart discounts based on a customer’s past purchases of specific products:
@@ -202,7 +202,7 @@ Control precisely when discounts are active:
 * Recurring schedule options
 
 
-**☞ Usage Limits** <a target="_blank" href="https://discoplugin.com/pricing/"> (Pro) </a>
+**☞ Usage Limits** <a target="_blank" href="https://discoplugin.com/pricing/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=pricing-link"> (Pro) </a>
 
 
 Prevent discount abuse and control promotional costs:
@@ -212,38 +212,38 @@ Prevent discount abuse and control promotional costs:
 * Maximum discount amount cap per order
 
 
-=== Campaign Display - Make your store sales 10X <a target="_blank" href="https://discoplugin.com/docs-category/display/"> (Pro Features) </a> ===
+=== Campaign Display - Make your store sales 10X <a target="_blank" href="https://discoplugin.com/docs-category/display/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=display-docs"> (Pro Features) </a> ===
 
 
 **Disco’s campaign display features are designed to maximize discount visibility and drive higher conversions.** By clearly showcasing offers across **product, cart, and pricing displays,** customers instantly understand the value of your promotions—turning casual visitors into confident buyers.
 
 
-☞ <a target="_blank" href="https://discoplugin.com/docs-category/display/"> **Customized Product Badges:** </a> Customized product badges instantly highlight discounted products across your store. When a customer browses your shop, eye-catching badges like **20% OFF**, **Bulk Deal**, or **Bundle Offer**clearly signal active discounts—ensuring promotions never go unnoticed.
+☞ <a target="_blank" href="https://discoplugin.com/docs-category/display/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=display-docs"> **Customized Product Badges:** </a> Customized product badges instantly highlight discounted products across your store. When a customer browses your shop, eye-catching badges like **20% OFF**, **Bulk Deal**, or **Bundle Offer**clearly signal active discounts—ensuring promotions never go unnoticed.
 
 **Product badges are fully customizable in text, color, and style,** making discounted products stand out in product listings, category pages, and product detail pages. This visual cue builds urgency and inspires customers to explore discounted items faster.
 
 
-☞ <a target="_blank" href="https://discoplugin.com/docs-category/display/"> **Customized Promotional Text on Product Pages:** </a> Customized promotional text lets you communicate discount details directly on the product page. Display clear, persuasive messages such as **Buy more and save up to 40%** or **Special bundle pricing available** to guide customers toward higher-value purchases.
+☞ <a target="_blank" href="https://discoplugin.com/docs-category/display/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=display-docs"> **Customized Promotional Text on Product Pages:** </a> Customized promotional text lets you communicate discount details directly on the product page. Display clear, persuasive messages such as **Buy more and save up to 40%** or **Special bundle pricing available** to guide customers toward higher-value purchases.
 
 **This feature helps educate customers about active campaigns without confusion,** reinforcing the offer at the exact moment they’re deciding to buy.
 
 
-☞ <a target="_blank" href="https://discoplugin.com/docs-category/display/"> **Customized Countdown Timer on Product Pages:** </a> **Countdown timers create urgency by showing how much time is left before a discount expires.** By visually displaying a live countdown on the product page, customers are encouraged to act quickly rather than postpone their purchase.
+☞ <a target="_blank" href="https://discoplugin.com/docs-category/display/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=display-docs"> **Customized Countdown Timer on Product Pages:** </a> **Countdown timers create urgency by showing how much time is left before a discount expires.** By visually displaying a live countdown on the product page, customers are encouraged to act quickly rather than postpone their purchase.
 
 **You can customize the countdown’s design, placement, and messaging** to match your campaign style—perfect for flash sales, limited-time offers, and seasonal promotions.
 
 
-☞ <a target="_blank" href="https://discoplugin.com/docs-category/display/"> **Customized Cart Notices:**  </a> Customized cart notices reinforce **discounts at checkout by displaying clear messages inside the cart.** Inform customers when discounts are applied, remind them how close they are to unlocking a better deal, or encourage them to add more items to qualify for additional savings.
+☞ <a target="_blank" href="https://discoplugin.com/docs-category/display/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=display-docs"> **Customized Cart Notices:**  </a> Customized cart notices reinforce **discounts at checkout by displaying clear messages inside the cart.** Inform customers when discounts are applied, remind them how close they are to unlocking a better deal, or encourage them to add more items to qualify for additional savings.
 
 These notices reduce hesitation, increase average order value, and reassure customers that they’re getting the best possible deal.
 
 
-☞ <a target="_blank" href="https://discoplugin.com/docs/display-woocommerce-bulk-discount-table/"> **Customized Bulk Discount Table:**</a> The bulk discount table **visually displays tiered pricing and quantity-based savings directly on the product page.** Customers can easily compare price breaks at different quantity levels and see exactly how much they save as they buy more.
+☞ <a target="_blank" href="https://discoplugin.com/docs/display-woocommerce-bulk-discount-table/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=display-docs"> **Customized Bulk Discount Table:**</a> The bulk discount table **visually displays tiered pricing and quantity-based savings directly on the product page.** Customers can easily compare price breaks at different quantity levels and see exactly how much they save as they buy more.
 
 **The table is fully customizable to match your store’s branding and campaign style,** making bulk pricing easy to understand and highly effective at driving larger orders.
 
 
-☞ <a target="_blank" href="https://discoplugin.com/docs/display-bundle-discount-table-in-woocommerce/"> **Customized Bundle Discount Table:** </a> The bundle discount table clearly presents fixed-quantity bundle offers in a structured and easy-to-read format. Customers can quickly identify available bundle deals, required quantities, and discounted prices without confusion.
+☞ <a target="_blank" href="https://discoplugin.com/docs/display-bundle-discount-table-in-woocommerce/?utm_source=wordpress.org&utm_medium=referral&utm_campaign=readme&utm_content=display-docs"> **Customized Bundle Discount Table:** </a> The bundle discount table clearly presents fixed-quantity bundle offers in a structured and easy-to-read format. Customers can quickly identify available bundle deals, required quantities, and discounted prices without confusion.
 
 By simplifying bundle pricing and highlighting savings upfront, this feature increases trust and encourages customers to choose higher-value bundle options.
 
@@ -517,8 +517,11 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.4.22(Oct 05, 2026) =
+* Fix: Discount campaign id saving issue, based on min max discount amount.
+
 = 1.4.21(Oct 01, 2026) =
-* Fix: Discount login doing incorrect, when multiple campaign active with different discount type.
+* Fix: Discount logic doing incorrect, when multiple campaign active with different discount type.
 
 = 1.4.20(Oct 01, 2026) =
 * Fix: Order meta updating issue for on page checkout issue.

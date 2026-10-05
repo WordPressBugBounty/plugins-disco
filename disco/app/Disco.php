@@ -265,7 +265,7 @@ class Disco {
 			$id = $this->get_cart_item_id( $item );
 
 			// Skip all others if BOGO + category item is found
-			if ( $found_bogo_category_item_id !== null && $id !== $found_bogo_category_item_id ) {
+			if ( null !== $found_bogo_category_item_id && $id !== $found_bogo_category_item_id ) {
 				continue;
 			}
 

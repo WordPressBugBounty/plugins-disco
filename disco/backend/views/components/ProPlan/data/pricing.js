@@ -1,4 +1,6 @@
 const BASE_CHECKOUT = 'https://discoplugin.com/checkout/?add-to-cart=';
+const CHECKOUT_UTM =
+	'&utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=pro-plan-page&utm_content=checkout-button';
 
 const pricingPlans = [
 	{
@@ -10,8 +12,8 @@ const pricingPlans = [
 		originalLifetime: 265,
 		popular: false,
 		checkoutUrl: {
-			yearly: BASE_CHECKOUT + '893',
-			lifetime: BASE_CHECKOUT + '896',
+			yearly: BASE_CHECKOUT + '893' + CHECKOUT_UTM,
+			lifetime: BASE_CHECKOUT + '896' + CHECKOUT_UTM,
 		},
 		features: [
 			'5 Discount types',
@@ -35,8 +37,8 @@ const pricingPlans = [
 		originalLifetime: 383,
 		popular: true,
 		checkoutUrl: {
-			yearly: BASE_CHECKOUT + '894',
-			lifetime: BASE_CHECKOUT + '897',
+			yearly: BASE_CHECKOUT + '894' + CHECKOUT_UTM,
+			lifetime: BASE_CHECKOUT + '897' + CHECKOUT_UTM,
 		},
 		features: [
 			'5 Site licenses',
@@ -62,8 +64,8 @@ const pricingPlans = [
 		originalLifetime: 498,
 		popular: false,
 		checkoutUrl: {
-			yearly: BASE_CHECKOUT + '895',
-			lifetime: BASE_CHECKOUT + '898',
+			yearly: BASE_CHECKOUT + '895' + CHECKOUT_UTM,
+			lifetime: BASE_CHECKOUT + '898' + CHECKOUT_UTM,
 		},
 		features: [
 			'10 Site licenses',

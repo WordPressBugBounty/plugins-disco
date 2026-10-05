@@ -15,7 +15,7 @@ const DiscountCard = () => {
 			<ComponentBox className="disco:mt-5 disco:rounded-xl">
 				<CommonHeadingBox
 					title={__('Discount', 'disco')}
-					url="https://discoplugin.com/docs/discount-rules/"
+					url="https://discoplugin.com/docs/discount-rules/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=rule-editor&utm_content=docs-discount-rules"
 				/>
 				<div className="disco:p-4">
 					<ChildElement heading={__('Filter Products', 'disco')} />

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import withUtm from '../../utils/withUtm';
 
 export default function DiscoAccordion({ docsData = [] }) {
 	const [open, setOpen] = useState();
@@ -67,7 +68,7 @@ export default function DiscoAccordion({ docsData = [] }) {
 									{sec.items.map((item, j) => (
 										<a
 											key={j}
-											href={item?.link}
+											href={withUtm(item?.link, 'help-docs', 'doc-article')}
 											target="_blank"
 											rel="noopener noreferrer"
 											className="disco:flex disco:items-center disco:gap-3 disco:px-6 disco:py-3 disco:border-b disco:border-gray-100 disco:last:border-b-0 disco:bg-white disco:cursor-pointer disco:focus:shadow-none disco:hover:bg-gray-50 disco:hover:text-primary disco:transition-colors disco:duration-200"

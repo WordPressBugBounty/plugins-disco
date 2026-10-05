@@ -8,7 +8,7 @@ import TextHighlightCard from '../../TextHighlight/components/TextHighlightCard'
 const ProBadge = () => {
 	const handleOnClick = () => {
 		window.open(
-			'https://discoplugin.com/?utm_source=display_cart&utm_medium=text_button&utm_campaign=free-pro&utm_id=1#pricing',
+			'https://discoplugin.com/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=feature-preview-upgrade#pricing',
 			'_blank',
 			'noopener,noreferrer'
 		);
@@ -33,7 +33,7 @@ const FEATURE_CARDS = [
 			'disco'
 		),
 		preview: <ProductBadgeCard />,
-		url: 'https://discoplugin.com/docs/display-product-badge-in-woocommerce/',
+		url: 'https://discoplugin.com/docs/display-product-badge-in-woocommerce/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=feature-preview-product-badge-docs',
 	},
 	{
 		id: 'text-highlight',
@@ -43,7 +43,7 @@ const FEATURE_CARDS = [
 			'disco'
 		),
 		preview: <TextHighlightCard />,
-		url: 'https://discoplugin.com/docs/display-text-highlight/',
+		url: 'https://discoplugin.com/docs/display-text-highlight/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=feature-preview-text-highlight-docs',
 	},
 	{
 		id: 'cart-page',
@@ -53,7 +53,7 @@ const FEATURE_CARDS = [
 			'disco'
 		),
 		preview: <CartCard />,
-		url: 'https://discoplugin.com/docs/display-cart-notice/',
+		url: 'https://discoplugin.com/docs/display-cart-notice/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=feature-preview-cart-notice-docs',
 	},
 	{
 		id: 'countdown-time',
@@ -63,7 +63,7 @@ const FEATURE_CARDS = [
 			'disco'
 		),
 		preview: <CountdownTimeCard />,
-		url: 'https://discoplugin.com/docs/display-countdown-timer/',
+		url: 'https://discoplugin.com/docs/display-countdown-timer/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=feature-preview-countdown-docs',
 	},
 	{
 		id: 'bulk-discount',
@@ -73,7 +73,7 @@ const FEATURE_CARDS = [
 			'disco'
 		),
 		preview: <DiscountCard discountType="bulk" />,
-		url: 'https://discoplugin.com/docs/display-woocommerce-bulk-discount-table/',
+		url: 'https://discoplugin.com/docs/display-woocommerce-bulk-discount-table/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=feature-preview-bulk-table-docs',
 	},
 	{
 		id: 'bundle-discount',
@@ -83,7 +83,7 @@ const FEATURE_CARDS = [
 			'disco'
 		),
 		preview: <DiscountCard discountType="bundle" />,
-		url: 'https://discoplugin.com/docs/display-bundle-discount-table-in-woocommerce/',
+		url: 'https://discoplugin.com/docs/display-bundle-discount-table-in-woocommerce/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=feature-preview-bundle-table-docs',
 	},
 ];
 

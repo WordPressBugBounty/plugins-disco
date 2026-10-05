@@ -37,11 +37,11 @@ class Log {
 		$handle = DISCO_TEXTDOMAIN;
 		$log    = new WC_Logger( array( $handle ) );
 
-		if ( $type === 'error' ) {
+		if ( 'error' === $type ) {
 			$log->error( $message );
-		} elseif ( $type === 'warning' ) {
+		} elseif ( 'warning' === $type ) {
 			$log->warning( $message );
-		} elseif ( $type === 'info' ) {
+		} elseif ( 'info' === $type ) {
 			$log->info( $message );
 		} else {
 			$log->add( $handle, $message );

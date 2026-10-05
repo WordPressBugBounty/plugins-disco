@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import DiscoResourceCard from './ResourceCard';
 import SkeletonCard from './SkeletonCard';
+import withUtm from '../../utils/withUtm';
 
 function getThumbnail(post) {
 	const featured = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
@@ -35,7 +36,7 @@ function mapPost(post) {
 			wordCount > 0
 				? `About ${Math.max(1, Math.ceil(wordCount / 200))} Min Read`
 				: 'About 5 Min Read',
-		link: post.link,
+		link: withUtm(post.link, 'help-docs', 'blog-post'),
 		imageUrl: getThumbnail(post),
 	};
 }

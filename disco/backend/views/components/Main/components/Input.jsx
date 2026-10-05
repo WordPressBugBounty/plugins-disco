@@ -17,7 +17,7 @@ const Input = ({
 		<div className="disco:relative disco:inline-flex disco:items-center disco:w-full">
 			{disabled && (
 				<a
-					href="https://discoplugin.com/pricing/?utm_source=pro-text&utm_medium=free-to-pro&utm_campaign=free-to-pro&utm_id=1"
+					href="https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=rule-editor&utm_content=pro-input"
 					target="_blank"
 					rel="noreferrer"
 					className="disco:absolute disco:pl-2 disco:flex disco:items-center disco:text-base disco:text-red-500 disco:hover:text-red-500 disco:focus:outline-hidden! disco:visited:text-red-500 disco:focus:ring-0!"

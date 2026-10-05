@@ -21,7 +21,7 @@ const ConditionsCard = () => {
 				<div>
 					<CommonHeadingBox
 						title={__('Conditions', 'disco')}
-						url="https://discoplugin.com/docs-category/discount-conditions/"
+						url="https://discoplugin.com/docs-category/discount-conditions/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=rule-editor&utm_content=docs-conditions"
 					/>
 				</div>
 				{conditions.length > 0 && <Conditions />}

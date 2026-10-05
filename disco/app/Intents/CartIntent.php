@@ -76,7 +76,7 @@ class CartIntent extends Intent {
 			$cost = $this->get_items_subtotal_based_on_settings( $items );
 
 			// Discount should be less than item price
-			if ( $discount_type === 'fixed_per_product' ) {
+			if ( 'fixed_per_product' === $discount_type ) {
 				// TODO: Check there is no free products in the cart before counting the discount
 				$item_prices = array();
 

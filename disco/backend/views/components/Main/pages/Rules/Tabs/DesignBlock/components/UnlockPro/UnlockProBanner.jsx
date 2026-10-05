@@ -3,7 +3,7 @@ import { Zap } from 'lucide-react';
 import useIsPro from '../../../../../../hooks/useIsPro';
 
 const PRICING_URL =
-	'https://discoplugin.com/?utm_source=display_banner&utm_medium=button&utm_campaign=free-pro&utm_id=1';
+	'https://discoplugin.com/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=unlock-pro-banner';
 
 const UnlockProBanner = () => {
 	const isPro = useIsPro();

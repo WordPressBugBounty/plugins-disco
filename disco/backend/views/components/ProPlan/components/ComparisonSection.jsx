@@ -27,7 +27,7 @@ function ComparisonSection() {
 									{'🔒 Pro'}
 								</span>
 								<a
-									href="https://discoplugin.com/?utm_source=pro_plan&utm_medium=text_button&utm_campaign=free-pro&utm_id=1#pricing"
+									href="https://discoplugin.com/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=pro-plan-page&utm_content=comparison-table#pricing"
 									target="_blank"
 									rel="noopener noreferrer"
 									className="disco:font-medium disco:text-white! disco:bg-primary disco:rounded-full disco:px-2 disco:py-1 disco:hover:text-white! disco:focus:rounded-full!"

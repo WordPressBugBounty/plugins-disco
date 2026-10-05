@@ -15,7 +15,7 @@ const CartPage = () => {
 	const isPro = useIsPro();
 
 	const tryNowUrl =
-		'https://discoplugin.com/pricing/?utm_source=bulk-table&utm_medium=free-to-pro&utm_campaign=from-display-page&utm_id=1';
+		'https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=cart-notice-upgrade';
 
 	const handleStatus = (status) => {
 		dispatch(updateCartPage({ name: 'enable', value: status }));
@@ -26,7 +26,7 @@ const CartPage = () => {
 			<CartCard />
 			<BadgeTitle
 				title={__('Cart Notice', 'disco')}
-				url="https://discoplugin.com/docs/display-cart-notice/"
+				url="https://discoplugin.com/docs/display-cart-notice/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=cart-notice-docs"
 				className="disco:mt-3"
 			/>
 			<BadgeActions>

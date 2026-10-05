@@ -49,7 +49,7 @@ const CtaSection = () => {
 				{/* Right CTA */}
 				<div className="disco:flex disco:flex-col disco:items-center disco:gap-4 disco:shrink-0">
 					<a
-						href="https://discoplugin.com/?utm_source=pro_plan_page&utm_medium=banner&utm_campaign=free-pro&utm_id=1#pricing"
+						href="https://discoplugin.com/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=pro-plan-page&utm_content=footer-cta#pricing"
 						target="_blank"
 						rel="noopener noreferrer"
 						className="disco:inline-flex disco:items-center disco:gap-2.5 disco:px-6 disco:py-4 disco:bg-primary disco:text-white! disco:text-sm! disco:font-extrabold disco:rounded-2xl disco:no-underline disco:transition-all! disco:duration-200 disco:hover:text-white! disco:hover:scale-105 disco:focus:text-white! disco:focus:rounded-2xl"

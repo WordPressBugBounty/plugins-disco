@@ -15,7 +15,7 @@ const CountdownTime = () => {
 	const isPro = useIsPro();
 
 	const tryNowUrl =
-		'https://discoplugin.com/pricing/?utm_source=bulk-table&utm_medium=free-to-pro&utm_campaign=from-display-page&utm_id=1';
+		'https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=countdown-upgrade';
 
 	const handleStatus = (status) => {
 		dispatch(updateCountdown({ name: 'enable', value: status }));
@@ -26,7 +26,7 @@ const CountdownTime = () => {
 			<CountdownTimeCard />
 			<BadgeTitle
 				title={__('Countdown Time', 'disco')}
-				url="https://discoplugin.com/docs/display-countdown-timer/"
+				url="https://discoplugin.com/docs/display-countdown-timer/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=countdown-docs"
 				className="disco:mt-3"
 			/>
 			<BadgeActions>

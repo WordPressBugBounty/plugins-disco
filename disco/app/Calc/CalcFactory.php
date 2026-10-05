@@ -54,12 +54,12 @@ class CalcFactory {
      */
 	public static function discount_applies_to( array $rule, Config $campaign ): string {
 		if (
-            $rule['discount_type'] === 'percent'
-            || $rule['discount_type'] === 'fixed'
-            || $rule['discount_type'] === 'fixed_price'
+            'percent' === $rule['discount_type']
+            || 'fixed' === $rule['discount_type']
+            || 'fixed_price' === $rule['discount_type']
         ) {
 			$applies_to = 'line_item_subtotal';
-		} elseif ( $rule['discount_type'] === 'percent_per_product' || $rule['discount_type'] === 'fixed_per_product' ) {
+		} elseif ( 'percent_per_product' === $rule['discount_type'] || 'fixed_per_product' === $rule['discount_type'] ) {
 			$applies_to = 'line_item';
 		} elseif ( 'Product' === $campaign->get_discount_intent() ) {
 			$applies_to = 'product';
@@ -130,7 +130,7 @@ class CalcFactory {
 	public static function get_free_quantity( array $rule, array $item ) {
 		$cart_qty = $item['quantity'];
 
-		if ( $rule['recursive'] === 'no' && $rule['min'] > 0 ) {
+		if ( 'no' === $rule['recursive'] && $rule['min'] > 0 ) {
 			return $rule['get_quantity'];
 		}
 

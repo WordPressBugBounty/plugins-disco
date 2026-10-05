@@ -219,12 +219,12 @@ if ( ! class_exists( 'DiscoWebAppickAPI' ) ) {
 			$notification = sprintf( esc_html__( 'You will receive an email notification from "support@webappick.com" in your inbox within %s.', 'disco' ), $twenty4Hours );
 			$followUp     = esc_html__( 'Please Follow the email and Disco Support Team will get back with you shortly.', 'disco' );
 			$response    .= sprintf( '<p>%s %s %s</p>', $ticketSubmitted, $notification, $followUp );
-			$docLink      = sprintf( '<a class="disco-notice-primary-button" href="https://discoplugin.com/docs/" target="_blank"><span class="dashicons dashicons-media-document" aria-hidden="true"></span> %s</a>', esc_html__( 'Documentation', 'disco' ) );
+			$docLink      = sprintf( '<a class="disco-notice-primary-button" href="https://discoplugin.com/docs/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=support-ticket-notice&utm_content=docs-button" target="_blank"><span class="dashicons dashicons-media-document" aria-hidden="true"></span> %s</a>', esc_html__( 'Documentation', 'disco' ) );
 			$vidLink      = sprintf( '<a class="disco-notice-primary-button" href="https://www.youtube.com/c/WebAppick" target="_blank"><span class="dashicons dashicons-video-alt3" aria-hidden="true"></span> %s</a>', esc_html__( 'Video Tutorials', 'disco' ) );
 			$response    .= sprintf( '<p>%s %s</p>', $docLink, $vidLink );
 			$response    .= '<br><br><br>';
-			$toc          = sprintf( '<a class="disco-notice-link-text" href="https://discoplugin.com/terms-and-condition/" target="_blank">%s</a>', esc_html__( 'Terms & Conditions', 'disco' ) );
-			$pp           = sprintf( '<a class="disco-notice-link-text" href="https://discoplugin.com/privacy-policy/" target="_blank">%s</a>', esc_html__( 'Privacy Policy', 'disco' ) );
+			$toc          = sprintf( '<a class="disco-notice-link-text" href="https://discoplugin.com/terms-and-condition/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=support-ticket-notice&utm_content=terms-link" target="_blank">%s</a>', esc_html__( 'Terms & Conditions', 'disco' ) );
+			$pp           = sprintf( '<a class="disco-notice-link-text" href="https://discoplugin.com/privacy-policy/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=support-ticket-notice&utm_content=privacy-link" target="_blank">%s</a>', esc_html__( 'Privacy Policy', 'disco' ) );
 			/* translators: 1: Link to the Trams And Condition Page, 2: Link to the Privacy Policy Page */
 			$policy    = sprintf( esc_html__( 'Please read our %1$s and %2$s', 'disco' ), $toc, $pp );
 			$response .= sprintf( '<p style="font-size: 12px;">%s</p>', $policy );
@@ -347,7 +347,7 @@ if ( ! class_exists( 'DiscoWebAppickAPI' ) ) {
 			$user_id    = get_current_user_id();
 			$nonce      = wp_create_nonce( 'disco_pro_notice_nonce' );
 			$pluginName = sprintf( '<b>%s</b>', esc_html__( 'Disco', 'disco' ) );
-			$proLink    = sprintf( '<b><a href="https://discoplugin.com/" target="_blank">%s</a></b>', esc_html__( 'Premium', 'disco' ) );
+			$proLink    = sprintf( '<b><a href="https://discoplugin.com/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=review-notice&utm_content=premium-link" target="_blank">%s</a></b>', esc_html__( 'Premium', 'disco' ) );
 			$has_notice = false;
 
 			//submit review notice form data

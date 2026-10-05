@@ -57,12 +57,12 @@ class Settings_Page extends Base {
 			],
 			[
 				'label' => __( 'Get Pro', 'disco' ),
-				'url'   => 'https://discoplugin.com/pricing/?utm_source=plugin_dashboard&utm_medium=free-to-pro&utm_campaign=free-to-pro&utm_id=1',
+				'url'   => 'https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=plugins-list&utm_content=get-pro-link',
 				'class' => 'disco-custom-pro-link',
 			],
 			[
 				'label' => __( 'Docs', 'disco' ),
-				'url'   => 'https://discoplugin.com/docs/',
+				'url'   => 'https://discoplugin.com/docs/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=plugins-list&utm_content=docs-link',
 				'class' => 'disco-custom-docs-link',
 			],
 		];

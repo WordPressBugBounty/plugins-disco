@@ -95,7 +95,7 @@ const SelectFilterDropdown = ({ allFilters, condition, conditionGroup }) => {
 											{isGroupDisabled && (
 												<span className="disco:bg-red-500 disco:p-1 disco:text-xs disco:text-white disco:rounded-md">
 													<a
-														href="https://discoplugin.com/pricing/?utm_source=pro-text&utm_medium=free-to-pro&utm_campaign=free-to-pro&utm_id=1"
+														href="https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=rule-editor&utm_content=conditions-pro-filter"
 														target="_blank"
 														rel="noreferrer"
 														onClick={(e) =>
@@ -147,7 +147,7 @@ const SelectFilterDropdown = ({ allFilters, condition, conditionGroup }) => {
 															.disable && (
 															<span className="disco:bg-red-500 disco:px-1.5 disco:py-1 disco:text-xs disco:text-white disco:rounded-md ">
 																<a
-																	href="https://discoplugin.com/?utm_source=conditions&utm_medium=text_button&utm_campaign=free-pro&utm_id=1"
+																	href="https://discoplugin.com/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=rule-editor&utm_content=conditions-upgrade"
 																	target="_blank"
 																	rel="noreferrer"
 																	onClick={(e) => e.stopPropagation()}

@@ -4,7 +4,7 @@ export default function ProIcon() {
 	const handleClick = (e) => {
 		e.stopPropagation();
 		window.open(
-			'https://discoplugin.com/?utm_source=display_tab&utm_medium=text_button&utm_campaign=free-pro&utm_id=1',
+			'https://discoplugin.com/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=rule-editor&utm_content=pro-icon',
 			'_blank'
 		);
 	};

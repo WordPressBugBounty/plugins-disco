@@ -59,11 +59,11 @@ class FeatureUnlockNotice {
 						?>
 					</div>
 					<div class="disco-feature-unlock-buttons">
-						<a href="https://discoplugin.com/pricing/?utm_source=wp-notify-display&utm_medium=free-to-pro&utm_campaign=from-display-notification&utm_id=1" target="_blank" class="disco-compatible-button disco-notice-primary-button">
+						<a href="https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=feature-unlock-notice&utm_content=upgrade-button" target="_blank" class="disco-compatible-button disco-notice-primary-button">
 							<img class="disco-feature-unlock-icon" src="<?php echo esc_url( plugins_url( 'assets/img/disco-pro-crown-icon.svg', DISCO_PLUGIN_ABSOLUTE ) ); ?>" alt="Disco Logo">
 							Get Disco Pro
 						</a>
-						<a href="https://discoplugin.com/docs-category/display/" target="_blank" class="disco-notice-secondary-button disco-compatible-button">
+						<a href="https://discoplugin.com/docs-category/display/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=feature-unlock-notice&utm_content=docs-button" target="_blank" class="disco-notice-secondary-button disco-compatible-button">
 							Learn More
 							<img class="disco-feature-unlock-icon" src="<?php echo esc_url( plugins_url( 'assets/img/disco-learn-more-icon.svg', DISCO_PLUGIN_ABSOLUTE ) ); ?>" alt="Disco learn More Icon">
 						</a>

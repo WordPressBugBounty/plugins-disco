@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 export default function RequestIntegrationCard() {
 	const handleClick = () => {
 		window.open(
-			'https://discoplugin.com/my-account/support/',
+			'https://discoplugin.com/my-account/support/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=compatible-plugins&utm_content=request-integration',
 			'_blank',
 			'noopener,noreferrer'
 		);

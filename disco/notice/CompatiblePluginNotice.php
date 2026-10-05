@@ -80,11 +80,11 @@ class CompatiblePluginNotice {
 					</div>
 					<div class="disco-compatible-plugin-message">Boost your store’s power with advanced features, enjoy smooth plugin compatibility, and unlock the full potential of Disco Pro.</div>
 					<div class="disco-compatible-plugin-buttons">
-						<a href="https://discoplugin.com/?utm_source=Side_Banner&utm_medium=Banner&utm_campaign=Free-to-Pro&utm_id=1" target="_blank" class="disco-compatible-button disco-notice-primary-button">
+						<a href="https://discoplugin.com/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=compatible-plugin-notice&utm_content=upgrade-button" target="_blank" class="disco-compatible-button disco-notice-primary-button">
 							<img class="disco-compatible-plugin-icon" src="<?php echo esc_url( plugins_url( 'assets/img/disco-pro-crown-icon.svg', DISCO_PLUGIN_ABSOLUTE ) ); ?>" alt="Disco Logo">
 							Get Disco Pro
 						</a>
-						<a href="https://discoplugin.com/docs/" target="_blank" class="disco-notice-secondary-button disco-compatible-button">
+						<a href="https://discoplugin.com/docs/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=compatible-plugin-notice&utm_content=docs-button" target="_blank" class="disco-notice-secondary-button disco-compatible-button">
 							Learn More
 							<img class="disco-compatible-plugin-icon" src="<?php echo esc_url( plugins_url( 'assets/img/disco-learn-more-icon.svg', DISCO_PLUGIN_ABSOLUTE ) ); ?>" alt="Disco learn More Icon">
 						</a>

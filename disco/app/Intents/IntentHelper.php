@@ -65,7 +65,7 @@ trait IntentHelper {//phpcs:ignore
 				continue;
 			}
 
-			if ( $campaign->discount_intent === 'BOGO' ) {
+			if ( 'BOGO' === $campaign->discount_intent ) {
 				$campaign->discount_intent = 'BuyXGetX';
 
 				if ( in_array( $campaign->bogo_type, array( 'products', 'categories' ), true ) ) {
@@ -98,7 +98,7 @@ trait IntentHelper {//phpcs:ignore
 		 * Check if the discount type is BuyXGetY and the Y product is in the cart.
 		 * If so, add the Y product to the items array.
 		 */
-	    if ( $discount_type === 'BuyXGetY' ) {
+	    if ( 'BuyXGetY' === $discount_type ) {
 			$rule_ids           = $campaign->get_rule_product_ids();
 			$y_products         = $this->get_y_product( $rule_ids, $cart_items, $bogo_type );
 			$verified_yproducts = $this->verify_yproduct_in_cart( $rule_ids, $cart_items, $bogo_type );
@@ -135,7 +135,7 @@ trait IntentHelper {//phpcs:ignore
 			 * If so, add the Y product to the items array.
 			 * These products not need to be passed the filter.
 			 */
-			if ( $discount_type === 'BuyXGetY' && $verified_yproducts ) {
+			if ( 'BuyXGetY' === $discount_type && $verified_yproducts ) {
 			 	$items = array_merge( $items, $y_products );
 			}
 
@@ -327,7 +327,7 @@ trait IntentHelper {//phpcs:ignore
 	 */
 	public function is_multiple( $number, $of ) {
 		if ( $of >= $number ) {
-			return (float) $of % (float) $number === 0;
+			return 0 === (float) $of % (float) $number;
 		}
 
 		return false;
@@ -624,7 +624,7 @@ trait IntentHelper {//phpcs:ignore
 		$discounts[ $effective_product_id ]['discount_applies_to'][ $rule_key ] = CalcFactory::discount_applies_to( $rule, $campaign );
 
 		// Set Discounts.
-		if ( $rule['discount_type'] === 'free' ) {
+		if ( 'free' === $rule['discount_type'] ) {
 			$discounted_amount                             = array(
 				'price'                 => $product->get_price(),
 				'discount'              => 0,
@@ -1516,8 +1516,8 @@ trait IntentHelper {//phpcs:ignore
 	private function verify_bundle_rule( int $quantity, array $rule ): bool {
 		$rule_basis = abs( $rule['min'] );
 
-		if ( $rule['recursive'] === 'yes' ) {
-			if ( $quantity >= $rule_basis && ( $quantity % $rule_basis === 0 || $quantity > $rule_basis ) ) {
+		if ( 'yes' === $rule['recursive'] ) {
+			if ( $quantity >= $rule_basis && ( 0 === $quantity % $rule_basis || $quantity > $rule_basis ) ) {
 				return true;
 			}
 		} elseif ( $quantity >= $rule_basis ) {
@@ -1538,14 +1538,14 @@ trait IntentHelper {//phpcs:ignore
 
 		$verified = ( $quantity >= $rule['min'] && $quantity <= $rule['max'] );
 
-		if ( $verified && $rule['recursive'] === 'no' ) {
+		if ( $verified && 'no' === $rule['recursive'] ) {
 			return true;
 		}
 
 		$base_quantity = abs( $rule['min'] );
 
-		if ( $rule['recursive'] === 'yes' && ! isset( $rule['max'] ) ) {
-			if ( $quantity >= $base_quantity && $quantity % $base_quantity === 0 ) {
+		if ( 'yes' === $rule['recursive'] && ! isset( $rule['max'] ) ) {
+			if ( $quantity >= $base_quantity && 0 === $quantity % $base_quantity ) {
 				return true;
 			}
 		} elseif ( $quantity >= $base_quantity ) {
@@ -1574,14 +1574,14 @@ trait IntentHelper {//phpcs:ignore
 		/**
 		 * This code use for automatically apply free items rule for all product BOGO campaigns.
 		 */
-		if ( $rule['discount_type'] === 'free' && 'all' === $campaign->get_bogo_type() ) {
+		if ( 'free' === $rule['discount_type'] && 'all' === $campaign->get_bogo_type() ) {
 			return $this->verify_buyxgetx_rule( $quantity, $item, $rule );
 		}
 
 		/**
 		 * This code use for automatically apply free items rule product based BOGO campaigns.
 		 */
-		if ( $rule['discount_type'] === 'free' && 'products' === $campaign->get_bogo_type() ) {
+		if ( 'free' === $rule['discount_type'] && 'products' === $campaign->get_bogo_type() ) {
 			return $this->verify_xproduct_cart_rule( $campaign, $rule );
 		}
 

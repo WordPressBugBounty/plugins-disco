@@ -463,7 +463,7 @@ class Product { //phpcs:ignore
 	public function date_created() {
 		$date_created = $this->product->get_date_created();
 
-		if ( $date_created === null && $this->product->is_type( 'variation' ) ) {
+		if ( null === $date_created && $this->product->is_type( 'variation' ) ) {
 			$date_created = $this->parent->get_date_created();
 		}
 
@@ -482,7 +482,7 @@ class Product { //phpcs:ignore
 	public function date_updated() {
 		$date_created = $this->product->get_date_modified();
 
-		if ( $date_created === null && $this->product->is_type( 'variation' ) ) {
+		if ( null === $date_created && $this->product->is_type( 'variation' ) ) {
 			$date_created = $this->parent->get_date_modified();
 		}
 
@@ -706,13 +706,13 @@ class Product { //phpcs:ignore
 		// Remove the underscore prefix from the meta-key.
 		$first = $meta[0];
 
-		if ( $first === '_' ) {
+		if ( '_' === $first ) {
 			$meta = substr( $meta, 1 );
 		}
 
 		$value = $this->product->get_meta( $meta, true );
 
-		if ( $value === '' && $this->product->is_type( 'variation' ) ) {
+		if ( '' === $value && $this->product->is_type( 'variation' ) ) {
 			$value = $this->parent->get_meta( $meta, true );
 		}
 

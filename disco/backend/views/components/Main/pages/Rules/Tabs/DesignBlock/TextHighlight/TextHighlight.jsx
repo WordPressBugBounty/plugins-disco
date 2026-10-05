@@ -15,7 +15,7 @@ const TextHighlight = () => {
 	);
 	const isPro = useIsPro();
 	const tryNowUrl =
-		'https://discoplugin.com/pricing/?utm_source=bulk-table&utm_medium=free-to-pro&utm_campaign=from-display-page&utm_id=1';
+		'https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=text-highlight-upgrade';
 
 	const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ const TextHighlight = () => {
 			<TextHighlightCard />
 			<BadgeTitle
 				title={__('Text Highlight', 'disco')}
-				url="https://discoplugin.com/docs/display-text-highlight/"
+				url="https://discoplugin.com/docs/display-text-highlight/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=text-highlight-docs"
 				className="disco:mt-3"
 			/>
 			<BadgeActions>

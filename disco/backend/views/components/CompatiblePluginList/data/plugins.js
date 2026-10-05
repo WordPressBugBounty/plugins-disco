@@ -23,7 +23,7 @@ const getPlugins = () => [
 		],
 		proRequired: true,
 		learnMoreUrl:
-			'https://discoplugin.com/docs/acf-advanced-custom-fields/',
+			'https://discoplugin.com/docs/acf-advanced-custom-fields/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=compatible-plugins&utm_content=docs-acf',
 		icon: acfIcon,
 	},
 	{
@@ -42,7 +42,7 @@ const getPlugins = () => [
 		],
 		proRequired: true,
 		learnMoreUrl:
-			'https://discoplugin.com/docs/wpml-woocommerce-multilingual/',
+			'https://discoplugin.com/docs/wpml-woocommerce-multilingual/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=compatible-plugins&utm_content=docs-wpml',
 		icon: wpmlIcon,
 	},
 	{
@@ -61,7 +61,7 @@ const getPlugins = () => [
 		],
 		proRequired: true,
 		learnMoreUrl:
-			'https://discoplugin.com/docs/fox-currency-switcher-woocs/',
+			'https://discoplugin.com/docs/fox-currency-switcher-woocs/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=compatible-plugins&utm_content=docs-woocs',
 		icon: foxIcon,
 	},
 	{
@@ -80,7 +80,7 @@ const getPlugins = () => [
 		],
 		proRequired: true,
 		learnMoreUrl:
-			'https://discoplugin.com/docs/curcy-multi-currency-for-woocommerce/',
+			'https://discoplugin.com/docs/curcy-multi-currency-for-woocommerce/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=compatible-plugins&utm_content=docs-curcy',
 		icon: curcyIcon,
 	},
 	{
@@ -99,7 +99,7 @@ const getPlugins = () => [
 			__('Geo Pricing', 'disco'),
 		],
 		proRequired: true,
-		learnMoreUrl: 'https://discoplugin.com/docs/aelia-currency-switcher/',
+		learnMoreUrl: 'https://discoplugin.com/docs/aelia-currency-switcher/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=compatible-plugins&utm_content=docs-aelia',
 		icon: aeliaIcon,
 	},
 ];

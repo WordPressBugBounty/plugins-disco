@@ -14,7 +14,7 @@ const SingleSelect = ({
 	className = '',
 	buttonClass = '',
 	proItems = [],
-	proUrl = 'https://discoplugin.com/pricing/?utm_source=pro-text&utm_medium=free-to-pro&utm_campaign=free-to-pro&utm_id=1',
+	proUrl = 'https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=rule-editor&utm_content=pro-select',
 }) => {
 	return (
 		<Listbox

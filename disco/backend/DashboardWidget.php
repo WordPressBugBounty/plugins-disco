@@ -63,9 +63,9 @@ class DashboardWidget extends Base {
 		$new_campaign_url = admin_url( 'admin.php?page=disco-create-discount#/disco' );
 		$campaigns_url    = admin_url( 'admin.php?page=disco-create-discount' );
 		$settings_url     = admin_url( 'admin.php?page=disco-create-discount#/settings' );
-		$pro_url          = 'https://discoplugin.com/?utm_source=wp_wedget&utm_medium=free-pro&utm_campaign=free-pro&utm_id=1#pricing';
-		$blog_url         = 'https://discoplugin.com/blog/';
-		$docs_url         = 'https://discoplugin.com/docs/';
+		$pro_url          = 'https://discoplugin.com/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=dashboard-widget&utm_content=unlock-pro-button#pricing';
+		$blog_url         = 'https://discoplugin.com/blog/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=dashboard-widget&utm_content=blog-link';
+		$docs_url         = 'https://discoplugin.com/docs/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=dashboard-widget&utm_content=docs-link';
 		$support_url      = 'https://wordpress.org/support/plugin/disco/';
 		$review_url       = 'https://wordpress.org/support/plugin/disco/reviews/#new-post';
 		?>
@@ -287,6 +287,16 @@ class DashboardWidget extends Base {
 			if ( empty( $title ) || empty( $link ) ) {
 				continue;
 			}
+
+			$link = add_query_arg(
+				array(
+					'utm_source'   => 'disco-plugin',
+					'utm_medium'   => 'in-plugin',
+					'utm_campaign' => 'dashboard-widget',
+					'utm_content'  => 'blog-post',
+				),
+				$link
+			);
 
 			// Category from embedded terms.
 			$category = '';

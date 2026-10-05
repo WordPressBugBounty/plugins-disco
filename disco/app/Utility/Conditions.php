@@ -142,9 +142,9 @@ class Conditions { // phpcs:ignore
 			if ( $first ) {
 				$result = $condition;
 				$first  = false;
-			} elseif ( $operator === 'and' ) {
+			} elseif ( 'and' === $operator ) {
 				$result = $result && $condition;// phpcs:ignore
-			} elseif ( $operator === 'or' ) {
+			} elseif ( 'or' === $operator ) {
 				$result = $result || $condition;// phpcs:ignore
 			}
 		}//end foreach
@@ -225,12 +225,12 @@ class Conditions { // phpcs:ignore
 		}
 
 		// If $compare is an array, check if it is a number range. Only for between condition.
-		if ( $condition === 'between' && is_array( $compare ) && count( $compare ) === 2 ) {
+		if ( 'between' === $condition && is_array( $compare ) && 2 === count( $compare ) ) {
 			$type = 'integer';
 		}
 
 		// If $compare is an array, check if it is a date range. Only for date between condition.
-		if ( $condition === 'date_between'
+		if ( 'date_between' === $condition
             && is_array( $compare )
             && count( $compare ) === 2
             && strtotime( $compare[0] )
@@ -499,9 +499,9 @@ class Conditions { // phpcs:ignore
 			if ( $first_group ) {
 				$final_result = $group_result;
 				$first_group  = false;
-			} elseif ( $group->base_operator === 'and' ) {
+			} elseif ( 'and' === $group->base_operator ) {
 				$final_result = $final_result && $group_result; // phpcs:ignore
-			} elseif ( $group->base_operator === 'or' ) {
+			} elseif ( 'or' === $group->base_operator ) {
 				$final_result = $final_result || $group_result; // phpcs:ignore
 			}
 		}
@@ -565,7 +565,7 @@ class Conditions { // phpcs:ignore
 			return false;
 		}
 
-		if ( $filter->compare_with === 'item_quantity' ) {
+		if ( 'item_quantity' === $filter->compare_with ) {
 			$total_quantity = array_sum(
 				array_map(
 					function( $item ) {
@@ -580,7 +580,7 @@ class Conditions { // phpcs:ignore
 			);
 
 			$compare_value = $total_quantity;
-		} elseif ( $filter->compare_with === 'item_count' ) {
+		} elseif ( 'item_count' === $filter->compare_with ) {
 			$compare_value = count( $matched_products );
 		} else {
 			return false;

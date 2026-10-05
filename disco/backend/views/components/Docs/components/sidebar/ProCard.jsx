@@ -3,7 +3,7 @@ import { Zap } from 'lucide-react';
 import checkIcon from '../../../../asset/img/icons/check-icon.svg';
 
 const PRICING_URL =
-	'https://discoplugin.com/?utm_source=doc_page&utm_medium=banner&utm_campaign=free-pro&utm_id=1#pricing';
+	'https://discoplugin.com/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=help-docs&utm_content=sidebar-pro-card#pricing';
 
 export default function DiscoProCard() {
 	const proFeatures = [

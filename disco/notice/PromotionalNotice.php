@@ -62,7 +62,7 @@ class PromotionalNotice {
 		?>
 		<div class="disco-promotional-notice-wrapper">
 			<div class="notice notice-success is-dismissible disco-promotional-notice">
-                <a href="https://discoplugin.com/pricing/?utm_source=Floating-Holiday&utm_medium=free-to-pro&utm_campaign=H-Holiday&utm_id=1" target="_blank">
+                <a href="https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=promo-notice&utm_content=holiday-offer" target="_blank">
                     <img src="<?php echo esc_url( plugins_url( 'assets/img/promotional/holiday_promotional_banner_2025.png', DISCO_PLUGIN_ABSOLUTE ) ); ?>" alt="Promotional Banner" style="max-width: 100%; height: auto;">
                 </a>
 			</div>

@@ -96,7 +96,7 @@ const Settings = () => {
 							'disco'
 						)}
 						className="disco:mb-2"
-						url="https://discoplugin.com/docs/product-price-type/"
+						url="https://discoplugin.com/docs/product-price-type/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=settings&utm_content=docs-product-price-type"
 					>
 						<SingleSelectRadio
 							options={items.product_price_type}
@@ -114,7 +114,7 @@ const Settings = () => {
 							'disco'
 						)}
 						className="disco:mb-2"
-						url="https://discoplugin.com/docs/minimum-maximum-discount-amount/"
+						url="https://discoplugin.com/docs/minimum-maximum-discount-amount/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=settings&utm_content=docs-min-max-discount"
 					>
 						<SingleSelectRadio
 							options={items.min_max_discount_amount}
@@ -134,7 +134,7 @@ const Settings = () => {
 							'disco'
 						)}
 						className="disco:mb-2"
-						url="https://discoplugin.com/docs/coupons-campaigns-behavior/"
+						url="https://discoplugin.com/docs/coupons-campaigns-behavior/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=settings&utm_content=docs-coupon-behavior"
 					>
 						<SingleSelect
 							className="disco:bg-white disco-test-select-class"
@@ -157,7 +157,7 @@ const Settings = () => {
 							'disco'
 						)}
 						className="disco:mb-2"
-						url="https://discoplugin.com/docs/woocommerce-on-sale-badge/"
+						url="https://discoplugin.com/docs/woocommerce-on-sale-badge/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=settings&utm_content=docs-on-sale-badge"
 					>
 						<SingleSelect
 							className="disco:bg-white disco-test-select-class"
@@ -177,7 +177,7 @@ const Settings = () => {
 							'disco'
 						)}
 						className="disco:mb-2 "
-						url="https://discoplugin.com/docs/strikeout-price-settings/"
+						url="https://discoplugin.com/docs/strikeout-price-settings/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=settings&utm_content=docs-strikeout-price"
 					>
 						<div className="disco:flex disco:items-center disco:gap-8">
 							{Object.keys(items.show_strike_through).map(

@@ -412,7 +412,7 @@ describe('TextHighlight Component', () => {
 
 			expect(windowOpenSpy).toHaveBeenCalledTimes(1);
 			expect(windowOpenSpy).toHaveBeenCalledWith(
-				'https://discoplugin.com/pricing/?utm_source=bulk-table&utm_medium=free-to-pro&utm_campaign=from-display-page&utm_id=1'
+				'https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=text-highlight-upgrade'
 			);
 
 			windowOpenSpy.mockRestore();

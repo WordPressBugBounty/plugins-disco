@@ -128,7 +128,7 @@ class AttributeFactory {
             }
 
             // If the class is Cart or Customer, we don't need to pass any info.
-            if ( $class_name === Cart::class || $class_name === Customer::class ) {
+            if ( Cart::class === $class_name || Customer::class === $class_name ) {
                 return array(
 					new $class_name,
 					$method,
@@ -136,12 +136,12 @@ class AttributeFactory {
                 );
             }
 
-			if ( $class_name === CustomerHistory::class || $class_name === ProductHistory::class ) {
+			if ( CustomerHistory::class === $class_name || ProductHistory::class === $class_name ) {
 				// remove prefix from method name.
 				$method = str_replace( $prefix . '_', '', $method_name );
 			}
 
-			if ( $class_name === ProductHistory::class ) {
+			if ( ProductHistory::class === $class_name ) {
 				$product = $info['product'];
 				\assert( $product instanceof \WC_Product );
 
@@ -152,7 +152,7 @@ class AttributeFactory {
 				);
 			}
 
-            if ( $class_name === Product::class ) {
+            if ( Product::class === $class_name ) {
                 $product = $info['product'];
                 \assert( $product instanceof \WC_Product );
 

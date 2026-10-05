@@ -10,7 +10,7 @@ const channels = [
 		icon: '✉️',
 		iconBg: 'disco:bg-green-100',
 		pro: false,
-		link: 'https://discoplugin.com/my-account/support/',
+		link: 'https://discoplugin.com/my-account/support/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=help-docs&utm_content=support-ticket',
 	},
 	{
 		title: 'WordPress.org Forums',
@@ -26,7 +26,7 @@ const channels = [
 		icon: '⚡',
 		iconBg: 'disco:bg-yellow-100',
 		pro: true,
-		link: 'https://discoplugin.com/my-account/support/',
+		link: 'https://discoplugin.com/my-account/support/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=help-docs&utm_content=support-ticket',
 	},
 ];
 

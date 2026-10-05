@@ -6,6 +6,7 @@ import DiscoSidebar from './components/sidebar/Sidebar';
 import DiscoSupportSection from './components/support/SupportSection';
 import initialData from './data/docsData';
 import getDocs from './utils/fetchDocs';
+import withUtm from './utils/withUtm';
 
 export default function App() {
 	const [docsData, setDocsData] = useState(initialData);
@@ -50,7 +51,7 @@ export default function App() {
 		? docsData.flatMap((section) =>
 				section.items.filter(itemMatches).map((item) => ({
 					title: item.title?.rendered || item.title,
-					link: item.link,
+					link: withUtm(item.link, 'help-docs', 'search-result'),
 					section: section.title,
 					excerpt: stripHtml(
 						item.excerpt?.rendered || item.content?.rendered || ''

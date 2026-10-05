@@ -194,7 +194,7 @@ class Settings {
 	public static function get_tax_settings(): array {
 		static $settings = null;
 
-		if ( $settings === null ) {
+		if ( null === $settings ) {
 			$settings = array(
 				'enabled'     => wc_tax_enabled(),
 				'include_tax' => get_option( 'woocommerce_tax_display_shop', 'excl' ) === 'incl',

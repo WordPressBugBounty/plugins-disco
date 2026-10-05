@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import { Lock } from 'lucide-react';
 
 const PRICING_URL =
-	'https://discoplugin.com/?utm_source=analytics&utm_medium=Analytics-Free&utm_id=free-to-pro';
+	'https://discoplugin.com/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=analytics&utm_content=pro-lock-overlay';
 
 /**
  * A blurred "Pro only" overlay shown over locked analytics content for non-Pro

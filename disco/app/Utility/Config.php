@@ -54,7 +54,7 @@ class Config {
 			return false;
 		}
 
-		if ( $this->config['products'][0] === 'all' ) {
+		if ( 'all' === $this->config['products'][0] ) {
 			return true;
 		}
 

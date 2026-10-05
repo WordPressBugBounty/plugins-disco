@@ -15,7 +15,7 @@ const ProductBadges = () => {
 	const isPro = useIsPro();
 
 	const tryNowUrl =
-		'https://discoplugin.com/pricing/?utm_source=bulk-table&utm_medium=free-to-pro&utm_campaign=from-display-page&utm_id=1';
+		'https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=product-badge-upgrade';
 
 	const handleStatus = (status) => {
 		dispatch(updateBadge({ name: 'enable', value: status }));
@@ -26,7 +26,7 @@ const ProductBadges = () => {
 			<ProductBadgeCard />
 			<BadgeTitle
 				title={__('Product Badge', 'disco')}
-				url="https://discoplugin.com/docs/display-product-badge-in-woocommerce/"
+				url="https://discoplugin.com/docs/display-product-badge-in-woocommerce/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=product-badge-docs"
 				className="disco:mt-3"
 			/>
 			<BadgeActions>

@@ -72,7 +72,7 @@ class DropDown { // phpcs:ignore
 		}
 
 		if ( 'select' === $type ) {
-			if ( isset( $key['multiple'] ) && $key['multiple'] === false ) {
+			if ( isset( $key['multiple'] ) && false === $key['multiple'] ) {
 				unset(
 					$condition['contain'],
 					$condition['not_contain'],

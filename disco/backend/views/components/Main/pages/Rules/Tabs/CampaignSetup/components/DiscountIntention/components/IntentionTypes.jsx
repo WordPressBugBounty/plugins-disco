@@ -96,7 +96,7 @@ const IntentionTypes = () => {
 								<div className="disco:flex disco:gap-1 disco:items-center">
 									BOGO{' '}
 									<a
-										href="https://discoplugin.com/pricing/?utm_source=pro-text&utm_medium=free-to-pro&utm_campaign=free-to-pro&utm_id=1"
+										href="https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=rule-editor&utm_content=intent-pro"
 										target="_blank"
 										rel="noreferrer"
 										className="disco:text-sm disco:text-red-500! disco:focus:outline-hidden! disco:visited:text-red-500 disco:focus:ring-0!"

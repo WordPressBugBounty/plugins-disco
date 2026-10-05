@@ -130,7 +130,7 @@ class CalcFixed extends CalcAbstract {
 		 * Here no need to check for min and max quantity.
 		 */
 		if (
-            $this->discount_intent === 'BuyXGetY'
+            'BuyXGetY' === $this->discount_intent
             && ! empty( $rule_ids )
             && (
                 in_array( $item_id, $rule_ids, true )

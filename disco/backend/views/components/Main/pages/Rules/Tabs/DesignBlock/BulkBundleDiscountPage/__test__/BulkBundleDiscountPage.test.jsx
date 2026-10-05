@@ -389,7 +389,7 @@ describe('BulkBundleDiscountPage Component', () => {
 			await userEvent.click(tryNowButton);
 
 			expect(mockWindowOpen).toHaveBeenCalledWith(
-				'https://discoplugin.com/pricing/?utm_source=bulk-table&utm_medium=free-to-pro&utm_campaign=from-display-page&utm_id=1'
+				'https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=bulk-table-upgrade'
 			);
 		});
 
@@ -414,7 +414,7 @@ describe('BulkBundleDiscountPage Component', () => {
 			await userEvent.click(tryNowButton);
 
 			expect(mockWindowOpen).toHaveBeenCalledWith(
-				'https://discoplugin.com/pricing/?utm_source=bundle-table&utm_medium=free-to-pro&utm_campaign=from-display-page&utm_id=1'
+				'https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=bundle-table-upgrade'
 			);
 		});
 	});
@@ -435,7 +435,7 @@ describe('BulkBundleDiscountPage Component', () => {
 			const docLink = screen.getByText('Learn More');
 			expect(docLink).toHaveAttribute(
 				'href',
-				'https://discoplugin.com/docs/display-woocommerce-bulk-discount-table/'
+				'https://discoplugin.com/docs/display-woocommerce-bulk-discount-table/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=bulk-table-docs'
 			);
 		});
 
@@ -454,7 +454,7 @@ describe('BulkBundleDiscountPage Component', () => {
 			const docLink = screen.getByText('Learn More');
 			expect(docLink).toHaveAttribute(
 				'href',
-				'https://discoplugin.com/docs/display-bundle-discount-table-in-woocommerce/'
+				'https://discoplugin.com/docs/display-bundle-discount-table-in-woocommerce/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=display-settings&utm_content=bundle-table-docs'
 			);
 		});
 	});

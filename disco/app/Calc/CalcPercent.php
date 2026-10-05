@@ -132,7 +132,7 @@ class CalcPercent extends CalcAbstract {
 		 */
 
 		if (
-            $this->discount_intent === 'BuyXGetY'
+            'BuyXGetY' === $this->discount_intent
             && ! empty( $rule_ids )
             && (
                 in_array( $item_id, $rule_ids, true )

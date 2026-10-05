@@ -9,7 +9,7 @@ const DiscountIntention = () => {
 			<ComponentBox className="disco:mt-5 disco:rounded-xl disco:overflow-hidden">
 				<CommonHeadingBox
 					title={__('Discount Intent', 'disco')}
-					url='https://discoplugin.com/docs/discount-intent/'
+					url='https://discoplugin.com/docs/discount-intent/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=rule-editor&utm_content=docs-discount-intent'
 				/>
 				<div className="disco:mt-2 ">
 					<CampaignTypes/>

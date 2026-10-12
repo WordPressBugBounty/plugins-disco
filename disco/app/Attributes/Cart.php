@@ -8,6 +8,8 @@
 
 namespace Disco\App\Attributes;
 
+use Disco\App\Utility\Settings;
+
 /**
  * Class Product
  *
@@ -83,8 +85,7 @@ class Cart {
 	 * @return float
 	 */
 	public function cart_subtotal() {
-		// @phpstan-ignore-next-line
-		return apply_filters( 'disco_convert_price', (float) WC()->cart->get_subtotal() );
+		return apply_filters( 'disco_convert_price', $this->resolve_subtotal( false ) );
 	}
 
 	/**
@@ -93,8 +94,7 @@ class Cart {
 	 * @return float
 	 */
 	public function cart_subtotal_with_tax() {
-		// @phpstan-ignore-next-line
-		return apply_filters( 'disco_convert_price', (float) WC()->cart->subtotal );
+		return apply_filters( 'disco_convert_price', $this->resolve_subtotal( true ) );
 	}
 
 	/**
@@ -150,6 +150,109 @@ class Cart {
 		}
 
 		return $products;
+	}
+
+	/**
+	 * Cart subtotal, whether or not WooCommerce has totalled the cart yet.
+	 *
+	 * WC_Cart::calculate_totals() calls reset_totals() before it fires
+	 * woocommerce_before_calculate_totals, so every total reads 0 for the whole
+	 * of that hook. The discount engine runs there, which meant a condition on
+	 * the cart subtotal was always compared against 0: a BOGO campaign gated on
+	 * "subtotal is at least 100" never qualified and its free item was never
+	 * added, on a cart of any size.
+	 *
+	 * When the totals are not available the subtotal is summed from the cart
+	 * contents instead.
+	 *
+	 * @param bool $with_tax Whether to include tax.
+	 */
+	private function resolve_subtotal( bool $with_tax ): float {
+		$cart = WC()->cart;
+
+		if ( ! $cart instanceof \WC_Cart ) {
+			return 0.0;
+		}
+
+		if ( $with_tax ) {
+			// @phpstan-ignore-next-line
+			$subtotal = (float) $cart->subtotal;
+		} else {
+			$subtotal = (float) $cart->get_subtotal();
+		}
+
+		if ( $subtotal > 0.0 || $cart->is_empty() ) {
+			return $subtotal;
+		}
+
+		return $this->subtotal_from_contents( $cart, $with_tax );
+	}
+
+	/**
+	 * Sum the cart lines without relying on WooCommerce's totals.
+	 *
+	 * @param \WC_Cart $cart     Cart to sum.
+	 * @param bool     $with_tax Whether to include tax.
+	 */
+	private function subtotal_from_contents( \WC_Cart $cart, bool $with_tax ): float {
+		$subtotal = 0.0;
+
+		foreach ( $cart->get_cart() as $item ) {
+			$subtotal += $this->line_subtotal( $item, $with_tax );
+		}
+
+		return $subtotal;
+	}
+
+	/**
+	 * What one cart line contributes to the subtotal.
+	 *
+	 * The price comes from the product's own meta rather than get_price(), for
+	 * the same reason CalcFactory::get_cart_subtotal() does it: get_price() runs
+	 * through the discount filter, so a condition would end up gated on the
+	 * discount it is deciding.
+	 *
+	 * Free BOGO lines contribute nothing. They are priced at zero once the
+	 * engine has finished, but at this point in the pass they may still carry
+	 * their original price and would inflate the figure a condition is tested
+	 * against.
+	 *
+	 * @param array $item     Cart item.
+	 * @param bool  $with_tax Whether to include tax.
+	 */
+	private function line_subtotal( array $item, bool $with_tax ): float {
+		if ( ! empty( $item['is_free_product'] ) ) {
+			return 0.0;
+		}
+
+		if ( empty( $item['data'] ) || ! $item['data'] instanceof \WC_Product ) {
+			return 0.0;
+		}
+
+		$quantity = (int) ( $item['quantity'] ?? 0 );
+
+		if ( $quantity < 1 ) {
+			return 0.0;
+		}
+
+		$product_id = (int) $item['product_id'];
+
+		if ( ! empty( $item['variation_id'] ) ) {
+			$product_id = (int) $item['variation_id'];
+		}
+
+		$price = Settings::get_price_from_meta( $product_id );
+
+		if ( ! $with_tax ) {
+			return $price * $quantity;
+		}
+
+		$args = array(
+			'qty'   => $quantity,
+			'price' => $price,
+		);
+
+		return (float) wc_get_price_including_tax( $item['data'], $args );
 	}
 
 }

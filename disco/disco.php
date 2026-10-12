@@ -9,7 +9,7 @@
  * Plugin Name:       Disco
  * Plugin URI:        https://webappick.com/
  * Description:       Create logical, dynamic and automated discounts for your WooCommerce Store based on product, cart, and cart item information.
- * Version:           1.4.23
+ * Version:           1.4.24
  * Author:            WebAppick
  * Author URI:        https://webappick.com/
  * License:           GPLv3 or later

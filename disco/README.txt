@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: bundle discount plugin, free shipping, product discount, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.1.3
-Stable tag: 1.4.23
+Stable tag: 1.4.24
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -517,6 +517,9 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.4.24(Oct 12, 2026) =
+* Fix: Cart subtotal not calculations issue,
+
 = 1.4.23(Oct 08, 2026) =
 * Fix: Free shipping not showing in cart page issue.
 * Tweak: WordPress compatibility checked with version 7.1.3, no issue found.

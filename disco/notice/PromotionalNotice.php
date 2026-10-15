@@ -5,8 +5,20 @@ namespace Disco\Notice;
 use Disco\App\Disco;
 
 class PromotionalNotice {
+
+	/**
+	 * User meta recording that this banner was dismissed.
+	 *
+	 * Read here and written by Ajax::dismiss_promotional_notice(). Each campaign
+	 * gets a fresh key so a new banner is not hidden by last season's dismissal;
+	 * keeping the key in one place stops the two sides drifting apart, which is
+	 * how dismissing the banner came to store a key this class never read, so
+	 * it reappeared on the next page load.
+	 */
+	public const DISMISS_META_KEY = 'disco_halloween_banner_2026';
+
 	public function __construct() {
-//		add_action( 'admin_notices', [ $this, 'display_promotional_notice' ] );
+		add_action( 'admin_notices', [ $this, 'display_promotional_notice' ] );
 	}
 
 	/**
@@ -44,8 +56,8 @@ class PromotionalNotice {
 
 		$current_time = time();
 
-		$promo_start  = strtotime('2025-12-01 00:00:00');
-		$promo_end    = strtotime('2026-01-05 11:59:00');
+		$promo_start  = strtotime('2026-10-01 00:00:00');
+		$promo_end    = strtotime('2026-10-31 11:59:00');
 
 		// If not in promotion window, don't show
 		if ( $current_time < $promo_start || $current_time > $promo_end ) {
@@ -53,7 +65,7 @@ class PromotionalNotice {
 		}
 
 		$user_id = get_current_user_id();
-		$dismiss = get_user_meta( $user_id, 'disco_promotional_holiday_banner_2025', true );
+		$dismiss = get_user_meta( $user_id, self::DISMISS_META_KEY, true );
 
 		if ( $dismiss === 'never' ) {
 			return; // User dismissed permanently
@@ -62,8 +74,8 @@ class PromotionalNotice {
 		?>
 		<div class="disco-promotional-notice-wrapper">
 			<div class="notice notice-success is-dismissible disco-promotional-notice">
-                <a href="https://discoplugin.com/pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=promo-notice&utm_content=holiday-offer" target="_blank">
-                    <img src="<?php echo esc_url( plugins_url( 'assets/img/promotional/holiday_promotional_banner_2025.png', DISCO_PLUGIN_ABSOLUTE ) ); ?>" alt="Promotional Banner" style="max-width: 100%; height: auto;">
+                <a href="https://discoplugin.com/#pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=promo-notice&utm_content=halloween-offer-2026" target="_blank">
+                    <img src="<?php echo esc_url( plugins_url( 'assets/img/promotional/halloween_banner_2026.png', DISCO_PLUGIN_ABSOLUTE ) ); ?>" alt="Promotional Banner" class="disco-promotional-banner" style="max-width: 100%; height: auto;">
                 </a>
 			</div>
 		</div>

@@ -11,6 +11,8 @@
 
 namespace Disco\Ajax;
 
+use Disco\Notice\PromotionalNotice;
+
 use Disco\Engine\Base;
 
 /**
@@ -91,7 +93,7 @@ class Ajax extends Base {
 			wp_send_json_error( [ 'message' => 'Unauthorized request' ], 403 );
 		}
 
-		update_user_meta( get_current_user_id(), 'disco_promotional_holiday_banner_2025', 'never' );
+		update_user_meta( get_current_user_id(), PromotionalNotice::DISMISS_META_KEY, 'never' );
 
 		wp_send_json_success( [ 'message' => 'Notice dismissed' ] );
 	}

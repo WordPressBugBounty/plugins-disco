@@ -18,7 +18,7 @@ class PromotionalNotice {
 	public const DISMISS_META_KEY = 'disco_halloween_banner_2026';
 
 	public function __construct() {
-		add_action( 'admin_notices', [ $this, 'display_promotional_notice' ] );
+		// add_action( 'admin_notices', [ $this, 'display_promotional_notice' ] );
 	}
 
 	/**

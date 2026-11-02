@@ -3,8 +3,8 @@ Contributors: webappick,wahid0003
 Donate link: https://webappick.com/
 Tags: bundle discount plugin, free shipping, product discount, bulk discount, bogo
 Requires at least: 5.9
-Tested up to: 7.1.3
-Stable tag: 1.4.25
+Tested up to: 7.1.4
+Stable tag: 1.4.26
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -517,6 +517,10 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.4.26(Nov 02, 2026) =
+* Removed: Halloween sale banner removed.
+* Tweak: WordPress compatibility checked with version 7.1.4, no issue found. 
+
 = 1.4.25(Oct 15, 2026) =
 * Added: Halloween sale banner added.
 * Tweak: WooCommerce compatibility checked with version 11.2.1, no issue found. 

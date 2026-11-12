@@ -31,6 +31,7 @@
                 "vimeo/psalm": "@stable"
             },
             "time": "2022-12-16T13:23:02+00:00",
+            "published-time": "2022-12-16T13:25:02+00:00",
             "type": "library",
             "extra": {
                 "wordpress-install-dir": "vendor/wordpress/wordpress"
@@ -97,6 +98,7 @@
                 "vimeo/psalm": "^4.27.0"
             },
             "time": "2023-01-09T06:27:09+00:00",
+            "published-time": "2023-01-09T06:29:07+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -157,6 +159,7 @@
                 "wp-coding-standards/wpcs": "^2.0"
             },
             "time": "2023-06-23T08:54:05+00:00",
+            "published-time": "2023-06-23T08:54:28+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -208,6 +211,7 @@
                 "wp-coding-standards/wpcs": "^2.0"
             },
             "time": "2023-06-23T09:01:05+00:00",
+            "published-time": "2023-06-23T09:01:24+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {

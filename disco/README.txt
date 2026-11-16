@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: bundle discount plugin, free shipping, product discount, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.1.4
-Stable tag: 1.4.28
+Stable tag: 1.4.29
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -364,14 +364,6 @@ Whether you're just starting out or running a high-volume store, Disco provides 
 
 This plugin connects to the following third-party services. No data is sent to any of them without explicit admin action.
 
-**ActiveCampaign (activecampaign.com)**
-
-Used for an optional email newsletter subscription. Data is sent only when an admin voluntarily submits their email address through the opt-in form on the plugin's own admin pages — nothing is sent automatically. The submitted email address (and optional name) is sent to ActiveCampaign to subscribe to the WebAppick newsletter. The email address is not stored locally — only a flag in the options table recording that the opt-in form was completed.
-
-* Service: [ActiveCampaign](https://www.activecampaign.com/)
-* Terms of Use: [Terms of Service](https://www.activecampaign.com/legal/terms-of-service)
-* Privacy Policy: [Privacy Policy](https://www.activecampaign.com/legal/privacy-policy)
-
 **LiveChat (livechat.com)**
 
 Used as an optional support chat widget on the plugin's own admin pages. It is disabled by default and only loads after explicit admin opt-in via a consent dialog. Once enabled, the LiveChat widget script is loaded from livechat.com and chat messages are processed by LiveChat.
@@ -517,6 +509,12 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.4.29(Nov 16, 2026) =
+* Added: Black Friday sale banner added.
+* Fix: Coupons not applying on stores that saved the old "Coupon wins" setting.
+* Fix: Promotional banner dismiss sending the request twice issue.
+* Removed: Newsletter subscription form removed from the empty campaign page.
+
 = 1.4.28(Nov 12, 2026) =
 * Tweak: WooCommerce compatibility checked with version 11.3.0, no issue found.
 

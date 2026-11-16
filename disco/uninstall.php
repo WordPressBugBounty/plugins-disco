@@ -60,6 +60,9 @@ function disco_uninstall_multisite() {
 function disco_uninstall() { // phpcs:ignore
 	global $wp_roles;
 
+	// Flag left by the removed newsletter opt-in form (removed in DIS-924).
+	delete_option( 'disco_active_campaign_subscribe' );
+
 	// Ensure $wp_roles is properly initialized
 	if ( ! isset( $wp_roles ) ) {
 		if ( ! class_exists( 'WP_Roles' ) ) {

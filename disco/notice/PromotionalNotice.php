@@ -15,10 +15,10 @@ class PromotionalNotice {
 	 * how dismissing the banner came to store a key this class never read, so
 	 * it reappeared on the next page load.
 	 */
-	public const DISMISS_META_KEY = 'disco_halloween_banner_2026';
+	public const DISMISS_META_KEY = 'disco_black_friday_banner_2026';
 
 	public function __construct() {
-		// add_action( 'admin_notices', [ $this, 'display_promotional_notice' ] );
+		add_action( 'admin_notices', [ $this, 'display_promotional_notice' ] );
 	}
 
 	/**
@@ -56,8 +56,8 @@ class PromotionalNotice {
 
 		$current_time = time();
 
-		$promo_start  = strtotime('2026-10-01 00:00:00');
-		$promo_end    = strtotime('2026-10-31 11:59:00');
+		$promo_start  = strtotime('2026-11-12 00:00:00');
+		$promo_end    = strtotime('2026-12-07 23:59:59');
 
 		// If not in promotion window, don't show
 		if ( $current_time < $promo_start || $current_time > $promo_end ) {
@@ -74,9 +74,7 @@ class PromotionalNotice {
 		?>
 		<div class="disco-promotional-notice-wrapper">
 			<div class="notice notice-success is-dismissible disco-promotional-notice">
-                <a href="https://discoplugin.com/#pricing/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=promo-notice&utm_content=halloween-offer-2026" target="_blank">
-                    <img src="<?php echo esc_url( plugins_url( 'assets/img/promotional/halloween_banner_2026.png', DISCO_PLUGIN_ABSOLUTE ) ); ?>" alt="Promotional Banner" class="disco-promotional-banner" style="max-width: 100%; height: auto;">
-                </a>
+                <?php include DISCO_PLUGIN_ROOT . 'notice/banners/black_friday_banner_2026.php'; ?>
 			</div>
 		</div>
 		<?php

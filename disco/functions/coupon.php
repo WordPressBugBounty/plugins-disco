@@ -26,10 +26,13 @@ if( ! function_exists( 'disco_get_coupon_discount' ) ) {
 	 * @return float
 	 */
 	function disco_disable_coupon_application( $valid, $coupon, $discount ) {
-		if ( Settings::get( 'discount_priority_type' ) === 'both' ) {
-			return $valid; // Allow coupon validation if the setting is enabled.
+		// Only "Disco only" blocks coupons. Any other value allows them, including
+		// "woocommerce_coupon" ("Coupon wins"), which 1.3.50 removed from the settings
+		// but is still saved on older stores; it used to block every coupon.
+		if ( Settings::get( 'discount_priority_type' ) !== 'disco_campaign' ) {
+			return $valid;
 		}
-		return false; // This will prevent all coupons from being valid
+		return false; // "Disco only": coupons are not allowed.
 	}
 
 	add_filter( 'woocommerce_coupon_is_valid', 'disco_disable_coupon_application', 10, 3 );

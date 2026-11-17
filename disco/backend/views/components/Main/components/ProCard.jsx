@@ -1,11 +1,18 @@
 import { __ } from '@wordpress/i18n';
 import { Zap } from 'lucide-react';
 import checkIcon from '../../../asset/img/icons/check-icon.svg';
+import BlackFridaySidebarBanner, {
+	isBlackFridaySale,
+} from './BlackFridaySidebarBanner';
 
 const PRICING_URL =
 	'https://discoplugin.com/?utm_source=disco-plugin&utm_medium=in-plugin&utm_campaign=campaigns-page&utm_content=pro-card#pricing';
 
 export default function DiscoProCard() {
+	if (isBlackFridaySale()) {
+		return <BlackFridaySidebarBanner placement="campaigns-page" />;
+	}
+
 	const proFeatures = [
 		'Multi-Currency Integrations',
 		'ACF Custom Field Conditions',

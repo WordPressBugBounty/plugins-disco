@@ -3,8 +3,8 @@ Contributors: webappick,wahid0003
 Donate link: https://webappick.com/
 Tags: bundle discount plugin, free shipping, product discount, bulk discount, bogo
 Requires at least: 5.9
-Tested up to: 7.1.4
-Stable tag: 1.4.30
+Tested up to: 7.1.5
+Stable tag: 1.4.31
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -509,6 +509,9 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.4.31(Nov 19, 2026) =
+* Tweak: WordPress compatibility checked with version 7.1.5, no issue found.
+
 = 1.4.30(Nov 17, 2026) =
 * Added: Black Friday promotional banner added to the sidebar.
 

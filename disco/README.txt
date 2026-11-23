@@ -4,7 +4,7 @@ Donate link: https://webappick.com/
 Tags: bundle discount plugin, free shipping, product discount, bulk discount, bogo
 Requires at least: 5.9
 Tested up to: 7.1.5
-Stable tag: 1.4.31
+Stable tag: 1.4.32
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -509,6 +509,9 @@ Free plugin users can post questions in the WordPress.org support forum, where o
 13. Showing campaign summary page with config.
 
 == Changelog ==
+= 1.4.32(Nov 23, 2026) =
+* Tweak: WooCommerce compatibility checked with version 11.3.1, no issue found.
+
 = 1.4.31(Nov 19, 2026) =
 * Tweak: WordPress compatibility checked with version 7.1.5, no issue found.
 
